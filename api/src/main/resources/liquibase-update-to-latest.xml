@@ -8306,6 +8306,7 @@
         </preConditions>
         <comment>Inserting Frequency concept class</comment>
         <insert tableName="concept_class">
+            <column name="concept_class_id" valueNumeric="16"/>
             <column name="name" value="Frequency"/>
             <column name="description" value="A class for order frequencies"/>
             <column name="uuid" value="8e071bfe-520c-44c0-a89b-538e9129b42a" />
