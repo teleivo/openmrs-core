@@ -8313,6 +8313,10 @@
             <column name="date_created" valueDate="2014-03-06"/>
             <column name="retired" valueBoolean="false"/>
         </insert>
+		<!-- Update postgres sequence correctly as it is incorrect after previous inserts with explicit concept_class_id's -->
+		<modifySql dbms="postgresql">
+			<prepend value="SELECT setval('concept_class_concept_class_id_seq', (SELECT MAX(concept_class_id) FROM concept_class)+1);"/>
+		</modifySql>
     </changeSet>
 
     <changeSet id="20140304816-TRUNK-4139" author="Akshika">
