@@ -1075,6 +1075,11 @@
             <column name="retire_reason"/>
         </insert>
     </changeSet>
+    <changeSet author="teleivo" id="20150612-1113" dbms="postgresql">
+        <alterSequence
+            incrementBy="15"
+            sequenceName="concept_name_concept_name_id_seq"/>
+    </changeSet>
     <changeSet author="sunbiz" id="20110915-0751">
         <insert tableName="users">
             <column name="system_id" value="daemon"/>
