@@ -24,6 +24,7 @@ import org.openmrs.Patient;
 import org.openmrs.Provider;
 import org.openmrs.annotation.Authorized;
 import org.openmrs.api.db.OrderDAO;
+import org.openmrs.order.OrderSearchCriteria;
 import org.openmrs.util.OpenmrsConstants;
 import org.openmrs.util.PrivilegeConstants;
 
@@ -207,6 +208,19 @@ public interface OrderService extends OpenmrsService {
 	 */
 	@Authorized(PrivilegeConstants.GET_ORDERS)
 	public List<Order> getOrders(Patient patient, CareSetting careSetting, OrderType orderType, boolean includeVoided);
+	
+	/**
+	 * Gets all Orders that match the specified criteria set in given
+	 * <code>OrderSearchCriteria</code> excluding discontinuation orders
+	 * 
+	 * @param orderSearchCriteria the orderSearchCriteria to match on
+	 * @return list of Orders matching the orderSearchCriteria
+	 * @since
+	 * @should fail if orderSearchCriteria is null
+	 * @should get the orders that match the orderSearchCriteria
+	 */
+	@Authorized(PrivilegeConstants.GET_ORDERS)
+	public List<Order> getOrders(OrderSearchCriteria orderSearchCriteria);
 	
 	/**
 	 * Gets all orders for the specified patient including discontinuation orders

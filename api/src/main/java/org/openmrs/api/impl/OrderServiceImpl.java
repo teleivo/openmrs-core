@@ -46,6 +46,7 @@ import org.openmrs.api.OrderNumberGenerator;
 import org.openmrs.api.OrderService;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.OrderDAO;
+import org.openmrs.order.OrderSearchCriteria;
 import org.openmrs.order.OrderUtil;
 import org.openmrs.util.OpenmrsConstants;
 import org.openmrs.util.OpenmrsUtil;
@@ -443,6 +444,18 @@ public class OrderServiceImpl extends BaseOpenmrsService implements OrderService
 			orderTypes.addAll(getSubtypes(orderType, true));
 		}
 		return dao.getOrders(patient, careSetting, orderTypes, includeVoided, false);
+	}
+	
+	/**
+	 * @see OrderService#getOrders(org.openmrs.order.OrderSearchCriteria)
+	 */
+	@Override
+	public List<Order> getOrders(OrderSearchCriteria orderSearchCriteria) {
+		if (orderSearchCriteria == null) {
+			throw new IllegalArgumentException("OrderSearchCriteria is required");
+		}
+		
+		return dao.getOrders(orderSearchCriteria);
 	}
 	
 	/**

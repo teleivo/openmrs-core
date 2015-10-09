@@ -44,6 +44,7 @@ import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.api.db.OrderDAO;
+import org.openmrs.order.OrderSearchCriteria;
 import org.openmrs.util.DatabaseUtil;
 import org.openmrs.util.OpenmrsConstants;
 
@@ -149,6 +150,19 @@ public class HibernateOrderDAO implements OrderDAO {
 	public List<Order> getOrders(Patient patient, CareSetting careSetting, List<OrderType> orderTypes,
 	        boolean includeVoided, boolean includeDiscontinuationOrders) {
 		return createOrderCriteria(patient, careSetting, orderTypes, includeVoided, includeDiscontinuationOrders).list();
+	}
+	
+	/**
+	 * @see OrderDAO#getOrders(org.openmrs.order.OrderSearchCriteria)
+	 */
+	@Override
+	public List<Order> getOrders(OrderSearchCriteria orderSearchCriteria) {
+		
+		Criteria searchCriteria = sessionFactory.getCurrentSession().createCriteria(Order.class);
+		searchCriteria.createAlias("order.encounter", "encounter");
+		searchCriteria.createAlias("encounter.visit", "visit");
+		searchCriteria.add(Restrictions.eq("visit", orderSearchCriteria.getVisit()));
+		return searchCriteria.list();
 	}
 	
 	/**

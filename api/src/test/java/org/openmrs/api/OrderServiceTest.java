@@ -1962,6 +1962,17 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
+	 * @verifies fail if orderSearchCriteria is null
+	 * @see OrderService#getOrders(org.openmrs.order.OrderSearchCriteria)
+	 */
+	@Test
+	public void getOrders_shouldFailIfOrderSearchCriteriaIsNull() throws Exception {
+		expectedException.expect(IllegalArgumentException.class);
+		expectedException.expectMessage("OrderSearchCriteria is required");
+		orderService.getOrders(null);
+	}
+	
+	/**
 	 * @verifies fail if patient is null
 	 * @see OrderService#getAllOrdersByPatient(org.openmrs.Patient)
 	 */
