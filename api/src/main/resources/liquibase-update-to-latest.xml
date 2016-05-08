@@ -8306,7 +8306,6 @@
         </preConditions>
         <comment>Inserting Frequency concept class</comment>
         <insert tableName="concept_class">
-            <column name="concept_class_id" valueNumeric="16"/>
             <column name="name" value="Frequency"/>
             <column name="description" value="A class for order frequencies"/>
             <column name="uuid" value="8e071bfe-520c-44c0-a89b-538e9129b42a" />
@@ -8314,6 +8313,10 @@
             <column name="date_created" valueDate="2014-03-06"/>
             <column name="retired" valueBoolean="false"/>
         </insert>
+		<!-- Update postgres sequence correctly as it is incorrect after previous inserts with explicit concept_class_id's -->
+		<modifySql dbms="postgresql">
+			<prepend value="SELECT setval('concept_class_concept_class_id_seq', (SELECT MAX(concept_class_id) FROM concept_class)+1);"/>
+		</modifySql>
     </changeSet>
 
     <changeSet id="20140304816-TRUNK-4139" author="Akshika">
