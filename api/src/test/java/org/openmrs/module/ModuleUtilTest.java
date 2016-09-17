@@ -18,17 +18,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.Properties;
 import java.util.jar.JarFile;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.context.Context;
 import org.openmrs.test.BaseContextSensitiveTest;
 import org.openmrs.test.Verifies;
+import org.openmrs.util.OpenmrsConstants;
 
 /**
  * Tests methods on the {@link org.openmrs.module.ModuleUtil} class
@@ -79,7 +82,43 @@ public class ModuleUtilTest extends BaseContextSensitiveTest {
 		//then
 		assertThat(ModuleUtil.getMandatoryModules(), contains("firstmodule"));
 	}
-	
+
+
+	/**
+	 * @verifies return false when versions is null
+	 * @see ModuleUtil#isOpenmrsVersionInVersions(String[])
+	 */
+	@Test public void isOpenmrsVersionInVersions_shouldReturnFalseWhenVersionsIsNull() throws Exception {
+
+		Assert.assertFalse(ModuleUtil.isOpenmrsVersionInVersions(null));
+	}
+	/**
+	 * @verifies return false when versions is empty
+	 * @see ModuleUtil#isOpenmrsVersionInVersions(String[])
+	 */
+	@Test public void isOpenmrsVersionInVersions_shouldReturnFalseWhenVersionsIsEmpty() throws Exception {
+
+		Assert.assertFalse(ModuleUtil.isOpenmrsVersionInVersions( new String[] {}));
+	}
+
+	/**
+	 * @verifies return true if current openmrs version matches one element in versions
+	 * @see ModuleUtil#isOpenmrsVersionInVersions(String[])
+	 */
+	@Ignore
+	@Test public void isOpenmrsVersionInVersions_shouldReturnTrueIfCurrentOpenmrsVersionMatchesOneElementInVersions()
+			throws Exception {
+	}
+
+	/**
+	 * @verifies return false if current openmrs version does not match any element in versions
+	 * @see ModuleUtil#isOpenmrsVersionInVersions(String[])
+	 */
+	@Ignore
+	@Test public void isOpenmrsVersionInVersions_shouldReturnFalseIfCurrentOpenmrsVersionDoesNotMatchAnyElementInVersions()
+			throws Exception {
+	}
+
 	/**
 	 * @see org.openmrs.module.ModuleUtil#matchRequiredVersions(String,String)
 	 */
