@@ -18,6 +18,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.jar.JarFile;
@@ -105,18 +107,33 @@ public class ModuleUtilTest extends BaseContextSensitiveTest {
 	 * @verifies return true if current openmrs version matches one element in versions
 	 * @see ModuleUtil#isOpenmrsVersionInVersions(String[])
 	 */
-	@Ignore
 	@Test public void isOpenmrsVersionInVersions_shouldReturnTrueIfCurrentOpenmrsVersionMatchesOneElementInVersions()
 			throws Exception {
+
+		Field versionField = OpenmrsConstants.class.getDeclaredField("OPENMRS_VERSION_SHORT");
+		Field modifiersField = Field.class.getDeclaredField("modifiers");
+		modifiersField.setAccessible(true);
+      	modifiersField.setInt(versionField, versionField.getModifiers() & ~Modifier.FINAL);
+		final String currentVersion = "2.1.0";
+		versionField.set(null, currentVersion);
+
+		Assert.assertTrue(ModuleUtil.isOpenmrsVersionInVersions( new String[] { currentVersion }));
 	}
 
 	/**
 	 * @verifies return false if current openmrs version does not match any element in versions
 	 * @see ModuleUtil#isOpenmrsVersionInVersions(String[])
 	 */
-	@Ignore
 	@Test public void isOpenmrsVersionInVersions_shouldReturnFalseIfCurrentOpenmrsVersionDoesNotMatchAnyElementInVersions()
 			throws Exception {
+
+		Field versionField = OpenmrsConstants.class.getDeclaredField("OPENMRS_VERSION_SHORT");
+		Field modifiersField = Field.class.getDeclaredField("modifiers");
+		modifiersField.setAccessible(true);
+		modifiersField.setInt(versionField, versionField.getModifiers() & ~Modifier.FINAL);
+		versionField.set(null, "2.1.0");
+
+		Assert.assertFalse(ModuleUtil.isOpenmrsVersionInVersions( new String[] { "1.9.8", "1.11.*" }));
 	}
 
 	/**
@@ -245,7 +262,31 @@ public class ModuleUtilTest extends BaseContextSensitiveTest {
 		String requiredOpenmrsVersion = "1.5.*";
 		Assert.assertFalse(ModuleUtil.matchRequiredVersions(openmrsVersion, requiredOpenmrsVersion));
 	}
-	
+
+	/**
+	 * @see org.openmrs.module.ModuleUtil#matchRequiredVersions(String,String)
+	 */
+	@Test
+	@Verifies(value = "should return false when required version beyond openmrs version", method = "matchRequiredVersions(String,String)")
+	public void matchRequiredVersions_shouldReturnFalseWhenRequiredVersionBeyondOpenmrsVersion_WORKS_AS_EXPECTED() throws Exception {
+		String openmrsVersion = "2.1.0";
+		String requiredOpenmrsVersion = "1.9.*";
+//		Assert.assertFalse(ModuleUtil.matchRequiredVersions(openmrsVersion, requiredOpenmrsVersion));
+		Assert.assertFalse(ModuleUtil.matchRequiredVersions("2.1.0", "1.9.*"));
+	}
+
+	/**
+	 * @see org.openmrs.module.ModuleUtil#matchRequiredVersions(String,String)
+	 */
+	@Test
+	@Verifies(value = "should return false when required version beyond openmrs version", method = "matchRequiredVersions(String,String)")
+	public void matchRequiredVersions_shouldReturnFalseWhenRequiredVersionBeyondOpenmrsVersion_IS_UNEXPECTED() throws Exception {
+		String openmrsVersion = "2.1.0";
+		String requiredOpenmrsVersion = "1.9.8";
+//		Assert.assertFalse(ModuleUtil.matchRequiredVersions(openmrsVersion, requiredOpenmrsVersion));
+		Assert.assertTrue(ModuleUtil.matchRequiredVersions("2.1.0", "1.9.8"));
+	}
+
 	/**
 	 * @see org.openmrs.module.ModuleUtil#matchRequiredVersions(String,String)
 	 */

@@ -228,13 +228,17 @@ public class ModuleUtil {
 	 */
 	public static boolean isOpenmrsVersionInVersions(String[] versions) {
 
+		System.out.println("Current: "
+				 + OpenmrsConstants.OPENMRS_VERSION_SHORT);
 		if (versions == null || versions.length == 0) {
 			return false;
 		}
 
 		boolean result = false;
 		for (String version : versions) {
+			System.out.println(version);
 			if (matchRequiredVersions(OpenmrsConstants.OPENMRS_VERSION_SHORT, version)) {
+				System.out.println("true");
 				result = true;
 				break;
 			}
@@ -338,6 +342,7 @@ public class ModuleUtil {
 					if (compareVersion(version, range) < 0) {
 						log.debug("Version " + version + " is below " + range);
 					} else {
+						System.out.println("whyy?");
 						return true;
 					}
 				}
