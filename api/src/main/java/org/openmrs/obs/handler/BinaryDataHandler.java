@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -118,7 +119,7 @@ public class BinaryDataHandler extends AbstractHandler implements ComplexObsHand
 				fout.write((byte[]) data);
 			} else if (InputStream.class.isAssignableFrom(data.getClass())) {
 				try {
-					OpenmrsUtil.copyFile((InputStream) data, fout);
+					IOUtils.copy((InputStream) data, fout);
 				}
 				catch (IOException e) {
 					throw new APIException("Obs.error.unable.convert.complex.data", new Object[] { "input stream" }, e);

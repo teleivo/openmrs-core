@@ -102,8 +102,8 @@ public class ModuleUtil {
 								FileOutputStream outStream = new FileOutputStream(expandedFile, false);
 								
 								// do the actual file copying
-								OpenmrsUtil.copyFile(stream, outStream);
-								
+                                IOUtils.copy(stream, outStream);
+
 								// add the freshly expanded file to the list of modules we're going to start up
 								modulesToLoad.add(expandedFile);
 								expandedFile.deleteOnExit();
@@ -191,7 +191,7 @@ public class ModuleUtil {
 		FileOutputStream outputStream = null;
 		try {
 			outputStream = new FileOutputStream(file);
-			OpenmrsUtil.copyFile(inputStream, outputStream);
+            IOUtils.copy(inputStream, outputStream);
 		}
 		catch (FileNotFoundException e) {
 			throw new ModuleException("Can't create module file for " + filename, e);
@@ -633,7 +633,7 @@ public class ModuleUtil {
 		FileOutputStream outStream = null;
 		try {
 			outStream = new FileOutputStream(file);
-			OpenmrsUtil.copyFile(input, outStream);
+			IOUtils.copy(input, outStream);
 		}
 		finally {
 			try {
@@ -741,7 +741,7 @@ public class ModuleUtil {
 			}
 			
 			out = new ByteArrayOutputStream();
-			OpenmrsUtil.copyFile(in, out);
+            IOUtils.copy(in, out);
 			output = out.toString();
 		}
 		catch (IOException io) {

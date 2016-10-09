@@ -66,6 +66,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -1011,7 +1012,7 @@ public class OpenmrsUtil {
 			InputStream in = jarFile.getInputStream(entry);
 			try {
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
-				copyFile(in, out);
+				IOUtils.copy(in, out);
 				return new ByteArrayInputStream(out.toByteArray());
 			}
 			finally {

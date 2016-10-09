@@ -31,6 +31,7 @@ import java.util.zip.ZipEntry;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -103,7 +104,7 @@ public class ModuleFileParser {
 		try {
 			moduleFile = File.createTempFile("moduleUpgrade", "omod");
 			outputStream = new FileOutputStream(moduleFile);
-			OpenmrsUtil.copyFile(inputStream, outputStream);
+			IOUtils.copy(inputStream, outputStream);
 		}
 		catch (FileNotFoundException e) {
 			throw new ModuleException(Context.getMessageSourceService().getMessage("Module.error.cannotCreateFile"), e);

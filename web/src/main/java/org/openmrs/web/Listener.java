@@ -32,6 +32,7 @@ import javax.servlet.ServletException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Level;
@@ -476,7 +477,7 @@ public final class Listener extends ContextLoader implements ServletContextListe
 		try {
 			inputStream = new FileInputStream(fromPath);
 			outputStream = new FileOutputStream(toPath);
-			OpenmrsUtil.copyFile(inputStream, outputStream);
+			IOUtils.copy(inputStream, outputStream);
 		}
 		catch (IOException io) {
 			return false;

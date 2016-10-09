@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Obs;
@@ -98,7 +99,7 @@ public class MediaHandler extends AbstractHandler implements ComplexObsHandler {
 			File outfile = getOutputFileToWrite(obs);
 			OutputStream out = new FileOutputStream(outfile, false);
 			FileInputStream mediaStream = (FileInputStream) obs.getComplexData().getData();
-			OpenmrsUtil.copyFile(mediaStream, out);
+			IOUtils.copy(mediaStream, out);
 			
 			// Store the filename in the Obs
 			obs.setComplexData(null);

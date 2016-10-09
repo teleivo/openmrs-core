@@ -31,11 +31,11 @@ import liquibase.exception.SetupException;
 
 import liquibase.exception.ValidationErrors;
 import liquibase.resource.ResourceAccessor;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
 import org.openmrs.util.OpenmrsConstants;
-import org.openmrs.util.OpenmrsUtil;
 
 /**
  * Executes (aka "source"s) the given file on the current database. <br>
@@ -90,7 +90,7 @@ public class SourceMySqldiffFile implements CustomTaskChange {
 			tmpOutputFile = File.createTempFile(sqlFile, "tmp");
 			InputStream sqlFileInputStream = fileOpener.getResourceAsStream(sqlFile);
 			OutputStream outputStream = new FileOutputStream(tmpOutputFile);
-			OpenmrsUtil.copyFile(sqlFileInputStream, outputStream);
+			IOUtils.copy(sqlFileInputStream, outputStream);
 		}
 		catch (IOException e) {
 			if (tmpOutputFile != null) {

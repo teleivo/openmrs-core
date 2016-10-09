@@ -46,6 +46,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.context.Context;
@@ -191,7 +192,7 @@ public class WebModuleUtil {
 							// copy the contents over to the webapp for non directories
 							outStream = new FileOutputStream(outFile, false);
 							inStream = jarFile.getInputStream(entry);
-							OpenmrsUtil.copyFile(inStream, outStream);
+							IOUtils.copy(inStream, outStream);
 						}
 					} else if (name.equals("moduleApplicationContext.xml") || name.equals("webModuleApplicationContext.xml")) {
 						moduleNeedsContextRefresh = true;

@@ -188,7 +188,7 @@ public class TestInstallUtil {
 					//delete all previously added modules in case of prior test installations
 					FileUtils.cleanDirectory(moduleRepository);
 					
-					OpenmrsUtil.copyFile(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream(
+					IOUtils.copy(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream(
 					        new File(moduleRepository, fileName))));
 				} else {
 					if (log.isDebugEnabled()) {

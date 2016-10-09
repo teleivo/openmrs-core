@@ -40,6 +40,7 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -248,7 +249,7 @@ public class ModuleClassLoader extends URLClassLoader {
 			try {
 				in = new FileInputStream(module.getFile());
 				out = new FileOutputStream(tmpModuleJar);
-				OpenmrsUtil.copyFile(in, out);
+				IOUtils.copy(in, out);
 			}
 			catch (IOException io) {
 				log.warn("Unable to copy tmpModuleFile", io);
@@ -830,7 +831,7 @@ public class ModuleClassLoader extends URLClassLoader {
 				FileOutputStream fileOut = new FileOutputStream(result);
 				OutputStream out = new BufferedOutputStream(fileOut);
 				try {
-					OpenmrsUtil.copyFile(in, out);
+					IOUtils.copy(in, out);
 				}
 				finally {
 					try {

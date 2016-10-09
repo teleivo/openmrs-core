@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -110,7 +111,7 @@ public class BinaryStreamHandler extends AbstractHandler implements ComplexObsHa
 			InputStream in = (InputStream) obs.getComplexData().getData();
 			File outfile = getOutputFileToWrite(obs);
 			OutputStream out = new FileOutputStream(outfile, false);
-			OpenmrsUtil.copyFile(in, out);
+			IOUtils.copy(in, out);
 			
 			// Store the filename in the Obs
 			obs.setComplexData(null);

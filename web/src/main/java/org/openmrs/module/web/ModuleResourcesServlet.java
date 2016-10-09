@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.Module;
@@ -66,7 +67,7 @@ public class ModuleResourcesServlet extends HttpServlet {
 		
 		FileInputStream is = new FileInputStream(f);
 		try {
-			OpenmrsUtil.copyFile(is, response.getOutputStream());
+			IOUtils.copy(is, response.getOutputStream());
 		}
 		finally {
 			OpenmrsUtil.closeStream(is);

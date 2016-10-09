@@ -32,6 +32,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -123,7 +124,7 @@ public abstract class StartupFilter implements Filter {
 				InputStream imageFileInputStream = null;
 				try {
 					imageFileInputStream = new FileInputStream(file);
-					OpenmrsUtil.copyFile(imageFileInputStream, httpResponse.getOutputStream());
+					IOUtils.copy(imageFileInputStream, httpResponse.getOutputStream());
 				}
 				catch (FileNotFoundException e) {
 					log.error("Unable to find file: " + file.getAbsolutePath());
