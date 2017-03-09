@@ -70,8 +70,8 @@ import org.springframework.util.ObjectUtils;
  * @see ConceptMap
  * @see ConceptService
  */
-@FullTextFilterDefs( { @FullTextFilterDef(name = "termsFilterFactory", impl = TermsFilterFactory.class) })
-public class Concept extends BaseOpenmrsObject implements Auditable, Retireable, Serializable, Attributable<Concept>,Customizable<ConceptAttribute> {
+@FullTextFilterDefs({ @FullTextFilterDef(name = "termsFilterFactory", impl = TermsFilterFactory.class) })
+public class Concept extends BaseOpenmrsObject implements Auditable, Retireable, Serializable, Attributable<Concept>, Customizable<ConceptAttribute> {
 	
 	public static final long serialVersionUID = 57332L;
 	
@@ -127,9 +127,9 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 * getCompatibleNames().
 	 */
 	private Map<Locale, List<ConceptName>> compatibleCache;
-
+	
 	private Set<ConceptAttribute> attributes = new LinkedHashSet<>();
-
+	
 	/** default constructor */
 	public Concept() {
 		names = new HashSet<ConceptName>();
@@ -175,9 +175,8 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 * @should not return retired answers if includeRetired is false
 	 */
 	public Collection<ConceptAnswer> getAnswers(boolean includeRetired) {
-		return getAnswers().stream()
-				.filter(a -> includeRetired || !a.getAnswerConcept().getRetired())
-				.collect(Collectors.toSet());
+		return getAnswers().stream().filter(a -> includeRetired || !a.getAnswerConcept().getRetired())
+		        .collect(Collectors.toSet());
 	}
 	
 	/**
@@ -428,7 +427,8 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 * are listed in the 'locale.allowed.list' including english global property).</li>
 	 * <li>First "Fully Specified" name found while searching available locales in order of
 	 * preference.</li>
-	 * <li>The first fully specified name found while searching through all names for the concept</li>
+	 * <li>The first fully specified name found while searching through all names for the
+	 * concept</li>
 	 * <li>The first synonym found while searching through all names for the concept.</li>
 	 * <li>The first random name found(except index terms) while searching through all names.</li>
 	 * </ul>
@@ -732,9 +732,7 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 * @return Collection of ConceptNames with the given locale
 	 */
 	public Collection<ConceptName> getNames(Locale locale) {
-		return getNames().stream()
-				.filter(n -> n.getLocale().equals(locale))
-				.collect(Collectors.toSet());
+		return getNames().stream().filter(n -> n.getLocale().equals(locale)).collect(Collectors.toSet());
 	}
 	
 	/**
@@ -749,9 +747,9 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 		String country = locale.getCountry();
 		
 		return getNames().stream()
-				.filter(n -> language.equals(n.getLocale().getLanguage()) || 
-							StringUtils.isNotBlank(country) && country.equals(n.getLocale().getCountry()))
-				.collect(Collectors.toSet());
+		        .filter(n -> language.equals(n.getLocale().getLanguage())
+		                || StringUtils.isNotBlank(country) && country.equals(n.getLocale().getCountry()))
+		        .collect(Collectors.toSet());
 	}
 	
 	/**
@@ -881,9 +879,7 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 				log.debug("The Concept with id: " + conceptId + " has no names");
 			}
 		} else {
-			shortNames = getNames().stream()
-							.filter(n -> n.isShort())
-							.collect(Collectors.toList());
+			shortNames = getNames().stream().filter(n -> n.isShort()).collect(Collectors.toList());
 		}
 		return shortNames;
 	}
@@ -915,9 +911,8 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 		
 		if (locale != null) {
 			for (ConceptName possibleName : getNames()) {
-				if (possibleName.getLocale().equals(locale)
-				        && ((shortestNameForLocale == null) || (possibleName.getName().length() < shortestNameForLocale
-				                .getName().length()))) {
+				if (possibleName.getLocale().equals(locale) && ((shortestNameForLocale == null)
+				        || (possibleName.getName().length() < shortestNameForLocale.getName().length()))) {
 					shortestNameForLocale = possibleName;
 				}
 				if ((shortestNameForConcept == null)
@@ -929,8 +924,8 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 		
 		if (exact) {
 			if (shortestNameForLocale == null) {
-				log.warn("No short concept name found for concept id " + conceptId + " for locale "
-				        + locale.getDisplayName());
+				log.warn(
+				    "No short concept name found for concept id " + conceptId + " for locale " + locale.getDisplayName());
 			}
 			return shortestNameForLocale;
 		}
@@ -943,9 +938,7 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 * @return whether this concept has the given name in any locale
 	 */
 	public boolean isNamed(String name) {
-		return getNames().stream()
-				.filter(cn -> name.equals(cn.getName()))
-				.count() > 0;
+		return getNames().stream().filter(cn -> name.equals(cn.getName())).count() > 0;
 	}
 	
 	/**
@@ -955,9 +948,7 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 * @since 1.7
 	 */
 	public Collection<ConceptName> getIndexTerms() {
-		return getNames().stream()
-				.filter(n -> n.isIndexTerm())
-				.collect(Collectors.toSet());		
+		return getNames().stream().filter(n -> n.isIndexTerm()).collect(Collectors.toSet());
 	}
 	
 	/**
@@ -968,9 +959,7 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 * @since 1.7
 	 */
 	public Collection<ConceptName> getIndexTermsForLocale(Locale locale) {
-		return getIndexTerms().stream()
-				.filter(n -> n.getLocale().equals(locale))
-				.collect(Collectors.toSet());		
+		return getIndexTerms().stream().filter(n -> n.getLocale().equals(locale)).collect(Collectors.toSet());
 	}
 	
 	/**
@@ -988,10 +977,8 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 		if (names == null) {
 			names = new HashSet<ConceptName>();
 		}
-
-		return names.stream()
-				.filter(n -> includeVoided || !n.getVoided())
-				.collect(Collectors.toSet());
+		
+		return names.stream().filter(n -> includeVoided || !n.getVoided()).collect(Collectors.toSet());
 	}
 	
 	/**
@@ -1123,8 +1110,8 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 			// no description with the given locale was found.
 			// return null if exact match desired
 			if (exact) {
-				log.debug("No concept description found for concept id " + conceptId + " for locale "
-				        + desiredLocale.toString());
+				log.debug(
+				    "No concept description found for concept id " + conceptId + " for locale " + desiredLocale.toString());
 			} else {
 				// returning default description locale ("en") if exact match
 				// not desired
@@ -1211,7 +1198,8 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 * @param description the description to add
 	 */
 	public void addDescription(ConceptDescription description) {
-		if (description != null && StringUtils.isNotBlank(description.getDescription()) && !descriptions.contains(description)) {
+		if (description != null && StringUtils.isNotBlank(description.getDescription())
+		        && !descriptions.contains(description)) {
 			description.setConcept(this);
 			descriptions.add(description);
 		}
@@ -1230,7 +1218,6 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	
 	/**
 	 * @return Returns the retired.
-	 * 
 	 * @deprecated as of 2.0, use {@link #getRetired()}
 	 */
 	@Override
@@ -1242,8 +1229,8 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	
 	/**
 	 * This method delegates to {@link #isRetired()}. This is only needed for jstl syntax like
-	 * ${concept.retired} because the return type is a Boolean object instead of a boolean
-	 * primitive type.
+	 * ${concept.retired} because the return type is a Boolean object instead of a boolean primitive
+	 * type.
 	 * 
 	 * @see org.openmrs.Retireable#isRetired()
 	 */
@@ -1297,9 +1284,7 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 * @since 1.7
 	 */
 	public Collection<ConceptName> getSynonyms() {
-		return getNames().stream()
-				.filter(n -> n.isSynonym())
-				.collect(Collectors.toSet());
+		return getNames().stream().filter(n -> n.isSynonym()).collect(Collectors.toSet());
 	}
 	
 	/**
@@ -1392,7 +1377,7 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 	 * 
 	 * @param conceptMap
 	 * @return true if the entity was removed, false otherwise
-	 * @Should remove concept map passed from list of mappings 
+	 * @Should remove concept map passed from list of mappings
 	 */
 	public boolean removeConceptMapping(ConceptMap conceptMap) {
 		return getConceptMappings().remove(conceptMap);
@@ -1620,7 +1605,7 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 		conceptSet.setConceptSet(this);
 		conceptSets.add(conceptSet);
 	}
-
+	
 	/**
 	 * @see org.openmrs.customdatatype.Customizable#getAttributes()
 	 */
@@ -1631,34 +1616,31 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 		}
 		return attributes;
 	}
-
+	
 	/**
 	 * @see org.openmrs.customdatatype.Customizable#getActiveAttributes()
 	 */
 	@Override
 	public Collection<ConceptAttribute> getActiveAttributes() {
-		return getAttributes().stream()
-				.filter(attr -> !attr.getVoided())
-				.collect(Collectors.toList());
+		return getAttributes().stream().filter(attr -> !attr.getVoided()).collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * @see org.openmrs.customdatatype.Customizable#getActiveAttributes(org.openmrs.customdatatype.CustomValueDescriptor)
 	 */
 	@Override
 	public List<ConceptAttribute> getActiveAttributes(CustomValueDescriptor ofType) {
-		return getAttributes().stream()
-				.filter(attr -> attr.getAttributeType().equals(ofType) && !attr.getVoided())
-				.collect(Collectors.toList());
+		return getAttributes().stream().filter(attr -> attr.getAttributeType().equals(ofType) && !attr.getVoided())
+		        .collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * @param attributes the attributes to set
 	 */
 	public void setAttributes(Set<ConceptAttribute> attributes) {
 		this.attributes = attributes;
 	}
-
+	
 	/**
 	 * @see org.openmrs.customdatatype.Customizable#addAttribute(Attribute)
 	 */
@@ -1667,5 +1649,5 @@ public class Concept extends BaseOpenmrsObject implements Auditable, Retireable,
 		getAttributes().add(attribute);
 		attribute.setOwner(this);
 	}
-
+	
 }

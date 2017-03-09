@@ -95,16 +95,17 @@ public class ExistingOrNewVisitAssignmentHandler extends ExistingVisitAssignment
 	}
 	
 	/**
-	 * Get the visit type corresponding to an encounter type by reading valid mappings 
-	 * from a global property
+	 * Get the visit type corresponding to an encounter type by reading valid mappings from a global
+	 * property
+	 * 
 	 * @param encounterType
 	 * @return
 	 * @throws APIException
 	 */
 	private static VisitType loadVisitType(EncounterType encounterType) throws APIException {
 		
-		String value = Context.getAdministrationService().getGlobalPropertyValue(
-		    OpenmrsConstants.GP_ENCOUNTER_TYPE_TO_VISIT_TYPE_MAPPING, "");
+		String value = Context.getAdministrationService()
+		        .getGlobalPropertyValue(OpenmrsConstants.GP_ENCOUNTER_TYPE_TO_VISIT_TYPE_MAPPING, "");
 		
 		// Value should be in this format "3:4, 5:2, 1:2, 2:2" for encounterTypeId:visitTypeId
 		// or encounterTypeUuid:visitTypeUuid o a mixture of uuids and id

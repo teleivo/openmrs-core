@@ -179,8 +179,8 @@ public class HibernateProgramWorkflowDAO implements ProgramWorkflowDAO {
 			crit.add(Restrictions.le("dateEnrolled", maxEnrollmentDate));
 		}
 		if (minCompletionDate != null) {
-			crit.add(Restrictions.or(Restrictions.isNull("dateCompleted"), Restrictions.ge("dateCompleted",
-			    minCompletionDate)));
+			crit.add(
+			    Restrictions.or(Restrictions.isNull("dateCompleted"), Restrictions.ge("dateCompleted", minCompletionDate)));
 		}
 		if (maxCompletionDate != null) {
 			crit.add(Restrictions.le("dateCompleted", maxCompletionDate));
@@ -292,8 +292,9 @@ public class HibernateProgramWorkflowDAO implements ProgramWorkflowDAO {
 	 */
 	@Override
 	public ConceptStateConversion getConceptStateConversionByUuid(String uuid) {
-		return (ConceptStateConversion) sessionFactory.getCurrentSession().createQuery(
-		    "from ConceptStateConversion csc where csc.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (ConceptStateConversion) sessionFactory.getCurrentSession()
+		        .createQuery("from ConceptStateConversion csc where csc.uuid = :uuid").setString("uuid", uuid)
+		        .uniqueResult();
 	}
 	
 	/**
@@ -301,8 +302,8 @@ public class HibernateProgramWorkflowDAO implements ProgramWorkflowDAO {
 	 */
 	@Override
 	public PatientProgram getPatientProgramByUuid(String uuid) {
-		return (PatientProgram) sessionFactory.getCurrentSession().createQuery(
-		    "from PatientProgram pp where pp.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (PatientProgram) sessionFactory.getCurrentSession()
+		        .createQuery("from PatientProgram pp where pp.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -310,8 +311,8 @@ public class HibernateProgramWorkflowDAO implements ProgramWorkflowDAO {
 	 */
 	@Override
 	public Program getProgramByUuid(String uuid) {
-		return (Program) sessionFactory.getCurrentSession().createQuery("from Program p where p.uuid = :uuid").setString(
-		    "uuid", uuid).uniqueResult();
+		return (Program) sessionFactory.getCurrentSession().createQuery("from Program p where p.uuid = :uuid")
+		        .setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -319,8 +320,8 @@ public class HibernateProgramWorkflowDAO implements ProgramWorkflowDAO {
 	 */
 	@Override
 	public ProgramWorkflowState getStateByUuid(String uuid) {
-		return (ProgramWorkflowState) sessionFactory.getCurrentSession().createQuery(
-		    "from ProgramWorkflowState pws where pws.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (ProgramWorkflowState) sessionFactory.getCurrentSession()
+		        .createQuery("from ProgramWorkflowState pws where pws.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
 	
 	@Override
@@ -334,8 +335,8 @@ public class HibernateProgramWorkflowDAO implements ProgramWorkflowDAO {
 	 */
 	@Override
 	public ProgramWorkflow getWorkflowByUuid(String uuid) {
-		return (ProgramWorkflow) sessionFactory.getCurrentSession().createQuery(
-		    "from ProgramWorkflow pw where pw.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (ProgramWorkflow) sessionFactory.getCurrentSession()
+		        .createQuery("from ProgramWorkflow pw where pw.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**

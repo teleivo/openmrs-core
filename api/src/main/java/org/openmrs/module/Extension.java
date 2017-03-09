@@ -152,9 +152,9 @@ public abstract class Extension {
 	}
 	
 	/**
-	 * If multiple extensions are added to the same extension point, set the order
-	 * of those extensions by overriding this property.  Lower order numbers will generally 
-	 * appear first within the extension point.
+	 * If multiple extensions are added to the same extension point, set the order of those
+	 * extensions by overriding this property. Lower order numbers will generally appear first
+	 * within the extension point.
 	 *
 	 * @return 0
 	 */

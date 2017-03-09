@@ -99,9 +99,10 @@ public class PatientIdentifierValidator implements Validator {
 			if (pi.getIdentifierType().getUniquenessBehavior() != UniquenessBehavior.NON_UNIQUE
 			        && Context.getPatientService().isIdentifierInUseByAnotherPatient(pi)) {
 				// Check is already in use by another patient
-				throw new IdentifierNotUniqueException(Context.getMessageSourceService().getMessage(
-				    "PatientIdentifier.error.notUniqueWithParameter", new Object[] { pi.getIdentifier() },
-				    Context.getLocale()), pi);
+				throw new IdentifierNotUniqueException(
+				        Context.getMessageSourceService().getMessage("PatientIdentifier.error.notUniqueWithParameter",
+				            new Object[] { pi.getIdentifier() }, Context.getLocale()),
+				        pi);
 			}
 		}
 	}
@@ -206,13 +207,13 @@ public class PatientIdentifierValidator implements Validator {
 		// Check identifier against IdentifierValidator
 		try {
 			if (!validator.isValid(identifier)) {
-				throw new InvalidCheckDigitException(getMessage("PatientIdentifier.error.checkDigitWithParameter",
-				    identifier));
+				throw new InvalidCheckDigitException(
+				        getMessage("PatientIdentifier.error.checkDigitWithParameter", identifier));
 			}
 		}
 		catch (UnallowedIdentifierException e) {
-			throw new InvalidCheckDigitException(getMessage("PatientIdentifier.error.unallowedIdentifier", identifier,
-			    validator.getName()));
+			throw new InvalidCheckDigitException(
+			        getMessage("PatientIdentifier.error.unallowedIdentifier", identifier, validator.getName()));
 		}
 		log.debug("The identifier passed validation.");
 		

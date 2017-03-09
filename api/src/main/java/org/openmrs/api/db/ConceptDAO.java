@@ -386,17 +386,17 @@ public interface ConceptDAO {
 	 * @see org.openmrs.api.ConceptService#getConceptSourceByName(java.lang.String)
 	 */
 	public ConceptSource getConceptSourceByName(String conceptSourceName) throws DAOException;
-
+	
 	/**
 	 * @see org.openmrs.api.ConceptService#getConceptSourceByUniqueId(java.lang.String)
 	 */
 	public ConceptSource getConceptSourceByUniqueId(String uniqueId);
-
+	
 	/**
 	 * @see org.openmrs.api.ConceptService#getConceptSourceByHL7Code(java.lang.String)
 	 */
 	public ConceptSource getConceptSourceByHL7Code(String hl7Code);
-
+	
 	/**
 	 * Gets the value of conceptDatatype currently saved in the database for the given concept,
 	 * bypassing any caches. This is used prior to saving an concept so that we can change the obs
@@ -604,52 +604,53 @@ public interface ConceptDAO {
 	        Collection<ConceptMapType> withAnyOfTheseTypes, boolean includeRetired) throws DAOException;
 	
 	/**
-	 * @see org.openmrs.api.ConceptService#getDrugByMapping(String, org.openmrs.ConceptSource, java.util.Collection)
+	 * @see org.openmrs.api.ConceptService#getDrugByMapping(String, org.openmrs.ConceptSource,
+	 *      java.util.Collection)
 	 */
 	Drug getDrugByMapping(String code, ConceptSource conceptSource,
 	        Collection<ConceptMapType> withAnyOfTheseTypesOrOrderOfPreference) throws DAOException;
-
+	
 	/**
 	 * @see ConceptService#getAllConceptAttributeTypes()
 	 */
-
+	
 	List<ConceptAttributeType> getAllConceptAttributeTypes();
-
+	
 	/**
 	 * @see ConceptService#saveConceptAttributeType(ConceptAttributeType)
 	 */
 	ConceptAttributeType saveConceptAttributeType(ConceptAttributeType conceptAttributeType);
-
+	
 	/**
 	 * @see ConceptService#getConceptAttributeType(Integer)
 	 */
 	ConceptAttributeType getConceptAttributeType(Integer id);
-
+	
 	/**
 	 * @see ConceptService#getConceptAttributeTypeByUuid(String)
 	 */
 	ConceptAttributeType getConceptAttributeTypeByUuid(String uuid);
-
+	
 	/**
 	 * @see ConceptService#purgeConceptAttributeType(ConceptAttributeType)
 	 */
 	public void deleteConceptAttributeType(ConceptAttributeType conceptAttributeType);
-
+	
 	/**
 	 * @see ConceptService#getConceptAttributeTypes(String)
 	 */
 	public List<ConceptAttributeType> getConceptAttributeTypes(String name);
-
+	
 	/**
 	 * @see ConceptService#getConceptAttributeTypeByName(String)
 	 */
 	public ConceptAttributeType getConceptAttributeTypeByName(String exactName);
-
+	
 	/**
 	 * @see ConceptService#getConceptAttributeByUuid(String)
 	 */
 	public ConceptAttribute getConceptAttributeByUuid(String uuid);
-
+	
 	/**
 	 * @see ConceptService#hasAnyConceptAttribute(ConceptAttributeType)
 	 */

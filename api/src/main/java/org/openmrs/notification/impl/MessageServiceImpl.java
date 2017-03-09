@@ -221,7 +221,7 @@ public class MessageServiceImpl implements MessageService {
 	}
 	
 	/**
-         * Sends a message to a group of users identifier by their role.
+	 * Sends a message to a group of users identifier by their role.
 	 */
 	@Override
 	public void sendMessage(Message message, Role role) throws MessageException {
@@ -250,7 +250,8 @@ public class MessageServiceImpl implements MessageService {
 	}
 	
 	/**
-	 * Prepare a message based on a template and data used for variable substitution within template.
+	 * Prepare a message based on a template and data used for variable substitution within
+	 * template.
 	 *
 	 * @param templateName name of the template to be used
 	 * @param data mapping used for variable substitution within template
@@ -302,5 +303,5 @@ public class MessageServiceImpl implements MessageService {
 	@Transactional(readOnly = true)
 	public List getTemplatesByName(String name) throws MessageException {
 		return templateDAO.getTemplatesByName(name);
-	}	
+	}
 }

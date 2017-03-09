@@ -116,8 +116,8 @@ public class Duration {
 		for (ConceptMap conceptMapping : durationUnits.getConceptMappings()) {
 			ConceptReferenceTerm conceptReferenceTerm = conceptMapping.getConceptReferenceTerm();
 			if (ConceptMapType.SAME_AS_MAP_TYPE_UUID.equals(conceptMapping.getConceptMapType().getUuid())
-			        && Duration.SNOMED_CT_CONCEPT_SOURCE_HL7_CODE.equals(conceptReferenceTerm.getConceptSource()
-			                .getHl7Code())) {
+			        && Duration.SNOMED_CT_CONCEPT_SOURCE_HL7_CODE
+			                .equals(conceptReferenceTerm.getConceptSource().getHl7Code())) {
 				return conceptReferenceTerm.getCode();
 			}
 		}

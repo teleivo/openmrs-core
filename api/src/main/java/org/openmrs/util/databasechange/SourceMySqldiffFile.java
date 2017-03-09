@@ -94,8 +94,8 @@ public class SourceMySqldiffFile implements CustomTaskChange {
 		}
 		catch (IOException e) {
 			if (tmpOutputFile != null) {
-				throw new CustomChangeException(
-				        "Unable to copy " + sqlFile + " to file: " + tmpOutputFile.getAbsolutePath(), e);
+				throw new CustomChangeException("Unable to copy " + sqlFile + " to file: " + tmpOutputFile.getAbsolutePath(),
+				        e);
 			} else {
 				throw new CustomChangeException("Unable to copy " + sqlFile, e);
 			}
@@ -134,9 +134,11 @@ public class SourceMySqldiffFile implements CustomTaskChange {
 		}
 		catch (IOException io) {
 			if (io.getMessage().endsWith("not found")) {
-				throw new CustomChangeException("Unable to run command: " + commands.get(0)
-				        + ".  Make sure that it is on the PATH and then restart your server and try again. " + " Or run "
-				        + errorCommand + " at the command line with the appropriate full mysql path", io);
+				throw new CustomChangeException(
+				        "Unable to run command: " + commands.get(0)
+				                + ".  Make sure that it is on the PATH and then restart your server and try again. "
+				                + " Or run " + errorCommand + " at the command line with the appropriate full mysql path",
+				        io);
 			}
 		}
 		catch (Exception e) {
@@ -148,12 +150,10 @@ public class SourceMySqldiffFile implements CustomTaskChange {
 		if (exitValue != 0) {
 			log.error("There was an error while running the " + commands.get(0) + " command.  Command output: "
 			        + output.toString());
-			throw new CustomChangeException(
-			        "There was an error while running the "
-			                + commands.get(0)
-			                + " command. See your server's error log for the full error output. As an alternative, you"
-			                + " can run this command manually on your database to skip over this error.  Run this at the command line "
-			                + errorCommand + "  ");
+			throw new CustomChangeException("There was an error while running the " + commands.get(0)
+			        + " command. See your server's error log for the full error output. As an alternative, you"
+			        + " can run this command manually on your database to skip over this error.  Run this at the command line "
+			        + errorCommand + "  ");
 		} else {
 			// a normal exit value
 			log.debug("Output of exec: " + output);
@@ -202,8 +202,8 @@ public class SourceMySqldiffFile implements CustomTaskChange {
 			wd = null;
 		}
 		
-		Process p = (wd != null) ? Runtime.getRuntime().exec(cmdWithArguments, null, wd) : Runtime.getRuntime().exec(
-		    cmdWithArguments);
+		Process p = (wd != null) ? Runtime.getRuntime().exec(cmdWithArguments, null, wd)
+		        : Runtime.getRuntime().exec(cmdWithArguments);
 		
 		out.append("Normal cmd output:\n");
 		Reader reader = new InputStreamReader(p.getInputStream());
@@ -243,7 +243,7 @@ public class SourceMySqldiffFile implements CustomTaskChange {
 	}
 	
 	/**
-	 * @see liquibase.change.custom.CustomChange#setFileOpener(ResourceAccessor) 
+	 * @see liquibase.change.custom.CustomChange#setFileOpener(ResourceAccessor)
 	 */
 	@Override
 	public void setFileOpener(ResourceAccessor fileOpener) {

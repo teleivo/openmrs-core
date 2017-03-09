@@ -19,7 +19,7 @@ public class CohortMembership extends BaseOpenmrsData implements Comparable<Coho
 	public static final long serialVersionUID = 0L;
 	
 	protected static final Log log = LogFactory.getLog(CohortMembership.class);
-
+	
 	private Integer cohortMemberId;
 	
 	private Cohort cohort;
@@ -29,16 +29,16 @@ public class CohortMembership extends BaseOpenmrsData implements Comparable<Coho
 	private Date startDate;
 	
 	private Date endDate;
-
+	
 	// Constructor
 	public CohortMembership() {
 	}
-
+	
 	public CohortMembership(Patient patient, Date startDate) {
 		this.patient = patient;
 		this.startDate = startDate;
 	}
-
+	
 	public CohortMembership(Patient patient) {
 		this(patient, new Date());
 	}
@@ -46,25 +46,25 @@ public class CohortMembership extends BaseOpenmrsData implements Comparable<Coho
 	public boolean isMemberActive() {
 		return this.getStartDate() != null && this.getStartDate().before(new Date()) && this.getEndDate() == null;
 	}
-
+	
 	@Override
 	public Integer getId() {
 		return getCohortMemberId();
 	}
-
+	
 	@Override
 	public void setId(Integer id) {
 		setCohortMemberId(id);
 	}
-
+	
 	public Integer getCohortMemberId() {
 		return cohortMemberId;
 	}
-
+	
 	public void setCohortMemberId(Integer cohortMemberId) {
 		this.cohortMemberId = cohortMemberId;
 	}
-
+	
 	public Cohort getCohort() {
 		return cohort;
 	}
@@ -96,7 +96,7 @@ public class CohortMembership extends BaseOpenmrsData implements Comparable<Coho
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-
+	
 	@Override
 	public int compareTo(CohortMembership o) {
 		return this.getPatient().getPatientId() - o.getPatient().getPatientId();

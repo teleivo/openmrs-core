@@ -33,15 +33,15 @@ public interface OrderSetService extends OpenmrsService {
 	void setOrderSetDAO(OrderSetDAO dao);
 	
 	/**
-	 * Save or update the given <code>orderSet</code> in the database. If the OrderSet is retired
-	 * it will set retired by and retired date.
-	 * If OrderSetMembers are retired, it will set retired by and retired date.
+	 * Save or update the given <code>orderSet</code> in the database. If the OrderSet is retired it
+	 * will set retired by and retired date. If OrderSetMembers are retired, it will set retired by
+	 * and retired date.
 	 *
 	 * @param orderSet the OrderSet to save
 	 * @return the OrderSet that was saved
 	 * @throws APIException
 	 */
-	@Authorized( { PrivilegeConstants.MANAGE_ORDER_SETS })
+	@Authorized({ PrivilegeConstants.MANAGE_ORDER_SETS })
 	OrderSet saveOrderSet(OrderSet orderSet) throws APIException;
 	
 	/**
@@ -82,7 +82,7 @@ public interface OrderSetService extends OpenmrsService {
 	 * @return an orderSet
 	 * @throws APIException
 	 */
-	@Authorized( { PrivilegeConstants.MANAGE_ORDER_SETS })
+	@Authorized({ PrivilegeConstants.MANAGE_ORDER_SETS })
 	OrderSet retireOrderSet(OrderSet orderSet, String retireReason) throws APIException;
 	
 	/**
@@ -92,10 +92,9 @@ public interface OrderSetService extends OpenmrsService {
 	 * @return an orderSet
 	 * @throws APIException
 	 */
-	@Authorized( { PrivilegeConstants.MANAGE_ORDER_SETS })
+	@Authorized({ PrivilegeConstants.MANAGE_ORDER_SETS })
 	OrderSet unretireOrderSet(OrderSet orderSet) throws APIException;
 	
-
 	/**
 	 * Get OrderSetMember by uuid
 	 *
@@ -106,5 +105,5 @@ public interface OrderSetService extends OpenmrsService {
 	 */
 	@Authorized(PrivilegeConstants.GET_ORDER_SETS)
 	OrderSetMember getOrderSetMemberByUuid(String uuid);
-
+	
 }

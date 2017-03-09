@@ -12,7 +12,8 @@ package org.openmrs.logic.op;
 import org.openmrs.logic.LogicCriteria;
 
 /**
- * The And operator is a conjunction operator to combine two or more {@link LogicCriteria} objects.<br>
+ * The And operator is a conjunction operator to combine two or more {@link LogicCriteria}
+ * objects.<br>
  * <br>
  * Example: <br>
  * - <code>logicService.parse("'CD4 COUNT'").and(logicService.parse("'WEIGHT (KG)'"));</code><br>

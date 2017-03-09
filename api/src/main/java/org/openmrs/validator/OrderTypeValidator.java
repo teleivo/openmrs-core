@@ -91,16 +91,16 @@ public class OrderTypeValidator implements Validator {
 					int index = 0;
 					for (ConceptClass cc : ot.getConceptClasses()) {
 						if (cc != null && orderType.getConceptClasses().contains(cc)) {
-							errors.rejectValue("conceptClasses[" + index + "]", "OrderType.duplicate", new Object[] {
-							        cc.getName(), orderType.getName() }, cc.getName()
-							        + " is already associated to another order type:" + orderType.getName());
+							errors.rejectValue("conceptClasses[" + index + "]", "OrderType.duplicate",
+							    new Object[] { cc.getName(), orderType.getName() },
+							    cc.getName() + " is already associated to another order type:" + orderType.getName());
 						}
 						index++;
 					}
 				}
 			}
-			ValidateUtil
-			        .validateFieldLengths(errors, obj.getClass(), "name", "description", "retireReason", "javaClassName");
+			ValidateUtil.validateFieldLengths(errors, obj.getClass(), "name", "description", "retireReason",
+			    "javaClassName");
 		}
 	}
 }

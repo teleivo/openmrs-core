@@ -32,9 +32,9 @@ import org.springframework.validation.Validator;
 
 /**
  * Validates {@link Concept} objects. <br>
- * These validations are also documented at <a
- * href="https://wiki.openmrs.org/x/-gkdAg">https://wiki.openmrs.org/x/-gkdAg</a>. Any changes made
- * to this source also need to be reflected on that page.
+ * These validations are also documented at
+ * <a href="https://wiki.openmrs.org/x/-gkdAg">https://wiki.openmrs.org/x/-gkdAg</a>. Any changes
+ * made to this source also need to be reflected on that page.
  */
 @Handler(supports = { Concept.class }, order = 50)
 public class ConceptValidator extends BaseCustomizableValidator implements Validator {
@@ -101,10 +101,10 @@ public class ConceptValidator extends BaseCustomizableValidator implements Valid
 			errors.reject("Concept.name.atLeastOneRequired");
 			return;
 		}
-
+		
 		ValidationUtils.rejectIfEmpty(errors, "datatype", "Concept.datatype.empty");
 		ValidationUtils.rejectIfEmpty(errors, "conceptClass", "Concept.conceptClass.empty");
-
+		
 		boolean hasFullySpecifiedName = false;
 		for (Locale conceptNameLocale : conceptToValidate.getAllConceptNameLocales()) {
 			boolean fullySpecifiedNameForLocaleFound = false;
@@ -114,8 +114,8 @@ public class ConceptValidator extends BaseCustomizableValidator implements Valid
 			Collection<ConceptName> namesInLocale = conceptToValidate.getNames(conceptNameLocale);
 			for (ConceptName nameInLocale : namesInLocale) {
 				if (StringUtils.isBlank(nameInLocale.getName())) {
-					log.debug("Name in locale '" + conceptNameLocale.toString()
-					        + "' cannot be an empty string or white space");
+					log.debug(
+					    "Name in locale '" + conceptNameLocale.toString() + "' cannot be an empty string or white space");
 					errors.reject("Concept.name.empty");
 				}
 				if (nameInLocale.getLocalePreferred() != null) {
@@ -125,8 +125,8 @@ public class ConceptValidator extends BaseCustomizableValidator implements Valid
 							        + "' shouldn't be an index term");
 							errors.reject("Concept.error.preferredName.is.indexTerm");
 						} else if (nameInLocale.isShort()) {
-							log.warn("Preferred name in locale '" + conceptNameLocale.toString()
-							        + "' shouldn't be a short name");
+							log.warn(
+							    "Preferred name in locale '" + conceptNameLocale.toString() + "' shouldn't be a short name");
 							errors.reject("Concept.error.preferredName.is.shortName");
 						} else if (nameInLocale.getVoided()) {
 							log.warn("Preferred name in locale '" + conceptNameLocale.toString()
@@ -179,8 +179,8 @@ public class ConceptValidator extends BaseCustomizableValidator implements Valid
 				
 				//
 				if (errors.hasErrors()) {
-					log.debug("Concept name '" + nameInLocale.getName() + "' for locale '" + conceptNameLocale
-					        + "' is invalid");
+					log.debug(
+					    "Concept name '" + nameInLocale.getName() + "' for locale '" + conceptNameLocale + "' is invalid");
 					//if validation fails for any conceptName in current locale, don't proceed
 					//This helps not to have multiple messages shown that are identical though they might be
 					//for different conceptNames
@@ -228,7 +228,7 @@ public class ConceptValidator extends BaseCustomizableValidator implements Valid
 					    "The concept map type is required for a concept map");
 					return;
 				}*/
-
+				
 				//don't proceed to the next maps since the current one already has errors
 				if (errors.hasErrors()) {
 					return;

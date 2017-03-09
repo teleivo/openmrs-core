@@ -29,7 +29,7 @@ public interface MessageService {
 	public MessagePreparator getMessagePreparator();
 	
 	/* Send Message Methods */
-
+	
 	/**
 	 * TODO Auto generated method comment
 	 * 

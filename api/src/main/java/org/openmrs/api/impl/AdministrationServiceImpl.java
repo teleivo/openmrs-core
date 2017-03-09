@@ -94,7 +94,7 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 	public void setEventListeners(EventListeners eventListeners) {
 		this.eventListeners = eventListeners;
 	}
-		
+	
 	/**
 	 * Static-ish variable used to cache the system variables. This is not static so that every time
 	 * a module is loaded or removed the variable is destroyed (along with the administration
@@ -289,8 +289,8 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 					if (!localeList.contains(LocaleUtility.fromSpecification(gp.getPropertyValue().trim()))) {
 						String value = gp.getPropertyValue();
 						gp.setPropertyValue(LocaleUtility.getDefaultLocale().toString());
-						throw new APIException((Context.getMessageSourceService().getMessage(
-						    "general.locale.defaultNotInAllowedLocalesList", new Object[] { value }, null)));
+						throw new APIException((Context.getMessageSourceService()
+						        .getMessage("general.locale.defaultNotInAllowedLocalesList", new Object[] { value }, null)));
 					}
 				}
 			}
@@ -364,8 +364,8 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 	@Override
 	@Transactional(readOnly = true)
 	public ImplementationId getImplementationId() throws APIException {
-		String property = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_IMPLEMENTATION_ID);
+		String property = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_IMPLEMENTATION_ID);
 		
 		// fail early if no gp has been defined yet
 		if (property == null) {
@@ -373,7 +373,8 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 		}
 		
 		try {
-			ImplementationId implId = Context.getSerializationService().getDefaultSerializer().deserialize(property, ImplementationId.class);
+			ImplementationId implId = Context.getSerializationService().getDefaultSerializer().deserialize(property,
+			    ImplementationId.class);
 			return implId;
 		}
 		catch (Exception e) {
@@ -430,8 +431,8 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 			
 			// serialize and save the ImplementationId to the global properties table
 			String value = Context.getSerializationService().getDefaultSerializer().serialize(implementationId);
-			Context.getAdministrationService().saveGlobalProperty(
-			    new GlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_IMPLEMENTATION_ID, value));
+			Context.getAdministrationService()
+			        .saveGlobalProperty(new GlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_IMPLEMENTATION_ID, value));
 		}
 		catch (APIException e) {
 			throw e;
@@ -652,7 +653,8 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 			        e);
 		}
 		catch (NoSuchMethodException e) {
-			throw new APIException("does.not.have.string.constructor", new Object[] { defaultValue.getClass().getName() }, e);
+			throw new APIException("does.not.have.string.constructor", new Object[] { defaultValue.getClass().getName() },
+			        e);
 		}
 		catch (Exception e) {
 			log.error("Unable to turn value '" + propVal + "' into type " + defaultValue.getClass().getName(), e);
@@ -673,10 +675,10 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 			private static final long serialVersionUID = 1L;
 			
 			{
-				put("SystemInfo.OpenMRSInstallation.systemDate", new SimpleDateFormat("yyyy-MM-dd").format(Calendar
-				        .getInstance().getTime()));
-				put("SystemInfo.OpenMRSInstallation.systemTime", new SimpleDateFormat("HH:mm:ss").format(Calendar
-				        .getInstance().getTime()));
+				put("SystemInfo.OpenMRSInstallation.systemDate",
+				    new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
+				put("SystemInfo.OpenMRSInstallation.systemTime",
+				    new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()));
 				put("SystemInfo.OpenMRSInstallation.openmrsVersion", OpenmrsConstants.OPENMRS_VERSION);
 				try {
 					put("SystemInfo.hostname", InetAddress.getLocalHost().getCanonicalHostName());
@@ -797,17 +799,17 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 		if (object == null) {
 			throw new APIException("error.null", (Object[]) null);
 		}
-
+		
 		dao.validate(object, errors);
 	}
-
+	
 	@Override
 	@Cacheable(value = "userSearchLocales")
 	public List<Locale> getSearchLocales(Locale currentLocale, User user) throws APIException {
 		Set<Locale> locales = new LinkedHashSet<Locale>();
 		locales.add(currentLocale); //the currently used full locale
 		locales.add(new Locale(currentLocale.getLanguage()));
-
+		
 		if (user != null) {
 			List<Locale> proficientLocales = user.getProficientLocales();
 			if (proficientLocales != null) {
@@ -830,13 +832,13 @@ public class AdministrationServiceImpl extends BaseOpenmrsService implements Adm
 		
 		return new ArrayList<Locale>(locales);
 	}
-
+	
 	/**
 	 * @see AdministrationService#getSearchLocales()
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public List<Locale> getSearchLocales(){
+	public List<Locale> getSearchLocales() {
 		//call it via interface, so cache interceptor is invoked
 		return Context.getAdministrationService().getSearchLocales(Context.getLocale(), Context.getAuthenticatedUser());
 	}

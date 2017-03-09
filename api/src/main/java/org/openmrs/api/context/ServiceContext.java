@@ -58,7 +58,8 @@ import org.springframework.context.ApplicationContextAware;
  * Represents an OpenMRS <code>Service Context</code>, which returns the services represented
  * throughout the system. <br>
  * <br>
- * This class should not be access directly, but rather used through the <code>Context</code> class. <br>
+ * This class should not be access directly, but rather used through the <code>Context</code> class.
+ * <br>
  * <br>
  * This class is essentially static and only one instance is kept because this is fairly
  * heavy-weight. Spring takes care of filling in the actual service implementations via dependency
@@ -71,7 +72,7 @@ import org.springframework.context.ApplicationContextAware;
 public class ServiceContext implements ApplicationContextAware {
 	
 	private static final Log log = LogFactory.getLog(ServiceContext.class);
-
+	
 	private ApplicationContext applicationContext;
 	
 	private static boolean refreshingContext = false;
@@ -111,6 +112,7 @@ public class ServiceContext implements ApplicationContextAware {
 	}
 	
 	private static class ServiceContextHolder {
+		
 		private static ServiceContext instance = null;
 	}
 	
@@ -255,7 +257,7 @@ public class ServiceContext implements ApplicationContextAware {
 	public ProgramWorkflowService getProgramWorkflowService() {
 		return getService(ProgramWorkflowService.class);
 	}
-
+	
 	/**
 	 * @return logicService
 	 */
@@ -299,7 +301,7 @@ public class ServiceContext implements ApplicationContextAware {
 	public void setProgramWorkflowService(ProgramWorkflowService programWorkflowService) {
 		setService(ProgramWorkflowService.class, programWorkflowService);
 	}
-
+	
 	/**
 	 * @param logicService
 	 */
@@ -371,7 +373,7 @@ public class ServiceContext implements ApplicationContextAware {
 	public void setObsService(ObsService obsService) {
 		setService(ObsService.class, obsService);
 	}
-
+	
 	/**
 	 * @param orderService the orderService to set
 	 */
@@ -684,8 +686,8 @@ public class ServiceContext implements ApplicationContextAware {
 				log.debug("Service: " + cls + " set successfully");
 			}
 			catch (Exception e) {
-				throw new APIException("service.unable.create.proxy.factory", new Object[] { classInstance.getClass()
-				        .getName() }, e);
+				throw new APIException("service.unable.create.proxy.factory",
+				        new Object[] { classInstance.getClass().getName() }, e);
 			}
 			
 		}
@@ -733,8 +735,8 @@ public class ServiceContext implements ApplicationContextAware {
 						        + cls.getClass().getClassLoader().hashCode());
 						//pay attention that here, cls = Class.forName(classString), the system class loader and
 						//cls2 is the openmrs class loader, like above.
-						log.debug("cls==cls2: "
-						        + String.valueOf(cls == OpenmrsClassLoader.getInstance().loadClass(classString)));
+						log.debug(
+						    "cls==cls2: " + String.valueOf(cls == OpenmrsClassLoader.getInstance().loadClass(classString)));
 					}
 				}
 				catch (Exception e) { /*pass*/}
@@ -843,9 +845,8 @@ public class ServiceContext implements ApplicationContextAware {
 	 * Retrieves a bean that match the given type (including subclasses) and name.
 	 *
 	 * @param beanName the name of registered bean to retrieve
-	 * @param type the type of bean to retrieve 
+	 * @param type the type of bean to retrieve
 	 * @return bean of passed type
-	 *
 	 * @since 1.9.4
 	 */
 	public <T> T getRegisteredComponent(String beanName, Class<T> type) throws APIException {
@@ -911,8 +912,8 @@ public class ServiceContext implements ApplicationContextAware {
 						//Need to wait for application context to finish refreshing otherwise we get into trouble.
 						while (refreshingContext) {
 							if (log.isDebugEnabled()) {
-								log.debug("Waiting to get service: " + classString + " while the context"
-								        + " is being refreshed");
+								log.debug(
+								    "Waiting to get service: " + classString + " while the context" + " is being refreshed");
 							}
 							
 							refreshingContextLock.wait();
@@ -927,8 +928,9 @@ public class ServiceContext implements ApplicationContextAware {
 					Daemon.runStartupForService(openmrsService);
 				}
 				catch (InterruptedException e) {
-					log.warn("Refresh lock was interrupted while waiting to run OpenmrsService.onStartup() for "
-					        + classString, e);
+					log.warn(
+					    "Refresh lock was interrupted while waiting to run OpenmrsService.onStartup() for " + classString,
+					    e);
 				}
 			}
 		}.start();

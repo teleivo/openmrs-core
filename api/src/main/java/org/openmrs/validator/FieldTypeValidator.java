@@ -60,7 +60,8 @@ public class FieldTypeValidator implements Validator {
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "error.name");
 			if (!errors.hasErrors()) {
 				FieldType exist = Context.getFormService().getFieldTypeByName(fieldType.getName());
-				if (exist != null && !exist.getRetired() && !OpenmrsUtil.nullSafeEquals(fieldType.getUuid(), exist.getUuid())) {
+				if (exist != null && !exist.getRetired()
+				        && !OpenmrsUtil.nullSafeEquals(fieldType.getUuid(), exist.getUuid())) {
 					errors.rejectValue("name", "fieldtype.duplicate.name");
 				}
 			}

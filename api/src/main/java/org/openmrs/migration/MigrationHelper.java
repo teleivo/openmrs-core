@@ -61,11 +61,10 @@ import org.xml.sax.SAXException;
 public class MigrationHelper {
 	
 	private static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-
+	
 	protected final static Log log = LogFactory.getLog(MigrationHelper.class);
 	
 	static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	
 	
 	public static Date parseDate(String s) throws ParseException {
 		if (s == null || s.length() == 0) {
@@ -159,8 +158,8 @@ public class MigrationHelper {
 	}
 	
 	/**
-	 * Takes XML like: &lt;something&gt; &lt;location name="Cerca-la-Source"/&gt; &lt;/something&gt; returns the
-	 * number of locations added
+	 * Takes XML like: &lt;something&gt; &lt;location name="Cerca-la-Source"/&gt; &lt;/something&gt;
+	 * returns the number of locations added
 	 */
 	public static int importLocations(Document document) {
 		int ret = 0;
@@ -187,13 +186,13 @@ public class MigrationHelper {
 	
 	/**
 	 * Takes a list of Strings of the format RELATIONSHIP:&lt;user last name&gt;,&lt;user first
-	 * name&gt;,&lt;relationship type name&gt;,&lt;patient identifier type name&gt;,&lt;identifier&gt; so if user hfraser
-	 * if the cardiologist of the patient with patient_id 8039 in PIH's old emr, then:
-	 * RELATIONSHIP:hfraser,Cardiologist,HIV-EMRV1,8039 (the "RELATIONSHIP:" is not actually
-	 * necessary. Anything before and including the first : will be dropped If autoCreateUsers is
-	 * true, and no user exists with the given username, one will be created. If autoAddRole is
-	 * true, then whenever a user is auto-created, if a role exists with the same name as
-	 * relationshipType.name, then the user will be added to that role
+	 * name&gt;,&lt;relationship type name&gt;,&lt;patient identifier type
+	 * name&gt;,&lt;identifier&gt; so if user hfraser if the cardiologist of the patient with
+	 * patient_id 8039 in PIH's old emr, then: RELATIONSHIP:hfraser,Cardiologist,HIV-EMRV1,8039 (the
+	 * "RELATIONSHIP:" is not actually necessary. Anything before and including the first : will be
+	 * dropped If autoCreateUsers is true, and no user exists with the given username, one will be
+	 * created. If autoAddRole is true, then whenever a user is auto-created, if a role exists with
+	 * the same name as relationshipType.name, then the user will be added to that role
 	 */
 	public static int importRelationships(Collection<String> relationships, boolean autoCreateUsers, boolean autoAddRole) {
 		PatientService ps = Context.getPatientService();
@@ -221,8 +220,8 @@ public class MigrationHelper {
 				if (users.size() == 1) {
 					user = users.get(0);
 				} else if (users.size() > 1) {
-					throw new IllegalArgumentException("Found " + users.size() + " users named '" + userLastName + ", "
-					        + userFirstName + "'");
+					throw new IllegalArgumentException(
+					        "Found " + users.size() + " users named '" + userLastName + ", " + userFirstName + "'");
 				}
 			}
 			if (user == null) {
@@ -231,8 +230,8 @@ public class MigrationHelper {
 				if (users.size() == 1) {
 					user = users.get(0);
 				} else if (users.size() > 1) {
-					throw new IllegalArgumentException("Found " + users.size() + " voided users named '" + userLastName
-					        + ", " + userFirstName + "'");
+					throw new IllegalArgumentException(
+					        "Found " + users.size() + " voided users named '" + userLastName + ", " + userFirstName + "'");
 				}
 			}
 			if (user == null && autoCreateUsers) {
@@ -309,8 +308,8 @@ public class MigrationHelper {
 				List<PatientIdentifier> pis = ps.getPatientIdentifiers(identifier, Collections.singletonList(pit), null,
 				    null, null);
 				if (pis.size() != 1) {
-					throw new IllegalArgumentException("Found " + pis.size() + " instances of identifier " + identifier
-					        + " of type " + pit);
+					throw new IllegalArgumentException(
+					        "Found " + pis.size() + " instances of identifier " + identifier + " of type " + pit);
 				}
 				Patient p = pis.get(0).getPatient();
 				Program program = programsByName.get(temp[2]);
@@ -351,8 +350,8 @@ public class MigrationHelper {
 				//ProgramWorkflowState st = pws.getState(wf, temp[4]);
 				ProgramWorkflowState st = wf.getStateByName(temp[4]);
 				if (st == null) {
-					throw new RuntimeException("Couldn't find state \"" + temp[4] + "\" for workflow " + wf + " (in "
-					        + wf.getStates() + ")");
+					throw new RuntimeException(
+					        "Couldn't find state \"" + temp[4] + "\" for workflow " + wf + " (in " + wf.getStates() + ")");
 				}
 				Date startDate = temp.length < 6 ? null : parseDate(temp[5]);
 				Date endDate = temp.length < 7 ? null : parseDate(temp[6]);

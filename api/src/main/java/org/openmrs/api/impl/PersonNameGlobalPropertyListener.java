@@ -15,8 +15,8 @@ import org.openmrs.api.GlobalPropertyListener;
 import org.openmrs.util.OpenmrsConstants;
 
 /**
- * This is a property Listener class for Person Name
- * This class is responsible for handling Person Name format
+ * This is a property Listener class for Person Name This class is responsible for handling Person
+ * Name format
  */
 public class PersonNameGlobalPropertyListener implements GlobalPropertyListener {
 	

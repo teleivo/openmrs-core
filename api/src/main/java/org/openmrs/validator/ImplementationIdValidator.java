@@ -21,7 +21,6 @@ import org.springframework.validation.Validator;
 
 /**
  * Validates attributes on the {@link ImplementationId} object.
- * 
  */
 @Handler(supports = { ImplementationId.class }, order = 50)
 public class ImplementationIdValidator implements Validator {
@@ -41,7 +40,7 @@ public class ImplementationIdValidator implements Validator {
 	 * @should should fail if given a pipe in the implementationId code
 	 * 
 	 */
-
+	
 	@Override
 	public void validate(Object obj, Errors errors) throws APIException {
 		ImplementationId implId = (ImplementationId) obj;
@@ -52,7 +51,8 @@ public class ImplementationIdValidator implements Validator {
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "ImplementationId.name.empty");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "implementationId", "ImplementationId.implementationId.empty");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passphrase", "ImplementationId.passphrase.empty");
-			if (implId.getImplementationId() != null && StringUtils.containsAny(implId.getImplementationId(), illegalChars)) {
+			if (implId.getImplementationId() != null
+			        && StringUtils.containsAny(implId.getImplementationId(), illegalChars)) {
 				errors.rejectValue("implementationId", "ImplementationId.implementationId.invalidCharacter");
 			}
 		}

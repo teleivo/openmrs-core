@@ -39,8 +39,8 @@ public class UpgradeUtil {
 		Properties props = new Properties();
 		String conceptId = null;
 		try {
-			FileInputStream fis = new FileInputStream(appDataDir + System.getProperty("file.separator")
-			        + DatabaseUtil.ORDER_ENTRY_UPGRADE_SETTINGS_FILENAME);
+			FileInputStream fis = new FileInputStream(
+			        appDataDir + System.getProperty("file.separator") + DatabaseUtil.ORDER_ENTRY_UPGRADE_SETTINGS_FILENAME);
 			props.load(fis);
 			for (Map.Entry prop : props.entrySet()) {
 				if (prop.getKey().equals(units)) {

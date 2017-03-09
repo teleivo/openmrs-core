@@ -32,7 +32,6 @@ import org.openmrs.util.OpenmrsUtil;
  */
 public class Order extends BaseOpenmrsData {
 	
-	
 	public static final long serialVersionUID = 4334343L;
 	
 	/**
@@ -533,7 +532,7 @@ public class Order extends BaseOpenmrsData {
 		if (isDiscontinued(checkDate) || autoExpireDate == null) {
 			return false;
 		}
-
+		
 		return checkDate.after(autoExpireDate);
 	}
 	

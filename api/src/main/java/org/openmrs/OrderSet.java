@@ -15,8 +15,7 @@ import java.util.List;
 import org.openmrs.api.APIException;
 
 /**
- * Represents the grouping of orders into a set,
- * so as to give decision support for the doctors
+ * Represents the grouping of orders into a set, so as to give decision support for the doctors
  * 
  * @since 1.12
  */
@@ -25,13 +24,14 @@ public class OrderSet extends BaseOpenmrsMetadata {
 	public static final long serialVersionUID = 72232L;
 	
 	/**
-	 * Restrictions put on saving an orderSet.
-	 * ALL: All the members of the orderSet need to be selected for saving
-	 * ONE: Only one of the member of the orderSet needs to be selected for saving
-	 * ANY: Any of the members of the orderSet can be selected for saving
+	 * Restrictions put on saving an orderSet. ALL: All the members of the orderSet need to be
+	 * selected for saving ONE: Only one of the member of the orderSet needs to be selected for
+	 * saving ANY: Any of the members of the orderSet can be selected for saving
 	 */
 	public enum Operator {
-		ALL, ONE, ANY
+		ALL,
+		ONE,
+		ANY
 	}
 	
 	private Integer orderSetId;
@@ -101,7 +101,8 @@ public class OrderSet extends BaseOpenmrsMetadata {
 	 * Adds an orderSetMember to the existing list of orderSetMembers
 	 * 
 	 * @param orderSetMember the new orderSetMember to be added
-	 * @param position the position where it is to be added, if position is null it adds to the last position 
+	 * @param position the position where it is to be added, if position is null it adds to the last
+	 *            position
 	 */
 	
 	public void addOrderSetMember(OrderSetMember orderSetMember, Integer position) {
@@ -127,7 +128,8 @@ public class OrderSet extends BaseOpenmrsMetadata {
 	/**
 	 * Adds an orderSetMember to the existing list of orderSetMembers
 	 *
-	 * @param orderSetMember the new orderSetMember to be added at the end of the current list of order set members
+	 * @param orderSetMember the new orderSetMember to be added at the end of the current list of
+	 *            order set members
 	 */
 	
 	public void addOrderSetMember(OrderSetMember orderSetMember) {
@@ -143,7 +145,7 @@ public class OrderSet extends BaseOpenmrsMetadata {
 	public void setId(Integer id) {
 		setOrderSetId(id);
 	}
-
+	
 	/**
 	 * Fetches the list of orderSetMembers that are not retired
 	 *
@@ -158,7 +160,7 @@ public class OrderSet extends BaseOpenmrsMetadata {
 		}
 		return osm;
 	}
-
+	
 	/**
 	 * Removes and orderSetMember from a list of existing orderSetMembers
 	 *
@@ -170,7 +172,7 @@ public class OrderSet extends BaseOpenmrsMetadata {
 			orderSetMember.setOrderSet(null);
 		}
 	}
-
+	
 	/**
 	 * Retires an orderSetMember
 	 *

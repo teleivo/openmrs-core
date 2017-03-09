@@ -27,7 +27,7 @@ import org.openmrs.hl7.HL7Source;
 public interface HL7DAO {
 	
 	/* HL7Source */
-
+	
 	/**
 	 * @see org.openmrs.hl7.HL7Service#saveHL7Source(org.openmrs.hl7.HL7Source)
 	 */
@@ -54,7 +54,7 @@ public interface HL7DAO {
 	public void deleteHL7Source(HL7Source hl7Source) throws DAOException;
 	
 	/* HL7InQueue */
-
+	
 	/**
 	 * @see org.openmrs.hl7.HL7Service#saveHL7InQueue(org.openmrs.hl7.HL7InQueue)
 	 */
@@ -110,7 +110,7 @@ public interface HL7DAO {
 	public Long countHL7s(Class clazz, Integer messageState, String query);
 	
 	/* HL7InArchive */
-
+	
 	/**
 	 * @see org.openmrs.hl7.HL7Service#saveHL7InArchive(org.openmrs.hl7.HL7InArchive)
 	 */
@@ -160,7 +160,7 @@ public interface HL7DAO {
 	public List<HL7InArchive> getHL7InArchivesToMigrate();
 	
 	/* HL7InError */
-
+	
 	/**
 	 * @see org.openmrs.hl7.HL7Service#saveHL7InError(org.openmrs.hl7.HL7InError)
 	 */

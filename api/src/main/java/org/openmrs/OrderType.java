@@ -20,7 +20,6 @@ import org.openmrs.api.context.Context;
 /**
  * OrderTypes are used to classify different types of Orders e.g to distinguish between Serology and
  * Radiology TestOrders
- *
  */
 public class OrderType extends BaseOpenmrsMetadata {
 	

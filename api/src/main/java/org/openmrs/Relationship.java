@@ -138,6 +138,7 @@ public class Relationship extends BaseOpenmrsData {
 	
 	/**
 	 * If not null, this indicates that the relationship started on a particular date
+	 * 
 	 * @since 1.9
 	 * @return the relationship's start date.
 	 */
@@ -155,6 +156,7 @@ public class Relationship extends BaseOpenmrsData {
 	
 	/**
 	 * If not null, this indicates that the relationship ended on a particular date
+	 * 
 	 * @since 1.9
 	 * @return Returns relationship's end date.
 	 */

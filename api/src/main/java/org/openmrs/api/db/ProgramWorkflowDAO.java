@@ -56,7 +56,8 @@ public interface ProgramWorkflowDAO {
 	 * Returns all programs
 	 * 
 	 * @param includeRetired whether or not to include retired programs
-	 * @return List&lt;Program&gt; all existing programs, including retired based on the input parameter
+	 * @return List&lt;Program&gt; all existing programs, including retired based on the input
+	 *         parameter
 	 * @throws DAOException
 	 */
 	public List<Program> getAllPrograms(boolean includeRetired) throws DAOException;
@@ -214,6 +215,7 @@ public interface ProgramWorkflowDAO {
 	
 	/**
 	 * Retrieves the Programs from the dB which have the given name.
+	 * 
 	 * @param name the name of the Programs to retrieve.
 	 * @param includeRetired whether to include retired programs or not
 	 * @should return an empty list when there is no program in the dB with given name

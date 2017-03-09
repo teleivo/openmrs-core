@@ -79,6 +79,7 @@ public class DoubleRange implements Comparable<DoubleRange> {
 	
 	/**
 	 * first sorts according to low-bound (ascending) then according to high-bound (descending)
+	 * 
 	 * @should return plus 1 if this low is greater than other low
 	 * @should return minus one if this low is lower than other low
 	 * @should return plus one if both lows are equal but other high is greater than this high
@@ -96,12 +97,11 @@ public class DoubleRange implements Comparable<DoubleRange> {
 	}
 	
 	/**
-	 * BUG: this method should return false if both ends of the range are null.
-	 * It currently returns true in this case.
-	 *
-	 * checks whether a double is in this range
-	 * @param 	d the Double to check for in this range
-	 * @return  true if d is in this range, false otherwise
+	 * BUG: this method should return false if both ends of the range are null. It currently returns
+	 * true in this case. checks whether a double is in this range
+	 * 
+	 * @param d the Double to check for in this range
+	 * @return true if d is in this range, false otherwise
 	 * @should return true if parameter is in range
 	 * @should return false if parameter is not in range
 	 * @should return false if parameter is equal to high
@@ -138,7 +138,6 @@ public class DoubleRange implements Comparable<DoubleRange> {
 	}
 	
 	/**
-	 *
 	 * @return a String representation of the DoubleRange
 	 * @should print the range if high and low are not null and not infinite
 	 * @should print empty high if high is infinite

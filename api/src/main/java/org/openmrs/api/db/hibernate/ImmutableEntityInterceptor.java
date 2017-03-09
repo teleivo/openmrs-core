@@ -27,9 +27,7 @@ import org.openmrs.util.OpenmrsUtil;
 /**
  * Superclass for all Interceptors that would like to ensure that changes to immutable entities of
  * specific types don't get persisted to the database, more granularity of the immutable properties
- * is also supported so as to allow editing some properties while not for others
- * 
- * <pre>
+ * is also supported so as to allow editing some properties while not for others <pre>
  * <b>NOTE:</b> Subclasses MUST not make any changes to the persistent object because they get 
  * called last, if they make any changes other interceptors would never know about them.
  * </pre>
@@ -39,7 +37,7 @@ import org.openmrs.util.OpenmrsUtil;
 public abstract class ImmutableEntityInterceptor extends EmptyInterceptor {
 	
 	private static final Log log = LogFactory.getLog(ImmutableEntityInterceptor.class);
-
+	
 	/**
 	 * Returns the class handled by the interceptor
 	 */
@@ -75,7 +73,7 @@ public abstract class ImmutableEntityInterceptor extends EmptyInterceptor {
 	 */
 	@Override
 	public boolean onFlushDirty(Object entity, Serializable id, Object[] currentState, Object[] previousState,
-	                            String[] propertyNames, Type[] types) {
+	        String[] propertyNames, Type[] types) {
 		
 		if (getSupportedType().isAssignableFrom(entity.getClass())) {
 			List<String> changedProperties = null;
@@ -108,7 +106,8 @@ public abstract class ImmutableEntityInterceptor extends EmptyInterceptor {
 				if (log.isDebugEnabled()) {
 					log.debug("The following fields cannot be changed for " + getSupportedType() + ":" + changedProperties);
 				}
-				throw new APIException("Editing some fields " + changedProperties + " on " + getSupportedType().getSimpleName() + " is not allowed");
+				throw new APIException("Editing some fields " + changedProperties + " on "
+				        + getSupportedType().getSimpleName() + " is not allowed");
 			}
 		}
 		

@@ -100,7 +100,8 @@ public interface HL7Service extends OpenmrsService {
 	 * @return the saved queue item
 	 * @should add generated uuid if uuid is null
 	 */
-	@Authorized(value = { PrivilegeConstants.PRIV_UPDATE_HL7_IN_QUEUE, PrivilegeConstants.PRIV_ADD_HL7_IN_QUEUE }, requireAll = false)
+	@Authorized(value = { PrivilegeConstants.PRIV_UPDATE_HL7_IN_QUEUE,
+	        PrivilegeConstants.PRIV_ADD_HL7_IN_QUEUE }, requireAll = false)
 	public HL7InQueue saveHL7InQueue(HL7InQueue hl7InQueue) throws APIException;
 	
 	/**
@@ -233,9 +234,10 @@ public interface HL7Service extends OpenmrsService {
 	 * @return the saved archive item
 	 * @throws APIException
 	 */
-	@Authorized(value = { PrivilegeConstants.PRIV_UPDATE_HL7_IN_ARCHIVE, PrivilegeConstants.PRIV_ADD_HL7_IN_ARCHIVE }, requireAll = false)
+	@Authorized(value = { PrivilegeConstants.PRIV_UPDATE_HL7_IN_ARCHIVE,
+	        PrivilegeConstants.PRIV_ADD_HL7_IN_ARCHIVE }, requireAll = false)
 	public HL7InArchive saveHL7InArchive(HL7InArchive hl7InArchive) throws APIException;
-
+	
 	/**
 	 * Get the archive item with the given id, If hl7 archives were moved to the file system, you
 	 * can't do a look up by hl7ArchiveId, instead call
@@ -306,7 +308,8 @@ public interface HL7Service extends OpenmrsService {
 	 * @return the saved item
 	 * @throws APIException
 	 */
-	@Authorized(value = { PrivilegeConstants.PRIV_UPDATE_HL7_IN_EXCEPTION, PrivilegeConstants.PRIV_ADD_HL7_IN_EXCEPTION }, requireAll = false)
+	@Authorized(value = { PrivilegeConstants.PRIV_UPDATE_HL7_IN_EXCEPTION,
+	        PrivilegeConstants.PRIV_ADD_HL7_IN_EXCEPTION }, requireAll = false)
 	public HL7InError saveHL7InError(HL7InError hl7InError) throws APIException;
 	
 	/**
@@ -332,7 +335,8 @@ public interface HL7Service extends OpenmrsService {
 	/**
 	 * Get all <code>HL7InError</code> items from the database
 	 * 
-	 * @return a List&lt;HL7InError&gt; object with all <code>HL7InError</code> items from the database
+	 * @return a List&lt;HL7InError&gt; object with all <code>HL7InError</code> items from the
+	 *         database
 	 * @throws APIException
 	 */
 	@Authorized(PrivilegeConstants.GET_HL7_IN_EXCEPTION)
@@ -453,8 +457,8 @@ public interface HL7Service extends OpenmrsService {
 	 *            transfers
 	 * @throws APIException
 	 */
-	@Authorized(requireAll = true, value = { PrivilegeConstants.GET_HL7_IN_ARCHIVE, PrivilegeConstants.PRIV_PURGE_HL7_IN_ARCHIVE,
-			PrivilegeConstants.PRIV_ADD_HL7_IN_QUEUE })
+	@Authorized(requireAll = true, value = { PrivilegeConstants.GET_HL7_IN_ARCHIVE,
+	        PrivilegeConstants.PRIV_PURGE_HL7_IN_ARCHIVE, PrivilegeConstants.PRIV_ADD_HL7_IN_QUEUE })
 	public void migrateHl7InArchivesToFileSystem(Map<String, Integer> progressStatusMap) throws APIException;
 	
 	/**

@@ -13,9 +13,9 @@ import org.openmrs.patient.UnallowedIdentifierException;
 
 /**
  * The Verhoeff Check Digit Validator catches all single errors and all adjacent transpositions.
- * See: http://www.cs.utsa.edu/~wagner/laws/verhoeff.html and Wagner, Neal.
- * "Verhoeff's Decimal Error Detection". The Laws of Cryptography with Java Code. p 54. San Antonio,
- * TX: 2003. http://www.cs.utsa.edu/~wagner/lawsbookcolor/laws.pdf
+ * See: http://www.cs.utsa.edu/~wagner/laws/verhoeff.html and Wagner, Neal. "Verhoeff's Decimal
+ * Error Detection". The Laws of Cryptography with Java Code. p 54. San Antonio, TX: 2003.
+ * http://www.cs.utsa.edu/~wagner/lawsbookcolor/laws.pdf
  */
 public class VerhoeffIdentifierValidator extends BaseHyphenatedIdentifierValidator {
 	
@@ -86,8 +86,8 @@ public class VerhoeffIdentifierValidator extends BaseHyphenatedIdentifierValidat
 		String result = super.getValidIdentifier(undecoratedIdentifier);
 		
 		if (undecoratedIdentifier.length() != VERHOEFF_UNDECORATED_ID_LENGTH) {
-			throw new UnallowedIdentifierException("Undecorated identifier must be " + VERHOEFF_UNDECORATED_ID_LENGTH
-			        + " digits long.");
+			throw new UnallowedIdentifierException(
+			        "Undecorated identifier must be " + VERHOEFF_UNDECORATED_ID_LENGTH + " digits long.");
 		}
 		
 		return result;

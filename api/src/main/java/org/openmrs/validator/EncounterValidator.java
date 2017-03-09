@@ -71,7 +71,8 @@ public class EncounterValidator implements Validator {
 		}
 		
 		if (obj == null || !(obj instanceof Encounter)) {
-			throw new IllegalArgumentException("The parameter obj should not be null and must be of type " + Encounter.class);
+			throw new IllegalArgumentException(
+			        "The parameter obj should not be null and must be of type " + Encounter.class);
 		}
 		
 		Encounter encounter = (Encounter) obj;

@@ -102,8 +102,8 @@ public class DatabaseUpdater {
 	 * @throws DatabaseUpdateException
 	 * @throws InputRequiredException
 	 */
-	public static void executeChangelog(String changelog, Map<String, Object> userInput) throws DatabaseUpdateException,
-	        InputRequiredException {
+	public static void executeChangelog(String changelog, Map<String, Object> userInput)
+	        throws DatabaseUpdateException, InputRequiredException {
 		
 		log.debug("Executing changelog: " + changelog);
 		
@@ -285,8 +285,8 @@ public class DatabaseUpdater {
 	 * @return true/false whether the 'auto_update_database' has been enabled.
 	 */
 	public static Boolean allowAutoUpdate() {
-		String allowAutoUpdate = Context.getRuntimeProperties().getProperty(
-		    OpenmrsConstants.AUTO_UPDATE_DATABASE_RUNTIME_PROPERTY, "false");
+		String allowAutoUpdate = Context.getRuntimeProperties()
+		        .getProperty(OpenmrsConstants.AUTO_UPDATE_DATABASE_RUNTIME_PROPERTY, "false");
 		
 		return "true".equals(allowAutoUpdate);
 		
@@ -365,8 +365,8 @@ public class DatabaseUpdater {
 		}
 		
 		try {
-			Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(
-			    new JdbcConnection(connection));
+			Database database = DatabaseFactory.getInstance()
+			        .findCorrectDatabaseImplementation(new JdbcConnection(connection));
 			database.setDatabaseChangeLogTableName("liquibasechangelog");
 			database.setDatabaseChangeLogLockTableName("liquibasechangeloglock");
 			
@@ -539,8 +539,7 @@ public class DatabaseUpdater {
 	}
 	
 	/**
-	 * Looks at the current liquibase-update-to-latest
-	 * .xml file and then checks the database to see
+	 * Looks at the current liquibase-update-to-latest .xml file and then checks the database to see
 	 * if they have been run.
 	 *
 	 * @return list of changesets that both have and haven't been run
@@ -624,8 +623,8 @@ public class DatabaseUpdater {
 			
 		}
 		catch (Exception e) {
-			throw new RuntimeException("Error occurred while trying to get the updates needed for the database. "
-			        + e.getMessage(), e);
+			throw new RuntimeException(
+			        "Error occurred while trying to get the updates needed for the database. " + e.getMessage(), e);
 		}
 		finally {
 			try {
@@ -706,14 +705,14 @@ public class DatabaseUpdater {
 	}
 	
 	/**
-	 * This method releases the liquibase db lock after a crashed database update. First, it
-	 * checks whether "liquibasechangeloglock" table exists in db. If so, it will check
-	 * whether the database is locked. If that is also true, this means that last attempted db
-	 * update crashed.<br>
+	 * This method releases the liquibase db lock after a crashed database update. First, it checks
+	 * whether "liquibasechangeloglock" table exists in db. If so, it will check whether the
+	 * database is locked. If that is also true, this means that last attempted db update
+	 * crashed.<br>
 	 * <br>
-	 * This should only be called if the user is sure that no one else is currently running
-	 * database updates. This method should be used if there was a db crash while updates
-	 * were being written and the lock table was never cleaned up.
+	 * This should only be called if the user is sure that no one else is currently running database
+	 * updates. This method should be used if there was a db crash while updates were being written
+	 * and the lock table was never cleaned up.
 	 *
 	 * @throws LockException
 	 */
@@ -741,8 +740,8 @@ public class DatabaseUpdater {
 	}
 	
 	/**
-	 * This method currently checks the liquibasechangeloglock table to see if there is a row
-	 * with a lock in it.  This uses the liquibase API to do this
+	 * This method currently checks the liquibasechangeloglock table to see if there is a row with a
+	 * lock in it. This uses the liquibase API to do this
 	 *
 	 * @return true if database is currently locked
 	 */

@@ -50,19 +50,18 @@ public class PersonAttribute extends BaseOpenmrsData implements java.io.Serializ
 	// Fields
 	@DocumentId
 	private Integer personAttributeId;
-
+	
 	@IndexedEmbedded(includeEmbeddedObjectId = true)
 	private Person person;
-
+	
 	@IndexedEmbedded
 	private PersonAttributeType attributeType;
-
+	
 	@Fields({
-			@Field(name = "valuePhrase", analyzer = @Analyzer(definition = LuceneAnalyzers.PHRASE_ANALYZER), boost = @Boost(8f)),
-			@Field(name = "valueExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
-			@Field(name = "valueStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
-			@Field(name = "valueAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER))
-	})
+	        @Field(name = "valuePhrase", analyzer = @Analyzer(definition = LuceneAnalyzers.PHRASE_ANALYZER), boost = @Boost(8f)),
+	        @Field(name = "valueExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
+	        @Field(name = "valueStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
+	        @Field(name = "valueAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER)) })
 	private String value;
 	
 	/** default constructor */
@@ -301,8 +300,8 @@ public class PersonAttribute extends BaseOpenmrsData implements java.io.Serializ
 	 * @should return negative if this attribute has lower attribute type than argument
 	 * @should return negative if other attribute has lower value
 	 * @should return negative if this attribute has lower attribute id than argument
-	 * @should not throw exception if attribute type is null
-	 * Note: this comparator imposes orderings that are inconsistent with equals
+	 * @should not throw exception if attribute type is null Note: this comparator imposes orderings
+	 *         that are inconsistent with equals
 	 */
 	@Override
 	public int compareTo(PersonAttribute other) {
@@ -331,8 +330,9 @@ public class PersonAttribute extends BaseOpenmrsData implements java.io.Serializ
 	}
 	
 	/**
-	 Provides a default comparator.
-	 @since 1.12
+	 * Provides a default comparator.
+	 * 
+	 * @since 1.12
 	 **/
 	public static class DefaultComparator implements Comparator<PersonAttribute> {
 		

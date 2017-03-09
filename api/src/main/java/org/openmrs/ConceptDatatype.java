@@ -106,7 +106,7 @@ public class ConceptDatatype extends BaseOpenmrsMetadata {
 	/*
 	 * Convenience methods for resolving common data types
 	 */
-
+	
 	/**
 	 * @return <code>true</code> if datatype is N/A, i.e. this concept is only an answer, not a
 	 *         question

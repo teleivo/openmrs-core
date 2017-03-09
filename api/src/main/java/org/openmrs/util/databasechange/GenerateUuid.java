@@ -31,11 +31,9 @@ import liquibase.exception.ValidationErrors;
 import liquibase.resource.ResourceAccessor;
 
 /**
- * Generates UUIDs for all rows in all tables in the tableNames
- * parameter.
- * <br/>
- * If run on MySQL, it generates SQL statements using the in-built uuid() MySQL function,
- * otherwise it uses Java's {@link UUID} class, which is less efficient.<br/>
+ * Generates UUIDs for all rows in all tables in the tableNames parameter. <br/>
+ * If run on MySQL, it generates SQL statements using the in-built uuid() MySQL function, otherwise
+ * it uses Java's {@link UUID} class, which is less efficient.<br/>
  * <br/>
  * Expects parameter: "tableNames" : whitespace delimited list of table names to add <br/>
  * Expects parameter: "columnName" : name of the column to change. Default: "uuid" <br/>
@@ -92,9 +90,9 @@ public class GenerateUuid implements CustomTaskChange {
 	private String genericUpdateSql;
 	
 	/**
-	 * Adds UUIDs to all rows for the specified tables. It generates UUIDs using Java and updates one row at a time, thus
-	 * it is not very efficient. When running on the MySQL database, we generate SQL statements using the uuid MySQL function,
-	 * which is much faster.
+	 * Adds UUIDs to all rows for the specified tables. It generates UUIDs using Java and updates
+	 * one row at a time, thus it is not very efficient. When running on the MySQL database, we
+	 * generate SQL statements using the uuid MySQL function, which is much faster.
 	 *
 	 * @see liquibase.change.custom.CustomTaskChange#execute(liquibase.database.Database)
 	 */

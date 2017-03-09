@@ -15,8 +15,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * This is a wrapper around the Url class. It's main purpose is to abstract URL
- * so that you can mock http calls as the URL class cannot be mocked.
+ * This is a wrapper around the Url class. It's main purpose is to abstract URL so that you can mock
+ * http calls as the URL class cannot be mocked.
  */
 public class HttpUrl {
 	

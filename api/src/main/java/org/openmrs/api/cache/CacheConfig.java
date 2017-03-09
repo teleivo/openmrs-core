@@ -17,27 +17,27 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 /**
- * CacheConfig provides a cache manager for the @Cacheable annotation and uses ehCache under the hood.
- * The config of ehCache is loaded from ehcache-api.xml and can be extended by modules through apiCacheConfig.properties.
- * For more details see the wiki page at <a href="https://wiki.openmrs.org/x/IYaEBg">https://wiki.openmrs.org/x/IYaEBg</a>
+ * CacheConfig provides a cache manager for the @Cacheable annotation and uses ehCache under the
+ * hood. The config of ehCache is loaded from ehcache-api.xml and can be extended by modules through
+ * apiCacheConfig.properties. For more details see the wiki page at
+ * <a href="https://wiki.openmrs.org/x/IYaEBg">https://wiki.openmrs.org/x/IYaEBg</a>
  */
 @Configuration
 public class CacheConfig {
-
-    @Bean(name = "apiCacheManagerFactoryBean")
-    public EhCacheManagerFactoryBean apiCacheManagerFactoryBean(){
-        OpenmrsCacheManagerFactoryBean cacheManagerFactoryBean = new OpenmrsCacheManagerFactoryBean();
-        cacheManagerFactoryBean.setConfigLocation(new ClassPathResource("ehcache-api.xml"));
-        cacheManagerFactoryBean.setShared(false);
-        cacheManagerFactoryBean.setAcceptExisting(true);
-
-        return cacheManagerFactoryBean;
-    }
-
-    @Bean(name = "apiCacheManager")
-    public CacheManager cacheManager() {
-        return new EhCacheCacheManager(apiCacheManagerFactoryBean().getObject());
-    }
-
-
+	
+	@Bean(name = "apiCacheManagerFactoryBean")
+	public EhCacheManagerFactoryBean apiCacheManagerFactoryBean() {
+		OpenmrsCacheManagerFactoryBean cacheManagerFactoryBean = new OpenmrsCacheManagerFactoryBean();
+		cacheManagerFactoryBean.setConfigLocation(new ClassPathResource("ehcache-api.xml"));
+		cacheManagerFactoryBean.setShared(false);
+		cacheManagerFactoryBean.setAcceptExisting(true);
+		
+		return cacheManagerFactoryBean;
+	}
+	
+	@Bean(name = "apiCacheManager")
+	public CacheManager cacheManager() {
+		return new EhCacheCacheManager(apiCacheManagerFactoryBean().getObject());
+	}
+	
 }

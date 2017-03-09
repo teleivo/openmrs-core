@@ -22,6 +22,7 @@ public class ValidationException extends APIException {
 	
 	/**
 	 * Spring Errors object associated with the validation failure
+	 * 
 	 * @since 1.11
 	 */
 	

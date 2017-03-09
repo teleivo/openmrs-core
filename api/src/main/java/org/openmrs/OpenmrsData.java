@@ -18,5 +18,5 @@ package org.openmrs;
  * @since 1.5
  */
 public interface OpenmrsData extends OpenmrsObject, Auditable, Voidable {
-
+	
 }

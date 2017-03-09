@@ -135,7 +135,6 @@ public abstract class BaseOpenmrsData extends BaseOpenmrsObject implements Openm
 	
 	/**
 	 * @deprecated as of 2.0, use {@link #getVoided()}
-	 * 
 	 * @see org.openmrs.Voidable#isVoided()
 	 */
 	@Override

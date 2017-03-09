@@ -64,8 +64,8 @@ public class PatientIdentifierTypeValidator implements Validator {
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "error.name");
 			ValidateUtil.validateFieldLengths(errors, identifierType.getClass(), "name", "format", "formatDescription",
 			    "validator", "retireReason");
-			PatientIdentifierType exist = Context.getPatientService().getPatientIdentifierTypeByName(
-			    identifierType.getName());
+			PatientIdentifierType exist = Context.getPatientService()
+			        .getPatientIdentifierTypeByName(identifierType.getName());
 			if (exist != null && !exist.getRetired()
 			        && !OpenmrsUtil.nullSafeEquals(identifierType.getUuid(), exist.getUuid())) {
 				errors.rejectValue("name", "identifierType.duplicate.name");

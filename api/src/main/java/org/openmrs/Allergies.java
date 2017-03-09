@@ -32,14 +32,14 @@ public class Allergies implements List<Allergy> {
 	private String allergyStatus = UNKNOWN;
 	
 	private List<Allergy> allergies = new ArrayList<Allergy>();
-
+	
 	/**
-     * @return the allergyStatus
-     */
-    public String getAllergyStatus() {
-    	return allergyStatus;
-    }
-
+	 * @return the allergyStatus
+	 */
+	public String getAllergyStatus() {
+		return allergyStatus;
+	}
+	
 	@Override
 	public boolean add(Allergy allergy) {
 		throwExceptionIfHasDuplicateAllergen(allergy);
@@ -282,8 +282,8 @@ public class Allergies implements List<Allergy> {
 	}
 	
 	/**
-	 * Throws an exception if the given allergy has the same allergen
-	 * as any of those in the allergies that we already have.
+	 * Throws an exception if the given allergy has the same allergen as any of those in the
+	 * allergies that we already have.
 	 * 
 	 * @param allergy the given allergy whose allergen to compare with
 	 */
@@ -308,8 +308,8 @@ public class Allergies implements List<Allergy> {
 	}
 	
 	/**
-	 * Throws an exception if the given allergies collection has
-	 * an allergen similar to that of the given allergy
+	 * Throws an exception if the given allergies collection has an allergen similar to that of the
+	 * given allergy
 	 * 
 	 * @param allergy the given allergy
 	 * @param allergies the given allergies collection

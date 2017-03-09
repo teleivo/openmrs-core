@@ -29,8 +29,8 @@ public class ConceptStopWordException extends APIException {
 	}
 	
 	/**
-	 * Convenience constructor to give the user a message and to chain
-	 * this exception with a parent exception.
+	 * Convenience constructor to give the user a message and to chain this exception with a parent
+	 * exception.
 	 *
 	 * @param message the String to show to the user as to why the concept stop word service failed
 	 * @param cause the parent exception

@@ -88,6 +88,7 @@ public class EncounterType extends BaseOpenmrsMetadata {
 	
 	/**
 	 * Gets privilege which can view this type of encounters
+	 * 
 	 * @return the viewPrivilege the privilege instance
 	 */
 	public Privilege getViewPrivilege() {
@@ -96,6 +97,7 @@ public class EncounterType extends BaseOpenmrsMetadata {
 	
 	/**
 	 * Sets privilege which can view this type of encounters
+	 * 
 	 * @param viewPrivilege the viewPrivilege to set
 	 */
 	public void setViewPrivilege(Privilege viewPrivilege) {
@@ -104,6 +106,7 @@ public class EncounterType extends BaseOpenmrsMetadata {
 	
 	/**
 	 * Gets privilege which can edit this type of encounters
+	 * 
 	 * @return the editPrivilege the privilege instance
 	 */
 	public Privilege getEditPrivilege() {
@@ -112,6 +115,7 @@ public class EncounterType extends BaseOpenmrsMetadata {
 	
 	/**
 	 * Sets privilege which can edit this type of encounters
+	 * 
 	 * @param editPrivilege the editPrivilege to set
 	 */
 	public void setEditPrivilege(Privilege editPrivilege) {

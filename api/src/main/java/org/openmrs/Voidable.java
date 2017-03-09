@@ -30,7 +30,6 @@ public interface Voidable extends OpenmrsObject {
 	
 	/**
 	 * @return Boolean - whether of not this object is voided
-	 *
 	 * @deprecated as of 2.0, use {@link #getVoided()}
 	 */
 	@Deprecated

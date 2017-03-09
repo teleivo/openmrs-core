@@ -80,7 +80,8 @@ public class Graph<T> {
 	}
 	
 	/**
-	 * Obtains all nodes without incoming edges 
+	 * Obtains all nodes without incoming edges
+	 * 
 	 * @return
 	 */
 	private Set<T> getNodesWithNoIncomingEdges() {
@@ -97,7 +98,8 @@ public class Graph<T> {
 	}
 	
 	/**
-	 * Determines if a node has incoming edges 
+	 * Determines if a node has incoming edges
+	 * 
 	 * @param node
 	 * @return
 	 */
@@ -111,7 +113,8 @@ public class Graph<T> {
 	}
 	
 	/**
-	 * Obtains the edges starting with a given node 
+	 * Obtains the edges starting with a given node
+	 * 
 	 * @param aNode
 	 * @return
 	 */
@@ -126,7 +129,8 @@ public class Graph<T> {
 	}
 	
 	/**
-	 * Obtains the edges ending with a given node 
+	 * Obtains the edges ending with a given node
+	 * 
 	 * @param aNode
 	 * @return set of edges
 	 */

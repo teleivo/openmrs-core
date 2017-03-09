@@ -28,6 +28,7 @@ import org.openmrs.util.OpenmrsConstants;
 
 /**
  * Helper methods for dealing with custom datatypes and their handlers
+ * 
  * @since 1.9
  */
 public class CustomDatatypeUtil {
@@ -57,8 +58,8 @@ public class CustomDatatypeUtil {
 			return ret;
 		}
 		catch (Exception ex) {
-			throw new CustomDatatypeException("Error loading " + datatypeClassname + " and configuring it with "
-			        + datatypeConfig, ex);
+			throw new CustomDatatypeException(
+			        "Error loading " + datatypeClassname + " and configuring it with " + datatypeConfig, ex);
 		}
 	}
 	
@@ -80,8 +81,8 @@ public class CustomDatatypeUtil {
 	 * @return a configured datatype handler appropriate for descriptor
 	 */
 	public static CustomDatatypeHandler getHandler(CustomValueDescriptor descriptor) {
-		return getHandler(getDatatypeOrDefault(descriptor), descriptor.getPreferredHandlerClassname(), descriptor
-		        .getHandlerConfig());
+		return getHandler(getDatatypeOrDefault(descriptor), descriptor.getPreferredHandlerClassname(),
+		    descriptor.getHandlerConfig());
 	}
 	
 	/**
@@ -104,7 +105,8 @@ public class CustomDatatypeUtil {
 			}
 			catch (Exception ex) {
 				log.warn("Failed to instantiate and configure preferred handler with class " + preferredHandlerClassname
-				        + " and config " + handlerConfig, ex);
+				        + " and config " + handlerConfig,
+				    ex);
 			}
 		}
 		
@@ -113,8 +115,8 @@ public class CustomDatatypeUtil {
 	}
 	
 	/**
-	 * Converts a simple String-based configuration to a serialized form.
-	 * Utility method for property-style configuration implementations.
+	 * Converts a simple String-based configuration to a serialized form. Utility method for
+	 * property-style configuration implementations.
 	 *
 	 * @param simpleConfig
 	 * @return serialized form
@@ -133,8 +135,8 @@ public class CustomDatatypeUtil {
 	
 	/**
 	 * Deserializes a simple String-based configuration from the serialized form used by
-	 * {@link #serializeSimpleConfiguration(Map)}
-	 * Utility method for property-style configuration implementations.
+	 * {@link #serializeSimpleConfiguration(Map)} Utility method for property-style configuration
+	 * implementations.
 	 *
 	 * @param serializedConfig
 	 * @return deserialized configuration
@@ -154,11 +156,13 @@ public class CustomDatatypeUtil {
 	}
 	
 	/**
-	 * Uses the appropriate datatypes to convert all values in the input map to their valueReference equivalents.
-	 * This is a convenience method for calling XyzService.getXyz(..., attributeValues, ...).
+	 * Uses the appropriate datatypes to convert all values in the input map to their valueReference
+	 * equivalents. This is a convenience method for calling XyzService.getXyz(..., attributeValues,
+	 * ...).
 	 *
 	 * @param datatypeValues
-	 * @return a map similar to the input parameter, but with typed values converted to their reference equivalents
+	 * @return a map similar to the input parameter, but with typed values converted to their
+	 *         reference equivalents
 	 */
 	public static <T extends AttributeType<?>, U> Map<T, String> getValueReferences(Map<T, U> datatypeValues) {
 		Map<T, String> serializedAttributeValues = null;
@@ -208,14 +212,14 @@ public class CustomDatatypeUtil {
 	 * @return whether or not handler is compatible with datatype
 	 */
 	public static boolean isCompatibleHandler(CustomDatatypeHandler handler, CustomDatatype<?> datatype) {
-		List<Class<? extends CustomDatatypeHandler>> handlerClasses = Context.getDatatypeService().getHandlerClasses(
-		    (Class<? extends CustomDatatype<?>>) datatype.getClass());
+		List<Class<? extends CustomDatatypeHandler>> handlerClasses = Context.getDatatypeService()
+		        .getHandlerClasses((Class<? extends CustomDatatype<?>>) datatype.getClass());
 		return handlerClasses.contains(handler.getClass());
 	}
 	
 	/**
-	 * To be called by service save methods for customizable implementations.
-	 * Iterates over all attributes and calls save on the {@link ConceptDatatype} for any dirty ones.
+	 * To be called by service save methods for customizable implementations. Iterates over all
+	 * attributes and calls save on the {@link ConceptDatatype} for any dirty ones.
 	 *
 	 * @param customizable
 	 */
@@ -235,8 +239,8 @@ public class CustomDatatypeUtil {
 		if (value.isDirty()) {
 			CustomDatatype datatype = CustomDatatypeUtil.getDatatype(value.getDescriptor());
 			if (value.getValue() == null) {
-				throw new InvalidCustomValueException(value.getClass() + " with type=" + value.getDescriptor()
-				        + " cannot be null");
+				throw new InvalidCustomValueException(
+				        value.getClass() + " with type=" + value.getDescriptor() + " cannot be null");
 			}
 			String existingValueReference = null;
 			try {

@@ -42,7 +42,6 @@ public class FieldAnswer extends BaseOpenmrsObject {
 	
 	/**
 	 * @return boolean whether or not this fieldAnswer has been modified
-	 *
 	 * @deprecated as of 2.0, use {@link #getDirty()}
 	 */
 	@Deprecated

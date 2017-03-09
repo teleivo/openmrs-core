@@ -93,7 +93,6 @@ public class GlobalProperty extends BaseOpenmrsObject implements CustomValueDesc
 	 * @param description
 	 * @param datatypeClass
 	 * @param datatypeConfig
-	 *
 	 * @since 1.9
 	 */
 	public GlobalProperty(String property, String value, String description,
@@ -241,7 +240,6 @@ public class GlobalProperty extends BaseOpenmrsObject implements CustomValueDesc
 	
 	/**
 	 * @see org.openmrs.customdatatype.SingleCustomValue#getDescriptor()
-	 *
 	 * @since 1.9
 	 */
 	@Override
@@ -251,7 +249,6 @@ public class GlobalProperty extends BaseOpenmrsObject implements CustomValueDesc
 	
 	/**
 	 * @see org.openmrs.customdatatype.SingleCustomValue#getValueReference()
-	 *
 	 * @since 1.9
 	 */
 	@Override
@@ -261,7 +258,6 @@ public class GlobalProperty extends BaseOpenmrsObject implements CustomValueDesc
 	
 	/**
 	 * @see org.openmrs.customdatatype.SingleCustomValue#setValueReferenceInternal(java.lang.String)
-	 *
 	 * @since 1.9
 	 */
 	@Override
@@ -271,7 +267,6 @@ public class GlobalProperty extends BaseOpenmrsObject implements CustomValueDesc
 	
 	/**
 	 * @see org.openmrs.customdatatype.SingleCustomValue#getValue()
-	 *
 	 * @since 1.9
 	 */
 	@Override
@@ -284,7 +279,6 @@ public class GlobalProperty extends BaseOpenmrsObject implements CustomValueDesc
 	
 	/**
 	 * @see org.openmrs.customdatatype.SingleCustomValue#setValue(java.lang.Object)
-	 *
 	 * @since 1.9
 	 */
 	@Override
@@ -295,7 +289,6 @@ public class GlobalProperty extends BaseOpenmrsObject implements CustomValueDesc
 	
 	/**
 	 * @see org.openmrs.customdatatype.SingleCustomValue#isDirty()
-	 *
 	 * @deprecated as of 2.0, use {@link #getDirty()}
 	 */
 	@Deprecated

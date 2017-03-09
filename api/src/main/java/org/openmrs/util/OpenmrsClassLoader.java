@@ -62,8 +62,8 @@ public class OpenmrsClassLoader extends URLClassLoader {
 	private static Map<String, OpenmrsMemento> mementos = new WeakHashMap<String, OpenmrsMemento>();
 	
 	/**
-	 * Holds all classes that has been requested from this class loader. We use weak references so that
-	 * module classes can be garbage collected when modules are unloaded.
+	 * Holds all classes that has been requested from this class loader. We use weak references so
+	 * that module classes can be garbage collected when modules are unloaded.
 	 */
 	private Map<String, WeakReference<Class<?>>> cachedClasses = new ConcurrentHashMap<String, WeakReference<Class<?>>>();
 	
@@ -398,8 +398,8 @@ public class OpenmrsClassLoader extends URLClassLoader {
 	}
 	
 	/**
-	 * Sets the class loader, for all threads referencing a destroyed openmrs class loader, 
-	 * to the current one.
+	 * Sets the class loader, for all threads referencing a destroyed openmrs class loader, to the
+	 * current one.
 	 */
 	public static void setThreadsToNewClassLoader() {
 		//Give ownership of all threads loaded by the old class loader to the new one.
@@ -441,14 +441,10 @@ public class OpenmrsClassLoader extends URLClassLoader {
 		// List every thread in the group
 		for (int i = 0; i < nt; i++) {
 			Thread t = threads[i];
-			log.error(indent
-			        + "  Thread["
-			        + t.getName()
-			        + ":"
-			        + t.getClass()
-			        + ":"
-			        + (t.getContextClassLoader() == null ? "null cl" : t.getContextClassLoader().getClass().getName() + " "
-			                + t.getContextClassLoader().hashCode()) + "]");
+			log.error(indent + "  Thread[" + t.getName() + ":" + t.getClass() + ":"
+			        + (t.getContextClassLoader() == null ? "null cl"
+			                : t.getContextClassLoader().getClass().getName() + " " + t.getContextClassLoader().hashCode())
+			        + "]");
 			threadToReturn.add(t);
 		}
 		
@@ -502,9 +498,11 @@ public class OpenmrsClassLoader extends URLClassLoader {
 	}
 	
 	/**
-	 * This clears any references this classloader might have that will prevent garbage collection. <br>
+	 * This clears any references this classloader might have that will prevent garbage collection.
 	 * <br>
-	 * Borrowed from Tomcat's WebappClassLoader#clearReferences() (not javadoc linked intentionally) <br>
+	 * <br>
+	 * Borrowed from Tomcat's WebappClassLoader#clearReferences() (not javadoc linked intentionally)
+	 * <br>
 	 * The only difference between this and Tomcat's implementation is that this one only acts on
 	 * openmrs objects and also clears out static java.* packages. Tomcat acts on all objects and
 	 * does not clear our static java.* objects.
@@ -563,8 +561,9 @@ public class OpenmrsClassLoader extends URLClassLoader {
 							}
 							catch (Exception t) {
 								if (log.isDebugEnabled()) {
-									log.debug("Could not set field " + field.getName() + " to null in class "
-									        + clazz.getName(), t);
+									log.debug(
+									    "Could not set field " + field.getName() + " to null in class " + clazz.getName(),
+									    t);
 								}
 							}
 						}
@@ -620,8 +619,8 @@ public class OpenmrsClassLoader extends URLClassLoader {
 						} else {
 							field.set(instance, null);
 							if (log.isDebugEnabled()) {
-								log.debug("Set field " + field.getName() + " to null in class "
-								        + instance.getClass().getName());
+								log.debug(
+								    "Set field " + field.getName() + " to null in class " + instance.getClass().getName());
 							}
 						}
 					}
@@ -630,14 +629,16 @@ public class OpenmrsClassLoader extends URLClassLoader {
 			catch (Exception e) {
 				if (log.isDebugEnabled()) {
 					log.debug("Could not set field " + field.getName() + " to null in object instance of class "
-					        + instance.getClass().getName(), e);
+					        + instance.getClass().getName(),
+					    e);
 				}
 			}
 		}
 	}
 	
 	/**
-	 * Determine whether a class was loaded by this class loader or one of its child class loaders. <br>
+	 * Determine whether a class was loaded by this class loader or one of its child class loaders.
+	 * <br>
 	 * <br>
 	 * Borrowed from Tomcat's WebappClassLoader
 	 */

@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Standard implementation of {@link DatatypeService}
+ * 
  * @since 1.9
  */
 @Transactional
@@ -158,7 +159,8 @@ public class DatatypeServiceImpl extends BaseOpenmrsService implements DatatypeS
 	}
 	
 	/**
-	 * @see org.openmrs.api.DatatypeService#getHandler(org.openmrs.customdatatype.CustomDatatype, java.lang.String)
+	 * @see org.openmrs.api.DatatypeService#getHandler(org.openmrs.customdatatype.CustomDatatype,
+	 *      java.lang.String)
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -176,14 +178,14 @@ public class DatatypeServiceImpl extends BaseOpenmrsService implements DatatypeS
 			return ret;
 		}
 		catch (Exception ex) {
-			throw new CustomDatatypeException("Failed to instantiate handler for " + datatype + " with config "
-			        + handlerConfig, ex);
+			throw new CustomDatatypeException(
+			        "Failed to instantiate handler for " + datatype + " with config " + handlerConfig, ex);
 		}
 	}
 	
 	/**
-	 * private method that prioritizes all registered handlers so we can quickly determine which to use for
-	 * each datatype
+	 * private method that prioritizes all registered handlers so we can quickly determine which to
+	 * use for each datatype
 	 */
 	private synchronized void prioritizeHandlers() {
 		if (prioritizedHandlerClasses == null) {

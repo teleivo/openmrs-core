@@ -18,8 +18,8 @@ import org.apache.commons.lang.StringUtils;
 import org.openmrs.api.context.Context;
 
 /**
- * Allows a java.util.Date to be converted to/from a String. It tries both Date and Date+Time formats
- * but it does not permit partial dates. 
+ * Allows a java.util.Date to be converted to/from a String. It tries both Date and Date+Time
+ * formats but it does not permit partial dates.
  */
 public class DateOrDatetimeEditor extends PropertyEditorSupport {
 	

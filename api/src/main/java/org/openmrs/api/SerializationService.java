@@ -71,9 +71,7 @@ public interface SerializationService extends OpenmrsService {
 	 * Gets the list of OpenmrsSerializers that have been registered with this service. <br>
 	 * <br>
 	 * Modules are able to add more serializers by adding this in their moduleApplicationContext.
-	 * e.g.:
-	 * 
-	 * <pre>
+	 * e.g.: <pre>
 	 * 	&lt;bean parent="serializationServiceTarget"&gt;
 	 * 		&lt;property name="serializers"&gt;
 	 * 		&lt;list&gt;

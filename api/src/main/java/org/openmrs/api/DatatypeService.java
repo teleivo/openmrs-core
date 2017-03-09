@@ -19,6 +19,7 @@ import org.openmrs.customdatatype.CustomDatatypeHandler;
 
 /**
  * API methods related to {@link CustomDatatype} and {@link CustomDatatypeHandler}.
+ * 
  * @since 1.9
  */
 public interface DatatypeService extends OpenmrsService {
@@ -43,13 +44,12 @@ public interface DatatypeService extends OpenmrsService {
 	
 	/**
 	 * Gets the default handler for a {@link CustomDatatype}, and sets its configuration
-	 *  
 	 * 
 	 * @param datatype
 	 * @param handlerConfig
 	 * @return default handler with the given configuration
-     * @should return a handler for the specified datatype
-     * @should return a handler for a datatype that extends a generic superclass
+	 * @should return a handler for the specified datatype
+	 * @should return a handler for a datatype that extends a generic superclass
 	 */
 	CustomDatatypeHandler<?, ?> getHandler(CustomDatatype<?> datatype, String handlerConfig);
 	

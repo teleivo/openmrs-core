@@ -39,47 +39,44 @@ import org.springframework.util.StringUtils;
 public class PersonName extends BaseOpenmrsData implements java.io.Serializable, Cloneable, Comparable<PersonName> {
 	
 	public static final long serialVersionUID = 4353L;
-
+	
 	private static final Log log = LogFactory.getLog(PersonName.class);
-
+	
 	// Fields
 	@DocumentId
 	private Integer personNameId;
-
+	
 	@IndexedEmbedded(includeEmbeddedObjectId = true)
 	private Person person;
-
+	
 	private Boolean preferred = false;
-
+	
 	@Fields({
-			@Field(name = "givenNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(8f)),
-			@Field(name = "givenNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(4f)),
-			@Field(name = "givenNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER), boost = @Boost(2f))
-	})
+	        @Field(name = "givenNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(8f)),
+	        @Field(name = "givenNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(4f)),
+	        @Field(name = "givenNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER), boost = @Boost(2f)) })
 	private String givenName;
+	
 	private String prefix;
-
+	
 	@Fields({
-			@Field(name = "middleNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
-			@Field(name = "middleNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
-			@Field(name = "middleNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER))
-	})
+	        @Field(name = "middleNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
+	        @Field(name = "middleNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
+	        @Field(name = "middleNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER)) })
 	private String middleName;
 	
 	private String familyNamePrefix;
-
+	
 	@Fields({
-			@Field(name = "familyNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(8f)),
-			@Field(name = "familyNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(4f)),
-			@Field(name = "familyNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER), boost = @Boost(2f)),
-	})
+	        @Field(name = "familyNameExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(8f)),
+	        @Field(name = "familyNameStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(4f)),
+	        @Field(name = "familyNameAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER), boost = @Boost(2f)), })
 	private String familyName;
-
+	
 	@Fields({
-			@Field(name = "familyName2Exact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
-			@Field(name = "familyName2Start", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
-			@Field(name = "familyName2Anywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER)),
-	})
+	        @Field(name = "familyName2Exact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
+	        @Field(name = "familyName2Start", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
+	        @Field(name = "familyName2Anywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER)), })
 	private String familyName2;
 	
 	private String familyNameSuffix;
@@ -123,13 +120,14 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 	 * @should return true if given middle and family name are equal
 	 */
 	public boolean equalsContent(PersonName otherName) {
-		return new EqualsBuilder().append(defaultString(otherName.getPrefix()), defaultString(prefix)).append(
-		    defaultString(otherName.getGivenName()), defaultString(givenName)).append(
-		    defaultString(otherName.getMiddleName()), defaultString(middleName)).append(
-		    defaultString(otherName.getFamilyNamePrefix()), defaultString(familyNamePrefix)).append(
-		    defaultString(otherName.getDegree()), defaultString(degree)).append(defaultString(otherName.getFamilyName()),
-		    defaultString(familyName)).append(defaultString(otherName.getFamilyName2()), defaultString(familyName2)).append(
-		    defaultString(otherName.getFamilyNameSuffix()), defaultString(familyNameSuffix)).isEquals();
+		return new EqualsBuilder().append(defaultString(otherName.getPrefix()), defaultString(prefix))
+		        .append(defaultString(otherName.getGivenName()), defaultString(givenName))
+		        .append(defaultString(otherName.getMiddleName()), defaultString(middleName))
+		        .append(defaultString(otherName.getFamilyNamePrefix()), defaultString(familyNamePrefix))
+		        .append(defaultString(otherName.getDegree()), defaultString(degree))
+		        .append(defaultString(otherName.getFamilyName()), defaultString(familyName))
+		        .append(defaultString(otherName.getFamilyName2()), defaultString(familyName2))
+		        .append(defaultString(otherName.getFamilyNameSuffix()), defaultString(familyNameSuffix)).isEquals();
 	}
 	
 	/**
@@ -349,7 +347,6 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 	
 	/**
 	 * @return Returns the preferred.
-	 *
 	 * @deprecated as of 2.0, use {@link #getPreferred()}
 	 */
 	@Deprecated
@@ -470,8 +467,8 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 	 * @should return negative if other middleName is greater
 	 * @should return negative if other familynamePrefix is greater
 	 * @should return negative if other familyNameSuffix is greater
-	 * @should return negative if other dateCreated is greater
-	 * Note: this comparator imposes orderings that are inconsistent with equals.
+	 * @should return negative if other dateCreated is greater Note: this comparator imposes
+	 *         orderings that are inconsistent with equals.
 	 */
 	@Override
 	public int compareTo(PersonName other) {
@@ -502,8 +499,9 @@ public class PersonName extends BaseOpenmrsData implements java.io.Serializable,
 	}
 	
 	/**
-	 Provides a default comparator.
-	 @since 1.12
+	 * Provides a default comparator.
+	 * 
+	 * @since 1.12
 	 **/
 	public static class DefaultComparator implements Comparator<PersonName> {
 		

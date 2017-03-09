@@ -32,11 +32,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public class CohortServiceImpl extends BaseOpenmrsService implements CohortService {
-
+	
 	protected final Log log = LogFactory.getLog(this.getClass());
-
+	
 	private CohortDAO dao;
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#setCohortDAO(org.openmrs.api.db.CohortDAO)
 	 */
@@ -44,7 +44,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 	public void setCohortDAO(CohortDAO dao) {
 		this.dao = dao;
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#saveCohort(org.openmrs.Cohort)
 	 */
@@ -64,10 +64,10 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 		if (log.isInfoEnabled()) {
 			log.info("Saving cohort " + cohort);
 		}
-
+		
 		return dao.saveCohort(cohort);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#getCohort(java.lang.Integer)
 	 */
@@ -76,7 +76,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 	public Cohort getCohort(Integer id) {
 		return dao.getCohort(id);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#voidCohort(org.openmrs.Cohort, java.lang.String)
 	 */
@@ -85,7 +85,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 		// other setters done by the save handlers
 		return Context.getCohortService().saveCohort(cohort);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#getCohortByUuid(java.lang.String)
 	 */
@@ -94,7 +94,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 	public Cohort getCohortByUuid(String uuid) {
 		return dao.getCohortByUuid(uuid);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#addPatientToCohort(org.openmrs.Cohort,
 	 *      org.openmrs.Patient)
@@ -108,7 +108,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 		}
 		return cohort;
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#removePatientFromCohort(org.openmrs.Cohort,
 	 *      org.openmrs.Patient)
@@ -121,7 +121,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 		}
 		return cohort;
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#getCohortsContainingPatient(org.openmrs.Patient)
 	 */
@@ -136,13 +136,13 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 	public List<Cohort> getCohortsContainingPatient(Patient patient) {
 		return dao.getCohortsContainingPatientId(patient.getPatientId());
 	}
-
+	
 	@Override
 	@Transactional(readOnly = true)
 	public List<Cohort> getCohortsContainingPatientId(Integer patientId) {
 		return dao.getCohortsContainingPatientId(patientId);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#getCohorts(java.lang.String)
 	 */
@@ -151,7 +151,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 	public List<Cohort> getCohorts(String nameFragment) throws APIException {
 		return dao.getCohorts(nameFragment);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#getAllCohorts()
 	 */
@@ -160,7 +160,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 	public List<Cohort> getAllCohorts() throws APIException {
 		return Context.getCohortService().getAllCohorts(false);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#getAllCohorts(boolean)
 	 */
@@ -169,7 +169,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 	public List<Cohort> getAllCohorts(boolean includeVoided) throws APIException {
 		return dao.getAllCohorts(includeVoided);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#getCohort(java.lang.String)
 	 */
@@ -178,7 +178,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 	public Cohort getCohort(String name) throws APIException {
 		return dao.getCohort(name);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#purgeCohort(org.openmrs.Cohort)
 	 */
@@ -186,10 +186,10 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 	public Cohort purgeCohort(Cohort cohort) throws APIException {
 		return dao.deleteCohort(cohort);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#addMembershipToCohort(org.openmrs.Cohort,
-	 * 		org.openmrs.CohortMembership)
+	 *      org.openmrs.CohortMembership)
 	 */
 	@Override
 	public Cohort addMembershipToCohort(Cohort cohort, CohortMembership cohortMembership) throws APIException {
@@ -197,10 +197,10 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 		Context.getCohortService().saveCohort(cohort);
 		return cohort;
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#removeMemberShipFromCohort(org.openmrs.Cohort,
-	 * 		org.openmrs.CohortMembership)
+	 *      org.openmrs.CohortMembership)
 	 */
 	@Override
 	public Cohort removeMemberShipFromCohort(Cohort cohort, CohortMembership cohortMembership) throws APIException {
@@ -210,7 +210,7 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 		}
 		return cohort;
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.CohortService#patientVoided(org.openmrs.Patient)
 	 */
@@ -218,9 +218,9 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 	public void patientVoided(Patient patient) throws APIException {
 		List<Cohort> cohorts = Context.getCohortService().getCohortsContainingPatient(patient);
 		for (Cohort cohort : cohorts) {
-			List<CohortMembership> membersToVoid = cohort.getMembers().stream()
-					.filter(m -> !m.getVoided() && patient.getVoided() && m.getPatient().getPatientId().equals(patient.getPatientId()))
-					.collect(Collectors.toList());
+			List<CohortMembership> membersToVoid = cohort.getMembers().stream().filter(
+			    m -> !m.getVoided() && patient.getVoided() && m.getPatient().getPatientId().equals(patient.getPatientId()))
+			        .collect(Collectors.toList());
 			for (CohortMembership member : membersToVoid) {
 				member.setVoided(patient.getVoided());
 				member.setDateVoided(patient.getDateVoided());
@@ -240,12 +240,10 @@ public class CohortServiceImpl extends BaseOpenmrsService implements CohortServi
 		List<Cohort> cohorts = Context.getCohortService().getCohortsContainingPatient(patient);
 		for (Cohort cohort : cohorts) {
 			List<CohortMembership> membersToUnvoid = cohort.getMembers().stream()
-					.filter(m -> m.getVoided() &&
-							m.getPatient().getPatientId().equals(patient.getPatientId()) &&
-							m.getVoidedBy().equals(voidedBy) &&
-							DateUtils.isSameDay(m.getDateVoided(), dateVoided) &&
-							m.getVoidReason().equals(voidReason))
-					.collect(Collectors.toList());
+			        .filter(m -> m.getVoided() && m.getPatient().getPatientId().equals(patient.getPatientId())
+			                && m.getVoidedBy().equals(voidedBy) && DateUtils.isSameDay(m.getDateVoided(), dateVoided)
+			                && m.getVoidReason().equals(voidReason))
+			        .collect(Collectors.toList());
 			if (!membersToUnvoid.isEmpty()) {
 				for (CohortMembership member : membersToUnvoid) {
 					member.setVoided(false);

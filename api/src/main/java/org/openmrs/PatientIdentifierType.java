@@ -60,7 +60,7 @@ public class PatientIdentifierType extends BaseOpenmrsMetadata {
 	private Integer patientIdentifierTypeId;
 	
 	private String format;
-
+	
 	@Field
 	private Boolean required = Boolean.FALSE;
 	
@@ -186,7 +186,7 @@ public class PatientIdentifierType extends BaseOpenmrsMetadata {
 		return StringUtils.isNotEmpty(validator);
 	}
 	
-	/** 
+	/**
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

@@ -27,11 +27,11 @@ import org.hibernate.search.annotations.ContainedIn;
 public class Patient extends Person {
 	
 	public static final long serialVersionUID = 93123L;
-
+	
 	private Integer patientId;
-
+	
 	private String allergyStatus = Allergies.UNKNOWN;
-
+	
 	@ContainedIn
 	private Set<PatientIdentifier> identifiers;
 	
@@ -105,8 +105,8 @@ public class Patient extends Person {
 	}
 	
 	/**
-	 * Sets the allergy status for a patient. <b>This should never be called directly</b>. 
-	 * It should reflect allergy status maintained by the supporting infrastructure.
+	 * Sets the allergy status for a patient. <b>This should never be called directly</b>. It should
+	 * reflect allergy status maintained by the supporting infrastructure.
 	 * 
 	 * @param allergyStatus
 	 * @since 2.0
@@ -127,7 +127,7 @@ public class Patient extends Person {
 		super.setPersonId(personId);
 		this.patientId = personId;
 	}
-
+	
 	/**
 	 * Get all of this patients identifiers -- both voided and non-voided ones. If you want only
 	 * non-voided identifiers, use {@link #getActiveIdentifiers()}
@@ -147,7 +147,8 @@ public class Patient extends Person {
 	/**
 	 * Update all identifiers for patient
 	 * 
-	 * @param identifiers Set&lt;PatientIdentifier&gt; to set as update all known identifiers for patient
+	 * @param identifiers Set&lt;PatientIdentifier&gt; to set as update all known identifiers for
+	 *            patient
 	 * @see org.openmrs.PatientIdentifier
 	 */
 	public void setIdentifiers(Set<PatientIdentifier> identifiers) {

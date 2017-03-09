@@ -18,6 +18,7 @@ import java.util.Vector;
 
 /**
  * Generic class used by AddressTemplate and NameTemplate layouts
+ * 
  * @since 1.12
  */
 public abstract class LayoutTemplate {
@@ -55,11 +56,10 @@ public abstract class LayoutTemplate {
 	}
 	
 	/**
-	 * Very crude way of setting just one line of template. This just puts
-	 * something on {@link #setLineByLineFormat(List)} with this string
+	 * Very crude way of setting just one line of template. This just puts something on
+	 * {@link #setLineByLineFormat(List)} with this string
 	 *
-	 * @param simpleTemplate
-	 *            first template line
+	 * @param simpleTemplate first template line
 	 */
 	public LayoutTemplate(String simpleTemplate) {
 		setLineByLineFormat(Arrays.asList(simpleTemplate));

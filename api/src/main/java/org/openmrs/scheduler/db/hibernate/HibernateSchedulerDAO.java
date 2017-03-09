@@ -90,8 +90,8 @@ public class HibernateSchedulerDAO implements SchedulerDAO {
 	 */
 	@Override
 	public TaskDefinition getTaskByName(String name) throws DAOException {
-		Criteria crit = sessionFactory.getCurrentSession().createCriteria(TaskDefinition.class).add(
-		    Restrictions.eq("name", name));
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(TaskDefinition.class)
+		        .add(Restrictions.eq("name", name));
 		
 		TaskDefinition task = (TaskDefinition) crit.uniqueResult();
 		

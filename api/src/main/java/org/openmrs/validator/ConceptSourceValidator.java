@@ -18,7 +18,6 @@ import org.springframework.validation.Validator;
 
 /**
  * Validates attributes on the {@link org.openmrs.ConceptSource} object.
- *
  */
 public class ConceptSourceValidator implements Validator {
 	
@@ -36,10 +35,10 @@ public class ConceptSourceValidator implements Validator {
 	}
 	
 	/**
-	 * Checks the form object for any inconsistencies/errors
+	 * Checks the form object for any inconsistencies/errors * @see
+	 * org.springframework.validation.Validator#validate(java.lang.Object,
+	 * org.springframework.validation.Errors)
 	 * 
-	 * 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
-	 *      org.springframework.validation.Errors)
 	 * @should fail validation if name is null or empty or whitespace
 	 * @should fail validation if description is null or empty or whitespace
 	 * @should pass validation if HL7 Code is null or empty or whitespace
@@ -50,8 +49,8 @@ public class ConceptSourceValidator implements Validator {
 	@Override
 	public void validate(Object obj, Errors errors) throws IllegalArgumentException {
 		if (obj == null || !(obj instanceof ConceptSource)) {
-			throw new IllegalArgumentException("The parameter obj should not be null and must be of type "
-			        + ConceptSource.class);
+			throw new IllegalArgumentException(
+			        "The parameter obj should not be null and must be of type " + ConceptSource.class);
 		} else {
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "error.name");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "error.null");

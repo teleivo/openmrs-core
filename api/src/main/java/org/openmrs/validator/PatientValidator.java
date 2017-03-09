@@ -84,8 +84,8 @@ public class PatientValidator extends PersonValidator {
 		Boolean preferredIdentifierChosen = false;
 		//Voided patients have only voided identifiers since they were voided with the patient, 
 		//so get all otherwise get the active ones
-		Collection<PatientIdentifier> identifiers = patient.getVoided() ? patient.getIdentifiers() : patient
-		        .getActiveIdentifiers();
+		Collection<PatientIdentifier> identifiers = patient.getVoided() ? patient.getIdentifiers()
+		        : patient.getActiveIdentifiers();
 		for (PatientIdentifier pi : identifiers) {
 			if (pi.getPreferred()) {
 				preferredIdentifierChosen = true;

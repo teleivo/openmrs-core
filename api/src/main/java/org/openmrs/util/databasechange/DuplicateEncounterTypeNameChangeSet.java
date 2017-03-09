@@ -86,8 +86,8 @@ public class DuplicateEncounterTypeNameChangeSet implements CustomTaskChange {
 			connection.setAutoCommit(false);
 			
 			stmt = connection.createStatement();
-			rs = stmt
-			        .executeQuery("SELECT * FROM encounter_type INNER JOIN (SELECT name FROM encounter_type GROUP BY name HAVING count(name) > 1) dup ON encounter_type.name = dup.name");
+			rs = stmt.executeQuery(
+			    "SELECT * FROM encounter_type INNER JOIN (SELECT name FROM encounter_type GROUP BY name HAVING count(name) > 1) dup ON encounter_type.name = dup.name");
 			
 			Integer id = null;
 			String name = null;

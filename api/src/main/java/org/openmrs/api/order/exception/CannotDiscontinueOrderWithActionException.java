@@ -15,7 +15,7 @@ import static org.openmrs.Order.Action.DISCONTINUE;
  * Thrown with trying to discontinue an order with a specific action that cannot be discontinued.
  */
 public class CannotDiscontinueOrderWithActionException extends OrderEntryException {
-
+	
 	public static final long serialVersionUID = 22121215L;
 	
 	public CannotDiscontinueOrderWithActionException() {

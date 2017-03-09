@@ -20,7 +20,8 @@ import org.openmrs.customdatatype.SerializingCustomDatatype;
 import org.springframework.stereotype.Component;
 
 /**
- * Datatype for a Date (without time), represented by a java.util.Date. 
+ * Datatype for a Date (without time), represented by a java.util.Date.
+ * 
  * @since 1.9
  */
 @Component

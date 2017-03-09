@@ -12,10 +12,9 @@ package org.openmrs.module;
 import java.util.Comparator;
 
 /**
- * A comparator which takes version numbers stored as string. It assumes the versions
- * are separated by periods and does not contain letters. This prevents the version 
- * number 10 from coming before version number 9.
- *
+ * A comparator which takes version numbers stored as string. It assumes the versions are separated
+ * by periods and does not contain letters. This prevents the version number 10 from coming before
+ * version number 9.
  */
 public class VersionComparator implements Comparator<String> {
 	

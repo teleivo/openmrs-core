@@ -81,8 +81,8 @@ public class HibernateUserDAO implements UserDAO {
 			String salt = Security.getRandomToken();
 			String hashedPassword = Security.encodeString(password + salt);
 			
-			updateUserPassword(hashedPassword, salt, Context.getAuthenticatedUser().getUserId(), new Date(), user
-			        .getUserId());
+			updateUserPassword(hashedPassword, salt, Context.getAuthenticatedUser().getUserId(), new Date(),
+			    user.getUserId());
 		}
 		
 		return user;
@@ -94,8 +94,8 @@ public class HibernateUserDAO implements UserDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public User getUserByUsername(String username) {
-		Query query = sessionFactory.getCurrentSession().createQuery(
-		    "from User u where u.retired = '0' and (u.username = ? or u.systemId = ?)");
+		Query query = sessionFactory.getCurrentSession()
+		        .createQuery("from User u where u.retired = '0' and (u.username = ? or u.systemId = ?)");
 		query.setString(0, username);
 		query.setString(1, username);
 		List<User> users = query.list();
@@ -131,10 +131,8 @@ public class HibernateUserDAO implements UserDAO {
 		}
 		catch (Exception e) {}
 		
-		Query query = sessionFactory
-		        .getCurrentSession()
-		        .createQuery(
-		            "select count(*) from User u where (u.username = :uname1 or u.systemId = :uname2 or u.username = :sysid1 or u.systemId = :sysid2 or u.systemId = :uname3) and u.userId <> :uid");
+		Query query = sessionFactory.getCurrentSession().createQuery(
+		    "select count(*) from User u where (u.username = :uname1 or u.systemId = :uname2 or u.username = :sysid1 or u.systemId = :sysid2 or u.systemId = :uname3) and u.userId <> :uid");
 		query.setString("uname1", username);
 		query.setString("uname2", username);
 		query.setString("sysid1", systemId);
@@ -469,8 +467,8 @@ public class HibernateUserDAO implements UserDAO {
 	 */
 	@Override
 	public Role getRoleByUuid(String uuid) {
-		return (Role) sessionFactory.getCurrentSession().createQuery("from Role r where r.uuid = :uuid").setString("uuid",
-		    uuid).uniqueResult();
+		return (Role) sessionFactory.getCurrentSession().createQuery("from Role r where r.uuid = :uuid")
+		        .setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -482,8 +480,8 @@ public class HibernateUserDAO implements UserDAO {
 		
 		if (uuid != null) {
 			uuid = uuid.trim();
-			ret = (User) sessionFactory.getCurrentSession().createQuery("from User u where u.uuid = :uuid").setString(
-			    "uuid", uuid).uniqueResult();
+			ret = (User) sessionFactory.getCurrentSession().createQuery("from User u where u.uuid = :uuid")
+			        .setString("uuid", uuid).uniqueResult();
 		}
 		
 		return ret;
@@ -505,8 +503,8 @@ public class HibernateUserDAO implements UserDAO {
 		if (uuid == null) {
 			return null;
 		} else {
-			return (LoginCredential) sessionFactory.getCurrentSession().createQuery(
-			    "from LoginCredential where uuid = :uuid").setString("uuid", uuid.trim()).uniqueResult();
+			return (LoginCredential) sessionFactory.getCurrentSession()
+			        .createQuery("from LoginCredential where uuid = :uuid").setString("uuid", uuid.trim()).uniqueResult();
 		}
 	}
 	

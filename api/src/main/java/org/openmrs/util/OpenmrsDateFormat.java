@@ -17,10 +17,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * An extension of SimpleDateFormat that defaults to setLenient(false) and for date patterns
- * that end in yyyy  rejects any dates that don't end in 4 digits (to prevent against
- * 2-digit years being interpreted incorrectly); for date patterns that don't end in yyyy, it verifies
- * that the date string is the same length as the pattern string
+ * An extension of SimpleDateFormat that defaults to setLenient(false) and for date patterns that
+ * end in yyyy rejects any dates that don't end in 4 digits (to prevent against 2-digit years being
+ * interpreted incorrectly); for date patterns that don't end in yyyy, it verifies that the date
+ * string is the same length as the pattern string
  */
 public class OpenmrsDateFormat extends SimpleDateFormat {
 	
@@ -46,8 +46,8 @@ public class OpenmrsDateFormat extends SimpleDateFormat {
 		// otherwise, verify that the pattern and the string are the same length
 		else {
 			if (this.toPattern().length() != text.length()) {
-				throw new ParseException("Unparseable date \"" + text
-				        + "\" - length of date string doesn't match length of date pattern", 0);
+				throw new ParseException(
+				        "Unparseable date \"" + text + "\" - length of date string doesn't match length of date pattern", 0);
 			}
 		}
 		

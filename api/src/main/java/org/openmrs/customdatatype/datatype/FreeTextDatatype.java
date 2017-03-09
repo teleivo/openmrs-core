@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Free-text datatype, represented by a plain String.
+ * 
  * @since 1.9
  */
 @Component

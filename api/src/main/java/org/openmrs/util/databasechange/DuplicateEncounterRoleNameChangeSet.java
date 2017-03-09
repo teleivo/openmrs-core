@@ -87,8 +87,8 @@ public class DuplicateEncounterRoleNameChangeSet implements CustomTaskChange {
 			connection.setAutoCommit(false);
 			
 			stmt = connection.createStatement();
-			rs = stmt
-			        .executeQuery("SELECT * FROM encounter_role INNER JOIN (SELECT name FROM encounter_role GROUP BY name HAVING count(name) > 1) dup ON encounter_role.name = dup.name");
+			rs = stmt.executeQuery(
+			    "SELECT * FROM encounter_role INNER JOIN (SELECT name FROM encounter_role GROUP BY name HAVING count(name) > 1) dup ON encounter_role.name = dup.name");
 			
 			Integer id = null;
 			String name = null;
@@ -135,8 +135,8 @@ public class DuplicateEncounterRoleNameChangeSet implements CustomTaskChange {
 						}
 					} while (duplicateName);
 					
-					pStmt = connection
-					        .prepareStatement("update encounter_role set name = ?, changed_by = ?, date_changed = ? where encounter_role_id = ?");
+					pStmt = connection.prepareStatement(
+					    "update encounter_role set name = ?, changed_by = ?, date_changed = ? where encounter_role_id = ?");
 					if (!duplicateResult.isEmpty()) {
 						pStmt.setString(1, newName);
 					}

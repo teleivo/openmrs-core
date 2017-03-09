@@ -91,13 +91,13 @@ public class SchedulerUtil {
 		try {
 			Context.openSession();
 			
-			Boolean emailIsEnabled = Boolean.valueOf(Context.getAdministrationService().getGlobalProperty(
-			    SchedulerConstants.SCHEDULER_ADMIN_EMAIL_ENABLED_PROPERTY));
+			Boolean emailIsEnabled = Boolean.valueOf(Context.getAdministrationService()
+			        .getGlobalProperty(SchedulerConstants.SCHEDULER_ADMIN_EMAIL_ENABLED_PROPERTY));
 			
 			if (emailIsEnabled) {
 				// Email addresses seperated by commas
-				String recipients = Context.getAdministrationService().getGlobalProperty(
-				    SchedulerConstants.SCHEDULER_ADMIN_EMAIL_PROPERTY);
+				String recipients = Context.getAdministrationService()
+				        .getGlobalProperty(SchedulerConstants.SCHEDULER_ADMIN_EMAIL_PROPERTY);
 				
 				// Send message if 
 				if (recipients != null) {

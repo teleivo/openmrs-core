@@ -46,9 +46,8 @@ public class UpdateCohortMemberIds implements CustomTaskChange {
 			stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM cohort_member");
 			
-			pStmt = connection
-					.prepareStatement("UPDATE cohort_member SET cohort_member_id = ?"
-							+ " WHERE cohort_id = ? AND patient_id = ?");
+			pStmt = connection.prepareStatement(
+			    "UPDATE cohort_member SET cohort_member_id = ?" + " WHERE cohort_id = ? AND patient_id = ?");
 			int i = 0;
 			while (rs.next()) {
 				int cohortId = rs.getInt("cohort_id");

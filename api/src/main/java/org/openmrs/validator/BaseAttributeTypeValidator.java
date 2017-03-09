@@ -32,7 +32,8 @@ public abstract class BaseAttributeTypeValidator<T extends AttributeType<?>> imp
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	/**
-	 * @see org.springframework.validation.Validator#validate(java.lang.Object, org.springframework.validation.Errors)
+	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
+	 *      org.springframework.validation.Errors)
 	 * @should require name
 	 * @should require minOccurs
 	 * @should not allow maxOccurs less than 1
@@ -80,8 +81,8 @@ public abstract class BaseAttributeTypeValidator<T extends AttributeType<?>> imp
 					}
 				}
 				catch (Exception ex) {
-					errors.rejectValue("datatypeConfig", "AttributeType.datatypeConfig.invalid", new Object[] { ex
-					        .getMessage() }, "Invalid");
+					errors.rejectValue("datatypeConfig", "AttributeType.datatypeConfig.invalid",
+					    new Object[] { ex.getMessage() }, "Invalid");
 				}
 			}
 			
@@ -96,8 +97,8 @@ public abstract class BaseAttributeTypeValidator<T extends AttributeType<?>> imp
 					}
 				}
 				catch (Exception ex) {
-					errors.rejectValue("handlerConfig", "AttributeType.handlerConfig.invalid", new Object[] { ex
-					        .getMessage() }, "Invalid");
+					errors.rejectValue("handlerConfig", "AttributeType.handlerConfig.invalid",
+					    new Object[] { ex.getMessage() }, "Invalid");
 				}
 			}
 			ValidateUtil.validateFieldLengths(errors, target.getClass(), "datatypeConfig", "handlerConfig");

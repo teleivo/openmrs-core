@@ -42,7 +42,7 @@ public class AuthorizationAdvice implements MethodBeforeAdvice {
 	 * @should notify listeners about checked privileges
 	 */
 	@Override
-	@SuppressWarnings( { "unchecked" })
+	@SuppressWarnings({ "unchecked" })
 	public void before(Method method, Object[] args, Object target) throws Throwable {
 		
 		if (log.isDebugEnabled()) {
@@ -129,8 +129,8 @@ public class AuthorizationAdvice implements MethodBeforeAdvice {
 		if (log.isDebugEnabled()) {
 			log.debug("User " + user + " is not authorized to access " + method.getName());
 		}
-		throw new APIAuthenticationException(Context.getMessageSourceService().getMessage("error.privilegesRequired",
-		    new Object[] { attr }, null));
+		throw new APIAuthenticationException(
+		        Context.getMessageSourceService().getMessage("error.privilegesRequired", new Object[] { attr }, null));
 	}
 	
 	/**

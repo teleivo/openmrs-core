@@ -22,8 +22,8 @@ import org.openmrs.api.context.Context;
  * A Location is a physical place, such as a hospital, a room, a clinic, or a district. Locations
  * support a single hierarchy, such that each location may have one parent location. A
  * non-geographical grouping of locations, such as "All Community Health Centers" is not a location,
- * and should be modeled using {@link LocationTag}s.
- * Note: Prior to version 1.9 this class extended BaseMetadata
+ * and should be modeled using {@link LocationTag}s. Note: Prior to version 1.9 this class extended
+ * BaseMetadata
  */
 public class Location extends BaseCustomizableMetadata<LocationAttribute> implements java.io.Serializable, Attributable<Location>, Address {
 	
@@ -76,9 +76,9 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	private String address13;
 	
 	private String address14;
-
+	
 	private String address15;
-
+	
 	private Location parentLocation;
 	
 	private Set<Location> childLocations;
@@ -628,7 +628,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 		setLocationId(id);
 		
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -636,7 +636,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public String getAddress7() {
 		return address7;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -644,7 +644,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public void setAddress7(String address7) {
 		this.address7 = address7;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -652,7 +652,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public String getAddress8() {
 		return address8;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -660,7 +660,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public void setAddress8(String address8) {
 		this.address8 = address8;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -668,7 +668,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public String getAddress9() {
 		return address9;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -676,7 +676,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public void setAddress9(String address9) {
 		this.address9 = address9;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -684,7 +684,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public String getAddress10() {
 		return address10;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -692,7 +692,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public void setAddress10(String address10) {
 		this.address10 = address10;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -700,7 +700,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public String getAddress11() {
 		return address11;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -708,7 +708,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public void setAddress11(String address11) {
 		this.address11 = address11;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -716,7 +716,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public String getAddress12() {
 		return address12;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -724,7 +724,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public void setAddress12(String address12) {
 		this.address12 = address12;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -732,7 +732,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public String getAddress13() {
 		return address13;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -740,7 +740,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public void setAddress13(String address13) {
 		this.address13 = address13;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -748,7 +748,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public String getAddress14() {
 		return address14;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -756,7 +756,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public void setAddress14(String address14) {
 		this.address14 = address14;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -764,7 +764,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	public String getAddress15() {
 		return address15;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */

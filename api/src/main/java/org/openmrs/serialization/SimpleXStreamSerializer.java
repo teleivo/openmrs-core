@@ -21,24 +21,19 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 
 /**
- * This serializer uses the xstream library to serialize and deserialize objects.
- * <br>
- * All classes are automatically aliased.  So a serialization of the {@link Patient} class
- * will not be:
- * <code>
+ * This serializer uses the xstream library to serialize and deserialize objects. <br>
+ * All classes are automatically aliased. So a serialization of the {@link Patient} class will not
+ * be: <code>
  * &lt;org.openmrs.Patient ...&gt;
  *   &lt;element
  *   ...
  * &lt;/org.openmrs.Patient&gt;
- * </code>
- * but instead will be:
- * <code>
+ * </code> but instead will be: <code>
  * &lt;patient ...&gt;
  *   &lt;element
  *   ...
  * &lt;/patient&gt;
  * </code>
- *
  */
 public class SimpleXStreamSerializer implements OpenmrsSerializer {
 	
@@ -56,6 +51,7 @@ public class SimpleXStreamSerializer implements OpenmrsSerializer {
 	
 	/**
 	 * Constructor that takes a custom XStream object
+	 * 
 	 * @param customXstream
 	 * @throws SerializationException
 	 */
@@ -101,7 +97,8 @@ public class SimpleXStreamSerializer implements OpenmrsSerializer {
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T extends Object> T deserialize(String serializedObject, Class<? extends T> clazz) throws SerializationException {
+	public <T extends Object> T deserialize(String serializedObject, Class<? extends T> clazz)
+	        throws SerializationException {
 		
 		try {
 			return (T) xstream.fromXML(serializedObject);

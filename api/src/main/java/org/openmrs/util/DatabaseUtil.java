@@ -34,9 +34,9 @@ import org.springframework.util.StringUtils;
 public class DatabaseUtil {
 	
 	private final static Log log = LogFactory.getLog(DatabaseUtil.class);
-
+	
 	public final static String ORDER_ENTRY_UPGRADE_SETTINGS_FILENAME = "order_entry_upgrade_settings.txt";
-
+	
 	/**
 	 * Executes the passed SQL query, enforcing select only if that parameter is set Load the jdbc
 	 * driver class for the database which is specified by the connectionUrl and connectionDriver
@@ -46,7 +46,7 @@ public class DatabaseUtil {
 	 * not needed by most users and development practices with the openmrs API.
 	 *
 	 * @param connectionUrl the connection url for the database, such as
-	 * "jdbc:mysql://localhost:3306/..."
+	 *            "jdbc:mysql://localhost:3306/..."
 	 * @param connectionDriver the database driver class name, such as "com.mysql.jdbc.Driver"
 	 * @throws ClassNotFoundException
 	 */
@@ -80,7 +80,8 @@ public class DatabaseUtil {
 	}
 	
 	/**
-	 * Executes the passed SQL query, enforcing select only if that parameter is set for given Session
+	 * Executes the passed SQL query, enforcing select only if that parameter is set for given
+	 * Session
 	 */
 	public static List<List<Object>> executeSQL(Session session, String sql, boolean selectOnly) throws DAOException {
 		sql = sql.trim();
@@ -103,7 +104,8 @@ public class DatabaseUtil {
 	}
 	
 	/**
-	 * Executes the passed SQL query, enforcing select only if that parameter is set for given Connection
+	 * Executes the passed SQL query, enforcing select only if that parameter is set for given
+	 * Connection
 	 */
 	public static List<List<Object>> executeSQL(Connection conn, String sql, boolean selectOnly) throws DAOException {
 		sql = sql.trim();
@@ -174,7 +176,7 @@ public class DatabaseUtil {
 	 * Gets all unique values excluding nulls in the specified column and table
 	 *
 	 * @param columnName the column
-	 * @param tableName  the table
+	 * @param tableName the table
 	 * @param connection
 	 * @return set of unique values
 	 * @throws Exception

@@ -30,7 +30,6 @@ public class ConceptAttributeTypeEditor extends PropertyEditorSupport {
 	/**
 	 * @should set using id
 	 * @should set using uuid
-	 *
 	 * @see java.beans.PropertyEditorSupport#setAsText(java.lang.String)
 	 */
 	@Override

@@ -170,10 +170,10 @@ public class PatientProgram extends BaseOpenmrsData {
 		        && OpenmrsUtil.compare(lastState.getStartDate(), onDate) > 0) {
 			throw new IllegalArgumentException("You can't change out of a state before that state started");
 		}
-		if (lastState != null
-		        && !programWorkflowState.getProgramWorkflow().isLegalTransition(lastState.getState(), programWorkflowState)) {
-			throw new IllegalArgumentException("You can't change from state " + lastState.getState() + " to "
-			        + programWorkflowState);
+		if (lastState != null && !programWorkflowState.getProgramWorkflow().isLegalTransition(lastState.getState(),
+		    programWorkflowState)) {
+			throw new IllegalArgumentException(
+			        "You can't change from state " + lastState.getState() + " to " + programWorkflowState);
 		}
 		if (lastState != null) {
 			lastState.setEndDate(onDate);
@@ -256,7 +256,8 @@ public class PatientProgram extends BaseOpenmrsData {
 	 * Returns a Set&lt;PatientState&gt; of all current {@link PatientState}s for the
 	 * {@link PatientProgram}
 	 * 
-	 * @return Set&lt;PatientState&gt; of all current {@link PatientState}s for the {@link PatientProgram}
+	 * @return Set&lt;PatientState&gt; of all current {@link PatientState}s for the
+	 *         {@link PatientProgram}
 	 */
 	public Set<PatientState> getCurrentStates() {
 		Set<PatientState> ret = new HashSet<PatientState>();
@@ -276,8 +277,8 @@ public class PatientProgram extends BaseOpenmrsData {
 	 * @param programWorkflow - The {@link ProgramWorkflow} to check
 	 * @param includeVoided - If true, return voided {@link PatientState}s in the returned
 	 *            {@link List}
-	 * @return List&lt;PatientState&gt; of all {@link PatientState}s in the passed {@link ProgramWorkflow}
-	 *         for the {@link PatientProgram}
+	 * @return List&lt;PatientState&gt; of all {@link PatientState}s in the passed
+	 *         {@link ProgramWorkflow} for the {@link PatientProgram}
 	 */
 	public List<PatientState> statesInWorkflow(ProgramWorkflow programWorkflow, boolean includeVoided) {
 		List<PatientState> ret = new ArrayList<PatientState>();

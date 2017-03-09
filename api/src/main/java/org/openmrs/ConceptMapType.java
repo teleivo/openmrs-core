@@ -96,7 +96,6 @@ public class ConceptMapType extends BaseOpenmrsMetadata {
 	 * Returns true if this concept map type is hidden otherwise false
 	 *
 	 * @return true if this concept map type is hidden otherwise false
-	 *
 	 * @deprecated as of 2.0, use {@link #getIsHidden()}
 	 */
 	@Deprecated

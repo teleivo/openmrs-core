@@ -283,16 +283,16 @@ public class HL7Util {
 	 * @return The destination directory for the hl7 in archive
 	 */
 	public static File getHl7ArchivesDirectory() throws APIException {
-		String archiveDir = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_HL7_ARCHIVE_DIRECTORY);
+		String archiveDir = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_HL7_ARCHIVE_DIRECTORY);
 		
 		if (StringUtils.isBlank(archiveDir)) {
 			log.warn("Invalid value for global property '" + OpenmrsConstants.GLOBAL_PROPERTY_HL7_ARCHIVE_DIRECTORY
 			        + "', trying to set a default one");
 			archiveDir = HL7Constants.HL7_ARCHIVE_DIRECTORY_NAME;
 			
-			log.debug("Using '" + archiveDir
-			        + "' in the application data directory as the root directory for hl7_in_archives");
+			log.debug(
+			    "Using '" + archiveDir + "' in the application data directory as the root directory for hl7_in_archives");
 		}
 		
 		return OpenmrsUtil.getDirectoryInApplicationDataDirectory(archiveDir);

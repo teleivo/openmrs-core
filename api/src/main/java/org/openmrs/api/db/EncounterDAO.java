@@ -237,7 +237,8 @@ public interface EncounterDAO {
 	public List<Encounter> getEncountersNotAssignedToAnyVisit(Patient patient) throws DAOException;
 	
 	/**
-	 * @see org.openmrs.api.EncounterService#getEncountersByVisitsAndPatient(org.openmrs.Patient, boolean, java.lang.String, java.lang.Integer, java.lang.Integer)
+	 * @see org.openmrs.api.EncounterService#getEncountersByVisitsAndPatient(org.openmrs.Patient,
+	 *      boolean, java.lang.String, java.lang.Integer, java.lang.Integer)
 	 */
 	List<Encounter> getEncountersByVisitsAndPatient(Patient patient, boolean includeVoided, String query, Integer start,
 	        Integer length);

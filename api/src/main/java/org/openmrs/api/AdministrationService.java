@@ -31,7 +31,6 @@ import org.springframework.validation.Errors;
  * Contains methods pertaining to doing some administrative tasks in OpenMRS
  * <p>
  * Use:<br>
- * 
  * <pre>
  * 
  * List&lt;GlobalProperty&gt; globalProperties = Context.getAdministrationService().getGlobalProperties();
@@ -47,7 +46,7 @@ public interface AdministrationService extends OpenmrsService {
 	 * @param dao The dao implementation to use
 	 */
 	public void setAdministrationDAO(AdministrationDAO dao);
-										
+	
 	/**
 	 * Get a global property by its uuid. There should be only one of these in the database (well,
 	 * in the world actually). If multiple are found, an error is thrown.
@@ -180,8 +179,8 @@ public interface AdministrationService extends OpenmrsService {
 	public void purgeGlobalProperties(List<GlobalProperty> globalProperties) throws APIException;
 	
 	/**
-	 * Save the given global property to the database. If the global property already exists,
-	 * then it will be overwritten
+	 * Save the given global property to the database. If the global property already exists, then
+	 * it will be overwritten
 	 * 
 	 * @param propertyName the name of the global property to save
 	 * @param propertyValue the value of the global property to save
@@ -194,9 +193,10 @@ public interface AdministrationService extends OpenmrsService {
 	/**
 	 * Overwrites the value of the global property if it already exists. If the global property does
 	 * not exist, an exception will be thrown
+	 * 
 	 * @since 1.10
-	 * @param propertyName  the name of the global property to overwrite
-	 * @param propertyValue  the value of the global property to overwrite
+	 * @param propertyName the name of the global property to overwrite
+	 * @param propertyValue the value of the global property to overwrite
 	 * @throws IllegalStateException
 	 * @should update global property in database
 	 * @should fail if global property being updated does not already exist
@@ -296,10 +296,14 @@ public interface AdministrationService extends OpenmrsService {
 	 * @return list of allowed presentation locales
 	 * @should return at least one locale if no locales defined in database yet
 	 * @should not return more locales than message source service locales
-	 * @should return only country locale if both country locale and language locale are specified in allowed list
-	 * @should return all country locales if language locale and no country locales are specified in allowed list
-	 * @should return language locale if country locale is specified in allowed list but country locale message file is missing
-	 * @should return language locale if it is specified in allowed list and there are no country locale message files available
+	 * @should return only country locale if both country locale and language locale are specified
+	 *         in allowed list
+	 * @should return all country locales if language locale and no country locales are specified in
+	 *         allowed list
+	 * @should return language locale if country locale is specified in allowed list but country
+	 *         locale message file is missing
+	 * @should return language locale if it is specified in allowed list and there are no country
+	 *         locale message files available
 	 */
 	public Set<Locale> getPresentationLocales();
 	
@@ -335,7 +339,7 @@ public interface AdministrationService extends OpenmrsService {
 	 * @should throw throw APIException if the input is null
 	 */
 	public void validate(Object object, Errors errors) throws APIException;
-
+	
 	/**
 	 * Returns a list of locales used by the user when searching.
 	 *
@@ -343,9 +347,9 @@ public interface AdministrationService extends OpenmrsService {
 	 * @param user authenticated user
 	 * @return
 	 * @throws APIException
-     */
+	 */
 	public List<Locale> getSearchLocales(Locale currentLocale, User user) throws APIException;
-
+	
 	/**
 	 * Returns a list of locales used by the user when searching.
 	 * <p>
@@ -371,8 +375,8 @@ public interface AdministrationService extends OpenmrsService {
 	/**
 	 * Reads a GP which specifies if database string comparison is case sensitive.
 	 * <p>
-	 * It is an optimisation parameter for MySQL, which can speed up searching if set to <b>false</b>.
-	 * See http://dev.mysql.com/doc/refman/5.7/en/case-sensitivity.html
+	 * It is an optimisation parameter for MySQL, which can speed up searching if set to
+	 * <b>false</b>. See http://dev.mysql.com/doc/refman/5.7/en/case-sensitivity.html
 	 * <p>
 	 * It is set to <b>true</b> by default.
 	 * 

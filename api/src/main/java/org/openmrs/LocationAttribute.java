@@ -14,6 +14,7 @@ import org.openmrs.attribute.BaseAttribute;
 
 /**
  * A value for a user-defined {@link LocationAttributeType} that is stored on a {@link Location}.
+ * 
  * @see Attribute
  * @since 1.9
  */

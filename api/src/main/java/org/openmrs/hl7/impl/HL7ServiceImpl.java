@@ -415,17 +415,20 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 		return dao.getHL7InErrorByUuid(uuid);
 	}
 	
-	/** Gets the error message for failing to resolve a user with a certain id, family, and given name.
- 	 * @param idNum id number
- 	 * @param fName family name
- 	 * @param gName given name
- 	 * @return error string. User can not be resolveUserId
- 	 */
- 	private String getFindingUserErrorMessage(String idNum, String fName, String gName) {
- 		String cantFindUser = "Error resolving user with id '" + idNum + "' family name '" + fName
- 				  + "' and given name '" + gName + "'";
- 		return cantFindUser;
- 	}
+	/**
+	 * Gets the error message for failing to resolve a user with a certain id, family, and given
+	 * name.
+	 * 
+	 * @param idNum id number
+	 * @param fName family name
+	 * @param gName given name
+	 * @return error string. User can not be resolveUserId
+	 */
+	private String getFindingUserErrorMessage(String idNum, String fName, String gName) {
+		String cantFindUser = "Error resolving user with id '" + idNum + "' family name '" + fName + "' and given name '"
+		        + gName + "'";
+		return cantFindUser;
+	}
 	
 	/**
 	 * @param xcn HL7 component of data type XCN (extended composite ID number and name for persons)
@@ -463,17 +466,16 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 		} else {
 			// log.debug("searching for user by name");
 			try {
-				List<User> users = Context.getUserService().getUsersByName(givenName,familyName,true);
-				if( users == null) {
+				List<User> users = Context.getUserService().getUsersByName(givenName, familyName, true);
+				if (users == null) {
 					log.error(getFindingUserErrorMessage(idNumber, familyName, givenName) + ": User not found");
 					return null;
-				}
-				else if( users.size() == 1){
+				} else if (users.size() == 1) {
 					return users.get(0).getUserId();
-				}
-				else{
+				} else {
 					//Return null if that user ambiguous
-					log.error(getFindingUserErrorMessage(idNumber, familyName, givenName) + ": Found " + users.size() + " ambiguous users.");
+					log.error(getFindingUserErrorMessage(idNumber, familyName, givenName) + ": Found " + users.size()
+					        + " ambiguous users.");
 					return null;
 				}
 			}
@@ -541,8 +543,8 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 		catch (Exception ex) {
 			if (facility == null) { // we have no tricks left up our sleeve, so
 				// throw an exception
-				throw new HL7Exception("Error trying to treat PL.pointOfCare '" + pointOfCare
-				        + "' as a location.location_id", ex);
+				throw new HL7Exception(
+				        "Error trying to treat PL.pointOfCare '" + pointOfCare + "' as a location.location_id", ex);
 			}
 		}
 		
@@ -610,8 +612,8 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 			if (StringUtils.isNotBlank(assigningAuthority)) {
 				// Assigning authority defined
 				try {
-					PatientIdentifierType pit = Context.getPatientService().getPatientIdentifierTypeByName(
-					    assigningAuthority);
+					PatientIdentifierType pit = Context.getPatientService()
+					        .getPatientIdentifierTypeByName(assigningAuthority);
 					if (pit == null) {
 						// there is no matching PatientIdentifierType
 						if (assigningAuthority.equals(HL7Constants.HL7_AUTHORITY_UUID)) {
@@ -669,13 +671,14 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 				}
 				catch (Exception e) {
 					log.error("Error resolving patient identifier '" + hl7PersonId + "' for assigning authority '"
-					        + assigningAuthority + "'", e);
+					        + assigningAuthority + "'",
+					    e);
 					continue;
 				}
 			} else {
 				try {
-					log.debug("CX contains ID '" + hl7PersonId
-					        + "' without assigning authority -- assuming patient.patient_id");
+					log.debug(
+					    "CX contains ID '" + hl7PersonId + "' without assigning authority -- assuming patient.patient_id");
 					return Context.getPatientService().getPatient(Integer.parseInt(hl7PersonId));
 				}
 				catch (NumberFormatException e) {
@@ -744,11 +747,9 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 			boolean skipError = false;
 			log.debug("Unable to process hl7inqueue: " + hl7InQueue.getHL7InQueueId(), e);
 			log.debug("Hl7inqueue source: " + hl7InQueue.getHL7Source());
-			log.debug("hl7_processor.ignore_missing_patient_non_local? "
-			        + Context.getAdministrationService().getGlobalProperty(
-			            OpenmrsConstants.GLOBAL_PROPERTY_IGNORE_MISSING_NONLOCAL_PATIENTS, "false"));
-			if (e.getCause() != null
-			        && "Could not resolve patient".equals(e.getCause().getMessage())
+			log.debug("hl7_processor.ignore_missing_patient_non_local? " + Context.getAdministrationService()
+			        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_IGNORE_MISSING_NONLOCAL_PATIENTS, "false"));
+			if (e.getCause() != null && "Could not resolve patient".equals(e.getCause().getMessage())
 			        && !"local".equals(hl7InQueue.getHL7Source().getName())
 			        && "true".equals(Context.getAdministrationService().getGlobalProperty(
 			            OpenmrsConstants.GLOBAL_PROPERTY_IGNORE_MISSING_NONLOCAL_PATIENTS, "false"))) {
@@ -760,8 +761,8 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 			
 		}
 		catch (Exception e) {
-			setFatalError(hl7InQueue, "Exception while attempting to process HL7 In Queue (" + hl7InQueue.getHL7SourceKey()
-			        + ")", e);
+			setFatalError(hl7InQueue,
+			    "Exception while attempting to process HL7 In Queue (" + hl7InQueue.getHL7SourceKey() + ")", e);
 		}
 		
 		return hl7InQueue;
@@ -899,8 +900,8 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 			if (assigningAuthority != null && assigningAuthority.length() > 0) {
 				
 				try {
-					PatientIdentifierType pit = Context.getPatientService().getPatientIdentifierTypeByName(
-					    assigningAuthority);
+					PatientIdentifierType pit = Context.getPatientService()
+					        .getPatientIdentifierTypeByName(assigningAuthority);
 					if (pit == null) {
 						if (!"UUID".equals(assigningAuthority)) {
 							log.warn("Can't find PatientIdentifierType named '" + assigningAuthority + "'");
@@ -929,7 +930,8 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 				}
 				catch (Exception e) {
 					log.error("Uncaught error parsing/creating patient identifier '" + hl7PatientId
-					        + "' for assigning authority '" + assigningAuthority + "'", e);
+					        + "' for assigning authority '" + assigningAuthority + "'",
+					    e);
 				}
 			} else {
 				log.debug("NK1 contains identifier with no assigning authority");
@@ -1177,9 +1179,8 @@ public class HL7ServiceImpl extends BaseOpenmrsService implements HL7Service {
 			
 		}
 		catch (FileNotFoundException e) {
-			log
-			        .warn("Failed to write hl7 archive with id '" + hl7InArchive.getHL7InArchiveId()
-			                + "' to the file system ", e);
+			log.warn("Failed to write hl7 archive with id '" + hl7InArchive.getHL7InArchiveId() + "' to the file system ",
+			    e);
 			throw new APIException("Hl7Service.write.error", null, e);
 			
 		}

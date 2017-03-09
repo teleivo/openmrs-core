@@ -16,7 +16,6 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * Implementation of a task that writes "Hello World" to a log file.
- * 
  */
 public class HelloWorldTask extends AbstractTask {
 	

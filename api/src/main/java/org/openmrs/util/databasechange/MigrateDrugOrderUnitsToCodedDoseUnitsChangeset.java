@@ -45,8 +45,8 @@ public class MigrateDrugOrderUnitsToCodedDoseUnitsChangeset implements CustomTas
 		}
 	}
 	
-	private void migrateUnitsToCodedValue(JdbcConnection connection, Set<String> uniqueUnits) throws CustomChangeException,
-	        SQLException, DatabaseException {
+	private void migrateUnitsToCodedValue(JdbcConnection connection, Set<String> uniqueUnits)
+	        throws CustomChangeException, SQLException, DatabaseException {
 		PreparedStatement updateDrugOrderStatement = null;
 		Boolean autoCommit = null;
 		try {
@@ -73,9 +73,9 @@ public class MigrateDrugOrderUnitsToCodedDoseUnitsChangeset implements CustomTas
 					List<Integer> dosingUnitsconceptIds = UpgradeUtil.getMemberSetIds(connection.getUnderlyingConnection(),
 					    dosingUnitsConceptSetUuid);
 					if (!dosingUnitsconceptIds.contains(conceptIdForUnit)) {
-						throw new CustomChangeException("Dosing unit '" + unit
-						        + "' is not among valid concepts defined in global property "
-						        + OpenmrsConstants.GP_DRUG_DOSING_UNITS_CONCEPT_UUID);
+						throw new CustomChangeException(
+						        "Dosing unit '" + unit + "' is not among valid concepts defined in global property "
+						                + OpenmrsConstants.GP_DRUG_DOSING_UNITS_CONCEPT_UUID);
 					}
 					
 					updateDrugOrderStatement.setInt(1, conceptIdForUnit);

@@ -78,7 +78,6 @@ import org.springframework.util.StringUtils;
 @Transactional
 public class OrderServiceImpl extends BaseOpenmrsService implements OrderService, OrderNumberGenerator, GlobalPropertyListener {
 	
-	
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	private static final String ORDER_NUMBER_PREFIX = "ORD-";
@@ -231,7 +230,8 @@ public class OrderServiceImpl extends BaseOpenmrsService implements OrderService
 			
 			//concept should be the same as on previous order, same applies to drug for drug orders
 			if (!order.hasSameOrderableAs(previousOrder)) {
-				throw new EditedOrderDoesNotMatchPreviousException("The orderable of the previous order and the new one order don't match");
+				throw new EditedOrderDoesNotMatchPreviousException(
+				        "The orderable of the previous order and the new one order don't match");
 			} else if (!order.getOrderType().equals(previousOrder.getOrderType())) {
 				throw new EditedOrderDoesNotMatchPreviousException("Order.type.does.not.match");
 			} else if (!order.getCareSetting().equals(previousOrder.getCareSetting())) {
@@ -730,7 +730,7 @@ public class OrderServiceImpl extends BaseOpenmrsService implements OrderService
 	 */
 	@Override
 	public Order discontinueOrder(Order orderToDiscontinue, String reasonNonCoded, Date discontinueDate, Provider orderer,
-	        Encounter encounter)  {
+	        Encounter encounter) {
 		if (discontinueDate == null) {
 			discontinueDate = aMomentBefore(new Date());
 		}

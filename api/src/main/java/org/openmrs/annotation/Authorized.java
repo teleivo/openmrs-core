@@ -19,26 +19,18 @@ import java.lang.annotation.Target;
 /**
  * Annotation used to describe service layer authorization attributes.
  * <p>
- * For example, to require that the user have <i>either</i> View or Add privileges:
- * 
- * <pre>
+ * For example, to require that the user have <i>either</i> View or Add privileges: <pre>
  *     &#64;Authorized ({"View Users", "Add User"})
  *     public void getUsersByName(String name);
- * </pre>
- * or to require that they have all privileges
- * 
- * <pre>
+ * </pre> or to require that they have all privileges <pre>
  *     &#64;Authorized (value = {"Add Users", "Edit Users"}, requireAll=true)
  *     public void getUsersByName(String name);
- * </pre>
- * or to just require that they be authenticated:
- * 
- * <pre>
+ * </pre> or to just require that they be authenticated: <pre>
  *     &#64;Authorized ()
  *     public void getUsersByName(String name);
  * </pre>
  */
-@Target( { ElementType.METHOD, ElementType.TYPE })
+@Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented

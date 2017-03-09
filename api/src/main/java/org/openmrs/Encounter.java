@@ -136,7 +136,8 @@ public class Encounter extends BaseOpenmrsData {
 	}
 	
 	/**
-	 * @return Returns a Set&lt;Obs&gt; of all non-voided, non-obsGroup children Obs of this Encounter
+	 * @return Returns a Set&lt;Obs&gt; of all non-voided, non-obsGroup children Obs of this
+	 *         Encounter
 	 * @should not return null with null obs set
 	 * @should get obs
 	 * @should not get voided obs
@@ -210,9 +211,7 @@ public class Encounter extends BaseOpenmrsData {
 		Set<Obs> ret = new LinkedHashSet<>();
 		
 		if (this.obs != null) {
-			ret = this.obs.stream().
-					filter(o -> includeVoided || !o.getVoided())
-					.collect(Collectors.toSet());
+			ret = this.obs.stream().filter(o -> includeVoided || !o.getVoided()).collect(Collectors.toSet());
 		}
 		return ret;
 	}
@@ -240,10 +239,9 @@ public class Encounter extends BaseOpenmrsData {
 	 * @should get both child and parent obs after removing child from parent grouping
 	 */
 	public Set<Obs> getObsAtTopLevel(boolean includeVoided) {
-	
-		return getAllObs(includeVoided).stream()
-				.filter(o -> o.getObsGroup() == null)
-				.collect(Collectors.toCollection(LinkedHashSet::new));
+		
+		return getAllObs(includeVoided).stream().filter(o -> o.getObsGroup() == null)
+		        .collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 	
 	/**
@@ -391,7 +389,7 @@ public class Encounter extends BaseOpenmrsData {
 	
 	/**
 	 * Basic property accessor for encounterProviders. The convenience methods getProvidersByRoles
-	 * and getProvidersByRole are the preferred methods for getting providers. This getter is 
+	 * and getProvidersByRole are the preferred methods for getting providers. This getter is
 	 * provided as a convenience for treating this like a DTO
 	 *
 	 * @return list of all existing providers on this encounter
@@ -418,22 +416,22 @@ public class Encounter extends BaseOpenmrsData {
 	public void setEncounterProviders(Set<EncounterProvider> encounterProviders) {
 		this.encounterProviders = encounterProviders;
 	}
-
-    /**
-     * Returns only the non-voided encounter providers for this encounter. If you want <u>all</u> encounter providers,
-     * use {@link #getEncounterProviders()}
-     *
-     * @return list of non-voided encounter providers for this encounter
-     * @see #getEncounterProviders()
-     */
-    public Set<EncounterProvider> getActiveEncounterProviders() {
-        Set<EncounterProvider> activeProviders = new LinkedHashSet<>();
-        Set<EncounterProvider> providers = getEncounterProviders();
-        if (providers != null && !providers.isEmpty()) {
-        	activeProviders = providers.stream().filter(p -> !p.getVoided()).collect(Collectors.toSet());
-        }
-        return activeProviders;
-    }
+	
+	/**
+	 * Returns only the non-voided encounter providers for this encounter. If you want <u>all</u>
+	 * encounter providers, use {@link #getEncounterProviders()}
+	 *
+	 * @return list of non-voided encounter providers for this encounter
+	 * @see #getEncounterProviders()
+	 */
+	public Set<EncounterProvider> getActiveEncounterProviders() {
+		Set<EncounterProvider> activeProviders = new LinkedHashSet<>();
+		Set<EncounterProvider> providers = getEncounterProviders();
+		if (providers != null && !providers.isEmpty()) {
+			activeProviders = providers.stream().filter(p -> !p.getVoided()).collect(Collectors.toSet());
+		}
+		return activeProviders;
+	}
 	
 	/**
 	 * @return Returns the form.
@@ -530,9 +528,8 @@ public class Encounter extends BaseOpenmrsData {
 	 */
 	public Map<EncounterRole, Set<Provider>> getProvidersByRoles(boolean includeVoided) {
 		
-		return encounterProviders.stream()
-				.filter(ep -> includeVoided || !ep.getVoided())
-				.collect(Collectors.groupingBy(EncounterProvider::getEncounterRole, Collectors.mapping(EncounterProvider::getProvider, Collectors.toSet())));
+		return encounterProviders.stream().filter(ep -> includeVoided || !ep.getVoided()).collect(Collectors.groupingBy(
+		    EncounterProvider::getEncounterRole, Collectors.mapping(EncounterProvider::getProvider, Collectors.toSet())));
 		
 	}
 	
@@ -564,9 +561,8 @@ public class Encounter extends BaseOpenmrsData {
 	public Set<Provider> getProvidersByRole(EncounterRole role, boolean includeVoided) {
 		
 		return encounterProviders.stream()
-				.filter(ep -> ep.getEncounterRole().equals(role) && (includeVoided || !ep.getVoided()))
-				.map(ep -> ep.getProvider())
-				.collect(Collectors.toSet());
+		        .filter(ep -> ep.getEncounterRole().equals(role) && (includeVoided || !ep.getVoided()))
+		        .map(ep -> ep.getProvider()).collect(Collectors.toSet());
 	}
 	
 	/**
@@ -637,7 +633,8 @@ public class Encounter extends BaseOpenmrsData {
 	 */
 	public void removeProvider(EncounterRole role, Provider provider) {
 		for (EncounterProvider encounterProvider : encounterProviders) {
-			if (encounterProvider.getEncounterRole().equals(role) && encounterProvider.getProvider().equals(provider) && !encounterProvider.getVoided()) {
+			if (encounterProvider.getEncounterRole().equals(role) && encounterProvider.getProvider().equals(provider)
+			        && !encounterProvider.getVoided()) {
 				encounterProvider.setVoided(true);
 				encounterProvider.setDateVoided(new Date());
 				encounterProvider.setVoidedBy(Context.getAuthenticatedUser());
@@ -651,7 +648,6 @@ public class Encounter extends BaseOpenmrsData {
 	 *
 	 * @param patient the Patient that will be assign to copied Encounter
 	 * @return copied encounter
-	 *
 	 * @should copy all Encounter data except visit and assign copied Encounter to given Patient
 	 */
 	public Encounter copyAndAssignToAnotherPatient(Patient patient) {
@@ -692,7 +688,7 @@ public class Encounter extends BaseOpenmrsData {
 		
 		return target;
 	}
-
+	
 	/**
 	 * Takes in a list of orders and pulls out the orderGroups within them
 	 *
@@ -721,8 +717,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * @return list of orders not having orderGroups
 	 */
 	public List<Order> getOrdersWithoutOrderGroups() {
-		return orders.stream()
-				.filter(o -> o.getOrderGroup() == null)
-				.collect(Collectors.toList());
+		return orders.stream().filter(o -> o.getOrderGroup() == null).collect(Collectors.toList());
 	}
 }

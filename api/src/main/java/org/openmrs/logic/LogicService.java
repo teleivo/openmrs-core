@@ -27,29 +27,19 @@ import org.openmrs.logic.rule.RuleParameterInfo;
  * to simplify organization and lookup of tokens. Data source results can be obtained directly by
  * using a token in the form <em>@foo.bar</em>, where <em>foo</em> is the logic data source name and
  * <em>bar</em> is the key for that data source. For example, the token <em>@person.gender</em> is a
- * direct reference to the <em>gender</em> key of the <em>person</em> logic data source. <h3>Example
- * Usage</h3>
- * 
- * <pre>
+ * direct reference to the <em>gender</em> key of the <em>person</em> logic data source.
+ * <h3>Example Usage</h3> <pre>
  * Patient myPatient = Context.getPatientService().getPatient(123);
  * LogicService logicService = Context.getLogicService();
  * Result result = logicService.eval(myPatient, &quot;HIV POSITIVE&quot;);
  * if (result.toBoolean()) {
  * 	// patient is HIV positive
  * }
- * </pre>
- * 
- * Results can be derived with specific criteria as well. For example, to fetch the maximum CD4
- * count within the past six months:
- * 
- * <pre>
+ * </pre> Results can be derived with specific criteria as well. For example, to fetch the maximum
+ * CD4 count within the past six months: <pre>
  *   Result result = logicService.eval(myPatient, new LogicCriteria(&quot;CD4 COUNT&quot;)
  *     .within(Duration.months(6)).max();
- * </pre>
- * 
- * or within 6 months of 11-November-2006:
- * 
- * <pre>
+ * </pre> or within 6 months of 11-November-2006: <pre>
  *   Calendar calendar = Calendar.getInstance();
  *   calendar.set(2006, 11, 11);
  *   Date targetDate = calendar.getTime();
@@ -187,11 +177,11 @@ public interface LogicService {
 	public Result eval(Integer patientId, LogicCriteria criteria, Map<String, Object> parameters) throws LogicException;
 	
 	/**
-	 * Evaluates multiple logic expressions for a single patient.
-	 * (The expressions argument is an array and comes last because using a List would give this method
-	 * the same type erasure as the {@link LogicCriteria}... version.)  
+	 * Evaluates multiple logic expressions for a single patient. (The expressions argument is an
+	 * array and comes last because using a List would give this method the same type erasure as the
+	 * {@link LogicCriteria}... version.)
 	 * 
-	 * @param patientId which patient to run the rules on 
+	 * @param patientId which patient to run the rules on
 	 * @param parameters global parameters to be passed to all rule evaluations
 	 * @param expressions expressions to be parsed and run
 	 * @return results of the rule evaluations
@@ -203,11 +193,11 @@ public interface LogicService {
 	        throws LogicException;
 	
 	/**
-	 * Evaluates multiple {@link LogicCriteria} for a single patient.
-	 * (The criteria argument is an array and comes last because using a List would give this method
-	 * the same type erasure as the {@link String}... version.)
+	 * Evaluates multiple {@link LogicCriteria} for a single patient. (The criteria argument is an
+	 * array and comes last because using a List would give this method the same type erasure as the
+	 * {@link String}... version.)
 	 * 
-	 * @param patientId which patient to run the rules on 
+	 * @param patientId which patient to run the rules on
 	 * @param parameters global parameters to be passed to all rule evaluations
 	 * @param criteria what criteria to run
 	 * @return results of the rule evaluations
@@ -216,7 +206,7 @@ public interface LogicService {
 	 */
 	public Map<LogicCriteria, Result> eval(Integer patientId, Map<String, Object> parameters, LogicCriteria... criteria)
 	        throws LogicException;
-		
+	
 	/**
 	 * Evaluates a query over a list of patients
 	 * 
@@ -335,14 +325,14 @@ public interface LogicService {
 	 * @return list of parameters
 	 */
 	public Set<RuleParameterInfo> getParameterList(String token);
-		
+	
 	/**
 	 * Get all registered logic data sources
 	 * 
 	 * @return all registered logic data sources
 	 */
 	public Map<String, LogicDataSource> getLogicDataSources();
-		
+	
 	/**
 	 * Get a logic data source by name
 	 * 

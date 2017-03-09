@@ -342,10 +342,10 @@ public class Daemon {
 	}
 	
 	/**
-	 * Checks whether user is Daemon.
-	 * However this is not the preferred method for checking to see if the current thread is a daemon thread,
-	 * 				rather use Daemon.isDeamonThread().
-	 * isDaemonThread is preferred for checking to see if you are in that thread or if the current thread is daemon.
+	 * Checks whether user is Daemon. However this is not the preferred method for checking to see
+	 * if the current thread is a daemon thread, rather use Daemon.isDeamonThread(). isDaemonThread
+	 * is preferred for checking to see if you are in that thread or if the current thread is
+	 * daemon.
 	 *
 	 * @param user user whom we are checking if daemon
 	 * @return true if user is Daemon

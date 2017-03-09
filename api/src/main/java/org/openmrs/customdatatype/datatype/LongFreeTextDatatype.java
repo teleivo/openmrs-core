@@ -16,8 +16,9 @@ import org.openmrs.customdatatype.InvalidCustomValueException;
 import org.springframework.stereotype.Component;
 
 /**
- * Free-text datatype, represented by a plain String in Java, but stored in the 
- * database as a CLOB or similar.
+ * Free-text datatype, represented by a plain String in Java, but stored in the database as a CLOB
+ * or similar.
+ * 
  * @since 1.9
  */
 @Component
@@ -37,8 +38,9 @@ public class LongFreeTextDatatype implements CustomDatatype<String> {
 	@Override
 	public String save(String typedValue, String existingValueReference) throws InvalidCustomValueException {
 		// get existing object or create a new one
-		ClobDatatypeStorage storage = existingValueReference != null ? Context.getDatatypeService()
-		        .getClobDatatypeStorageByUuid(existingValueReference) : new ClobDatatypeStorage();
+		ClobDatatypeStorage storage = existingValueReference != null
+		        ? Context.getDatatypeService().getClobDatatypeStorageByUuid(existingValueReference)
+		        : new ClobDatatypeStorage();
 		
 		storage.setValue(typedValue);
 		storage = Context.getDatatypeService().saveClobDatatypeStorage(storage);
@@ -83,7 +85,7 @@ public class LongFreeTextDatatype implements CustomDatatype<String> {
 		else
 			return new CustomDatatype.Summary(summary,  true);
 		*/
-
+		
 		String ret = Context.getMessageSourceService().getMessage(
 		    "org.openmrs.customdatatype.datatype.LongFreeTextDatatype.placeholderValue", new Object[] { referenceString },
 		    Context.getLocale());

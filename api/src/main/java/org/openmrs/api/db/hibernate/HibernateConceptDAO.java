@@ -578,7 +578,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	
 	private String newConceptNameQuery(final String name, final boolean searchKeywords, final Set<Locale> locales,
 	        final boolean searchExactLocale) {
-		final String escapedName = LuceneQuery.escapeQuery(name).replace("AND", "and").replace("OR", "or").replace("NOT", "not");
+		final String escapedName = LuceneQuery.escapeQuery(name).replace("AND", "and").replace("OR", "or").replace("NOT",
+		    "not");
 		final List<String> tokenizedName = tokenizeConceptName(escapedName, locales);
 		
 		final StringBuilder query = new StringBuilder();
@@ -689,8 +690,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	public Concept getPrevConcept(Concept c) {
 		Integer i = c.getConceptId();
 		
-		List<Concept> concepts = sessionFactory.getCurrentSession().createCriteria(Concept.class).add(
-		    Restrictions.lt("conceptId", i)).addOrder(Order.desc("conceptId")).setFetchSize(1).list();
+		List<Concept> concepts = sessionFactory.getCurrentSession().createCriteria(Concept.class)
+		        .add(Restrictions.lt("conceptId", i)).addOrder(Order.desc("conceptId")).setFetchSize(1).list();
 		
 		if (concepts.isEmpty()) {
 			return null;
@@ -706,8 +707,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	public Concept getNextConcept(Concept c) {
 		Integer i = c.getConceptId();
 		
-		List<Concept> concepts = sessionFactory.getCurrentSession().createCriteria(Concept.class).add(
-		    Restrictions.gt("conceptId", i)).addOrder(Order.asc("conceptId")).setMaxResults(1).list();
+		List<Concept> concepts = sessionFactory.getCurrentSession().createCriteria(Concept.class)
+		        .add(Restrictions.gt("conceptId", i)).addOrder(Order.asc("conceptId")).setMaxResults(1).list();
 		
 		if (concepts.isEmpty()) {
 			return null;
@@ -721,8 +722,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Concept> getConceptsWithDrugsInFormulary() {
-		Query query = sessionFactory.getCurrentSession().createQuery(
-		    "select distinct concept from Drug d where d.retired = false");
+		Query query = sessionFactory.getCurrentSession()
+		        .createQuery("select distinct concept from Drug d where d.retired = false");
 		return query.list();
 	}
 	
@@ -808,8 +809,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<ConceptSet> getConceptSetsByConcept(Concept concept) {
-		return sessionFactory.getCurrentSession().createCriteria(ConceptSet.class).add(
-		    Restrictions.eq("conceptSet", concept)).addOrder(Order.asc("sortWeight")).list();
+		return sessionFactory.getCurrentSession().createCriteria(ConceptSet.class)
+		        .add(Restrictions.eq("conceptSet", concept)).addOrder(Order.asc("sortWeight")).list();
 	}
 	
 	/**
@@ -833,8 +834,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	private List<Concept> getParents(Concept current) throws DAOException {
 		List<Concept> parents = new Vector<Concept>();
 		if (current != null) {
-			Query query = sessionFactory.getCurrentSession().createQuery(
-			    "from Concept c join c.conceptSets sets where sets.concept = ?").setEntity(0, current);
+			Query query = sessionFactory.getCurrentSession()
+			        .createQuery("from Concept c join c.conceptSets sets where sets.concept = ?").setEntity(0, current);
 			List<Concept> immed_parents = query.list();
 			for (Concept c : immed_parents) {
 				parents.addAll(getParents(c));
@@ -879,8 +880,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public ConceptNameTag getConceptNameTagByName(String name) {
-		Criteria crit = sessionFactory.getCurrentSession().createCriteria(ConceptNameTag.class).add(
-		    Restrictions.eq("tag", name));
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(ConceptNameTag.class)
+		        .add(Restrictions.eq("tag", name));
 		
 		if (crit.list().isEmpty()) {
 			return null;
@@ -1049,11 +1050,11 @@ public class HibernateConceptDAO implements ConceptDAO {
 		// join to concept reference source and match to the h17Code or source name
 		criteria.createAlias("term.conceptSource", "source");
 		if (Context.getAdministrationService().isDatabaseStringComparisonCaseSensitive()) {
-			criteria.add(Restrictions.or(Restrictions.eq("source.name", sourceName).ignoreCase(), Restrictions.eq(
-			    "source.hl7Code", sourceName).ignoreCase()));
+			criteria.add(Restrictions.or(Restrictions.eq("source.name", sourceName).ignoreCase(),
+			    Restrictions.eq("source.hl7Code", sourceName).ignoreCase()));
 		} else {
-			criteria.add(Restrictions.or(Restrictions.eq("source.name", sourceName), Restrictions.eq("source.hl7Code",
-			    sourceName)));
+			criteria.add(
+			    Restrictions.or(Restrictions.eq("source.name", sourceName), Restrictions.eq("source.hl7Code", sourceName)));
 		}
 		
 		criteria.createAlias("concept", "concept");
@@ -1077,8 +1078,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public Concept getConceptByUuid(String uuid) {
-		return (Concept) sessionFactory.getCurrentSession().createQuery("from Concept c where c.uuid = :uuid").setString(
-		    "uuid", uuid).uniqueResult();
+		return (Concept) sessionFactory.getCurrentSession().createQuery("from Concept c where c.uuid = :uuid")
+		        .setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -1119,8 +1120,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public ConceptDatatype getConceptDatatypeByUuid(String uuid) {
-		return (ConceptDatatype) sessionFactory.getCurrentSession().createQuery(
-		    "from ConceptDatatype cd where cd.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (ConceptDatatype) sessionFactory.getCurrentSession()
+		        .createQuery("from ConceptDatatype cd where cd.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -1128,8 +1129,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public ConceptNumeric getConceptNumericByUuid(String uuid) {
-		return (ConceptNumeric) sessionFactory.getCurrentSession().createQuery(
-		    "from ConceptNumeric cn where cn.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (ConceptNumeric) sessionFactory.getCurrentSession()
+		        .createQuery("from ConceptNumeric cn where cn.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -1137,8 +1138,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public ConceptProposal getConceptProposalByUuid(String uuid) {
-		return (ConceptProposal) sessionFactory.getCurrentSession().createQuery(
-		    "from ConceptProposal cp where cp.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (ConceptProposal) sessionFactory.getCurrentSession()
+		        .createQuery("from ConceptProposal cp where cp.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -1146,8 +1147,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public Drug getDrugByUuid(String uuid) {
-		return (Drug) sessionFactory.getCurrentSession().createQuery("from Drug d where d.uuid = :uuid").setString("uuid",
-		    uuid).uniqueResult();
+		return (Drug) sessionFactory.getCurrentSession().createQuery("from Drug d where d.uuid = :uuid")
+		        .setString("uuid", uuid).uniqueResult();
 	}
 	
 	@Override
@@ -1175,8 +1176,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public ConceptDescription getConceptDescriptionByUuid(String uuid) {
-		return (ConceptDescription) sessionFactory.getCurrentSession().createQuery(
-		    "from ConceptDescription cd where cd.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (ConceptDescription) sessionFactory.getCurrentSession()
+		        .createQuery("from ConceptDescription cd where cd.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -1184,8 +1185,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public ConceptNameTag getConceptNameTagByUuid(String uuid) {
-		return (ConceptNameTag) sessionFactory.getCurrentSession().createQuery(
-		    "from ConceptNameTag cnt where cnt.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (ConceptNameTag) sessionFactory.getCurrentSession()
+		        .createQuery("from ConceptNameTag cnt where cnt.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -1209,7 +1210,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 		criteria.add(Restrictions.eq("source.name", conceptSourceName));
 		return (ConceptSource) criteria.uniqueResult();
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.db.ConceptDAO#getConceptSourceByUniqueId(java.lang.String)
 	 */
@@ -1241,9 +1242,9 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public ConceptDatatype getSavedConceptDatatype(Concept concept) {
-		SQLQuery sql = sessionFactory.getCurrentSession().createSQLQuery(
-		    "select datatype.* from " + "concept_datatype datatype, " + "concept concept " + "where "
-		            + "datatype.concept_datatype_id = concept.datatype_id " + "and concept.concept_id=:conceptId")
+		SQLQuery sql = sessionFactory.getCurrentSession()
+		        .createSQLQuery("select datatype.* from " + "concept_datatype datatype, " + "concept concept " + "where "
+		                + "datatype.concept_datatype_id = concept.datatype_id " + "and concept.concept_id=:conceptId")
 		        .addEntity(ConceptDatatype.class);
 		sql.setInteger("conceptId", concept.getConceptId());
 		return (ConceptDatatype) sql.uniqueResult();
@@ -1301,8 +1302,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 		if (conceptStopWordId == null) {
 			throw new DAOException("conceptStopWordId is null");
 		}
-		Object csw = sessionFactory.getCurrentSession().createCriteria(ConceptStopWord.class).add(
-		    Restrictions.eq("conceptStopWordId", conceptStopWordId)).uniqueResult();
+		Object csw = sessionFactory.getCurrentSession().createCriteria(ConceptStopWord.class)
+		        .add(Restrictions.eq("conceptStopWordId", conceptStopWordId)).uniqueResult();
 		if (csw == null) {
 			throw new DAOException("Concept Stop Word not found or already deleted");
 		}
@@ -1376,8 +1377,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 		if (concept != null) {
 			query.append(" OR concept.conceptId:(").append(concept.getConceptId()).append(")^0.1");
 		} else if (searchDrugConceptNames) {
-			LuceneQuery<ConceptName> conceptNameQuery = newConceptNameLuceneQuery(drugName, searchKeywords, Arrays
-			        .asList(locale), exactLocale, includeRetired, null, null, null, null, null);
+			LuceneQuery<ConceptName> conceptNameQuery = newConceptNameLuceneQuery(drugName, searchKeywords,
+			    Arrays.asList(locale), exactLocale, includeRetired, null, null, null, null, null);
 			List<Object[]> conceptIds = conceptNameQuery.listProjection("concept.conceptId");
 			if (!conceptIds.isEmpty()) {
 				CollectionUtils.transform(conceptIds, new Transformer() {
@@ -1394,8 +1395,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 			}
 		}
 		
-		LuceneQuery<Drug> drugsQuery = LuceneQuery
-		        .newQuery(Drug.class, sessionFactory.getCurrentSession(), query.toString());
+		LuceneQuery<Drug> drugsQuery = LuceneQuery.newQuery(Drug.class, sessionFactory.getCurrentSession(),
+		    query.toString());
 		if (!includeRetired) {
 			drugsQuery.include("retired", false);
 		}
@@ -1456,11 +1457,12 @@ public class HibernateConceptDAO implements ConceptDAO {
 			query.append(newConceptNameQuery(phrase, searchKeywords, searchLocales, searchExactLocale));
 		}
 		
-		LuceneQuery<ConceptName> luceneQuery = LuceneQuery.newQuery(ConceptName.class, sessionFactory.getCurrentSession(),
-		    query.toString()).include("concept.conceptClass.conceptClassId", transformToIds(requireClasses)).exclude(
-		    "concept.conceptClass.conceptClassId", transformToIds(excludeClasses)).include(
-		    "concept.datatype.conceptDatatypeId", transformToIds(requireDatatypes)).exclude(
-		    "concept.datatype.conceptDatatypeId", transformToIds(excludeDatatypes));
+		LuceneQuery<ConceptName> luceneQuery = LuceneQuery
+		        .newQuery(ConceptName.class, sessionFactory.getCurrentSession(), query.toString())
+		        .include("concept.conceptClass.conceptClassId", transformToIds(requireClasses))
+		        .exclude("concept.conceptClass.conceptClassId", transformToIds(excludeClasses))
+		        .include("concept.datatype.conceptDatatypeId", transformToIds(requireDatatypes))
+		        .exclude("concept.datatype.conceptDatatypeId", transformToIds(excludeDatatypes));
 		
 		if (answersToConcept != null) {
 			Collection<ConceptAnswer> answers = answersToConcept.getAnswers(false);
@@ -1528,8 +1530,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public ConceptMapType getConceptMapTypeByUuid(String uuid) throws DAOException {
-		return (ConceptMapType) sessionFactory.getCurrentSession().createQuery(
-		    "from ConceptMapType cmt where cmt.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (ConceptMapType) sessionFactory.getCurrentSession()
+		        .createQuery("from ConceptMapType cmt where cmt.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -1586,8 +1588,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	 */
 	@Override
 	public ConceptReferenceTerm getConceptReferenceTermByUuid(String uuid) throws DAOException {
-		return (ConceptReferenceTerm) sessionFactory.getCurrentSession().createQuery(
-		    "from ConceptReferenceTerm crt where crt.uuid = :uuid").setString("uuid", uuid).uniqueResult();
+		return (ConceptReferenceTerm) sessionFactory.getCurrentSession()
+		        .createQuery("from ConceptReferenceTerm crt where crt.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -1615,8 +1617,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 		if (terms.isEmpty()) {
 			return null;
 		} else if (terms.size() > 1) {
-			throw new APIException("ConceptReferenceTerm.foundMultipleTermsWithNameInSource", new Object[] { name,
-			        conceptSource.getName() });
+			throw new APIException("ConceptReferenceTerm.foundMultipleTermsWithNameInSource",
+			        new Object[] { name, conceptSource.getName() });
 		}
 		return (ConceptReferenceTerm) terms.get(0);
 	}
@@ -1635,8 +1637,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 		if (terms.isEmpty()) {
 			return null;
 		} else if (terms.size() > 1) {
-			throw new APIException("ConceptReferenceTerm.foundMultipleTermsWithCodeInSource", new Object[] { code,
-			        conceptSource.getName() });
+			throw new APIException("ConceptReferenceTerm.foundMultipleTermsWithCodeInSource",
+			        new Object[] { code, conceptSource.getName() });
 		}
 		return (ConceptReferenceTerm) terms.get(0);
 	}
@@ -1659,7 +1661,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 	}
 	
 	/**
-	 * @see org.openmrs.api.db.ConceptDAO#getCountOfConceptReferenceTerms(String, ConceptSource, boolean)
+	 * @see org.openmrs.api.db.ConceptDAO#getCountOfConceptReferenceTerms(String, ConceptSource,
+	 *      boolean)
 	 */
 	@Override
 	public Long getCountOfConceptReferenceTerms(String query, ConceptSource conceptSource, boolean includeRetired)
@@ -1704,8 +1707,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 			searchCriteria.add(Restrictions.eq("retired", false));
 		}
 		if (query != null) {
-			searchCriteria.add(Restrictions.or(Restrictions.ilike("name", query, MatchMode.ANYWHERE), Restrictions.ilike(
-			    "code", query, MatchMode.ANYWHERE)));
+			searchCriteria.add(Restrictions.or(Restrictions.ilike("name", query, MatchMode.ANYWHERE),
+			    Restrictions.ilike("code", query, MatchMode.ANYWHERE)));
 		}
 		return searchCriteria;
 	}
@@ -1842,8 +1845,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 		sessionFactory.getCurrentSession().setFlushMode(FlushMode.MANUAL);
 		try {
 			//Defaults to same-as if the gp is not set.
-			String defaultConceptMapType = Context.getAdministrationService().getGlobalProperty(
-			    OpenmrsConstants.GP_DEFAULT_CONCEPT_MAP_TYPE);
+			String defaultConceptMapType = Context.getAdministrationService()
+			        .getGlobalProperty(OpenmrsConstants.GP_DEFAULT_CONCEPT_MAP_TYPE);
 			if (defaultConceptMapType == null) {
 				throw new DAOException("The default concept map type is not set. You need to set the '"
 				        + OpenmrsConstants.GP_DEFAULT_CONCEPT_MAP_TYPE + "' global property.");
@@ -1874,7 +1877,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 			if (name.getConcept().isRetired()) {
 				return false;
 			}
-
+			
 			//If it is not a default name of a concept, it cannot be a duplicate.
 			//Note that a concept may not have a default name for the given locale, if just a short name or
 			//a search term is set.
@@ -1886,8 +1889,8 @@ public class HibernateConceptDAO implements ConceptDAO {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ConceptName.class);
 		
 		criteria.add(Restrictions.eq("voided", false));
-		criteria.add(Restrictions.or(Restrictions.eq("locale", name.getLocale()), Restrictions.eq("locale", new Locale(name
-		        .getLocale().getLanguage()))));
+		criteria.add(Restrictions.or(Restrictions.eq("locale", name.getLocale()),
+		    Restrictions.eq("locale", new Locale(name.getLocale().getLanguage()))));
 		if (Context.getAdministrationService().isDatabaseStringComparisonCaseSensitive()) {
 			criteria.add(Restrictions.eq("name", name.getName()).ignoreCase());
 		} else {
@@ -1971,7 +1974,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 		}
 		return null;
 	}
-
+	
 	/**
 	 * @see ConceptDAO#getAllConceptAttributeTypes()
 	 */
@@ -1980,7 +1983,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 	public List<ConceptAttributeType> getAllConceptAttributeTypes() {
 		return sessionFactory.getCurrentSession().createCriteria(ConceptAttributeType.class).list();
 	}
-
+	
 	/**
 	 * @see ConceptDAO#saveConceptAttributeType(ConceptAttributeType)
 	 */
@@ -1989,7 +1992,7 @@ public class HibernateConceptDAO implements ConceptDAO {
 		sessionFactory.getCurrentSession().saveOrUpdate(conceptAttributeType);
 		return conceptAttributeType;
 	}
-
+	
 	/**
 	 * @see ConceptDAO#getConceptAttributeType(Integer)
 	 */
@@ -1997,16 +2000,16 @@ public class HibernateConceptDAO implements ConceptDAO {
 	public ConceptAttributeType getConceptAttributeType(Integer id) {
 		return (ConceptAttributeType) sessionFactory.getCurrentSession().get(ConceptAttributeType.class, id);
 	}
-
+	
 	/**
 	 * @see ConceptDAO#getConceptAttributeTypeByUuid(String)
 	 */
 	@Override
 	public ConceptAttributeType getConceptAttributeTypeByUuid(String uuid) {
-		return (ConceptAttributeType) sessionFactory.getCurrentSession().createCriteria(ConceptAttributeType.class).add(
-				Restrictions.eq("uuid", uuid)).uniqueResult();
+		return (ConceptAttributeType) sessionFactory.getCurrentSession().createCriteria(ConceptAttributeType.class)
+		        .add(Restrictions.eq("uuid", uuid)).uniqueResult();
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.db.ConceptDAO#deleteConceptAttributeType(org.openmrs.ConceptAttributeType)
 	 */
@@ -2014,40 +2017,40 @@ public class HibernateConceptDAO implements ConceptDAO {
 	public void deleteConceptAttributeType(ConceptAttributeType conceptAttributeType) {
 		sessionFactory.getCurrentSession().delete(conceptAttributeType);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.db.ConceptDAO#getConceptAttributeTypes(String)
 	 */
 	@Override
 	public List<ConceptAttributeType> getConceptAttributeTypes(String name) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ConceptAttributeType.class);
-
+		
 		//match name anywhere and case insensitive
 		if (name != null) {
 			criteria.add(Restrictions.ilike("name", name, MatchMode.ANYWHERE));
 		}
 		return criteria.list();
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.db.ConceptDAO#getConceptAttributeTypeByName(String)
 	 */
 	@Override
 	public ConceptAttributeType getConceptAttributeTypeByName(String exactName) {
-		return (ConceptAttributeType) sessionFactory.getCurrentSession().createCriteria(ConceptAttributeType.class).add(
-				Restrictions.eq("name", exactName)).uniqueResult();
-
+		return (ConceptAttributeType) sessionFactory.getCurrentSession().createCriteria(ConceptAttributeType.class)
+		        .add(Restrictions.eq("name", exactName)).uniqueResult();
+		
 	}
-
+	
 	/**
 	 * @see ConceptDAO#getConceptAttributeByUuid(String)
 	 */
 	@Override
 	public ConceptAttribute getConceptAttributeByUuid(String uuid) {
-		return (ConceptAttribute) sessionFactory.getCurrentSession().createCriteria(ConceptAttribute.class).add(
-				Restrictions.eq("uuid", uuid)).uniqueResult();
+		return (ConceptAttribute) sessionFactory.getCurrentSession().createCriteria(ConceptAttribute.class)
+		        .add(Restrictions.eq("uuid", uuid)).uniqueResult();
 	}
-
+	
 	/**
 	 * @see ConceptDAO#getConceptAttributeCount(ConceptAttributeType)
 	 */
@@ -2057,9 +2060,9 @@ public class HibernateConceptDAO implements ConceptDAO {
 		criteria.add(Restrictions.eq("attributeType", conceptAttributeType));
 		criteria.setProjection(Projections.rowCount());
 		return (Long) criteria.list().get(0);
-
+		
 	}
-
+	
 	private Criteria createSearchDrugByMappingCriteria(String code, ConceptSource conceptSource, boolean includeRetired) {
 		Criteria searchCriteria = sessionFactory.getCurrentSession().createCriteria(Drug.class, "drug");
 		searchCriteria.setResultTransformer(DistinctRootEntityResultTransformer.INSTANCE);

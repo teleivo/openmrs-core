@@ -68,27 +68,27 @@ public class MigrateConceptReferenceTermChangeSet implements CustomTaskChange {
 			ResultSet selectTypeResult = selectTypes.getResultSet();
 			
 			while (selectTypeResult.next()) {
-				typesToIds.put(selectTypeResult.getString("name").trim().toUpperCase(), selectTypeResult
-				        .getInt("concept_map_type_id"));
+				typesToIds.put(selectTypeResult.getString("name").trim().toUpperCase(),
+				    selectTypeResult.getInt("concept_map_type_id"));
 			}
 			selectTypes.close();
 			
 			//The FK on concept_reference_term_id is not yet created so we are safe to copy over IDs. 
 			//The trims are done to be able to compare properly.
-			batchUpdateMap = connection.prepareStatement("update concept_reference_map set"
-			        + " concept_reference_term_id = concept_map_id,"
-			        + " source_code = trim(source_code), comment = trim(comment)");
+			batchUpdateMap = connection
+			        .prepareStatement("update concept_reference_map set" + " concept_reference_term_id = concept_map_id,"
+			                + " source_code = trim(source_code), comment = trim(comment)");
 			batchUpdateMap.execute();
 			batchUpdateMap.close();
 			
 			//Preparing statements for use in the loop.
-			updateMapTerm = connection.prepareStatement("update concept_reference_map set"
-			        + " concept_reference_term_id = ? where concept_map_id = ?");
+			updateMapTerm = connection.prepareStatement(
+			    "update concept_reference_map set" + " concept_reference_term_id = ? where concept_map_id = ?");
 			insertTerm = connection.prepareStatement("insert into concept_reference_term"
 			        + " (concept_reference_term_id, uuid, concept_source_id, code, creator, date_created, description)"
 			        + " values (?, ?, ?, ?, ?, ?, ?)");
-			updateMapType = connection.prepareStatement("update concept_reference_map set"
-			        + " concept_map_type_id = ? where concept_map_id = ?");
+			updateMapType = connection.prepareStatement(
+			    "update concept_reference_map set" + " concept_map_type_id = ? where concept_map_id = ?");
 			
 			int prevSource = -1;
 			String prevSourceCode = null;
@@ -96,8 +96,8 @@ public class MigrateConceptReferenceTermChangeSet implements CustomTaskChange {
 			int prevInsertedTerm = -1;
 			
 			//In addition to source and source_code we order by UUID to always insert the same term if run on different systems.
-			selectMap = connection.prepareStatement("select * from concept_reference_map"
-			        + " order by source, source_code, uuid");
+			selectMap = connection
+			        .prepareStatement("select * from concept_reference_map" + " order by source, source_code, uuid");
 			selectMap.execute();
 			
 			final ResultSet selectMapResult = selectMap.getResultSet();
@@ -124,8 +124,8 @@ public class MigrateConceptReferenceTermChangeSet implements CustomTaskChange {
 				if (source == prevSource
 				        && (sourceCode == prevSourceCode || (sourceCode != null && sourceCode.equals(prevSourceCode)))) {
 					if (mapTypeId == null && comment != null && !comment.equals(prevComment)) {
-						log.warn("Lost comment '" + comment + "' for map " + conceptMapId + ". Preserved comment "
-						        + prevComment);
+						log.warn(
+						    "Lost comment '" + comment + "' for map " + conceptMapId + ". Preserved comment " + prevComment);
 					}
 					
 					//We need to use the last inserted term.
@@ -218,7 +218,7 @@ public class MigrateConceptReferenceTermChangeSet implements CustomTaskChange {
 	 * Determines the map type based on the given comment.
 	 * 
 	 * @param comment
-	 * @param typesToIds 
+	 * @param typesToIds
 	 * @return map type id or null if not recognized
 	 */
 	protected Integer determineMapTypeId(String comment, Map<String, Integer> typesToIds) {

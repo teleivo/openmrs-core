@@ -47,7 +47,7 @@ public interface CohortDAO {
 	 * @throws DAOException
 	 */
 	public List<Cohort> getAllCohorts(boolean includeVoided) throws DAOException;
-
+	
 	/**
 	 * Finds all cohorts that contain the given patientId
 	 *
@@ -57,7 +57,7 @@ public interface CohortDAO {
 	 * @throws DAOException
 	 */
 	public List<Cohort> getCohortsContainingPatientId(Integer patientId, Boolean voided) throws DAOException;
-
+	
 	/**
 	 * Finds all cohorts that contain the given patientId
 	 *
@@ -66,7 +66,7 @@ public interface CohortDAO {
 	 * @throws DAOException
 	 */
 	public List<Cohort> getCohortsContainingPatientId(Integer patientId) throws DAOException;
-
+	
 	/**
 	 * Saves a Cohort to the database
 	 * 

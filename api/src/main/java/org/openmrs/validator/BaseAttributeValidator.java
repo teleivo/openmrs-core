@@ -18,6 +18,7 @@ import org.springframework.validation.Validator;
 
 /**
  * Common validator for all types of Attribute Types
+ * 
  * @since 1.9
  */
 @Handler(supports = { Attribute.class }, order = 50)
@@ -32,7 +33,8 @@ public class BaseAttributeValidator implements Validator {
 	}
 	
 	/**
-	 * @see org.springframework.validation.Validator#validate(java.lang.Object, org.springframework.validation.Errors)
+	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
+	 *      org.springframework.validation.Errors)
 	 */
 	@Override
 	public void validate(Object target, Errors errors) {

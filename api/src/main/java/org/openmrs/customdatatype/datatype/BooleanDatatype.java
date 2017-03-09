@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Datatype for boolean, represented by java.lang.Boolean.
+ * 
  * @since 1.9
  */
 @Component

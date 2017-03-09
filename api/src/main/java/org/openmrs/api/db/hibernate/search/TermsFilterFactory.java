@@ -38,7 +38,7 @@ public class TermsFilterFactory {
 	public void setExcludeTerms(Set<Term> terms) {
 		this.excludeTerms = new HashSet<Term>(terms);
 	}
-
+	
 	@Key
 	public FilterKey getKey() {
 		StandardFilterKey key = new StandardFilterKey();
@@ -50,12 +50,12 @@ public class TermsFilterFactory {
 	@Factory
 	public Filter getFilter() {
 		BooleanQuery query = new BooleanQuery();
-
+		
 		if (includeTerms.isEmpty()) {
 			query.add(new MatchAllDocsQuery(), Occur.MUST);
 		} else {
 			for (Set<Term> terms : includeTerms) {
-
+				
 				if (terms.size() == 1) {
 					query.add(new TermQuery(terms.iterator().next()), Occur.MUST);
 				} else if (terms.size() > 1) {
@@ -67,7 +67,7 @@ public class TermsFilterFactory {
 				}
 			}
 		}
-
+		
 		for (Term term : excludeTerms) {
 			query.add(new TermQuery(term), Occur.MUST_NOT);
 		}

@@ -192,7 +192,8 @@ public class HibernateSerializedObjectDAO implements SerializedObjectDAO {
 		
 		Class<? extends OpenmrsObject> baseType = getRegisteredTypeForObject(object);
 		if (baseType == null) {
-			throw new DAOException("SerializedObjectDAO does not support saving objects of type <" + object.getClass() + ">");
+			throw new DAOException(
+			        "SerializedObjectDAO does not support saving objects of type <" + object.getClass() + ">");
 		}
 		
 		SerializedObject serializedObject = getSerializedObject(object.getId());

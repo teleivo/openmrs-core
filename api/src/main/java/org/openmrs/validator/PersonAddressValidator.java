@@ -82,14 +82,16 @@ public class PersonAddressValidator implements Validator {
 		}
 		
 		if (OpenmrsUtil.compareWithNullAsEarliest(personAddress.getStartDate(), new Date()) > 0) {
-			errors.rejectValue("startDate", "PersonAddress.error.startDateInFuture", new Object[] { "'" + addressString
-			        + "'" }, "The Start Date for address '" + addressString + "' shouldn't be in the future");
+			errors.rejectValue("startDate", "PersonAddress.error.startDateInFuture",
+			    new Object[] { "'" + addressString + "'" },
+			    "The Start Date for address '" + addressString + "' shouldn't be in the future");
 		}
 		
 		if (personAddress.getStartDate() != null
 		        && OpenmrsUtil.compareWithNullAsLatest(personAddress.getStartDate(), personAddress.getEndDate()) > 0) {
-			errors.rejectValue("endDate", "PersonAddress.error.endDateBeforeStartDate", new Object[] { "'" + addressString
-			        + "'" }, "The End Date for address '" + addressString + "' shouldn't be earlier than the Start Date");
+			errors.rejectValue("endDate", "PersonAddress.error.endDateBeforeStartDate",
+			    new Object[] { "'" + addressString + "'" },
+			    "The End Date for address '" + addressString + "' shouldn't be earlier than the Start Date");
 		}
 		
 		String xml = Context.getLocationService().getAddressTemplate();
@@ -111,24 +113,23 @@ public class PersonAddressValidator implements Validator {
 					Object value = PropertyUtils.getProperty(personAddress, fieldName);
 					if (StringUtils.isBlank((String) value)) {
 						//required field not found
-						errors.reject(Context.getMessageSourceService().getMessage(
-						    "AddressTemplate.error.requiredAddressFieldIsBlank", new Object[] { fieldName },
-						    Context.getLocale()));
+						errors.reject(
+						    Context.getMessageSourceService().getMessage("AddressTemplate.error.requiredAddressFieldIsBlank",
+						        new Object[] { fieldName }, Context.getLocale()));
 					}
 				}
 				catch (Exception e) {
 					//wrong field declared in template
-					errors
-					        .reject(Context.getMessageSourceService().getMessage(
-					            "AddressTemplate.error.fieldNotDeclaredInTemplate", new Object[] { fieldName },
-					            Context.getLocale()));
+					errors.reject(
+					    Context.getMessageSourceService().getMessage("AddressTemplate.error.fieldNotDeclaredInTemplate",
+					        new Object[] { fieldName }, Context.getLocale()));
 				}
 			}
 		}
 		
 		ValidateUtil.validateFieldLengths(errors, object.getClass(), "address1", "address2", "cityVillage", "stateProvince",
 		    "postalCode", "country", "latitude", "longitude", "voidReason", "countyDistrict", "address3", "address4",
-		    "address5", "address6", "address7", "address8", "address9", "address10", "address11", "address12", "address13", 
+		    "address5", "address6", "address7", "address8", "address9", "address10", "address11", "address12", "address13",
 		    "address14", "address15");
 	}
 }

@@ -10,7 +10,8 @@
 package org.openmrs.api.order.exception;
 
 /**
- * Thrown when the new edited order contains modified properties that must be the same as previous order.
+ * Thrown when the new edited order contains modified properties that must be the same as previous
+ * order.
  */
 public class EditedOrderDoesNotMatchPreviousException extends OrderEntryException {
 	

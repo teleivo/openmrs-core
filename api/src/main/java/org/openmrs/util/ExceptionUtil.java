@@ -14,12 +14,13 @@ import org.openmrs.api.APIAuthenticationException;
 
 /**
  * Utility methods for dealing with exceptions
+ * 
  * @since 1.8.4
  */
 public class ExceptionUtil {
 	
 	/**
-	 * If any cause in the exception chain is an instance of causeType, then rethrow that exception 
+	 * If any cause in the exception chain is an instance of causeType, then rethrow that exception
 	 *
 	 * @param thrown
 	 * @param causeType must be a {@link RuntimeException} so that we can throw it
@@ -33,7 +34,7 @@ public class ExceptionUtil {
 	}
 	
 	/**
-	 * If any cause in the given exception chain is an APIAuthenticationException, rethrow that 
+	 * If any cause in the given exception chain is an APIAuthenticationException, rethrow that
 	 *
 	 * @param thrown
 	 */

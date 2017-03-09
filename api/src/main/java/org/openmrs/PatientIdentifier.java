@@ -48,23 +48,22 @@ public class PatientIdentifier extends BaseOpenmrsData implements java.io.Serial
 	 */
 	@DocumentId
 	private Integer patientIdentifierId;
-
+	
 	@IndexedEmbedded(includeEmbeddedObjectId = true)
 	private Patient patient;
-
+	
 	@Fields({
-			@Field(name = "identifierPhrase", analyzer = @Analyzer(definition = LuceneAnalyzers.PHRASE_ANALYZER), boost = @Boost(8f)),
-			@Field(name = "identifierExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
-			@Field(name = "identifierStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
-			@Field(name = "identifierAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER))
-	})
+	        @Field(name = "identifierPhrase", analyzer = @Analyzer(definition = LuceneAnalyzers.PHRASE_ANALYZER), boost = @Boost(8f)),
+	        @Field(name = "identifierExact", analyzer = @Analyzer(definition = LuceneAnalyzers.EXACT_ANALYZER), boost = @Boost(4f)),
+	        @Field(name = "identifierStart", analyzer = @Analyzer(definition = LuceneAnalyzers.START_ANALYZER), boost = @Boost(2f)),
+	        @Field(name = "identifierAnywhere", analyzer = @Analyzer(definition = LuceneAnalyzers.ANYWHERE_ANALYZER)) })
 	private String identifier;
-
+	
 	@IndexedEmbedded(includeEmbeddedObjectId = true)
 	private PatientIdentifierType identifierType;
 	
 	private Location location;
-
+	
 	@Field
 	private Boolean preferred = false;
 	
@@ -209,7 +208,6 @@ public class PatientIdentifier extends BaseOpenmrsData implements java.io.Serial
 	
 	/**
 	 * @return the preferred status
-	 * 
 	 * @deprecated as of 2.0, use {@link #getPreferred()}
 	 */
 	@Deprecated
@@ -220,8 +218,8 @@ public class PatientIdentifier extends BaseOpenmrsData implements java.io.Serial
 	
 	/**
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 * @deprecated since 1.12. Use DefaultComparator instead.
-	 * Note: this comparator imposes orderings that are inconsistent with equals.
+	 * @deprecated since 1.12. Use DefaultComparator instead. Note: this comparator imposes
+	 *             orderings that are inconsistent with equals.
 	 */
 	@Override
 	@SuppressWarnings("squid:S1210")
@@ -265,8 +263,9 @@ public class PatientIdentifier extends BaseOpenmrsData implements java.io.Serial
 	}
 	
 	/**
-	 Provides a default comparator.
-	 @since 1.12
+	 * Provides a default comparator.
+	 * 
+	 * @since 1.12
 	 **/
 	public static class DefaultComparator implements Comparator<PatientIdentifier> {
 		

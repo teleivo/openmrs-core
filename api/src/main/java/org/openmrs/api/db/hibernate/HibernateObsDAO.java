@@ -113,15 +113,16 @@ public class HibernateObsDAO implements ObsDAO {
 	}
 	
 	/**
-	 * @see org.openmrs.api.db.ObsDAO#getObservationCount(List, List, List, List, List, List, Integer, Date, Date, List, boolean, String)
+	 * @see org.openmrs.api.db.ObsDAO#getObservationCount(List, List, List, List, List, List,
+	 *      Integer, Date, Date, List, boolean, String)
 	 */
 	@Override
 	public Long getObservationCount(List<Person> whom, List<Encounter> encounters, List<Concept> questions,
 	        List<Concept> answers, List<PERSON_TYPE> personTypes, List<Location> locations, Integer obsGroupId,
 	        Date fromDate, Date toDate, List<ConceptName> valueCodedNameAnswers, boolean includeVoidedObs,
 	        String accessionNumber) throws DAOException {
-		Criteria criteria = createGetObservationsCriteria(whom, encounters, questions, answers, personTypes, locations,
-		    null, null, obsGroupId, fromDate, toDate, valueCodedNameAnswers, includeVoidedObs, accessionNumber);
+		Criteria criteria = createGetObservationsCriteria(whom, encounters, questions, answers, personTypes, locations, null,
+		    null, obsGroupId, fromDate, toDate, valueCodedNameAnswers, includeVoidedObs, accessionNumber);
 		criteria.setProjection(Projections.rowCount());
 		return (Long) criteria.list().get(0);
 	}
@@ -135,7 +136,8 @@ public class HibernateObsDAO implements ObsDAO {
 	 * @param answers
 	 * @param personTypes
 	 * @param locations
-	 * @param sortList If a field needs to be in <i>asc</i> order, <code>" asc"</code> has to be appended to the field name. For example: <code>fieldname asc</code>
+	 * @param sortList If a field needs to be in <i>asc</i> order, <code>" asc"</code> has to be
+	 *            appended to the field name. For example: <code>fieldname asc</code>
 	 * @param mostRecentN
 	 * @param obsGroupId
 	 * @param fromDate
@@ -234,8 +236,8 @@ public class HibernateObsDAO implements ObsDAO {
 	 */
 	private Criteria getCriteriaPersonModifier(Criteria criteria, List<PERSON_TYPE> personTypes) {
 		if (personTypes.contains(PERSON_TYPE.PATIENT)) {
-			DetachedCriteria crit = DetachedCriteria.forClass(Patient.class, "patient").setProjection(
-			    Property.forName("patientId"));
+			DetachedCriteria crit = DetachedCriteria.forClass(Patient.class, "patient")
+			        .setProjection(Property.forName("patientId"));
 			criteria.add(Subqueries.propertyIn("person.personId", crit));
 		}
 		
@@ -258,8 +260,8 @@ public class HibernateObsDAO implements ObsDAO {
 	 */
 	@Override
 	public Obs getObsByUuid(String uuid) {
-		return (Obs) sessionFactory.getCurrentSession().createQuery("from Obs o where o.uuid = :uuid").setString("uuid",
-		    uuid).uniqueResult();
+		return (Obs) sessionFactory.getCurrentSession().createQuery("from Obs o where o.uuid = :uuid")
+		        .setString("uuid", uuid).uniqueResult();
 	}
 	
 }

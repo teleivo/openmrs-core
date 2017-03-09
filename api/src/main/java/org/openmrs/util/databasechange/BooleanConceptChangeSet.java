@@ -107,8 +107,8 @@ public class BooleanConceptChangeSet implements CustomTaskChange {
 		for (Map.Entry<String, String[]> e : names.entrySet()) {
 			String locale = e.getKey();
 			for (String name : e.getValue()) {
-				Integer ret = getInt(connection, "select concept_id from concept_name where name = '" + name
-				        + "' and locale like '" + locale + "%'");
+				Integer ret = getInt(connection,
+				    "select concept_id from concept_name where name = '" + name + "' and locale like '" + locale + "%'");
 				if (ret != null) {
 					return ret;
 				}
@@ -131,8 +131,8 @@ public class BooleanConceptChangeSet implements CustomTaskChange {
 		try {
 			int conceptId = getInt(connection, "SELECT MAX(concept_id) FROM concept");
 			conceptId++;
-			updateStatement = connection
-			        .prepareStatement("INSERT INTO concept (concept_id, short_name, description, datatype_id, class_id, retired, is_set, creator, date_created, uuid) VALUES (?, '', '', 4, 11, FALSE, FALSE, 1, NOW(), ?)");
+			updateStatement = connection.prepareStatement(
+			    "INSERT INTO concept (concept_id, short_name, description, datatype_id, class_id, retired, is_set, creator, date_created, uuid) VALUES (?, '', '', 4, 11, FALSE, FALSE, 1, NOW(), ?)");
 			updateStatement.setInt(1, conceptId);
 			updateStatement.setString(2, UUID.randomUUID().toString());
 			updateStatement.executeUpdate();
@@ -144,8 +144,8 @@ public class BooleanConceptChangeSet implements CustomTaskChange {
 				String locale = e.getKey();
 				for (String name : e.getValue()) {
 					conceptNameId++;
-					updateStatement = connection
-					        .prepareStatement("INSERT INTO concept_name (concept_name_id, concept_id, locale, name, creator, date_created, uuid) VALUES (?, ?, ?, ?, 1, NOW(), ?)");
+					updateStatement = connection.prepareStatement(
+					    "INSERT INTO concept_name (concept_name_id, concept_id, locale, name, creator, date_created, uuid) VALUES (?, ?, ?, ?, 1, NOW(), ?)");
 					updateStatement.setInt(1, conceptNameId);
 					updateStatement.setInt(2, conceptId);
 					updateStatement.setString(3, locale);
@@ -156,15 +156,15 @@ public class BooleanConceptChangeSet implements CustomTaskChange {
 					// Tag the first english name as preferred. This is ugly, but it's not feasible to
 					// fix this before refactoring concept_name_tags.
 					if (!preferredDoneAlready && "en".equals(locale)) {
-						updateStatement = connection
-						        .prepareStatement("INSERT INTO concept_name_tag_map (concept_name_id, concept_name_tag_id) VALUES (?, 4)");
+						updateStatement = connection.prepareStatement(
+						    "INSERT INTO concept_name_tag_map (concept_name_id, concept_name_tag_id) VALUES (?, 4)");
 						updateStatement.setInt(1, conceptNameId);
 						updateStatement.executeUpdate();
 						preferredDoneAlready = true;
 					}
 					
-					updateStatement = connection
-					        .prepareStatement("INSERT INTO concept_word (concept_id, word, locale, concept_name_id) VALUES (?, ?, ?, ?)");
+					updateStatement = connection.prepareStatement(
+					    "INSERT INTO concept_word (concept_id, word, locale, concept_name_id) VALUES (?, ?, ?, ?)");
 					updateStatement.setInt(1, conceptId);
 					updateStatement.setString(2, name);
 					updateStatement.setString(3, locale);
@@ -207,13 +207,13 @@ public class BooleanConceptChangeSet implements CustomTaskChange {
 		try {
 			
 			/* replace value_numerical boolean values by coded boolean values */
-			updateStatement = connection
-			        .prepareStatement("UPDATE obs SET value_coded = ?, value_numeric = NULL WHERE value_numeric != 0 AND concept_id IN (SELECT concept_id FROM concept WHERE datatype_id = 10)");
+			updateStatement = connection.prepareStatement(
+			    "UPDATE obs SET value_coded = ?, value_numeric = NULL WHERE value_numeric != 0 AND concept_id IN (SELECT concept_id FROM concept WHERE datatype_id = 10)");
 			updateStatement.setInt(1, trueConceptId);
 			updateStatement.executeUpdate();
 			
-			updateStatement = connection
-			        .prepareStatement("UPDATE obs SET value_coded = ?, value_numeric = NULL WHERE value_numeric = 0 AND concept_id IN (SELECT concept_id FROM concept WHERE datatype_id = 10)");
+			updateStatement = connection.prepareStatement(
+			    "UPDATE obs SET value_coded = ?, value_numeric = NULL WHERE value_numeric = 0 AND concept_id IN (SELECT concept_id FROM concept WHERE datatype_id = 10)");
 			updateStatement.setInt(1, falseConceptId);
 			updateStatement.executeUpdate();
 		}
@@ -244,13 +244,14 @@ public class BooleanConceptChangeSet implements CustomTaskChange {
 	private void createGlobalProperties(JdbcConnection connection, Integer trueConceptId, Integer falseConceptId)
 	        throws CustomChangeException {
 		if (trueConceptId == null || trueConceptId < 1 || falseConceptId == null || falseConceptId < 1) {
-			throw new CustomChangeException("Can't create global properties for true/false concepts with invalid conceptIds");
+			throw new CustomChangeException(
+			        "Can't create global properties for true/false concepts with invalid conceptIds");
 		}
 		PreparedStatement updateStatement = null;
 		
 		try {
-			updateStatement = connection
-			        .prepareStatement("INSERT INTO global_property (property, property_value, description, uuid) VALUES (?, ?, ?, ?)");
+			updateStatement = connection.prepareStatement(
+			    "INSERT INTO global_property (property, property_value, description, uuid) VALUES (?, ?, ?, ?)");
 			updateStatement.setString(1, OpenmrsConstants.GLOBAL_PROPERTY_TRUE_CONCEPT);
 			updateStatement.setInt(2, trueConceptId);
 			updateStatement.setString(3, "Concept id of the concept defining the TRUE boolean concept");

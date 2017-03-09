@@ -15,8 +15,8 @@ import org.openmrs.BaseOpenmrsObject;
 
 /**
  * Generic interface for all OpenMrs DAOs
+ * 
  * @since 1.10
- *
  */
 public interface OpenmrsObjectDAO<T extends BaseOpenmrsObject> {
 	
@@ -39,16 +39,14 @@ public interface OpenmrsObjectDAO<T extends BaseOpenmrsObject> {
 	/**
 	 * Completely deletes a persistent from the database
 	 * 
-	 * @param persistent
-	 *            The persistent to delete
+	 * @param persistent The persistent to delete
 	 */
 	void delete(T persistent);
 	
 	/**
 	 * Save or update a persistent in the database
 	 * 
-	 * @param newOrPersisted
-	 *            The persistent to save or update
+	 * @param newOrPersisted The persistent to save or update
 	 * @return the persistent that was saved or updated
 	 */
 	T saveOrUpdate(T newOrPersisted);

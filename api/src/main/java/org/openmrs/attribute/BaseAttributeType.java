@@ -16,8 +16,10 @@ import org.openmrs.BaseOpenmrsMetadata;
 import org.openmrs.customdatatype.Customizable;
 
 /**
- * Abstract base implementation of {@link AttributeType}. Actual implementations (e.g. VisitAttributeType,
- * ProviderAttributeType) should be able to extend this and provide very little of their own code.
+ * Abstract base implementation of {@link AttributeType}. Actual implementations (e.g.
+ * VisitAttributeType, ProviderAttributeType) should be able to extend this and provide very little
+ * of their own code.
+ * 
  * @since 1.9
  */
 @MappedSuperclass

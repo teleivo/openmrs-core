@@ -41,7 +41,8 @@ public class RelationshipTypeValidator implements Validator {
 	}
 	
 	/**
-	 * @see org.springframework.validation.Validator#validate(java.lang.Object, org.springframework.validation.Errors)
+	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
+	 *      org.springframework.validation.Errors)
 	 * @should fail validation if aIsToB(or A is To B) is null or empty or whitespace
 	 * @should fail validation if bIsToA(or B is To A) is null or empty or whitespace
 	 * @should fail validation if description is null or empty or whitespace
@@ -59,8 +60,8 @@ public class RelationshipTypeValidator implements Validator {
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "aIsToB", "RelationshipType.aIsToB.required");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "bIsToA", "RelationshipType.bIsToA.required");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "RelationshipType.description.required");
-			RelationshipType exist = Context.getPersonService().getRelationshipTypeByName(
-			    relationshipType.getaIsToB() + "/" + relationshipType.getbIsToA());
+			RelationshipType exist = Context.getPersonService()
+			        .getRelationshipTypeByName(relationshipType.getaIsToB() + "/" + relationshipType.getbIsToA());
 			if (exist != null && !exist.getRetired()
 			        && !OpenmrsUtil.nullSafeEquals(relationshipType.getUuid(), exist.getUuid())) {
 				errors.reject("duplicate.relationshipType");

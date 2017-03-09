@@ -21,8 +21,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * This class supports doing an HTTP post to a URL. (It replaces the OpenmrsUtil.postToUrl method, allowing us to
- * mock http calls in unit tests.)
+ * This class supports doing an HTTP post to a URL. (It replaces the OpenmrsUtil.postToUrl method,
+ * allowing us to mock http calls in unit tests.)
  */
 public class HttpClient {
 	

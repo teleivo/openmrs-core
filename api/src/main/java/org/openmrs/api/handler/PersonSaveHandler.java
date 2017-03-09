@@ -43,7 +43,7 @@ public class PersonSaveHandler implements SaveHandler<Person> {
 		// address collection
 		if (person.getAddresses() != null && !person.getAddresses().isEmpty()) {
 			for (PersonAddress pAddress : person.getAddresses()) {
-				if (pAddress.isBlank()){
+				if (pAddress.isBlank()) {
 					person.removeAddress(pAddress);
 					continue;
 				}

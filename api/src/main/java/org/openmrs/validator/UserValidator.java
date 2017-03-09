@@ -38,12 +38,11 @@ public class UserValidator implements Validator {
 	/** Log for this class and subclasses */
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	private static final Pattern EMAIL_PATTERN = Pattern
-	        .compile("^.+@.+\\..+$");
+	private static final Pattern EMAIL_PATTERN = Pattern.compile("^.+@.+\\..+$");
 	
 	@Autowired
 	private PersonValidator personValidator;
-
+	
 	/**
 	 * Determines if the command object being submitted is a valid type
 	 *
@@ -98,18 +97,19 @@ public class UserValidator implements Validator {
 				errors.pushNestedPath("person");
 				try {
 					personValidator.validate(person, errors);
-				} finally {
+				}
+				finally {
 					errors.popNestedPath();
 				}
-					
+				
 			}
 			
 			AdministrationService as = Context.getAdministrationService();
 			boolean emailAsUsername = false;
 			try {
 				Context.addProxyPrivilege(PrivilegeConstants.GET_GLOBAL_PROPERTIES);
-				emailAsUsername = Boolean.parseBoolean(as.getGlobalProperty(
-				    OpenmrsConstants.GLOBAL_PROPERTY_USER_REQUIRE_EMAIL_AS_USERNAME, "false"));
+				emailAsUsername = Boolean.parseBoolean(
+				    as.getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_USER_REQUIRE_EMAIL_AS_USERNAME, "false"));
 			}
 			finally {
 				Context.removeProxyPrivilege(PrivilegeConstants.GET_GLOBAL_PROPERTIES);
@@ -133,10 +133,14 @@ public class UserValidator implements Validator {
 	/**
 	 * Convenience method to check the given username against the regular expression. <br>
 	 * <br>
-	 * A valid username will have following: <ul><li>Begins with Alphanumeric characters <li>only
-	 * followed by more alphanumeric characters (may include . - _) <li>can be at most 50 characters
-	 * <li>minimum 2 chars case-insensitive Examples: <li>The following username will pass
-	 * validation: A123_.-XYZ9</ul>
+	 * A valid username will have following:
+	 * <ul>
+	 * <li>Begins with Alphanumeric characters
+	 * <li>only followed by more alphanumeric characters (may include . - _)
+	 * <li>can be at most 50 characters
+	 * <li>minimum 2 chars case-insensitive Examples:
+	 * <li>The following username will pass validation: A123_.-XYZ9
+	 * </ul>
 	 *
 	 * @param username the username string to check
 	 * @return true if the username is ok
@@ -181,7 +185,6 @@ public class UserValidator implements Validator {
 	 *
 	 * @param username
 	 * @return true if valid
-	 *
 	 * @should return false if email invalid
 	 * @should return true if email valid
 	 */

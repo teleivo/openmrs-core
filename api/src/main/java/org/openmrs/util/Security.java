@@ -35,7 +35,7 @@ import org.springframework.util.StringUtils;
 public class Security {
 	
 	/**
-	 * Defined encoding to avoid using default platform charset 
+	 * Defined encoding to avoid using default platform charset
 	 */
 	private static final String encoding = "UTF-8";
 	
@@ -64,13 +64,13 @@ public class Security {
 			throw new APIException("password.cannot.be.null", (Object[]) null);
 		}
 		
-		return hashedPassword.equals(encodeString(passwordToHash))
-		        || hashedPassword.equals(encodeStringSHA1(passwordToHash))
+		return hashedPassword.equals(encodeString(passwordToHash)) || hashedPassword.equals(encodeStringSHA1(passwordToHash))
 		        || hashedPassword.equals(incorrectlyEncodeString(passwordToHash));
 	}
 	
 	/**
 	 * Gets the error message for failing to encode password when the given algorithm was not found
+	 * 
 	 * @param algo algorithm used for encoding
 	 * @return the error message string with algorithm type used
 	 */
@@ -80,8 +80,7 @@ public class Security {
 	}
 	
 	/**
-	/**
-	 * This method will hash <code>strToEncode</code> using the preferred algorithm. Currently,
+	 * /** This method will hash <code>strToEncode</code> using the preferred algorithm. Currently,
 	 * OpenMRS's preferred algorithm is hard coded to be SHA-512.
 	 *
 	 * @param strToEncode string to encode
@@ -216,7 +215,6 @@ public class Security {
 	 * testing and where specifically necessary
 	 *
 	 * @see #encrypt(String)
-	 *
 	 * @param text string to be encrypted
 	 * @param initVector custom init vector byte array
 	 * @param secretKey custom secret key byte array
@@ -260,7 +258,6 @@ public class Security {
 	 * testing and where specifically necessary
 	 *
 	 * @see #decrypt(String)
-	 *
 	 * @param text text to be decrypted
 	 * @param initVector custom init vector byte array
 	 * @param secretKey custom secret key byte array

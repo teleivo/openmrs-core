@@ -26,7 +26,8 @@ import org.openmrs.util.OpenmrsUtil;
 
 /**
  * Handler for storing audio and video for complex obs to the file system. The mime type used is
- * taken from the file name. Media are stored in the location specified by the global property: "obs.complex_obs_dir"
+ * taken from the file name. Media are stored in the location specified by the global property:
+ * "obs.complex_obs_dir"
  *
  * @see org.openmrs.util.OpenmrsConstants#GLOBAL_PROPERTY_COMPLEX_OBS_DIR
  * @since 1.12

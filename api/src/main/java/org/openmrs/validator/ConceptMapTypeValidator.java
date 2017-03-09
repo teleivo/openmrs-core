@@ -53,8 +53,8 @@ public class ConceptMapTypeValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		
 		if (obj == null || !(obj instanceof ConceptMapType)) {
-			throw new IllegalArgumentException("The parameter obj should not be null and must be of type"
-			        + ConceptMapType.class);
+			throw new IllegalArgumentException(
+			        "The parameter obj should not be null and must be of type" + ConceptMapType.class);
 		}
 		
 		ConceptMapType conceptMapType = (ConceptMapType) obj;

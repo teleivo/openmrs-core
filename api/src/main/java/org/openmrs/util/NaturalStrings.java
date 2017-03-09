@@ -83,7 +83,8 @@ public final class NaturalStrings {
 	 * ignores upper/lower case differences.
 	 * </p>
 	 * 
-	 * @return <p>
+	 * @return
+	 *         <p>
 	 *         A string comparator that uses the current locale's order rules and handles embedded
 	 *         numbers correctly.
 	 *         </p>
@@ -100,7 +101,8 @@ public final class NaturalStrings {
 	 * 
 	 * @param collator used for locale specific comparison of text (non-number) subwords - must not
 	 *            be null
-	 * @return <p>
+	 * @return
+	 *         <p>
 	 *         A string comparator that uses the given Collator to compare subwords and handles
 	 *         embedded numbers correctly.
 	 *         </p>
@@ -125,7 +127,8 @@ public final class NaturalStrings {
 	 * Returns a comparator that compares contained numbers based on their numeric values and
 	 * compares other parts based on each character's Unicode value.
 	 * 
-	 * @return <p>
+	 * @return
+	 *         <p>
 	 *         a string comparator that does case-sensitive comparisons on pure ascii strings and
 	 *         handles embedded numbers correctly.
 	 *         </p>
@@ -144,7 +147,8 @@ public final class NaturalStrings {
 	 * differences. <b>Do not use</b> if your app might ever run on any locale that uses more than
 	 * 7-bit ascii characters.
 	 * 
-	 * @return <p>
+	 * @return
+	 *         <p>
 	 *         a string comparator that does case insensitive comparisons on pure ascii strings and
 	 *         handles embedded numbers correctly.
 	 *         </p>

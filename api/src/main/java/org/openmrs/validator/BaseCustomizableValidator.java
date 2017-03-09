@@ -20,6 +20,7 @@ import org.springframework.validation.Validator;
 
 /**
  * This abstract class provides utilities for validators for Customizable subclasses.
+ * 
  * @since 1.9
  */
 public abstract class BaseCustomizableValidator implements Validator {
@@ -45,13 +46,13 @@ public abstract class BaseCustomizableValidator implements Validator {
 					if (at.getMinOccurs() == 1) {
 						errors.rejectValue("activeAttributes", "error.required", new Object[] { at.getName() }, null);
 					} else {
-						errors.rejectValue("activeAttributes", "attribute.error.minOccurs", new Object[] { at.getName(),
-						        at.getMinOccurs() }, null);
+						errors.rejectValue("activeAttributes", "attribute.error.minOccurs",
+						    new Object[] { at.getName(), at.getMinOccurs() }, null);
 					}
 				}
 				if (at.getMaxOccurs() != null && numFound > at.getMaxOccurs()) {
-					errors.rejectValue("activeAttributes", "attribute.error.maxOccurs", new Object[] { at.getName(),
-					        at.getMaxOccurs() }, null);
+					errors.rejectValue("activeAttributes", "attribute.error.maxOccurs",
+					    new Object[] { at.getName(), at.getMaxOccurs() }, null);
 				}
 			}
 		}

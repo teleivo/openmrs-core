@@ -26,17 +26,13 @@ import org.openmrs.util.OpenmrsConstants.PERSON_TYPE;
 import org.openmrs.util.PrivilegeConstants;
 
 /**
- * The ObsService deals with saving and getting Obs to/from the database Usage:
- * 
- * <pre>
+ * The ObsService deals with saving and getting Obs to/from the database Usage: <pre>
  *  ObsService obsService = Context.getObsService();
  * 
  *  // get the obs for patient with internal identifier of 1235
  *  List&lt;Obs&gt; someObsList = obsService.getObservationsByPerson(new Patient(1235));
- * </pre>
- * 
- * There are also a number of convenience methods for extracting obs pertaining to certain Concepts,
- * people, or encounters
+ * </pre> There are also a number of convenience methods for extracting obs pertaining to certain
+ * Concepts, people, or encounters
  * 
  * @see org.openmrs.Obs
  * @see org.openmrs.MimeType
@@ -100,9 +96,9 @@ public interface ObsService extends OpenmrsService {
 	 * @should cascade update to new child obs groups
 	 * @should link original and updated obs
 	 * @should set void reason message to changeMessage
-     * @should not void an Obs with no changes
+	 * @should not void an Obs with no changes
 	 */
-	@Authorized( { PrivilegeConstants.ADD_OBS, PrivilegeConstants.EDIT_OBS })
+	@Authorized({ PrivilegeConstants.ADD_OBS, PrivilegeConstants.EDIT_OBS })
 	public Obs saveObs(Obs obs, String changeMessage) throws APIException;
 	
 	/**
@@ -152,20 +148,20 @@ public interface ObsService extends OpenmrsService {
 	 *            observation (like Orders and ObsGroups)
 	 * @throws APIException
 	 * @see #purgeObs(Obs, boolean)
-	 *
 	 * @should throw APIException if given true cascade
 	 * @should delete any obsGroupMembers before deleting the obs
 	 * @should not delete referenced orders when purging obs
 	 */
 	@Authorized(PrivilegeConstants.DELETE_OBS)
 	public void purgeObs(Obs obs, boolean cascade) throws APIException;
-
+	
 	/**
 	 * Get all Observations for the given person, sorted by obsDatetime ascending. Does not return
 	 * voided observations.
 	 * 
 	 * @param who the user to match on
-	 * @return a List&lt;Obs&gt; object containing all non-voided observations for the specified person
+	 * @return a List&lt;Obs&gt; object containing all non-voided observations for the specified
+	 *         person
 	 * @see #getObservations(List, List, List, List, List, List, List, Integer, Integer, Date, Date,
 	 *      boolean)
 	 * @should get all observations assigned to given person
@@ -184,8 +180,8 @@ public interface ObsService extends OpenmrsService {
 	 * <br>
 	 * Note: to get all observations on a certain date, use:<br>
 	 * Date fromDate = "2009-08-15";<br>
-	 * Date toDate = OpenmrsUtil.lastSecondOfDate(fromDate); List&lt;Obs&gt; obs = getObservations(....,
-	 * fromDate, toDate, ...);
+	 * Date toDate = OpenmrsUtil.lastSecondOfDate(fromDate); List&lt;Obs&gt; obs =
+	 * getObservations(...., fromDate, toDate, ...);
 	 * 
 	 * @param whom List&lt;Person&gt; to restrict obs to (optional)
 	 * @param encounters List&lt;Encounter&gt; to restrict obs to (optional)
@@ -213,12 +209,10 @@ public interface ObsService extends OpenmrsService {
 	/**
 	 * @see org.openmrs.api.ObsService#getObservations(java.util.List, java.util.List,
 	 *      java.util.List, java.util.List, java.util.List, java.util.List, java.util.List,
-	 *      java.lang.Integer, java.lang.Integer, java.util.Date, java.util.Date, boolean)
-	 *
-	 * This method works exactly the same; it only adds accession number search criteria.
-	 * It effectively surpasses the above method; the old one is however kept for backward
-	 * compatibility reasons.
-	 *
+	 *      java.lang.Integer, java.lang.Integer, java.util.Date, java.util.Date, boolean) This
+	 *      method works exactly the same; it only adds accession number search criteria. It
+	 *      effectively surpasses the above method; the old one is however kept for backward
+	 *      compatibility reasons.
 	 * @param whom List&lt;Person&gt; to restrict obs to (optional)
 	 * @param encounters List&lt;Encounter&gt; to restrict obs to (optional)
 	 * @param questions List&lt;Concept&gt; to restrict the obs to (optional)
@@ -270,8 +264,8 @@ public interface ObsService extends OpenmrsService {
 	 * <br>
 	 * Note: to get all observations count on a certain date, use:<br>
 	 * Date fromDate = "2009-08-15";<br>
-	 * Date toDate = OpenmrsUtil.lastSecondOfDate(fromDate); List&lt;Obs&gt; obs = getObservations(....,
-	 * fromDate, toDate, ...);
+	 * Date toDate = OpenmrsUtil.lastSecondOfDate(fromDate); List&lt;Obs&gt; obs =
+	 * getObservations(...., fromDate, toDate, ...);
 	 * 
 	 * @param whom List&lt;Person&gt; to restrict obs to (optional)
 	 * @param encounters List&lt;Encounter&gt; to restrict obs to (optional)
@@ -296,12 +290,9 @@ public interface ObsService extends OpenmrsService {
 	/**
 	 * @see org.openmrs.api.ObsService#getObservationCount(java.util.List, java.util.List,
 	 *      java.util.List, java.util.List, java.util.List, java.util.List, java.lang.Integer,
-	 *      java.util.Date, java.util.Date, boolean)
-	 *
-	 * This method works exactly the same; it only adds accession number search criteria.
-	 * It effectively surpasses the above method; the old one is however kept for backward
-	 * compatibility reasons.
-	 *
+	 *      java.util.Date, java.util.Date, boolean) This method works exactly the same; it only
+	 *      adds accession number search criteria. It effectively surpasses the above method; the
+	 *      old one is however kept for backward compatibility reasons.
 	 * @param whom List&lt;Person&gt; to restrict obs to (optional)
 	 * @param encounters List&lt;Encounter&gt; to restrict obs to (optional)
 	 * @param questions List&lt;Concept&gt; to restrict the obs to (optional)
@@ -367,17 +358,18 @@ public interface ObsService extends OpenmrsService {
 	
 	/**
 	 * Get a complex observation. If obs.isComplex() is true, then returns an Obs with its
-	 * ComplexData. Otherwise returns a simple Obs. 
+	 * ComplexData. Otherwise returns a simple Obs.
+	 * 
 	 * @param obsId
 	 * @return Obs with a ComplexData
 	 * @since 1.5
 	 * @should fill in complex data object for complex obs
 	 * @should return normal obs for non complex obs
 	 * @should not fail with null view
-	 * @deprecated as of 2.1.0, use {@link #getObs(Integer)} 
+	 * @deprecated as of 2.1.0, use {@link #getObs(Integer)}
 	 */
 	@Deprecated
-	@Authorized( { PrivilegeConstants.GET_OBS })
+	@Authorized({ PrivilegeConstants.GET_OBS })
 	public Obs getComplexObs(Integer obsId, String view) throws APIException;
 	
 	/**
@@ -392,9 +384,8 @@ public interface ObsService extends OpenmrsService {
 	public ComplexObsHandler getHandler(String key) throws APIException;
 	
 	/**
-	 * Get the ComplexObsHandler associated with a complex observation
-	 * Returns the ComplexObsHandler.
-	 * Returns null if the Obs.isComplexObs() is false or there is an error
+	 * Get the ComplexObsHandler associated with a complex observation Returns the
+	 * ComplexObsHandler. Returns null if the Obs.isComplexObs() is false or there is an error
 	 * instantiating the handler class.
 	 *
 	 * @param obs A complex Obs.

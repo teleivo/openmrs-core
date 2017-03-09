@@ -140,8 +140,8 @@ public class OrderValidator implements Validator {
 	}
 	
 	private void validateScheduledDate(Order order, Errors errors) {
-		boolean isUrgencyOnScheduledDate = (order.getUrgency() != null && order.getUrgency().equals(
-		    Order.Urgency.ON_SCHEDULED_DATE));
+		boolean isUrgencyOnScheduledDate = (order.getUrgency() != null
+		        && order.getUrgency().equals(Order.Urgency.ON_SCHEDULED_DATE));
 		if (order.getScheduledDate() != null && !isUrgencyOnScheduledDate) {
 			errors.rejectValue("urgency", "Order.error.urgencyNotOnScheduledDate");
 		}

@@ -22,15 +22,11 @@ import org.springframework.core.type.filter.TypeFilter;
  * accidentally included on the classpath (like in an omod). <br>
  * This filter returns true for any class that has a super class that is a Test like
  * BaseContextSensitiveTest or TestCase. <br>
- * Example usage:
- * 
- * <pre>
+ * Example usage: <pre>
  *  &lt;context:component-scan base-package="org.openmrs"&gt;
  *    &lt;context:exclude-filter type="custom" expression="org.openmrs.util.TestTypeFilter"/&gt;
  *  &lt;/context:component-scan&gt;
- * </pre>
- * 
- * (Look at the applicationContext-service.xml file to see this in action)
+ * </pre> (Look at the applicationContext-service.xml file to see this in action)
  */
 public class TestTypeFilter implements TypeFilter {
 	

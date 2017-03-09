@@ -29,9 +29,8 @@ import org.springframework.util.Assert;
 
 /**
  * Handler for storing files for complex obs to the file system. Files are stored in the location
- * specified by the global property: "obs.complex_obs_dir"
- * The in coming data are either char[] or java.io.Reader
- *
+ * specified by the global property: "obs.complex_obs_dir" The in coming data are either char[] or
+ * java.io.Reader
  */
 public class TextHandler extends AbstractHandler implements ComplexObsHandler {
 	
@@ -50,8 +49,6 @@ public class TextHandler extends AbstractHandler implements ComplexObsHandler {
 	}
 	
 	/**
-	 * 
-	 * 
 	 * @see org.openmrs.obs.ComplexObsHandler#getObs(org.openmrs.Obs, java.lang.String)
 	 */
 	@Override
@@ -69,8 +66,9 @@ public class TextHandler extends AbstractHandler implements ComplexObsHandler {
 			originalFilename = originalFilename.replaceAll(",", "").replaceAll(" ", "").replaceAll("file$", "");
 			
 			try {
-				complexData = ComplexObsHandler.RAW_VIEW.equals(view) ? new ComplexData(originalFilename, OpenmrsUtil
-				        .getFileAsBytes(file)) : new ComplexData(originalFilename, OpenmrsUtil.getFileAsString(file));
+				complexData = ComplexObsHandler.RAW_VIEW.equals(view)
+				        ? new ComplexData(originalFilename, OpenmrsUtil.getFileAsBytes(file))
+				        : new ComplexData(originalFilename, OpenmrsUtil.getFileAsString(file));
 			}
 			catch (IOException e) {
 				log.error("Trying to read file: " + file.getAbsolutePath(), e);
@@ -99,8 +97,6 @@ public class TextHandler extends AbstractHandler implements ComplexObsHandler {
 	}
 	
 	/**
-	 * 
-	 * 
 	 * @see org.openmrs.obs.ComplexObsHandler#saveObs(org.openmrs.Obs)
 	 */
 	@Override

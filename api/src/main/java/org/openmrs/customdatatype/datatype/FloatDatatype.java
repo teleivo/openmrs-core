@@ -15,11 +15,12 @@ import org.springframework.stereotype.Component;
 
 /**
  * Datatype for float, represented by java.lang.Float
+ * 
  * @since 2.0
  */
 @Component
 public class FloatDatatype extends SerializingCustomDatatype<Float> {
-
+	
 	/**
 	 * @see SerializingCustomDatatype#serialize(Object)
 	 */
@@ -30,7 +31,7 @@ public class FloatDatatype extends SerializingCustomDatatype<Float> {
 		}
 		return typedValue.toString();
 	}
-
+	
 	/**
 	 * @see SerializingCustomDatatype#deserialize(String)
 	 */

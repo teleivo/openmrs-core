@@ -41,8 +41,8 @@ public class Result extends ArrayList<Result> {
 	 * into the other datatypes. To promote flexibility and maximize re-usability of logic rules,
 	 * the value of a result can be controlled individually for each datatype &mdash; i.e., specific
 	 * datatype representations of a single result can be overridden. For example, a result could
-	 * have a <em>numeric</em> value of 0.15 and its text value could be overridden to be
-	 * "15 percent" or "Fifteen percent."
+	 * have a <em>numeric</em> value of 0.15 and its text value could be overridden to be "15
+	 * percent" or "Fifteen percent."
 	 */
 	public enum Datatype {
 		/**
@@ -158,8 +158,8 @@ public class Result extends ArrayList<Result> {
 	 * @param obs
 	 */
 	public Result(Obs obs) {
-		this(obs.getObsDatetime(), null, obs.getValueAsBoolean(), obs.getValueCoded(), obs.getValueDatetime(), obs
-		        .getValueNumeric(), obs.getValueText(), obs);
+		this(obs.getObsDatetime(), null, obs.getValueAsBoolean(), obs.getValueCoded(), obs.getValueDatetime(),
+		        obs.getValueNumeric(), obs.getValueText(), obs);
 		
 		Concept concept = obs.getConcept();
 		ConceptDatatype conceptDatatype = null;
@@ -265,9 +265,7 @@ public class Result extends ArrayList<Result> {
 	 * accepting the default translation of one datatype into another (e.g., a date translated
 	 * automatically into string format), this contructor allows the various datatype
 	 * representations of the result to be individually controlled. Any values set to <em>null</em>
-	 * will yield the natural translation of the default datatype. For example,
-	 * 
-	 * <pre>
+	 * will yield the natural translation of the default datatype. For example, <pre>
 	 * Result result = new Result(new Date(), 2.5);
 	 * assertEqualtes(&quot;2.5&quot;, result.toString());
 	 * 
@@ -470,8 +468,8 @@ public class Result extends ArrayList<Result> {
 					return (valueBoolean == null ? false : valueBoolean);
 				case CODED:
 					return (valueCoded == null ? false : true); // TODO: return
-					// false for "FALSE"
-					// concept
+				// false for "FALSE"
+				// concept
 				case DATETIME:
 					return (valueDatetime == null ? false : true);
 				case NUMERIC:
@@ -575,7 +573,8 @@ public class Result extends ArrayList<Result> {
 	 *         <tr>
 	 *         <td>TEXT</td>
 	 *         <td>numeric value of text if it can be parsed into a number<br>
-	 *         otherwise zero (0)</td> </tr>
+	 *         otherwise zero (0)</td>
+	 *         </tr>
 	 *         </table>
 	 */
 	public Double toNumber() {
@@ -658,7 +657,8 @@ public class Result extends ArrayList<Result> {
 		if (this.size() == 1) {
 			return this.get(0).toObject();
 		}
-		throw new LogicException("This result represents more than one result, you cannot call toObject on multiple results");
+		throw new LogicException(
+		        "This result represents more than one result, you cannot call toObject on multiple results");
 	}
 	
 	/**
@@ -758,7 +758,6 @@ public class Result extends ArrayList<Result> {
 		List<Result> uniqueList = new ArrayList<Result>(map.keySet());
 		return new Result(uniqueList);
 	}
-	
 	
 	/**
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -895,7 +894,8 @@ public class Result extends ArrayList<Result> {
 		}
 		
 		for (Result r : this) {
-			if ((last.getResultDate() == null || (r.getResultDate() != null && r.getResultDate().after(last.getResultDate())))) {
+			if ((last.getResultDate() == null
+			        || (r.getResultDate() != null && r.getResultDate().after(last.getResultDate())))) {
 				last = r;
 			}
 		}

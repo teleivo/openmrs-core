@@ -69,8 +69,8 @@ public interface OrderDAO {
 	 * @see org.openmrs.api.OrderService#getOrders(org.openmrs.Patient, org.openmrs.CareSetting,
 	 *      org.openmrs.OrderType, boolean)
 	 */
-	public List<Order> getOrders(Patient patient, CareSetting careSetting, List<OrderType> orderTypes,
-	        boolean includeVoided, boolean includeDiscontinuationOrders);
+	public List<Order> getOrders(Patient patient, CareSetting careSetting, List<OrderType> orderTypes, boolean includeVoided,
+	        boolean includeDiscontinuationOrders);
 	
 	/**
 	 * @param uuid
@@ -145,7 +145,8 @@ public interface OrderDAO {
 	List<OrderFrequency> getOrderFrequencies(boolean includeRetired);
 	
 	/**
-	 * @see org.openmrs.api.OrderService#getOrderFrequencies(String, java.util.Locale, boolean, boolean)
+	 * @see org.openmrs.api.OrderService#getOrderFrequencies(String, java.util.Locale, boolean,
+	 *      boolean)
 	 */
 	public List<OrderFrequency> getOrderFrequencies(String searchPhrase, Locale locale, boolean exactLocale,
 	        boolean includeRetired);
@@ -234,7 +235,7 @@ public interface OrderDAO {
 	 * @return a list of orders from the database
 	 */
 	public List<Object[]> getOrderFromDatabase(Order order, boolean isOrderADrugOrder) throws APIException;
-
+	
 	/**
 	 * Saves an orderGroup to the database
 	 *

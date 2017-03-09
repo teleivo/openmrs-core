@@ -153,9 +153,9 @@ public class ProgramWorkflow extends BaseOpenmrsMetadata {
 	}
 	
 	/**
-	 * Returns a Set&lt;{@link ProgramWorkflowState}&gt; including all non-retired ProgramWorkflowStates
-	 * and all retired ProgramWorkflowStates in this ProgramWorkflow if <code>includeRetired</code>
-	 * is true
+	 * Returns a Set&lt;{@link ProgramWorkflowState}&gt; including all non-retired
+	 * ProgramWorkflowStates and all retired ProgramWorkflowStates in this ProgramWorkflow if
+	 * <code>includeRetired</code> is true
 	 * 
 	 * @param includeRetired - if false, returns only non-retired {@link ProgramWorkflowState}
 	 *            objects in this ProgramWorkflow
@@ -172,10 +172,11 @@ public class ProgramWorkflow extends BaseOpenmrsMetadata {
 	}
 	
 	/**
-	 * Returns a Set&lt;{@link ProgramWorkflowState}&gt; including all ProgramWorkflowStates, sorted by
-	 * {@link ConceptName}
+	 * Returns a Set&lt;{@link ProgramWorkflowState}&gt; including all ProgramWorkflowStates, sorted
+	 * by {@link ConceptName}
 	 * 
-	 * @return Set&lt;ProgramWorkflowState&gt; - all ProgramWorkflowStates, sorted by {@link ConceptName}
+	 * @return Set&lt;ProgramWorkflowState&gt; - all ProgramWorkflowStates, sorted by
+	 *         {@link ConceptName}
 	 * @should sort names containing numbers intelligently
 	 */
 	public Set<ProgramWorkflowState> getSortedStates() {
@@ -202,8 +203,8 @@ public class ProgramWorkflow extends BaseOpenmrsMetadata {
 	 * ProgramWorkflowStates, for the passed {@link PatientProgram} ordered by {@link ConceptName}
 	 * 
 	 * @param patientProgram - The PatientProgram to check
-	 * @return List&lt;ProgramWorkflowState&gt; - all possible next ProgramWorkflowStates, for the passed
-	 *         {@link PatientProgram} ordered by {@link ConceptName}
+	 * @return List&lt;ProgramWorkflowState&gt; - all possible next ProgramWorkflowStates, for the
+	 *         passed {@link PatientProgram} ordered by {@link ConceptName}
 	 */
 	public List<ProgramWorkflowState> getPossibleNextStates(PatientProgram patientProgram) {
 		List<ProgramWorkflowState> ret = new ArrayList<ProgramWorkflowState>();

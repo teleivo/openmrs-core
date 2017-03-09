@@ -21,7 +21,6 @@ import org.openmrs.api.db.OpenmrsDataDAO;
  * Abstract class implementing basic data access methods for BaseOpenmrsData persistents
  *
  * @since 1.10
- *
  * @param <T>
  */
 public class HibernateOpenmrsDataDAO<T extends BaseOpenmrsData> extends HibernateOpenmrsObjectDAO<T> implements OpenmrsDataDAO<T> {

@@ -19,8 +19,8 @@ import org.openmrs.api.context.Context;
 import org.springframework.util.StringUtils;
 
 /**
- * Property editor for {@link LocationTag}s
- * In version 1.9, added ability for this to also retrieve objects by uuid
+ * Property editor for {@link LocationTag}s In version 1.9, added ability for this to also retrieve
+ * objects by uuid
  * 
  * @since 1.7
  */
@@ -34,7 +34,6 @@ public class LocationTagEditor extends PropertyEditorSupport {
 	/**
 	 * @should set using id
 	 * @should set using uuid
-	 * 
 	 * @see java.beans.PropertyEditorSupport#setAsText(java.lang.String)
 	 */
 	@Override

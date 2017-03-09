@@ -27,9 +27,7 @@ import org.springframework.validation.ObjectError;
  * <br>
  * The validators are added to this class in the spring applicationContext-service.xml file. <br>
  * <br>
- * Example usage:
- *
- * <pre>
+ * Example usage: <pre>
  *  public Order saveOrder(order) {
  *  	ValidateUtil.validate(order);
  *  	dao.saveOrder(order);
@@ -39,7 +37,7 @@ import org.springframework.validation.ObjectError;
  * @since 1.5
  */
 public class ValidateUtil {
-
+	
 	/**
 	 * This is set in {@link Context#checkCoreDataset()} class
 	 */
@@ -58,7 +56,7 @@ public class ValidateUtil {
 		if (disableValidation) {
 			return;
 		}
-
+		
 		Errors errors = new BindException(obj, "");
 		
 		Context.getAdministrationService().validate(obj, errors);
@@ -94,7 +92,7 @@ public class ValidateUtil {
 		if (disableValidation) {
 			return;
 		}
-
+		
 		Context.getAdministrationService().validate(obj, errors);
 	}
 	
@@ -113,14 +111,15 @@ public class ValidateUtil {
 		if (disableValidation) {
 			return;
 		}
-
+		
 		Assert.notNull(errors, "Errors object must not be null");
 		for (String field : fields) {
 			Object value = errors.getFieldValue(field);
 			if (value == null || !(value instanceof String)) {
 				continue;
 			}
-			int length = Context.getAdministrationService().getMaximumPropertyLength((Class<? extends OpenmrsObject>) aClass, field);
+			int length = Context.getAdministrationService().getMaximumPropertyLength((Class<? extends OpenmrsObject>) aClass,
+			    field);
 			if (length == -1) {
 				return;
 			}
@@ -129,13 +128,13 @@ public class ValidateUtil {
 			}
 		}
 	}
-
+	
 	public static Boolean getDisableValidation() {
 		return disableValidation;
 	}
-
+	
 	public static void setDisableValidation(Boolean disableValidation) {
 		ValidateUtil.disableValidation = disableValidation;
 	}
-
+	
 }

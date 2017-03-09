@@ -59,8 +59,8 @@ public class CheckDrugOrderUnitAndFrequencyTextNotMappedToConcepts implements Cu
 			}
 		}
 		catch (Exception e) {
-			throw new CustomPreconditionErrorException("An error occurred while checking for unmapped free text drug "
-			        + "order dose units and frequencies", e);
+			throw new CustomPreconditionErrorException(
+			        "An error occurred while checking for unmapped free text drug " + "order dose units and frequencies", e);
 		}
 	}
 	

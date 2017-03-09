@@ -17,8 +17,9 @@ import org.openmrs.customdatatype.NotYetPersistedException;
 import org.openmrs.util.OpenmrsUtil;
 
 /**
- * Abstract base implementation of {@link Attribute}. Actual implementations should be able to extend this
- * class, and have very little of their own code.  
+ * Abstract base implementation of {@link Attribute}. Actual implementations should be able to
+ * extend this class, and have very little of their own code.
+ * 
  * @param <AT>
  * @param <OwningType>
  * @since 1.9
@@ -127,8 +128,8 @@ public abstract class BaseAttribute<AT extends AttributeType, OwningType extends
 	}
 	
 	/**
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 * Note: this comparator imposes orderings that are inconsistent with equals.
+	 * @see java.lang.Comparable#compareTo(java.lang.Object) Note: this comparator imposes orderings
+	 *      that are inconsistent with equals.
 	 */
 	@SuppressWarnings("squid:S1210")
 	@Override

@@ -43,7 +43,7 @@ public class ConceptDatatypeValidator implements Validator {
 	 * 
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should pass validation if description is null or empty or whitespace	 *      
+	 * @should pass validation if description is null or empty or whitespace *
 	 * @should fail validation if name is null or empty or whitespace
 	 * @should pass validation if all required fields have proper values
 	 * @should pass validation if field lengths are correct

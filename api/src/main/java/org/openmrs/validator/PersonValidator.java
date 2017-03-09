@@ -169,7 +169,7 @@ public class PersonValidator implements Validator {
 			errors.rejectValue(dateField, "error.date.nonsensical");
 		}
 	}
-
+	
 	/**
 	 * Rejects a death date if it is before birth date
 	 * 
@@ -182,7 +182,5 @@ public class PersonValidator implements Validator {
 			errors.rejectValue("deathDate", "error.deathdate.before.birthdate");
 		}
 	}
-
-
 	
 }

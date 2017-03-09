@@ -49,7 +49,8 @@ import org.springframework.util.StringUtils;
  * See /metadata/api/spring/applicationContext-service.xml for the mapping of this bean. <br>
  * <br>
  * For an Openmrs Service to use this AOP advice class and take advantage of its automatic variable
- * setting, it must have "&lt;ref local="requiredDataInterceptor"/&gt;" in its "preInterceptors".<br>
+ * setting, it must have "&lt;ref local="requiredDataInterceptor"/&gt;" in its
+ * "preInterceptors".<br>
  * <br>
  * By default, this should take care of any child collections on the object being acted on. Any
  * child collection of {@link OpenmrsObject}s will get "handled" (i.e., void data set up, save data
@@ -182,17 +183,13 @@ public class RequiredDataAdvice implements MethodBeforeAdvice {
 	}
 	
 	/**
-	 * Convenience method to change the given method to make sure it ends with
-	 * the given class name. <br>
+	 * Convenience method to change the given method to make sure it ends with the given class name.
+	 * <br>
 	 * This will recurse to the super class to check that as well.
 	 *
-	 * @param method
-	 *            the method name (like savePatient, voidEncounter,
-	 *            retireConcept)
-	 * @param mainArgumentClass
-	 *            class to compare
-	 * @return true if method's name ends with the mainArgumentClasses simple
-	 *         name
+	 * @param method the method name (like savePatient, voidEncounter, retireConcept)
+	 * @param mainArgumentClass class to compare
+	 * @return true if method's name ends with the mainArgumentClasses simple name
 	 */
 	private boolean methodNameEndsWithClassName(Method method, Class<?> mainArgumentClass) {
 		if (method.getName().endsWith(mainArgumentClass.getSimpleName())) {
@@ -209,8 +206,9 @@ public class RequiredDataAdvice implements MethodBeforeAdvice {
 	}
 	
 	/**
-	 * Convenience method for {@link #recursivelyHandle(Class, OpenmrsObject, User, Date, String, List)}.
-	 * Calls that method with the current user and the current Date.
+	 * Convenience method for
+	 * {@link #recursivelyHandle(Class, OpenmrsObject, User, Date, String, List)}. Calls that method
+	 * with the current user and the current Date.
 	 *
 	 * @param <H> the type of Handler to get (should extend {@link RequiredDataHandler})
 	 * @param handlerType the type of Handler to get (should extend {@link RequiredDataHandler})
@@ -332,17 +330,17 @@ public class RequiredDataAdvice implements MethodBeforeAdvice {
 			if (field.isAnnotationPresent(AllowDirectAccess.class)) {
 				throw new APIException("unable.get.field", new Object[] { fieldName, openmrsObject.getClass() });
 			} else {
-				throw new APIException("unable.getter.method", new Object[] { "use", getterName, fieldName,
-				        openmrsObject.getClass() });
+				throw new APIException("unable.getter.method",
+				        new Object[] { "use", getterName, fieldName, openmrsObject.getClass() });
 			}
 		}
 		catch (InvocationTargetException e) {
-			throw new APIException("unable.getter.method", new Object[] { "run", getterName, fieldName,
-			        openmrsObject.getClass() });
+			throw new APIException("unable.getter.method",
+			        new Object[] { "run", getterName, fieldName, openmrsObject.getClass() });
 		}
 		catch (NoSuchMethodException e) {
-			throw new APIException("unable.getter.method", new Object[] { "find", getterName, fieldName,
-			        openmrsObject.getClass() });
+			throw new APIException("unable.getter.method",
+			        new Object[] { "find", getterName, fieldName, openmrsObject.getClass() });
 		}
 	}
 	
@@ -366,8 +364,8 @@ public class RequiredDataAdvice implements MethodBeforeAdvice {
 	}
 	
 	/**
-	 * Checks if the given field is annotated with a @DisableHandler annotation to specify
-	 * that the given handlerType should be disabled
+	 * Checks if the given field is annotated with a @DisableHandler annotation to specify that the
+	 * given handlerType should be disabled
 	 *
 	 * @param handlerType
 	 * @param field

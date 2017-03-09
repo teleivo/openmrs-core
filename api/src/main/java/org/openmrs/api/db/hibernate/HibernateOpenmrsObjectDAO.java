@@ -19,10 +19,9 @@ import org.openmrs.api.db.OpenmrsObjectDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * 
  * Generic base class for all OpenMrs DAOs
+ * 
  * @since 1.10
- *
  */
 public class HibernateOpenmrsObjectDAO<T extends BaseOpenmrsObject> implements OpenmrsObjectDAO<T> {
 	
@@ -49,7 +48,7 @@ public class HibernateOpenmrsObjectDAO<T extends BaseOpenmrsObject> implements O
 		return (T) crit.add(Restrictions.eq("uuid", uuid)).uniqueResult();
 	}
 	
-	/** 
+	/**
 	 * @see org.openmrs.api.db.OpenmrsObjectDAO#delete(org.openmrs.BaseOpenmrsObject)
 	 */
 	@Override

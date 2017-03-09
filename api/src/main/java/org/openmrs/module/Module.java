@@ -304,8 +304,8 @@ public final class Module {
 	}
 	
 	/**
-	 * @param requiredModulesMap <code>Map&lt;String,String&gt;</code> of the <code>requiredModule</code>s
-	 *            to set
+	 * @param requiredModulesMap <code>Map&lt;String,String&gt;</code> of the
+	 *            <code>requiredModule</code>s to set
 	 * @since 1.5
 	 */
 	public void setRequiredModulesMap(Map<String, String> requiredModulesMap) {
@@ -325,6 +325,7 @@ public final class Module {
 	
 	/**
 	 * Sets modules that must start after this module
+	 * 
 	 * @param startBeforeModulesMap the startedBefore modules to set
 	 */
 	public void setStartBeforeModulesMap(Map<String, String> startBeforeModulesMap) {
@@ -333,6 +334,7 @@ public final class Module {
 	
 	/**
 	 * Gets modules which should start after this
+	 * 
 	 * @return map where key is module name and value is module version
 	 */
 	public Map<String, String> getStartBeforeModulesMap() {
@@ -341,6 +343,7 @@ public final class Module {
 	
 	/**
 	 * Gets names of modules which should start after this
+	 * 
 	 * @since 1.11
 	 * @return list of module names or null
 	 */
@@ -481,11 +484,10 @@ public final class Module {
 	
 	/**
 	 * @return the extensions
-	 *
 	 * @should not expand extensionNames if extensionNames is null
 	 * @should not expand extensionNames if extensionNames is empty
 	 * @should not expand extensionNames if extensions matches extensionNames
-	 * @should expand extensionNames if extensions does not match extensionNames 
+	 * @should expand extensionNames if extensions does not match extensionNames
 	 */
 	public List<Extension> getExtensions() {
 		if (extensionsMatchNames()) {
@@ -520,10 +522,10 @@ public final class Module {
 		}
 		this.extensionNames = map;
 	}
-
+	
 	/**
-	 * Tests whether extensions match the contents of extensionNames.  Used to determine
-	 * if expandExtensionNames should to be called.<br>
+	 * Tests whether extensions match the contents of extensionNames. Used to determine if
+	 * expandExtensionNames should to be called.<br>
 	 *
 	 * @return a boolean for whether extensions match the contents of extensionNames
 	 */
@@ -534,7 +536,7 @@ public final class Module {
 					return false;
 				}
 			}
-
+			
 			if (extensions.size() != extensionNames.size()) {
 				return false;
 			}
@@ -544,7 +546,8 @@ public final class Module {
 	}
 	
 	/**
-	 * Expand the temporary extensionNames map of pointid-classname to full pointid-classobject. <br>
+	 * Expand the temporary extensionNames map of pointid-classname to full pointid-classobject.
+	 * <br>
 	 * This has to be done after the fact because when the pointid-classnames are parsed, the
 	 * module's objects aren't fully realized yet and so not all classes can be loaded. <br>
 	 * <br>
@@ -554,8 +557,8 @@ public final class Module {
 	private List<Extension> expandExtensionNames() {
 		ModuleClassLoader moduleClsLoader = ModuleFactory.getModuleClassLoader(this);
 		if (moduleClsLoader == null) {
-			log.debug(String.format("Module class loader is not available, maybe the module %s is stopped/stopping",
-			    getName()));
+			log.debug(
+			    String.format("Module class loader is not available, maybe the module %s is stopped/stopping", getName()));
 		} else if (!extensionsMatchNames()) {
 			extensions.clear();
 			for (Map.Entry<String, String> entry : extensionNames.entrySet()) {
@@ -676,6 +679,7 @@ public final class Module {
 	
 	/**
 	 * Packages to scan for classes with JPA annotated classes.
+	 * 
 	 * @return the set of packages to scan
 	 * @since 1.9.2, 1.10
 	 */
@@ -741,7 +745,6 @@ public final class Module {
 	 * @param exceptionMessage optional. the default message to show on the first line of the error
 	 *            message
 	 * @param t throwable stacktrace to include in the error message
-	 *
 	 * @should throw exception when throwable is null
 	 * @should set StartupErrorMessage when exceptionMessage is null
 	 * @should append throwable's message to exceptionMessage
@@ -785,10 +788,10 @@ public final class Module {
 		
 		return moduleId;
 	}
-
+	
 	/*
 	 * @should dispose all classInstances, not AdvicePoints
-	 */	
+	 */
 	public void disposeAdvicePointsClassInstance() {
 		if (advicePoints == null) {
 			return;

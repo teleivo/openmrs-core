@@ -197,9 +197,7 @@ public class UserContext implements Serializable {
 	
 	/**
 	 * Gives the given privilege to all calls to hasPrivilege. This method was visualized as being
-	 * used as follows (try/finally is important):
-	 *
-	 * <pre>
+	 * used as follows (try/finally is important): <pre>
 	 * try {
 	 *   Context.addProxyPrivilege(&quot;AAA&quot;);
 	 *   Context.get*Service().methodRequiringAAAPrivilege();
@@ -350,7 +348,8 @@ public class UserContext implements Serializable {
 		
 		anonymousRole = Context.getUserService().getRole(RoleConstants.ANONYMOUS);
 		if (anonymousRole == null) {
-			throw new RuntimeException("Database out of sync with code: " + RoleConstants.ANONYMOUS + " role does not exist");
+			throw new RuntimeException(
+			        "Database out of sync with code: " + RoleConstants.ANONYMOUS + " role does not exist");
 		}
 		
 		return anonymousRole;
@@ -370,8 +369,8 @@ public class UserContext implements Serializable {
 		
 		authenticatedRole = Context.getUserService().getRole(RoleConstants.AUTHENTICATED);
 		if (authenticatedRole == null) {
-			throw new RuntimeException("Database out of sync with code: " + RoleConstants.AUTHENTICATED
-			        + " role does not exist");
+			throw new RuntimeException(
+			        "Database out of sync with code: " + RoleConstants.AUTHENTICATED + " role does not exist");
 		}
 		
 		return authenticatedRole;
@@ -434,7 +433,8 @@ public class UserContext implements Serializable {
 							this.locationId = null;
 						}
 						log.warn("The value of the default Location property of the user with id:" + this.user.getUserId()
-						        + " should be an integer", e);
+						        + " should be an integer",
+						    e);
 					}
 				}
 			} else {
@@ -450,7 +450,7 @@ public class UserContext implements Serializable {
 			String locale = this.user.getUserProperty(OpenmrsConstants.USER_PROPERTY_DEFAULT_LOCALE);
 			if (StringUtils.isNotBlank(locale)) {
 				Locale userLocale = LocaleUtility.fromSpecification(locale);
-				if(LocaleUtility.isValid(userLocale)){
+				if (LocaleUtility.isValid(userLocale)) {
 					this.setLocale(userLocale);
 				}
 			}

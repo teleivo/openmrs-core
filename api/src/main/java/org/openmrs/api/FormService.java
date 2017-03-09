@@ -176,7 +176,7 @@ public interface FormService extends OpenmrsService {
 	 */
 	@Authorized(PrivilegeConstants.GET_FORMS)
 	public List<Form> getPublishedForms() throws APIException;
-		
+	
 	/**
 	 * Audit form, consolidate similar fields
 	 * 
@@ -245,7 +245,7 @@ public interface FormService extends OpenmrsService {
 	 */
 	@Authorized(PrivilegeConstants.MANAGE_FORMS)
 	public void purgeForm(Form form, boolean cascade) throws APIException;
-		
+	
 	/**
 	 * Get all field types in the database including the retired ones
 	 * 
@@ -291,6 +291,7 @@ public interface FormService extends OpenmrsService {
 	
 	/**
 	 * Get FieldType by its name
+	 * 
 	 * @since 1.11
 	 * @param name
 	 * @return field type or null
@@ -635,7 +636,8 @@ public interface FormService extends OpenmrsService {
 	public void purgeFormResource(FormResource formResource) throws APIException;
 	
 	/**
-	 * Checks if the forms are locked, and if they are throws an exception when saving or deleting a form
+	 * Checks if the forms are locked, and if they are throws an exception when saving or deleting a
+	 * form
 	 * 
 	 * @throws FormsLockedException
 	 */

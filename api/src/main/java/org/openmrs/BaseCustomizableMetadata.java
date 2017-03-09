@@ -20,7 +20,9 @@ import org.openmrs.customdatatype.CustomValueDescriptor;
 import org.openmrs.customdatatype.Customizable;
 
 /**
- * Extension of {@link org.openmrs.BaseOpenmrsMetadata} for classes that support customization via user-defined attributes.
+ * Extension of {@link org.openmrs.BaseOpenmrsMetadata} for classes that support customization via
+ * user-defined attributes.
+ * 
  * @param <A> the type of attribute held
  * @since 1.9
  */
@@ -88,12 +90,12 @@ public abstract class BaseCustomizableMetadata<A extends Attribute> extends Base
 	}
 	
 	/**
-	 * Convenience method that voids all existing attributes of the given type, and sets this new one.
-	 * TODO fail if minOccurs &gt; 1
-	 * TODO decide whether this should require maxOccurs=1
-	 * @should void the attribute if an attribute with same attribute type already exists and the maxOccurs is set to 1
+	 * Convenience method that voids all existing attributes of the given type, and sets this new
+	 * one. TODO fail if minOccurs &gt; 1 TODO decide whether this should require maxOccurs=1
+	 * 
+	 * @should void the attribute if an attribute with same attribute type already exists and the
+	 *         maxOccurs is set to 1
 	 * @should work for attributes with datatypes whose values are stored in other tables
-	 *
 	 * @param attribute
 	 */
 	public void setAttribute(A attribute) {

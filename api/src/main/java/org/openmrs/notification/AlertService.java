@@ -20,7 +20,6 @@ import org.openmrs.util.PrivilegeConstants;
 
 /**
  * Contains methods pertaining to creating/deleting/voiding Alerts in the system Use:<br>
- * 
  * <pre>
  *   Alert alert = new Alert();
  *   alert.set___(___);
@@ -81,8 +80,8 @@ public interface AlertService extends OpenmrsService {
 	/**
 	 * Find the alerts that are not read and have not expired for a user This will probably be the
 	 * most commonly called method If null is passed in for <code>user</code>, find alerts for the
-	 * currently authenticated user. If no user is authenticated, search on "new
-	 * User()" (for "Anonymous" role alert possibilities)
+	 * currently authenticated user. If no user is authenticated, search on "new User()" (for
+	 * "Anonymous" role alert possibilities)
 	 * 
 	 * @param user the user that is assigned to the returned alerts
 	 * @return alerts that are unread and not expired

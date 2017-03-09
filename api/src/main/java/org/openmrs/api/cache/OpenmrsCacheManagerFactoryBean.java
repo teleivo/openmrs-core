@@ -19,31 +19,25 @@ import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.config.CacheConfiguration;
 
 /**
- * This class creates cache configurations from apiCacheConfig.properties files in the classpath. This file should be
- * created in modules resource directory only. To configure cache in openmrs-core go to ehcache-api.xml.
- * If the configuration already exists it won't be overridden.
- * Example content for apiCacheConfig.properties:
- * userSearchLocales.maxElementsInMemory=500
- * userSearchLocales.eternal=false
- * userSearchLocales.timeToIdleSeconds=300
- * userSearchLocales.timeToLiveSeconds=300
- * userSearchLocales.memoryStoreEvictionPolicy=LRU
+ * This class creates cache configurations from apiCacheConfig.properties files in the classpath.
+ * This file should be created in modules resource directory only. To configure cache in
+ * openmrs-core go to ehcache-api.xml. If the configuration already exists it won't be overridden.
+ * Example content for apiCacheConfig.properties: userSearchLocales.maxElementsInMemory=500
+ * userSearchLocales.eternal=false userSearchLocales.timeToIdleSeconds=300
+ * userSearchLocales.timeToLiveSeconds=300 userSearchLocales.memoryStoreEvictionPolicy=LRU
  */
 public class OpenmrsCacheManagerFactoryBean extends EhCacheManagerFactoryBean {
-
+	
 	@Override
 	public CacheManager getObject() {
 		CacheManager cacheManager = super.getObject();
-
+		
 		Map<String, CacheConfiguration> cacheConfig = cacheManager.getConfiguration().getCacheConfigurations();
-
+		
 		List<CacheConfiguration> cacheConfigurations = CachePropertiesUtil.getCacheConfigurations();
-		cacheConfigurations.stream()
-				.filter(cc ->
-						cacheConfig.get(cc.getName()) == null)
-				.forEach(cc ->
-						cacheManager.addCache(new Cache(cc)));
-
+		cacheConfigurations.stream().filter(cc -> cacheConfig.get(cc.getName()) == null)
+		        .forEach(cc -> cacheManager.addCache(new Cache(cc)));
+		
 		return cacheManager;
 	}
 }

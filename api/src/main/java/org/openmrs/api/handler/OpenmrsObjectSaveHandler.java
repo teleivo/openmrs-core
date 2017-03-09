@@ -32,8 +32,8 @@ import org.openmrs.api.APIException;
  * {@link OpenmrsObject} is saved (via a save* method in a service), this handler is automatically
  * called by the {@link RequiredDataAdvice} AOP class. <br>
  * <br>
- * This class sets the uuid property on the given OpenmrsObject to a randomly generated <a
- * href="http://wikipedia.org/wiki/UUID">UUID</a> if it is non-null.
+ * This class sets the uuid property on the given OpenmrsObject to a randomly generated
+ * <a href="http://wikipedia.org/wiki/UUID">UUID</a> if it is non-null.
  *
  * @see RequiredDataHandler
  * @see SaveHandler
@@ -84,8 +84,8 @@ public class OpenmrsObjectSaveHandler implements SaveHandler<OpenmrsObject> {
 			}
 			
 			//We are dealing with only strings
-            //TODO We shouldn't be doing this for all immutable types and fields
-			if (openmrsObject instanceof Obs ||!property.getPropertyType().equals(String.class)) {
+			//TODO We shouldn't be doing this for all immutable types and fields
+			if (openmrsObject instanceof Obs || !property.getPropertyType().equals(String.class)) {
 				continue;
 			}
 			

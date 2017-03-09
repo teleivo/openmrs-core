@@ -23,10 +23,10 @@ import org.openmrs.api.db.DAOException;
 import org.openmrs.api.db.OrderSetDAO;
 
 /**
- * This class should not be used directly. This is just a common implementation of the OrderSetDAO that
- * is used by the OrderSetService. This class is injected by spring into the desired OrderSetService
- * class. This injection is determined by the xml mappings and elements in the spring application
- * context: /metadata/api/spring/applicationContext.xml.<br/>
+ * This class should not be used directly. This is just a common implementation of the OrderSetDAO
+ * that is used by the OrderSetService. This class is injected by spring into the desired
+ * OrderSetService class. This injection is determined by the xml mappings and elements in the
+ * spring application context: /metadata/api/spring/applicationContext.xml.<br/>
  * <br/>
  * The OrderSetService should be used for all Order related database manipulation.
  *
@@ -91,18 +91,17 @@ public class HibernateOrderSetDAO implements OrderSetDAO {
 	 */
 	@Override
 	public OrderSet getOrderSetByUniqueUuid(String orderSetUuid) throws DAOException {
-		return (OrderSet) sessionFactory.getCurrentSession().createQuery("from OrderSet o where o.uuid = :uuid").setString(
-		    "uuid", orderSetUuid).uniqueResult();
+		return (OrderSet) sessionFactory.getCurrentSession().createQuery("from OrderSet o where o.uuid = :uuid")
+		        .setString("uuid", orderSetUuid).uniqueResult();
 	}
 	
-
 	/**
 	 * @see org.openmrs.api.db.OrderSetDAO#getOrderSetMemberByUuid(String)
 	 */
 	@Override
 	public OrderSetMember getOrderSetMemberByUuid(String uuid) throws DAOException {
-		return (OrderSetMember) sessionFactory.getCurrentSession().createQuery("from OrderSetMember osm where osm.uuid = :uuid").setString(
-				"uuid", uuid).uniqueResult();
+		return (OrderSetMember) sessionFactory.getCurrentSession()
+		        .createQuery("from OrderSetMember osm where osm.uuid = :uuid").setString("uuid", uuid).uniqueResult();
 	}
-
+	
 }

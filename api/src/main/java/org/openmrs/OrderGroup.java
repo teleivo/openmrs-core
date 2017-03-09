@@ -15,9 +15,10 @@ import java.util.List;
 import org.openmrs.api.APIException;
 
 /**
- * Contains a group of {@link org.openmrs.Order}s that are ordered together within a single encounter,often driven by an {@link org.openmrs.OrderSet}. 
- * Not all orders in an encounter need to be grouped this way, only those that have a specific connection to each other 
- * (e.g. several orders that together make up a treatment protocol for some diagnosis could be grouped).
+ * Contains a group of {@link org.openmrs.Order}s that are ordered together within a single
+ * encounter,often driven by an {@link org.openmrs.OrderSet}. Not all orders in an encounter need to
+ * be grouped this way, only those that have a specific connection to each other (e.g. several
+ * orders that together make up a treatment protocol for some diagnosis could be grouped).
  * 
  * @since 1.12
  */
@@ -122,8 +123,8 @@ public class OrderGroup extends BaseOpenmrsData {
 	}
 	
 	/**
-	 * Adds a new order to the existing list of orders.
-	 * The <tt>sortWeight</tt> for the order is auto calculated based on the given position.
+	 * Adds a new order to the existing list of orders. The <tt>sortWeight</tt> for the order is
+	 * auto calculated based on the given position.
 	 * 
 	 * @param order the new order to be added
 	 * @param position the position where the order has to be added

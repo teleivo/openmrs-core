@@ -55,8 +55,8 @@ public class AddressSupport extends LayoutSupport<AddressTemplate> implements Gl
 		if (!initialized) {
 			Context.getAdministrationService().addGlobalPropertyListener(singleton);
 			
-			String layoutTemplateXml = Context.getAdministrationService().getGlobalProperty(
-			    OpenmrsConstants.GLOBAL_PROPERTY_ADDRESS_TEMPLATE);
+			String layoutTemplateXml = Context.getAdministrationService()
+			        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_ADDRESS_TEMPLATE);
 			setAddressTemplate(layoutTemplateXml);
 			
 			List<String> specialTokens = new ArrayList<String>();
@@ -105,8 +105,8 @@ public class AddressSupport extends LayoutSupport<AddressTemplate> implements Gl
 	public List<AddressTemplate> getAddressTemplate() {
 		if (layoutTemplates == null) {
 			try {
-				String xml = Context.getAdministrationService().getGlobalProperty(
-				    OpenmrsConstants.GLOBAL_PROPERTY_ADDRESS_TEMPLATE);
+				String xml = Context.getAdministrationService()
+				        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_ADDRESS_TEMPLATE);
 				setAddressTemplate(xml);
 			}
 			catch (Exception ex) {

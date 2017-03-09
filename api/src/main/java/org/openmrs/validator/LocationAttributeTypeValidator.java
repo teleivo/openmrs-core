@@ -37,7 +37,8 @@ public class LocationAttributeTypeValidator extends BaseAttributeTypeValidator<L
 	 *      org.springframework.validation.Errors)
 	 * @should fail validation if name is null
 	 * @should fail validation if name already in use
-	 * @should pass validation if the location attribute type description is null or empty or whitespace
+	 * @should pass validation if the location attribute type description is null or empty or
+	 *         whitespace
 	 * @should pass validation if all fields are correct
 	 * @should pass validation if field lengths are correct
 	 * @should fail validation if field lengths are not correct

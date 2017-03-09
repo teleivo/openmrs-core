@@ -101,7 +101,6 @@ public class Drug extends BaseOpenmrsMetadata {
 	 * Gets whether or not this is a combination drug
 	 *
 	 * @return Boolean
-	 * 
 	 * @deprecated as of 2.0, use {@link #getCombination()}
 	 */
 	@Deprecated
@@ -194,8 +193,7 @@ public class Drug extends BaseOpenmrsMetadata {
 	}
 	
 	/**
-	 * @param ingredients
-	 *            The ingredients to set
+	 * @param ingredients The ingredients to set
 	 * @since 1.10
 	 */
 	public void setIngredients(Collection<DrugIngredient> ingredients) {
@@ -257,14 +255,13 @@ public class Drug extends BaseOpenmrsMetadata {
 	}
 	
 	/**
-	 * Add the given DrugReferenceMap object to this drug's list of drug reference mappings. If there is
-	 * already a corresponding DrugReferenceMap object for this concept, this one will not be added.
+	 * Add the given DrugReferenceMap object to this drug's list of drug reference mappings. If
+	 * there is already a corresponding DrugReferenceMap object for this concept, this one will not
+	 * be added.
 	 *
 	 * @param drugReferenceMap
 	 * @since 1.10
-	 *
 	 * @should set drug as the drug to which a mapping is being added
-	 *
 	 * @should should not add duplicate drug reference maps
 	 */
 	public void addDrugReferenceMap(DrugReferenceMap drugReferenceMap) {

@@ -154,8 +154,8 @@ public class HibernateOrderDAO implements OrderDAO {
 	 *      boolean, boolean)
 	 */
 	@Override
-	public List<Order> getOrders(Patient patient, CareSetting careSetting, List<OrderType> orderTypes,
-	        boolean includeVoided, boolean includeDiscontinuationOrders) {
+	public List<Order> getOrders(Patient patient, CareSetting careSetting, List<OrderType> orderTypes, boolean includeVoided,
+	        boolean includeDiscontinuationOrders) {
 		return createOrderCriteria(patient, careSetting, orderTypes, includeVoided, includeDiscontinuationOrders).list();
 	}
 	
@@ -164,8 +164,8 @@ public class HibernateOrderDAO implements OrderDAO {
 	 */
 	@Override
 	public Order getOrderByUuid(String uuid) {
-		return (Order) sessionFactory.getCurrentSession().createQuery("from Order o where o.uuid = :uuid").setString("uuid",
-		    uuid).uniqueResult();
+		return (Order) sessionFactory.getCurrentSession().createQuery("from Order o where o.uuid = :uuid")
+		        .setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -173,9 +173,9 @@ public class HibernateOrderDAO implements OrderDAO {
 	 */
 	@Override
 	public Order getDiscontinuationOrder(Order order) {
-		Order discontinuationOrder = (Order) sessionFactory.getCurrentSession().createCriteria(Order.class).add(
-		    Restrictions.eq("previousOrder", order)).add(Restrictions.eq("action", Order.Action.DISCONTINUE)).add(
-		    Restrictions.eq("voided", false)).uniqueResult();
+		Order discontinuationOrder = (Order) sessionFactory.getCurrentSession().createCriteria(Order.class)
+		        .add(Restrictions.eq("previousOrder", order)).add(Restrictions.eq("action", Order.Action.DISCONTINUE))
+		        .add(Restrictions.eq("voided", false)).uniqueResult();
 		
 		return discontinuationOrder;
 	}
@@ -183,8 +183,8 @@ public class HibernateOrderDAO implements OrderDAO {
 	@Override
 	public Order getRevisionOrder(Order order) throws APIException {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Order.class);
-		criteria.add(Restrictions.eq("previousOrder", order)).add(Restrictions.eq("action", Order.Action.REVISE)).add(
-		    Restrictions.eq("voided", false));
+		criteria.add(Restrictions.eq("previousOrder", order)).add(Restrictions.eq("action", Order.Action.REVISE))
+		        .add(Restrictions.eq("voided", false));
 		return (Order) criteria.uniqueResult();
 	}
 	
@@ -299,12 +299,12 @@ public class HibernateOrderDAO implements OrderDAO {
 		crit.add(Restrictions.le("dateActivated", asOfDate));
 		
 		Disjunction dateStoppedAndAutoExpDateDisjunction = Restrictions.disjunction();
-		Criterion stopAndAutoExpDateAreBothNull = Restrictions.and(Restrictions.isNull("dateStopped"), Restrictions
-		        .isNull("autoExpireDate"));
+		Criterion stopAndAutoExpDateAreBothNull = Restrictions.and(Restrictions.isNull("dateStopped"),
+		    Restrictions.isNull("autoExpireDate"));
 		dateStoppedAndAutoExpDateDisjunction.add(stopAndAutoExpDateAreBothNull);
 		
-		Criterion autoExpireDateEqualToOrAfterAsOfDate = Restrictions.and(Restrictions.isNull("dateStopped"), Restrictions
-		        .ge("autoExpireDate", asOfDate));
+		Criterion autoExpireDateEqualToOrAfterAsOfDate = Restrictions.and(Restrictions.isNull("dateStopped"),
+		    Restrictions.ge("autoExpireDate", asOfDate));
 		dateStoppedAndAutoExpDateDisjunction.add(autoExpireDateEqualToOrAfterAsOfDate);
 		
 		dateStoppedAndAutoExpDateDisjunction.add(Restrictions.ge("dateStopped", asOfDate));
@@ -368,8 +368,8 @@ public class HibernateOrderDAO implements OrderDAO {
 	 */
 	@Override
 	public CareSetting getCareSettingByName(String name) {
-		return (CareSetting) sessionFactory.getCurrentSession().createCriteria(CareSetting.class).add(
-		    Restrictions.ilike("name", name)).uniqueResult();
+		return (CareSetting) sessionFactory.getCurrentSession().createCriteria(CareSetting.class)
+		        .add(Restrictions.ilike("name", name)).uniqueResult();
 	}
 	
 	/**
@@ -553,9 +553,9 @@ public class HibernateOrderDAO implements OrderDAO {
 	 */
 	@Override
 	public OrderType getOrderTypeByConceptClass(ConceptClass conceptClass) {
-		return (OrderType) sessionFactory.getCurrentSession().createQuery(
-		    "from OrderType where :conceptClass in elements(conceptClasses)").setParameter("conceptClass", conceptClass)
-		        .uniqueResult();
+		return (OrderType) sessionFactory.getCurrentSession()
+		        .createQuery("from OrderType where :conceptClass in elements(conceptClasses)")
+		        .setParameter("conceptClass", conceptClass).uniqueResult();
 	}
 	
 	/**

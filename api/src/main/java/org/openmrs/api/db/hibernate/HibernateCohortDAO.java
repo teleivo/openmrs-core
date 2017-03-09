@@ -55,7 +55,7 @@ public class HibernateCohortDAO implements CohortDAO {
 	public Cohort getCohort(Integer id) throws DAOException {
 		return (Cohort) sessionFactory.getCurrentSession().get(Cohort.class, id);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.db.CohortDAO#getCohortsContainingPatientId(java.lang.Integer)
 	 */
@@ -67,15 +67,11 @@ public class HibernateCohortDAO implements CohortDAO {
 		orDisjunction.add(Restrictions.gt("m.endDate", new Date()));
 		Patient p = new Patient(patientId);
 		return (List<Cohort>) sessionFactory.getCurrentSession().createCriteria(Cohort.class)
-				.add(Restrictions.eq("voided", voided))
-				.createAlias("members", "m")
-				.add(Restrictions.le("m.startDate", new Date()))
-				.add(orDisjunction)
-				.add(Restrictions.eq("m.patient", p))
-				.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY)
-				.list();
+		        .add(Restrictions.eq("voided", voided)).createAlias("members", "m")
+		        .add(Restrictions.le("m.startDate", new Date())).add(orDisjunction).add(Restrictions.eq("m.patient", p))
+		        .setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY).list();
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.db.CohortDAO#getCohortsContainingPatientId(java.lang.Integer)
 	 */
@@ -83,16 +79,16 @@ public class HibernateCohortDAO implements CohortDAO {
 	public List<Cohort> getCohortsContainingPatientId(Integer patientId) throws DAOException {
 		return getCohortsContainingPatientId(patientId, false);
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.db.CohortDAO#getCohortByUuid(java.lang.String)
 	 */
 	@Override
 	public Cohort getCohortByUuid(String uuid) {
-		return (Cohort) sessionFactory.getCurrentSession().createQuery("from Cohort c where c.uuid = :uuid").setString(
-		    "uuid", uuid).uniqueResult();
+		return (Cohort) sessionFactory.getCurrentSession().createQuery("from Cohort c where c.uuid = :uuid")
+		        .setString("uuid", uuid).uniqueResult();
 	}
-
+	
 	/**
 	 * @see org.openmrs.api.db.CohortDAO#deleteCohort(org.openmrs.Cohort)
 	 */

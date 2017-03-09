@@ -17,11 +17,10 @@ import org.openmrs.api.APIException;
  * retrieval of ComplexData associated with an Obs that is complex -- where Obs.isComplex() returns
  * true. <br>
  * <br>
- * These handler classes are delegated to by the ObsService and should never be called directly. <br>
+ * These handler classes are delegated to by the ObsService and should never be called directly.
  * <br>
- * Use case:
- * 
- * <pre>
+ * <br>
+ * Use case: <pre>
  *   Obs complexObs = Context.getObsService().getComplexObs(123, OpenmrsConstants.RAW_VIEW);
  *   ComplexData complexData = complexObs.getComplexData();
  *   Object largeStoredObject = complexData.getData();

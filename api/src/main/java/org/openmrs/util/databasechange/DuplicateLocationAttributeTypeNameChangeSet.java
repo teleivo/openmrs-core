@@ -39,9 +39,9 @@ import liquibase.exception.ValidationErrors;
 import liquibase.resource.ResourceAccessor;
 
 /**
- * Liquibase custom changeset used to identify and resolve duplicate LocationAttributeType names. If a
- * duplicate LocationAttributeType name is identified, it will be edited to include a suffix term which
- * makes it unique, and identifies it as a value to be manually changed during later review
+ * Liquibase custom changeset used to identify and resolve duplicate LocationAttributeType names. If
+ * a duplicate LocationAttributeType name is identified, it will be edited to include a suffix term
+ * which makes it unique, and identifies it as a value to be manually changed during later review
  */
 
 public class DuplicateLocationAttributeTypeNameChangeSet implements CustomTaskChange {
@@ -125,8 +125,8 @@ public class DuplicateLocationAttributeTypeNameChangeSet implements CustomTaskCh
 							duplicateName = false;
 						}
 					} while (duplicateName);
-					pStmt = connection
-					        .prepareStatement("update location_attribute_type set name = ?, changed_by = ?, date_changed = ? where location_attribute_type_id = ?");
+					pStmt = connection.prepareStatement(
+					    "update location_attribute_type set name = ?, changed_by = ?, date_changed = ? where location_attribute_type_id = ?");
 					if (!duplicateResult.isEmpty()) {
 						pStmt.setString(1, newName);
 					}
@@ -183,8 +183,8 @@ public class DuplicateLocationAttributeTypeNameChangeSet implements CustomTaskCh
 					stmt.close();
 				}
 				catch (SQLException e) {
-					log
-					        .warn("Failed to close the select statement used to identify duplicate LocationAttributeType object names");
+					log.warn(
+					    "Failed to close the select statement used to identify duplicate LocationAttributeType object names");
 				}
 			}
 			
@@ -193,8 +193,8 @@ public class DuplicateLocationAttributeTypeNameChangeSet implements CustomTaskCh
 					pStmt.close();
 				}
 				catch (SQLException e) {
-					log
-					        .warn("Failed to close the prepared statement used to update duplicate LocationAttributeType object names");
+					log.warn(
+					    "Failed to close the prepared statement used to update duplicate LocationAttributeType object names");
 				}
 			}
 		}

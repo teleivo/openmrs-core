@@ -16,8 +16,7 @@ import org.apache.commons.collections.comparators.NullComparator;
 import org.openmrs.PatientIdentifierType;
 
 /**
- * Orders {@link PatientIdentifierType} by retired (true last), required (true first), name and
- * id.
+ * Orders {@link PatientIdentifierType} by retired (true last), required (true first), name and id.
  * 
  * @since 1.9.2, 1.8.5
  */

@@ -200,8 +200,8 @@ public class HibernateVisitDAO implements VisitDAO {
 			criteria.add(Restrictions.or(Restrictions.isNull("stopDatetime"), Restrictions.gt("stopDatetime", new Date())));
 		} else {
 			if (minEndDatetime != null) {
-				criteria.add(Restrictions.or(Restrictions.isNull("stopDatetime"), Restrictions.ge("stopDatetime",
-				    minEndDatetime)));
+				criteria.add(
+				    Restrictions.or(Restrictions.isNull("stopDatetime"), Restrictions.ge("stopDatetime", minEndDatetime)));
 			}
 			if (maxEndDatetime != null) {
 				criteria.add(Restrictions.le("stopDatetime", maxEndDatetime));
@@ -218,8 +218,8 @@ public class HibernateVisitDAO implements VisitDAO {
 		List<Visit> visits = criteria.list();
 		
 		if (serializedAttributeValues != null) {
-			CollectionUtils.filter(visits, new AttributeMatcherPredicate<Visit, VisitAttributeType>(
-			        serializedAttributeValues));
+			CollectionUtils.filter(visits,
+			    new AttributeMatcherPredicate<Visit, VisitAttributeType>(serializedAttributeValues));
 		}
 		
 		return visits;
@@ -250,8 +250,8 @@ public class HibernateVisitDAO implements VisitDAO {
 	@Override
 	@Transactional(readOnly = true)
 	public VisitAttributeType getVisitAttributeTypeByUuid(String uuid) {
-		return (VisitAttributeType) getCurrentSession().createCriteria(VisitAttributeType.class).add(
-		    Restrictions.eq("uuid", uuid)).uniqueResult();
+		return (VisitAttributeType) getCurrentSession().createCriteria(VisitAttributeType.class)
+		        .add(Restrictions.eq("uuid", uuid)).uniqueResult();
 	}
 	
 	/**
@@ -289,9 +289,9 @@ public class HibernateVisitDAO implements VisitDAO {
 	@Override
 	public Visit getNextVisit(Visit previousVisit, Collection<VisitType> visitTypes, Date maximumStartDate) {
 		Criteria criteria = getCurrentSession().createCriteria(Visit.class);
-		criteria.add(Restrictions.eq("voided", false)).add(
-		    Restrictions.gt("visitId", (previousVisit != null) ? previousVisit.getVisitId() : 0)).addOrder(
-		    Order.asc("visitId")).add(Restrictions.isNull("stopDatetime")).setMaxResults(1);
+		criteria.add(Restrictions.eq("voided", false))
+		        .add(Restrictions.gt("visitId", (previousVisit != null) ? previousVisit.getVisitId() : 0))
+		        .addOrder(Order.asc("visitId")).add(Restrictions.isNull("stopDatetime")).setMaxResults(1);
 		if (maximumStartDate != null) {
 			criteria.add(Restrictions.le("startDatetime", maximumStartDate));
 		}

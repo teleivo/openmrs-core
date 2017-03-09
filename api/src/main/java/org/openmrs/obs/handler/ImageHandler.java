@@ -164,9 +164,9 @@ public class ImageHandler extends AbstractHandler implements ComplexObsHandler {
 			
 		}
 		catch (IOException ioe) {
-		   if (outfile != null && outfile.length() == 0) {
-		      outfile.delete(); // OpenJDK 7 & 8 may leave a 0-byte file when ImageIO.write(..) fails.
-		   }
+			if (outfile != null && outfile.length() == 0) {
+				outfile.delete(); // OpenJDK 7 & 8 may leave a 0-byte file when ImageIO.write(..) fails.
+			}
 			throw new APIException("Obs.error.trying.write.complex", null, ioe);
 		}
 		

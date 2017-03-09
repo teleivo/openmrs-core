@@ -60,17 +60,18 @@ public class Format {
 	public static String format(Date date, FORMAT_TYPE type) {
 		return format(date, Context.getLocale(), type);
 	}
-
+	
 	/**
-	 * This method formats a date object according to a particular locale and returns the date as a string.
-	 * The string can contain only the date (month, day and year), only the time (hours, minutes, seconds) or as a
-	 * timestamp (both date and time).
+	 * This method formats a date object according to a particular locale and returns the date as a
+	 * string. The string can contain only the date (month, day and year), only the time (hours,
+	 * minutes, seconds) or as a timestamp (both date and time).
 	 *
 	 * @param date input date to format as a string
 	 * @param locale input locale to determine how to format the date
 	 * @param type input type to determine how much information from the date is returned
-	 * @return empty string if one of the parameters is null. Otherwise a string object for the date such that it is
-	 * formatted according to locale and the amount of information it contains is determined by type.
+	 * @return empty string if one of the parameters is null. Otherwise a string object for the date
+	 *         such that it is formatted according to locale and the amount of information it
+	 *         contains is determined by type.
 	 * @should not fail when only date is null
 	 * @should not fail when only locale is null
 	 * @should not fail when only type is null

@@ -42,7 +42,8 @@ public interface LocationDAO {
 	/**
 	 * Get a location by locationId
 	 * 
-	 * @param locationId Internal <code>Integer</code> identifier of the <code>Location</code> to get
+	 * @param locationId Internal <code>Integer</code> identifier of the <code>Location</code> to
+	 *            get
 	 * @return the requested <code>Location</code>
 	 */
 	public Location getLocation(Integer locationId);
@@ -59,8 +60,8 @@ public interface LocationDAO {
 	 * Get all locations
 	 * 
 	 * @param includeRetired boolean - include retired locations as well?
-	 * @return <code>List&lt;Location&gt;</code> object of all <code>Location</code>s, possibly including
-	 *         retired locations
+	 * @return <code>List&lt;Location&gt;</code> object of all <code>Location</code>s, possibly
+	 *         including retired locations
 	 */
 	public List<Location> getAllLocations(boolean includeRetired);
 	

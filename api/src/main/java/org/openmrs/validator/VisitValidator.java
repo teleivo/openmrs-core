@@ -24,6 +24,7 @@ import org.springframework.validation.Validator;
 
 /**
  * Validator for the {@link Visit} class.
+ * 
  * @since 1.9
  */
 @Handler(supports = { Visit.class }, order = 50)
@@ -50,17 +51,16 @@ public class VisitValidator extends BaseCustomizableValidator implements Validat
 	 * @should fail if the startDatetime is after any encounter
 	 * @should fail if the stopDatetime is before any encounter
 	 * @should fail if an attribute is bad
-	 *
-	 * @should reject a visit if startDateTime is equal to startDateTime of another visit of the same patient
+	 * @should reject a visit if startDateTime is equal to startDateTime of another visit of the
+	 *         same patient
 	 * @should reject a visit if startDateTime falls into another visit of the same patient
 	 * @should reject a visit if stopDateTime falls into another visit of the same patient
 	 * @should reject a visit if it contains another visit of the same patient
-
-	 * @should accept a visit if startDateTime is equal to startDateTime of another voided visit of the same patient
+	 * @should accept a visit if startDateTime is equal to startDateTime of another voided visit of
+	 *         the same patient
 	 * @should accept a visit if startDateTime falls into another voided visit of the same patient
 	 * @should accept a visit if stopDateTime falls into another voided visit of the same patient
 	 * @should accept a visit if it contains another voided visit of the same patient
-	 *
 	 * @should pass validation if field lengths are correct
 	 * @should fail validation if field lengths are not correct
 	 */
@@ -117,8 +117,8 @@ public class VisitValidator extends BaseCustomizableValidator implements Validat
 	}
 	
 	private boolean allowOverlappingVisits() {
-		return Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_ALLOW_OVERLAPPING_VISITS, "true"));
+		return Boolean.parseBoolean(Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_ALLOW_OVERLAPPING_VISITS, "true"));
 	}
 	
 	private void validateStartDatetime(Visit visit, Visit otherVisit, Errors errors) {
@@ -129,8 +129,8 @@ public class VisitValidator extends BaseCustomizableValidator implements Validat
 			    "This visit has the same start date and time as another visit of this patient.");
 		}
 		
-		if (visit.getStartDatetime() != null && otherVisit.getStartDatetime() != null
-		        && otherVisit.getStopDatetime() != null && visit.getStartDatetime().after(otherVisit.getStartDatetime())
+		if (visit.getStartDatetime() != null && otherVisit.getStartDatetime() != null && otherVisit.getStopDatetime() != null
+		        && visit.getStartDatetime().after(otherVisit.getStartDatetime())
 		        && visit.getStartDatetime().before(otherVisit.getStopDatetime())) {
 			errors.rejectValue("startDatetime", "Visit.startDateCannotFallIntoAnotherVisitOfTheSamePatient",
 			    "This visit has a start date that falls into another visit of the same patient.");
@@ -156,8 +156,8 @@ public class VisitValidator extends BaseCustomizableValidator implements Validat
 			messageBuilder.append("i.e. its start date is before the start date of the other visit ");
 			messageBuilder.append("and its stop date is after the stop date of the other visit.");
 			
-			errors.rejectValue("stopDatetime", "Visit.visitCannotContainAnotherVisitOfTheSamePatient", messageBuilder
-			        .toString());
+			errors.rejectValue("stopDatetime", "Visit.visitCannotContainAnotherVisitOfTheSamePatient",
+			    messageBuilder.toString());
 		}
 		
 	}

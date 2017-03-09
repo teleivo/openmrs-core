@@ -19,10 +19,10 @@ import org.springframework.validation.Errors;
  * The instructions for different drug prescriptions can vary greatly. Implementations of this class
  * represent different ways to code those instructions. For example the simple dosing implementation
  * covers a common case like "X dose, with Y frequency, for Z duration" whereas a different
- * implementation would cover
- * "200mg for the first week, then up to 400mg for the rest of the prescription". Implementations of
- * this class should store their data in the appropriate fields on the DrugOrder and Order object.
- * In some cases they could store JSON in the dosing instructions field. <br>
+ * implementation would cover "200mg for the first week, then up to 400mg for the rest of the
+ * prescription". Implementations of this class should store their data in the appropriate fields on
+ * the DrugOrder and Order object. In some cases they could store JSON in the dosing instructions
+ * field. <br>
  * NOTE: Any class that implements this interface should have a default constructor.
  * 
  * @since 1.10
@@ -62,10 +62,10 @@ public interface DosingInstructions {
 	
 	/**
 	 * Implementations of this interface may be able to infer the auto-expiration date from other
-	 * fields on the DrugOrder.  If the expiration date cannot be determined, then this method
-	 * may return null (i.e., null means duration of order is unknown).  In general, if a drug order
-	 * has non-zero refills, the auto-expiration date should <em>not</em> be set (even if it has
-	 * a known duration).
+	 * fields on the DrugOrder. If the expiration date cannot be determined, then this method may
+	 * return null (i.e., null means duration of order is unknown). In general, if a drug order has
+	 * non-zero refills, the auto-expiration date should <em>not</em> be set (even if it has a known
+	 * duration).
 	 */
 	public Date getAutoExpireDate(DrugOrder order);
 }

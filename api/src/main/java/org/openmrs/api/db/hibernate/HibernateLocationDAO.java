@@ -79,8 +79,8 @@ public class HibernateLocationDAO implements LocationDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public Location getLocation(String name) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Location.class).add(
-		    Restrictions.eq("name", name));
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Location.class)
+		        .add(Restrictions.eq("name", name));
 		
 		List<Location> locations = criteria.list();
 		if (null == locations || locations.isEmpty()) {
@@ -137,8 +137,8 @@ public class HibernateLocationDAO implements LocationDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public LocationTag getLocationTagByName(String tag) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(LocationTag.class).add(
-		    Restrictions.eq("name", tag));
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(LocationTag.class)
+		        .add(Restrictions.eq("name", tag));
 		
 		List<LocationTag> tags = criteria.list();
 		if (null == tags || tags.isEmpty()) {
@@ -168,7 +168,7 @@ public class HibernateLocationDAO implements LocationDAO {
 	@SuppressWarnings("unchecked")
 	public List<LocationTag> getLocationTags(String search) {
 		return sessionFactory.getCurrentSession().createCriteria(LocationTag.class)
-		// 'ilike' case insensitive search
+		        // 'ilike' case insensitive search
 		        .add(Restrictions.ilike("name", search, MatchMode.START)).addOrder(Order.asc("name")).list();
 	}
 	
@@ -185,8 +185,8 @@ public class HibernateLocationDAO implements LocationDAO {
 	 */
 	@Override
 	public Location getLocationByUuid(String uuid) {
-		return (Location) sessionFactory.getCurrentSession().createQuery("from Location l where l.uuid = :uuid").setString(
-		    "uuid", uuid).uniqueResult();
+		return (Location) sessionFactory.getCurrentSession().createQuery("from Location l where l.uuid = :uuid")
+		        .setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -218,7 +218,8 @@ public class HibernateLocationDAO implements LocationDAO {
 	}
 	
 	/**
-	 * @see LocationDAO#getLocations(String, org.openmrs.Location, java.util.Map, boolean, Integer, Integer)
+	 * @see LocationDAO#getLocations(String, org.openmrs.Location, java.util.Map, boolean, Integer,
+	 *      Integer)
 	 */
 	@Override
 	public List<Location> getLocations(String nameFragment, Location parent,
@@ -294,8 +295,8 @@ public class HibernateLocationDAO implements LocationDAO {
 	 */
 	@Override
 	public LocationAttributeType getLocationAttributeTypeByUuid(String uuid) {
-		return (LocationAttributeType) sessionFactory.getCurrentSession().createCriteria(LocationAttributeType.class).add(
-		    Restrictions.eq("uuid", uuid)).uniqueResult();
+		return (LocationAttributeType) sessionFactory.getCurrentSession().createCriteria(LocationAttributeType.class)
+		        .add(Restrictions.eq("uuid", uuid)).uniqueResult();
 	}
 	
 	/**
@@ -320,8 +321,8 @@ public class HibernateLocationDAO implements LocationDAO {
 	 */
 	@Override
 	public LocationAttribute getLocationAttributeByUuid(String uuid) {
-		return (LocationAttribute) sessionFactory.getCurrentSession().createCriteria(LocationAttribute.class).add(
-		    Restrictions.eq("uuid", uuid)).uniqueResult();
+		return (LocationAttribute) sessionFactory.getCurrentSession().createCriteria(LocationAttribute.class)
+		        .add(Restrictions.eq("uuid", uuid)).uniqueResult();
 	}
 	
 	/**
@@ -329,8 +330,8 @@ public class HibernateLocationDAO implements LocationDAO {
 	 */
 	@Override
 	public LocationAttributeType getLocationAttributeTypeByName(String name) {
-		return (LocationAttributeType) sessionFactory.getCurrentSession().createCriteria(LocationAttributeType.class).add(
-		    Restrictions.eq("name", name)).uniqueResult();
+		return (LocationAttributeType) sessionFactory.getCurrentSession().createCriteria(LocationAttributeType.class)
+		        .add(Restrictions.eq("name", name)).uniqueResult();
 	}
 	
 	/**
@@ -340,12 +341,14 @@ public class HibernateLocationDAO implements LocationDAO {
 	public List<Location> getLocationsHavingAllTags(List<LocationTag> tags) {
 		tags.removeAll(Collections.singleton(null));
 		
-		DetachedCriteria numberOfMatchingTags = DetachedCriteria.forClass(Location.class, "alias").createAlias("alias.tags",
-		    "locationTag").add(Restrictions.in("locationTag.locationTagId", getLocationTagIds(tags))).setProjection(
-		    Projections.rowCount()).add(Restrictions.eqProperty("alias.locationId", "outer.locationId"));
+		DetachedCriteria numberOfMatchingTags = DetachedCriteria.forClass(Location.class, "alias")
+		        .createAlias("alias.tags", "locationTag")
+		        .add(Restrictions.in("locationTag.locationTagId", getLocationTagIds(tags)))
+		        .setProjection(Projections.rowCount()).add(Restrictions.eqProperty("alias.locationId", "outer.locationId"));
 		
-		return sessionFactory.getCurrentSession().createCriteria(Location.class, "outer").add(
-		    Restrictions.eq("retired", false)).add(Subqueries.eq(new Long(tags.size()), numberOfMatchingTags)).list();
+		return sessionFactory.getCurrentSession().createCriteria(Location.class, "outer")
+		        .add(Restrictions.eq("retired", false)).add(Subqueries.eq(new Long(tags.size()), numberOfMatchingTags))
+		        .list();
 	}
 	
 	/**

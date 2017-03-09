@@ -103,8 +103,8 @@ public class PatientProgramValidator implements Validator {
 		}
 		
 		// if enrollment or complete date of program is in future or complete date has come before enroll date we should throw error
-		if (patientProgram.getDateEnrolled() != null
-		        && OpenmrsUtil.compareWithNullAsLatest(patientProgram.getDateCompleted(), patientProgram.getDateEnrolled()) < 0) {
+		if (patientProgram.getDateEnrolled() != null && OpenmrsUtil
+		        .compareWithNullAsLatest(patientProgram.getDateCompleted(), patientProgram.getDateEnrolled()) < 0) {
 			errors.rejectValue("dateCompleted", "error.patientProgram.enrolledDateShouldBeBeforecompletionDate");
 		}
 		
@@ -136,8 +136,8 @@ public class PatientProgramValidator implements Validator {
 					}
 					
 					if (missingRequiredFieldCode != null) {
-						errors.rejectValue("states", "PatientState.error.requiredField", new Object[] { mss
-						        .getMessage(missingRequiredFieldCode) }, null);
+						errors.rejectValue("states", "PatientState.error.requiredField",
+						    new Object[] { mss.getMessage(missingRequiredFieldCode) }, null);
 						return;
 					}
 					
@@ -153,8 +153,8 @@ public class PatientProgramValidator implements Validator {
 					}
 					
 					if (!isValidPatientState) {
-						errors.rejectValue("states", "PatientState.error.invalidPatientState",
-						    new Object[] { patientState }, null);
+						errors.rejectValue("states", "PatientState.error.invalidPatientState", new Object[] { patientState },
+						    null);
 						return;
 					}
 					
@@ -166,8 +166,8 @@ public class PatientProgramValidator implements Validator {
 					if (OpenmrsUtil.compareWithNullAsLatest(patientState.getEndDate(), patientState.getStartDate()) < 0) {
 						errors.rejectValue("states", "PatientState.error.endDateCannotBeBeforeStartDate");
 						return;
-					} else if (statesAndStartDates.contains(patientState.getState().getUuid() + ""
-					        + patientState.getStartDate())) {
+					} else if (statesAndStartDates
+					        .contains(patientState.getState().getUuid() + "" + patientState.getStartDate())) {
 						// we already have a patient state with the same work flow state and start date
 						errors.rejectValue("states", "PatientState.error.duplicatePatientStates");
 						return;
@@ -189,11 +189,11 @@ public class PatientProgramValidator implements Validator {
 							if (latestState.getEndDate() == null) {
 								errors.rejectValue("states", "PatientProgram.error.cannotBeInMultipleStates");
 								return;
-							} else if (OpenmrsUtil.compareWithNullAsEarliest(patientState.getStartDate(), latestState
-							        .getEndDate()) < 0) {
+							} else if (OpenmrsUtil.compareWithNullAsEarliest(patientState.getStartDate(),
+							    latestState.getEndDate()) < 0) {
 								//current state was started before a previous state was ended
-								errors.rejectValue("states", "PatientProgram.error.foundOverlappingStates", new Object[] {
-								        patientState.getStartDate(), latestState.getEndDate() }, null);
+								errors.rejectValue("states", "PatientProgram.error.foundOverlappingStates",
+								    new Object[] { patientState.getStartDate(), latestState.getEndDate() }, null);
 								return;
 							}
 							latestState = patientState;
@@ -202,8 +202,8 @@ public class PatientProgramValidator implements Validator {
 							if (patientState.getEndDate() == null) {
 								errors.rejectValue("states", "PatientProgram.error.cannotBeInMultipleStates");
 								return;
-							} else if (OpenmrsUtil.compareWithNullAsEarliest(latestState.getStartDate(), patientState
-							        .getEndDate()) < 0) {
+							} else if (OpenmrsUtil.compareWithNullAsEarliest(latestState.getStartDate(),
+							    patientState.getEndDate()) < 0) {
 								//latest state was started before a previous state was ended
 								errors.rejectValue("states", "PatientProgram.error.foundOverlappingStates");
 								return;

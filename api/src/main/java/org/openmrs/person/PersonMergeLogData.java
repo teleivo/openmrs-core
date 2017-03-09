@@ -16,10 +16,10 @@ import java.util.List;
 import org.openmrs.api.PatientService;
 
 /**
- * This class is used for communicating to the <code>PatientService</code> the data that
- * needs to be serialized. This data represents the details of a merge. It is also used for
- * abstracting the serialization outside of the PatientService and to allow storing the
- * deserialized form of the merged data
+ * This class is used for communicating to the <code>PatientService</code> the data that needs to be
+ * serialized. This data represents the details of a merge. It is also used for abstracting the
+ * serialization outside of the PatientService and to allow storing the deserialized form of the
+ * merged data
  *
  * @see PersonMergeLog
  * @see PatientService#mergePatients(org.openmrs.Patient, org.openmrs.Patient)

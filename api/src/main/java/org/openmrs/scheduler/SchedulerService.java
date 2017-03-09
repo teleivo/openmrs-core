@@ -28,21 +28,21 @@ public interface SchedulerService extends OpenmrsService {
 	 * @param id
 	 * @return the <code>String</code> status of the task with the given identifier
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public String getStatus(Integer id);
 	
 	/**
 	 * Start all tasks that are scheduled to run on startup.
 	 */
 	@Override
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public void onStartup();
 	
 	/**
 	 * Stop all tasks and clean up the scheduler instance.
 	 */
 	@Override
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public void onShutdown();
 	
 	/**
@@ -50,7 +50,7 @@ public interface SchedulerService extends OpenmrsService {
 	 * 
 	 * @param task the <code>TaskDefinition</code> for the task to cancel
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public void shutdownTask(TaskDefinition task) throws SchedulerException;
 	
 	/**
@@ -60,7 +60,7 @@ public interface SchedulerService extends OpenmrsService {
 	 * @return the started <code>Task</code>, or null if there was a problem instantiating or
 	 *         scheduling the task
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public Task scheduleTask(TaskDefinition task) throws SchedulerException;
 	
 	/**
@@ -68,14 +68,14 @@ public interface SchedulerService extends OpenmrsService {
 	 * 
 	 * @param task the <code>TaskDefinition</code> to reschedule
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public Task rescheduleTask(TaskDefinition task) throws SchedulerException;
 	
 	/**
 	 * Loop over all currently started tasks and cycle them. This should be done after the
 	 * classloader has been changed (e.g. during module start/stop)
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public void rescheduleAllTasks() throws SchedulerException;
 	
 	/**
@@ -83,7 +83,7 @@ public interface SchedulerService extends OpenmrsService {
 	 * 
 	 * @return all scheduled tasks
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public Collection<TaskDefinition> getScheduledTasks();
 	
 	/**
@@ -92,7 +92,7 @@ public interface SchedulerService extends OpenmrsService {
 	 * 
 	 * @return all available tasks
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public Collection<TaskDefinition> getRegisteredTasks();
 	
 	/**
@@ -100,7 +100,7 @@ public interface SchedulerService extends OpenmrsService {
 	 * 
 	 * @param id the identifier of the task
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public TaskDefinition getTask(Integer id);
 	
 	/**
@@ -108,7 +108,7 @@ public interface SchedulerService extends OpenmrsService {
 	 * 
 	 * @param name name of the task
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public TaskDefinition getTaskByName(String name);
 	
 	/**
@@ -116,7 +116,7 @@ public interface SchedulerService extends OpenmrsService {
 	 * 
 	 * @param id the identifier of the task
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	public void deleteTask(Integer id);
 	
 	/**
@@ -125,7 +125,7 @@ public interface SchedulerService extends OpenmrsService {
 	 * @param task the task to be created
 	 * @should save task to the database
 	 */
-	@Authorized( { "Manage Scheduler" })
+	@Authorized({ "Manage Scheduler" })
 	@Logging(ignore = true)
 	public void saveTaskDefinition(TaskDefinition task);
 	
@@ -152,6 +152,7 @@ public interface SchedulerService extends OpenmrsService {
 	
 	/**
 	 * Schedules a task for execution if not already running
+	 * 
 	 * @param taskDef
 	 * @since 1.10
 	 */

@@ -113,8 +113,8 @@ public class LocationServiceImpl extends BaseOpenmrsService implements LocationS
 	@Transactional(readOnly = true)
 	public Location getDefaultLocation() throws APIException {
 		Location location = null;
-		String locationGP = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_LOCATION_NAME);
+		String locationGP = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_LOCATION_NAME);
 		
 		if (StringUtils.hasText(locationGP)) {
 			location = Context.getLocationService().getLocation(locationGP);
@@ -467,8 +467,8 @@ public class LocationServiceImpl extends BaseOpenmrsService implements LocationS
 	@Override
 	@Transactional(readOnly = true)
 	public String getAddressTemplate() throws APIException {
-		String addressTemplate = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_ADDRESS_TEMPLATE);
+		String addressTemplate = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_ADDRESS_TEMPLATE);
 		if (!StringUtils.hasLength(addressTemplate)) {
 			addressTemplate = OpenmrsConstants.DEFAULT_ADDRESS_TEMPLATE;
 		}

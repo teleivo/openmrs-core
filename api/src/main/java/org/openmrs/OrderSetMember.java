@@ -10,8 +10,7 @@
 package org.openmrs;
 
 /**
- * @since 1.12
- * OrderSetMember
+ * @since 1.12 OrderSetMember
  */
 public class OrderSetMember extends BaseOpenmrsMetadata {
 	

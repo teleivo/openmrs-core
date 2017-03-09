@@ -19,14 +19,11 @@ import org.openmrs.customdatatype.NotYetPersistedException;
 import org.openmrs.customdatatype.SingleCustomValue;
 
 /**
- * A FormResource is meant as a way for modules to add arbitrary information to
- * a Form. FormResources are essentially just key-value pairs. The value is
- * stored as a custom datatype. A Form can have 0-n FormResources but only one
- * FormResource per name per Form.
- *
- * The <i>name</i> of a resource specifies one of many resources that can be
- * stored for a particular owner. Only one resource for each name will
- * ever be saved.
+ * A FormResource is meant as a way for modules to add arbitrary information to a Form.
+ * FormResources are essentially just key-value pairs. The value is stored as a custom datatype. A
+ * Form can have 0-n FormResources but only one FormResource per name per Form. The <i>name</i> of a
+ * resource specifies one of many resources that can be stored for a particular owner. Only one
+ * resource for each name will ever be saved.
  *
  * @since 1.9
  */
@@ -255,7 +252,6 @@ public class FormResource extends BaseOpenmrsObject implements CustomValueDescri
 	
 	/**
 	 * @see org.openmrs.customdatatype.SingleCustomValue#isDirty()
-	 *
 	 * @deprecated as of 2.0, use {@link #getDirty()}
 	 */
 	@Deprecated

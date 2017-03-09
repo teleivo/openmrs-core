@@ -190,7 +190,6 @@ public class FormField extends BaseOpenmrsMetadata implements java.io.Serializab
 	
 	/**
 	 * @return Returns the required status.
-	 * 
 	 * @deprecated as of 2.0, use {@link #getRequired()}
 	 */
 	@Deprecated
@@ -265,8 +264,9 @@ public class FormField extends BaseOpenmrsMetadata implements java.io.Serializab
 	}
 	
 	/**
-	 Provides a default comparator.
-	 @since 1.12
+	 * Provides a default comparator.
+	 * 
+	 * @since 1.12
 	 **/
 	public static class DefaultComparator implements Comparator<FormField> {
 		

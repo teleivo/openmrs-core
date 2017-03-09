@@ -33,7 +33,6 @@ import org.openmrs.util.PrivilegeConstants;
  */
 public interface OrderService extends OpenmrsService {
 	
-	
 	public static final String PARALLEL_ORDERS = "PARALLEL_ORDERS";
 	
 	/**

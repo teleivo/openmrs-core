@@ -32,55 +32,55 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	private static final Log log = LogFactory.getLog(PersonAddress.class);
 	
 	// Fields
-
+	
 	private Integer personAddressId;
-
+	
 	private Person person;
 	
 	private Boolean preferred = false;
-
+	
 	private String address1;
-
+	
 	private String address2;
-
+	
 	private String address3;
-
+	
 	private String address4;
-
+	
 	private String address5;
-
+	
 	private String address6;
-
+	
 	private String address7;
-
+	
 	private String address8;
-
+	
 	private String address9;
-
+	
 	private String address10;
-
+	
 	private String address11;
-
+	
 	private String address12;
-
+	
 	private String address13;
-
+	
 	private String address14;
-
+	
 	private String address15;
-
+	
 	private String cityVillage;
-
+	
 	private String countyDistrict;
-
+	
 	private String stateProvince;
-
+	
 	private String country;
-
+	
 	private String postalCode;
-
+	
 	private String latitude;
-
+	
 	private String longitude;
 	
 	private Date startDate;
@@ -105,8 +105,8 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public String toString() {
 		return new StringBuilder().append("a1:").append(getAddress1()).append(", a2:").append(getAddress2()).append(", cv:")
 		        .append(getCityVillage()).append(", sp:").append(getStateProvince()).append(", c:").append(getCountry())
-		        .append(", cd:").append(getCountyDistrict()).append(", nc:").append(getAddress3()).append(", pc:").append(
-		            getPostalCode()).append(", lat:").append(getLatitude()).append(", long:").append(getLongitude())
+		        .append(", cd:").append(getCountyDistrict()).append(", nc:").append(getAddress3()).append(", pc:")
+		        .append(getPostalCode()).append(", lat:").append(getLatitude()).append(", long:").append(getLongitude())
 		        .toString();
 	}
 	
@@ -120,29 +120,29 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	 * @return boolean true/false whether or not they are the same addresses
 	 */
 	public boolean equalsContent(PersonAddress otherAddress) {
-		return new EqualsBuilder().append(defaultString(otherAddress.getAddress1()), defaultString(address1)).append(
-		    defaultString(otherAddress.getAddress2()), defaultString(address2)).append(
-		    defaultString(otherAddress.getAddress3()), defaultString(address3)).append(
-		    defaultString(otherAddress.getAddress4()), defaultString(address4)).append(
-		    defaultString(otherAddress.getAddress5()), defaultString(address5)).append(
-		    defaultString(otherAddress.getAddress6()), defaultString(address6)).append(
-		    defaultString(otherAddress.getAddress7()), defaultString(address7)).append(
-		    defaultString(otherAddress.getAddress8()), defaultString(address8)).append(
-		    defaultString(otherAddress.getAddress9()), defaultString(address9)).append(
-		    defaultString(otherAddress.getAddress10()), defaultString(address10)).append(
-		    defaultString(otherAddress.getAddress11()), defaultString(address11)).append(
-		    defaultString(otherAddress.getAddress12()), defaultString(address12)).append(
-		    defaultString(otherAddress.getAddress13()), defaultString(address13)).append(
-		    defaultString(otherAddress.getAddress14()), defaultString(address14)).append(
-		    defaultString(otherAddress.getAddress15()), defaultString(address15)).append(
-		    defaultString(otherAddress.getCityVillage()), defaultString(cityVillage)).append(
-		    defaultString(otherAddress.getCountyDistrict()), defaultString(countyDistrict)).append(
-		    defaultString(otherAddress.getStateProvince()), defaultString(stateProvince)).append(
-		    defaultString(otherAddress.getCountry()), defaultString(country)).append(
-		    defaultString(otherAddress.getPostalCode()), defaultString(postalCode)).append(
-		    defaultString(otherAddress.getLatitude()), defaultString(latitude)).append(
-		    defaultString(otherAddress.getLongitude()), defaultString(longitude)).append(otherAddress.getStartDate(),
-		    startDate).append(otherAddress.getEndDate(), endDate).isEquals();
+		return new EqualsBuilder().append(defaultString(otherAddress.getAddress1()), defaultString(address1))
+		        .append(defaultString(otherAddress.getAddress2()), defaultString(address2))
+		        .append(defaultString(otherAddress.getAddress3()), defaultString(address3))
+		        .append(defaultString(otherAddress.getAddress4()), defaultString(address4))
+		        .append(defaultString(otherAddress.getAddress5()), defaultString(address5))
+		        .append(defaultString(otherAddress.getAddress6()), defaultString(address6))
+		        .append(defaultString(otherAddress.getAddress7()), defaultString(address7))
+		        .append(defaultString(otherAddress.getAddress8()), defaultString(address8))
+		        .append(defaultString(otherAddress.getAddress9()), defaultString(address9))
+		        .append(defaultString(otherAddress.getAddress10()), defaultString(address10))
+		        .append(defaultString(otherAddress.getAddress11()), defaultString(address11))
+		        .append(defaultString(otherAddress.getAddress12()), defaultString(address12))
+		        .append(defaultString(otherAddress.getAddress13()), defaultString(address13))
+		        .append(defaultString(otherAddress.getAddress14()), defaultString(address14))
+		        .append(defaultString(otherAddress.getAddress15()), defaultString(address15))
+		        .append(defaultString(otherAddress.getCityVillage()), defaultString(cityVillage))
+		        .append(defaultString(otherAddress.getCountyDistrict()), defaultString(countyDistrict))
+		        .append(defaultString(otherAddress.getStateProvince()), defaultString(stateProvince))
+		        .append(defaultString(otherAddress.getCountry()), defaultString(country))
+		        .append(defaultString(otherAddress.getPostalCode()), defaultString(postalCode))
+		        .append(defaultString(otherAddress.getLatitude()), defaultString(latitude))
+		        .append(defaultString(otherAddress.getLongitude()), defaultString(longitude))
+		        .append(otherAddress.getStartDate(), startDate).append(otherAddress.getEndDate(), endDate).isEquals();
 	}
 	
 	/**
@@ -228,7 +228,6 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	
 	/**
 	 * @return Returns the preferred.
-	 * 
 	 * @deprecated as of 2.0, use {@link #getPreferred()}
 	 */
 	@Deprecated
@@ -365,19 +364,18 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	 */
 	public boolean isBlank() {
 		
-		return StringUtils.isBlank(getAddress1()) && StringUtils.isBlank(getAddress2())
-		        && StringUtils.isBlank(getAddress3()) && StringUtils.isBlank(getAddress4())
-		        && StringUtils.isBlank(getAddress5()) && StringUtils.isBlank(getAddress6())
-		        && StringUtils.isBlank(getCityVillage()) && StringUtils.isBlank(getStateProvince())
-		        && StringUtils.isBlank(getCountry()) && StringUtils.isBlank(getCountyDistrict())
-		        && StringUtils.isBlank(getPostalCode()) && StringUtils.isBlank(getLatitude())
-		        && StringUtils.isBlank(getLongitude());
+		return StringUtils.isBlank(getAddress1()) && StringUtils.isBlank(getAddress2()) && StringUtils.isBlank(getAddress3())
+		        && StringUtils.isBlank(getAddress4()) && StringUtils.isBlank(getAddress5())
+		        && StringUtils.isBlank(getAddress6()) && StringUtils.isBlank(getCityVillage())
+		        && StringUtils.isBlank(getStateProvince()) && StringUtils.isBlank(getCountry())
+		        && StringUtils.isBlank(getCountyDistrict()) && StringUtils.isBlank(getPostalCode())
+		        && StringUtils.isBlank(getLatitude()) && StringUtils.isBlank(getLongitude());
 		
 	}
-			
+	
 	/**
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 * Note: this comparator imposes orderings that are inconsistent with equals.
+	 * @see java.lang.Comparable#compareTo(java.lang.Object) Note: this comparator imposes orderings
+	 *      that are inconsistent with equals.
 	 */
 	@Override
 	@SuppressWarnings("squid:S1210")
@@ -564,7 +562,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public String getAddress7() {
 		return address7;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -572,7 +570,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public void setAddress7(String address7) {
 		this.address7 = address7;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -580,7 +578,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public String getAddress8() {
 		return address8;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -588,7 +586,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public void setAddress8(String address8) {
 		this.address8 = address8;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -596,7 +594,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public String getAddress9() {
 		return address9;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -604,7 +602,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public void setAddress9(String address9) {
 		this.address9 = address9;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -612,7 +610,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public String getAddress10() {
 		return address10;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -620,7 +618,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public void setAddress10(String address10) {
 		this.address10 = address10;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -628,7 +626,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public String getAddress11() {
 		return address11;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -636,7 +634,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public void setAddress11(String address11) {
 		this.address11 = address11;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -644,7 +642,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public String getAddress12() {
 		return address12;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -652,7 +650,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public void setAddress12(String address12) {
 		this.address12 = address12;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -660,7 +658,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public String getAddress13() {
 		return address13;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -668,7 +666,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public void setAddress13(String address13) {
 		this.address13 = address13;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -676,7 +674,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public String getAddress14() {
 		return address14;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -684,7 +682,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public void setAddress14(String address14) {
 		this.address14 = address14;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -692,7 +690,7 @@ public class PersonAddress extends BaseOpenmrsData implements java.io.Serializab
 	public String getAddress15() {
 		return address15;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */

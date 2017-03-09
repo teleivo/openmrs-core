@@ -36,37 +36,22 @@ import org.openmrs.api.db.hibernate.search.LuceneAnalyzers;
  * It implements the uuid variable that all objects are expected to have.
  */
 @AnalyzerDefs({
-		@AnalyzerDef(name = LuceneAnalyzers.PHRASE_ANALYZER,
-				tokenizer = @TokenizerDef(factory = KeywordTokenizerFactory.class),
-				filters = {
-						@TokenFilterDef(factory = ClassicFilterFactory.class),
-						@TokenFilterDef(factory = LowerCaseFilterFactory.class)
-				}),
-		@AnalyzerDef(name = LuceneAnalyzers.EXACT_ANALYZER,
-				tokenizer = @TokenizerDef(factory = WhitespaceTokenizerFactory.class),
-				filters = {
-						@TokenFilterDef(factory = ClassicFilterFactory.class),
-						@TokenFilterDef(factory = LowerCaseFilterFactory.class)
-				}),
-		@AnalyzerDef(name = LuceneAnalyzers.START_ANALYZER,
-				tokenizer = @TokenizerDef(factory = WhitespaceTokenizerFactory.class),
-				filters = {
-						@TokenFilterDef(factory = ClassicFilterFactory.class),
-						@TokenFilterDef(factory = LowerCaseFilterFactory.class),
-						@TokenFilterDef(factory = EdgeNGramFilterFactory.class, params = {
-								@Parameter(name = "minGramSize", value = "2"),
-								@Parameter(name = "maxGramSize", value = "20") })
-				}),
-		@AnalyzerDef(name = LuceneAnalyzers.ANYWHERE_ANALYZER,
-				tokenizer = @TokenizerDef(factory = WhitespaceTokenizerFactory.class),
-				filters = {
-						@TokenFilterDef(factory = ClassicFilterFactory.class),
-						@TokenFilterDef(factory = LowerCaseFilterFactory.class),
-						@TokenFilterDef(factory = NGramFilterFactory.class, params = {
-								@Parameter(name = "minGramSize", value = "2"),
-								@Parameter(name = "maxGramSize", value = "20") })
-				})
-})
+        @AnalyzerDef(name = LuceneAnalyzers.PHRASE_ANALYZER, tokenizer = @TokenizerDef(factory = KeywordTokenizerFactory.class), filters = {
+                @TokenFilterDef(factory = ClassicFilterFactory.class),
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class) }),
+        @AnalyzerDef(name = LuceneAnalyzers.EXACT_ANALYZER, tokenizer = @TokenizerDef(factory = WhitespaceTokenizerFactory.class), filters = {
+                @TokenFilterDef(factory = ClassicFilterFactory.class),
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class) }),
+        @AnalyzerDef(name = LuceneAnalyzers.START_ANALYZER, tokenizer = @TokenizerDef(factory = WhitespaceTokenizerFactory.class), filters = {
+                @TokenFilterDef(factory = ClassicFilterFactory.class),
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+                @TokenFilterDef(factory = EdgeNGramFilterFactory.class, params = {
+                        @Parameter(name = "minGramSize", value = "2"), @Parameter(name = "maxGramSize", value = "20") }) }),
+        @AnalyzerDef(name = LuceneAnalyzers.ANYWHERE_ANALYZER, tokenizer = @TokenizerDef(factory = WhitespaceTokenizerFactory.class), filters = {
+                @TokenFilterDef(factory = ClassicFilterFactory.class),
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+                @TokenFilterDef(factory = NGramFilterFactory.class, params = { @Parameter(name = "minGramSize", value = "2"),
+                        @Parameter(name = "maxGramSize", value = "20") }) }) })
 @MappedSuperclass
 public abstract class BaseOpenmrsObject implements Serializable, OpenmrsObject {
 	
@@ -109,8 +94,8 @@ public abstract class BaseOpenmrsObject implements Serializable, OpenmrsObject {
 	/**
 	 * Returns <code>true</code> if and only if <code>x</code> and <code>y</code> refer to the same
 	 * object (<code>x == y</code> has the value <code>true</code>) or both have the same
-	 * <code>uuid</code> (<code>((x.uuid != null) &amp;&amp; x.uuid.equals(y.uuid))</code> has the value
-	 * <code>true</code>).
+	 * <code>uuid</code> (<code>((x.uuid != null) &amp;&amp; x.uuid.equals(y.uuid))</code> has the
+	 * value <code>true</code>).
 	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 * @should return false if given obj is not instance of BaseOpenmrsObject
@@ -137,7 +122,7 @@ public abstract class BaseOpenmrsObject implements Serializable, OpenmrsObject {
 		//In case of hibernate proxy objects we need to get real classes
 		Class<?> thisClass = Hibernate.getClass(this);
 		Class<?> objClass = Hibernate.getClass(obj);
-		if (!(thisClass.isAssignableFrom(objClass) || objClass.isAssignableFrom(thisClass))){
+		if (!(thisClass.isAssignableFrom(objClass) || objClass.isAssignableFrom(thisClass))) {
 			return false;
 		}
 		return getUuid().equals(other.getUuid());
@@ -155,7 +140,7 @@ public abstract class BaseOpenmrsObject implements Serializable, OpenmrsObject {
 	 */
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("hashCode",
-		    Integer.toHexString(hashCode())).append("uuid", getUuid()).build();
+		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+		        .append("hashCode", Integer.toHexString(hashCode())).append("uuid", getUuid()).build();
 	}
 }

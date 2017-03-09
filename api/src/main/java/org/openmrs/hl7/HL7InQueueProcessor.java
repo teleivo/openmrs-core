@@ -25,7 +25,7 @@ import ca.uhn.hl7v2.HL7Exception;
  * @version 1.0
  */
 @Transactional
-public class HL7InQueueProcessor /* implements Runnable */{
+public class HL7InQueueProcessor /* implements Runnable */ {
 	
 	private final Log log = LogFactory.getLog(this.getClass());
 	

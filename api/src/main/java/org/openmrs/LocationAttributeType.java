@@ -14,6 +14,7 @@ import org.openmrs.attribute.BaseAttributeType;
 
 /**
  * A user-defined extension to the {@link Location} class.
+ * 
  * @see AttributeType
  * @since 1.9
  */

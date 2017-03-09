@@ -237,15 +237,15 @@ public class ORUR01Handler implements Application {
 		// create obs_groups for them
 		List<Integer> ignoredConceptIds = new ArrayList<Integer>();
 		
-		String obrConceptId = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_MEDICAL_RECORD_OBSERVATIONS, "1238");
+		String obrConceptId = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_MEDICAL_RECORD_OBSERVATIONS, "1238");
 		if (StringUtils.hasLength(obrConceptId)) {
 			ignoredConceptIds.add(Integer.valueOf(obrConceptId));
 		}
 		
 		// we also ignore all PROBLEM_LIST that are OBRs
-		String obrProblemListConceptId = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_PROBLEM_LIST, "1284");
+		String obrProblemListConceptId = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PROBLEM_LIST, "1284");
 		if (StringUtils.hasLength(obrProblemListConceptId)) {
 			ignoredConceptIds.add(Integer.valueOf(obrProblemListConceptId));
 		}
@@ -350,8 +350,9 @@ public class ORUR01Handler implements Application {
 					if (!StringUtils.isEmpty(value)) {
 						conceptProposals.add(createConceptProposal(encounter, questionConcept, value));
 					} else {
-						errorInHL7Queue = new HL7Exception(Context.getMessageSourceService().getMessage(
-						    "Hl7.proposed.concept.name.empty"), proposingException);
+						errorInHL7Queue = new HL7Exception(
+						        Context.getMessageSourceService().getMessage("Hl7.proposed.concept.name.empty"),
+						        proposingException);
 						break;//stop any further processing of current message
 					}
 					
@@ -362,9 +363,9 @@ public class ORUR01Handler implements Application {
 				finally {
 					// Handle obs-level exceptions
 					if (errorInHL7Queue != null) {
-						throw new HL7Exception(Context.getMessageSourceService().getMessage(
-						    "ORUR01.error.improperlyFormattedOBX",
-						    new Object[] { PipeParser.encode(obx, new EncodingCharacters('|', "^~\\&")) }, null),
+						throw new HL7Exception(
+						        Context.getMessageSourceService().getMessage("ORUR01.error.improperlyFormattedOBX",
+						            new Object[] { PipeParser.encode(obx, new EncodingCharacters('|', "^~\\&")) }, null),
 						        HL7Exception.DATA_TYPE_ERROR, errorInHL7Queue);
 					}
 				}
@@ -678,13 +679,12 @@ public class ORUR01Handler implements Application {
 						obs.setValueNumeric(Double.valueOf(value));
 					}
 					catch (NumberFormatException e) {
-						throw new HL7Exception(Context.getMessageSourceService().getMessage(
-						    "ORUR01.error.notnumericConcept",
+						throw new HL7Exception(Context.getMessageSourceService().getMessage("ORUR01.error.notnumericConcept",
 						    new Object[] { value, concept.getConceptId(), conceptName.getName(), uid }, null), e);
 					}
 				} else if (concept.getDatatype().isCoded()) {
-					Concept answer = "1".equals(value) ? Context.getConceptService().getTrueConcept() : Context
-					        .getConceptService().getFalseConcept();
+					Concept answer = "1".equals(value) ? Context.getConceptService().getTrueConcept()
+					        : Context.getConceptService().getFalseConcept();
 					boolean isValidAnswer = false;
 					Collection<ConceptAnswer> conceptAnswers = concept.getAnswers();
 					if (conceptAnswers != null && !conceptAnswers.isEmpty()) {
@@ -783,8 +783,8 @@ public class ORUR01Handler implements Application {
 		} else if ("TS".equals(hl7Datatype)) {
 			DTM value = ((TS) obx5).getTime();
 			if (value != null) {
-				Date valueDate = getDate(value.getYear(), value.getMonth(), value.getDay(), value.getHour(), value
-				        .getMinute(), value.getSecond());
+				Date valueDate = getDate(value.getYear(), value.getMonth(), value.getDay(), value.getHour(),
+				    value.getMinute(), value.getSecond());
 				
 				obs.setValueDatetime(valueDate);
 			} else {
@@ -1019,11 +1019,11 @@ public class ORUR01Handler implements Application {
 		}
 		
 		try {
-			datetime = getDate(value.getYear(), value.getMonth(), value.getDay(), value.getHour(), value.getMinute(), value
-			        .getSecond());
+			datetime = getDate(value.getYear(), value.getMonth(), value.getDay(), value.getHour(), value.getMinute(),
+			    value.getSecond());
 		}
 		catch (DataTypeException e) {
-
+			
 		}
 		return datetime;
 		
@@ -1131,7 +1131,7 @@ public class ORUR01Handler implements Application {
 	public Form getForm(MSH msh) throws HL7Exception {
 		String uuid = null;
 		String id = null;
-
+		
 		for (EI identifier : msh.getMessageProfileIdentifier()) {
 			if (identifier != null && identifier.getNamespaceID() != null) {
 				String identifierType = identifier.getNamespaceID().getValue();
@@ -1144,34 +1144,35 @@ public class ORUR01Handler implements Application {
 				}
 			}
 		}
-
+		
 		Form form = null;
-
+		
 		if (uuid == null && id == null) {
 			return form;
 		}
-
+		
 		// prefer uuid over id
 		if (uuid != null) {
 			form = Context.getFormService().getFormByUuid(uuid);
 		}
-
+		
 		// if uuid did not work ...
 		if (id != null) {
-
+			
 			try {
 				Integer formId = Integer.parseInt(id);
 				form = Context.getFormService().getForm(formId);
-			} catch (NumberFormatException e) {
+			}
+			catch (NumberFormatException e) {
 				throw new HL7Exception(Context.getMessageSourceService().getMessage("ORUR01.error.parseFormId"), e);
 			}
-
+			
 		}
-
+		
 		return form;
-
+		
 	}
-
+	
 	private EncounterType getEncounterType(MSH msh, Form form) {
 		if (form != null) {
 			return form.getEncounterType();
@@ -1267,8 +1268,8 @@ public class ORUR01Handler implements Application {
 			// identifier
 			patient = Context.getPatientService().getPatient(patient.getPatientId());
 			
-			PersonAttributeType healthCenterAttrType = Context.getPersonService().getPersonAttributeTypeByName(
-			    "Health Center");
+			PersonAttributeType healthCenterAttrType = Context.getPersonService()
+			        .getPersonAttributeTypeByName("Health Center");
 			
 			if (healthCenterAttrType == null) {
 				log.error("A person attribute type with name 'Health Center' is not defined but patient "

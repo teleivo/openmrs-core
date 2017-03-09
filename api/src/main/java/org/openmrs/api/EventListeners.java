@@ -31,8 +31,8 @@ public class EventListeners {
 	}
 	
 	/**
-	 * This setter acts more like an "appender".  If the list already has elements, calling this method
-	 * will <b>add to</b> the list of listeners instead of replacing it.
+	 * This setter acts more like an "appender". If the list already has elements, calling this
+	 * method will <b>add to</b> the list of listeners instead of replacing it.
 	 *
 	 * @param globalPropertyListeners
 	 */
@@ -61,14 +61,12 @@ public class EventListeners {
 	}
 	
 	/**
-	 * Convenience method called by spring to reset the static list of event
-	 * listeners.<br>
-	 * Without this, the event listener list continues to grow with every Spring
-	 * restart. (and is a memory leak)
+	 * Convenience method called by spring to reset the static list of event listeners.<br>
+	 * Without this, the event listener list continues to grow with every Spring restart. (and is a
+	 * memory leak)
 	 *
 	 * @see "applicationContext-service.xml"
-	 * @param nullList
-	 *            if true, nulls the list instead of just clearing it
+	 * @param nullList if true, nulls the list instead of just clearing it
 	 */
 	public void setGlobalPropertyListenersToEmpty(boolean nullList) {
 		if (nullList) {

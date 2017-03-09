@@ -38,7 +38,7 @@ public interface VisitService extends OpenmrsService {
 	 * @return a list of visit type objects.
 	 * @should get all visit types
 	 */
-	@Authorized( { PrivilegeConstants.GET_VISIT_TYPES })
+	@Authorized({ PrivilegeConstants.GET_VISIT_TYPES })
 	List<VisitType> getAllVisitTypes();
 	
 	/**
@@ -49,7 +49,7 @@ public interface VisitService extends OpenmrsService {
 	 * @since 1.9
 	 * @should get all visit types based on include retired flag.
 	 */
-	@Authorized( { PrivilegeConstants.MANAGE_VISIT_TYPES })
+	@Authorized({ PrivilegeConstants.MANAGE_VISIT_TYPES })
 	public List<VisitType> getAllVisitTypes(boolean includeRetired);
 	
 	/**
@@ -59,7 +59,7 @@ public interface VisitService extends OpenmrsService {
 	 * @return the visit type object found with the given id, else null.
 	 * @should get correct visit type
 	 */
-	@Authorized( { PrivilegeConstants.GET_VISIT_TYPES })
+	@Authorized({ PrivilegeConstants.GET_VISIT_TYPES })
 	VisitType getVisitType(Integer visitTypeId);
 	
 	/**
@@ -69,7 +69,7 @@ public interface VisitService extends OpenmrsService {
 	 * @return the visit type object found with the given uuid, else null.
 	 * @should get correct visit type
 	 */
-	@Authorized( { PrivilegeConstants.GET_VISIT_TYPES })
+	@Authorized({ PrivilegeConstants.GET_VISIT_TYPES })
 	VisitType getVisitTypeByUuid(String uuid);
 	
 	/**
@@ -79,7 +79,7 @@ public interface VisitService extends OpenmrsService {
 	 * @return a list of all visit types with names similar to or containing the given phrase
 	 * @should get correct visit types
 	 */
-	@Authorized( { PrivilegeConstants.GET_VISIT_TYPES })
+	@Authorized({ PrivilegeConstants.GET_VISIT_TYPES })
 	List<VisitType> getVisitTypes(String fuzzySearchPhrase);
 	
 	/**
@@ -92,7 +92,7 @@ public interface VisitService extends OpenmrsService {
 	 * @should throw error when name is null
 	 * @should throw error when name is empty string
 	 */
-	@Authorized( { PrivilegeConstants.MANAGE_VISIT_TYPES })
+	@Authorized({ PrivilegeConstants.MANAGE_VISIT_TYPES })
 	VisitType saveVisitType(VisitType visitType) throws APIException;
 	
 	/**
@@ -103,7 +103,7 @@ public interface VisitService extends OpenmrsService {
 	 * @return the visit type that has been retired.
 	 * @should retire given visit type
 	 */
-	@Authorized( { PrivilegeConstants.MANAGE_VISIT_TYPES })
+	@Authorized({ PrivilegeConstants.MANAGE_VISIT_TYPES })
 	VisitType retireVisitType(VisitType visitType, String reason);
 	
 	/**
@@ -113,7 +113,7 @@ public interface VisitService extends OpenmrsService {
 	 * @return the unretired visit type
 	 * @should unretire given visit type
 	 */
-	@Authorized( { PrivilegeConstants.MANAGE_VISIT_TYPES })
+	@Authorized({ PrivilegeConstants.MANAGE_VISIT_TYPES })
 	VisitType unretireVisitType(VisitType visitType);
 	
 	/**
@@ -122,7 +122,7 @@ public interface VisitService extends OpenmrsService {
 	 * @param visitType the visit type to delete from the database.
 	 * @should delete given visit type
 	 */
-	@Authorized( { PrivilegeConstants.MANAGE_VISIT_TYPES })
+	@Authorized({ PrivilegeConstants.MANAGE_VISIT_TYPES })
 	void purgeVisitType(VisitType visitType);
 	
 	/**
@@ -172,7 +172,7 @@ public interface VisitService extends OpenmrsService {
 	 *         explicitly
 	 * @should should save new visit with encounters successfully
 	 */
-	@Authorized( { PrivilegeConstants.ADD_VISITS, PrivilegeConstants.EDIT_VISITS })
+	@Authorized({ PrivilegeConstants.ADD_VISITS, PrivilegeConstants.EDIT_VISITS })
 	public Visit saveVisit(Visit visit) throws APIException;
 	
 	/**
@@ -186,7 +186,7 @@ public interface VisitService extends OpenmrsService {
 	 * @should not fail if no validation errors are found
 	 * @should fail if validation errors are found
 	 */
-	@Authorized( { PrivilegeConstants.EDIT_VISITS })
+	@Authorized({ PrivilegeConstants.EDIT_VISITS })
 	public Visit endVisit(Visit visit, Date stopDate) throws APIException;
 	
 	/**

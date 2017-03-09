@@ -26,9 +26,7 @@ import java.util.Set;
  * <code>MethodDefinitionAttributes</code> and <code>MethodSecurityInterceptor</code> bean
  * definition (see below).
  * <p>
- * For example:
- * 
- * <pre>
+ * For example: <pre>
  * &lt;bean id="attributes" 
  *     class="org.acegisecurity.annotation.SecurityAnnotationAttributes"/&gt;
  * 
@@ -48,8 +46,8 @@ import java.util.Set;
  * &lt;/bean&gt;
  * </pre>
  * <p>
- * These security annotations are similar to the Commons Attributes approach, however they are
- * using Java 5 language-level metadata support.
+ * These security annotations are similar to the Commons Attributes approach, however they are using
+ * Java 5 language-level metadata support.
  * 
  * @see org.openmrs.annotation.Authorized
  */

@@ -183,8 +183,8 @@ public class ConceptSet extends BaseOpenmrsObject implements Auditable, java.io.
 	}
 	
 	/**
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 * Note: this comparator imposes orderings that are inconsistent with equals.
+	 * @see java.lang.Comparable#compareTo(java.lang.Object) Note: this comparator imposes orderings
+	 *      that are inconsistent with equals.
 	 */
 	@Override
 	@SuppressWarnings("squid:S1210")

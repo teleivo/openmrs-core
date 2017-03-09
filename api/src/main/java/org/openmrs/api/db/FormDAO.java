@@ -190,8 +190,8 @@ public interface FormDAO {
 	 * @param concepts <code>Collection</code> of <code>Concepts</code> which the fields must point
 	 *            to
 	 * @param tableNames Collection of <code>TableName</code>s which the fields must point to
-	 * @param attributeNames Collection of <code>String</code> attribute names which the
-	 *            fields must point to
+	 * @param attributeNames Collection of <code>String</code> attribute names which the fields must
+	 *            point to
 	 * @param selectMultiple <code>Boolean</code> value that matching fields must have for
 	 *            selectMultiple
 	 * @param containsAllAnswers <code>Collection</code> of <code>FieldAnswer</code>s, all of which
@@ -265,7 +265,7 @@ public interface FormDAO {
 	public FieldType getFieldTypeByUuid(String uuid);
 	
 	/**
-	 * Return fieldType  associated with given name
+	 * Return fieldType associated with given name
 	 *
 	 * @param name Name of the fileType to query
 	 * @return fieldType object associate with given name
@@ -301,13 +301,13 @@ public interface FormDAO {
 	public List<FormField> getFormFieldsByField(Field field);
 	
 	/**
-	 * @see FormService#getFormResource(java.lang.Integer) 
+	 * @see FormService#getFormResource(java.lang.Integer)
 	 * @since 1.9
 	 */
 	public FormResource getFormResource(Integer formResourceId);
 	
 	/**
-	 * @see FormService#getFormResourceByUuid(java.lang.String) 
+	 * @see FormService#getFormResourceByUuid(java.lang.String)
 	 * @since 1.9
 	 */
 	public FormResource getFormResourceByUuid(String uuid);

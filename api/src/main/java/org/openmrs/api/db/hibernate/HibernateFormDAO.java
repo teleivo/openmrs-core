@@ -104,8 +104,8 @@ public class HibernateFormDAO implements FormDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<FormField> getFormFields(Form form) throws DAOException {
-		return sessionFactory.getCurrentSession().createCriteria(FormField.class, "ff")
-		        .add(Restrictions.eq("ff.form", form)).list();
+		return sessionFactory.getCurrentSession().createCriteria(FormField.class, "ff").add(Restrictions.eq("ff.form", form))
+		        .list();
 	}
 	
 	/**
@@ -204,8 +204,9 @@ public class HibernateFormDAO implements FormDAO {
 			log.debug("form is null, no fields will be matched");
 			return null;
 		}
-		Criteria crit = sessionFactory.getCurrentSession().createCriteria(FormField.class, "ff").createAlias("field",
-		    "field").add(Restrictions.eq("field.concept", concept)).add(Restrictions.eq("form", form));
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(FormField.class, "ff")
+		        .createAlias("field", "field").add(Restrictions.eq("field.concept", concept))
+		        .add(Restrictions.eq("form", form));
 		
 		// get the list of all formfields with this concept for this form
 		List<FormField> formFields = crit.list();
@@ -438,8 +439,8 @@ public class HibernateFormDAO implements FormDAO {
 		Criteria crit = sessionFactory.getCurrentSession().createCriteria(Form.class, "form");
 		
 		if (StringUtils.isNotEmpty(partialName)) {
-			crit.add(Restrictions.or(Restrictions.like("name", partialName, MatchMode.START), Restrictions.like("name", " "
-			        + partialName, MatchMode.ANYWHERE)));
+			crit.add(Restrictions.or(Restrictions.like("name", partialName, MatchMode.START),
+			    Restrictions.like("name", " " + partialName, MatchMode.ANYWHERE)));
 		}
 		if (published != null) {
 			crit.add(Restrictions.eq("published", published));
@@ -498,8 +499,8 @@ public class HibernateFormDAO implements FormDAO {
 	 */
 	@Override
 	public Field getFieldByUuid(String uuid) {
-		return (Field) sessionFactory.getCurrentSession().createQuery("from Field f where f.uuid = :uuid").setString("uuid",
-		    uuid).uniqueResult();
+		return (Field) sessionFactory.getCurrentSession().createQuery("from Field f where f.uuid = :uuid")
+		        .setString("uuid", uuid).uniqueResult();
 	}
 	
 	@Override
@@ -531,8 +532,8 @@ public class HibernateFormDAO implements FormDAO {
 	 */
 	@Override
 	public Form getFormByUuid(String uuid) {
-		return (Form) sessionFactory.getCurrentSession().createQuery("from Form f where f.uuid = :uuid").setString("uuid",
-		    uuid).uniqueResult();
+		return (Form) sessionFactory.getCurrentSession().createQuery("from Form f where f.uuid = :uuid")
+		        .setString("uuid", uuid).uniqueResult();
 	}
 	
 	/**
@@ -582,8 +583,8 @@ public class HibernateFormDAO implements FormDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<FormField> getFormFieldsByField(Field field) {
-		return sessionFactory.getCurrentSession().createQuery("from FormField f where f.field = :field").setEntity("field",
-		    field).list();
+		return sessionFactory.getCurrentSession().createQuery("from FormField f where f.field = :field")
+		        .setEntity("field", field).list();
 	}
 	
 	/**
@@ -599,8 +600,8 @@ public class HibernateFormDAO implements FormDAO {
 	 */
 	@Override
 	public FormResource getFormResourceByUuid(String uuid) {
-		Criteria crit = sessionFactory.getCurrentSession().createCriteria(FormResource.class).add(
-		    Restrictions.eq("uuid", uuid));
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(FormResource.class)
+		        .add(Restrictions.eq("uuid", uuid));
 		return (FormResource) crit.uniqueResult();
 	}
 	
@@ -609,8 +610,8 @@ public class HibernateFormDAO implements FormDAO {
 	 */
 	@Override
 	public FormResource getFormResource(Form form, String name) {
-		Criteria crit = sessionFactory.getCurrentSession().createCriteria(FormResource.class).add(
-		    Restrictions.and(Restrictions.eq("form", form), Restrictions.eq("name", name)));
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(FormResource.class)
+		        .add(Restrictions.and(Restrictions.eq("form", form), Restrictions.eq("name", name)));
 		
 		return (FormResource) crit.uniqueResult();
 	}
@@ -637,8 +638,8 @@ public class HibernateFormDAO implements FormDAO {
 	 */
 	@Override
 	public Collection<FormResource> getFormResourcesForForm(Form form) {
-		Criteria crit = sessionFactory.getCurrentSession().createCriteria(FormResource.class).add(
-		    Restrictions.eq("form", form));
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(FormResource.class)
+		        .add(Restrictions.eq("form", form));
 		return crit.list();
 	}
 	

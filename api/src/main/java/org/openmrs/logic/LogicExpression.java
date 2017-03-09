@@ -18,7 +18,8 @@ import org.openmrs.logic.op.TransformOperator;
  * This internal representation will be processed by the LogicService backend engine to create
  * hibernate query.<br>
  * <br>
- * LogicExpression has two form, the binary and unary. Binary logic expression takes the form of <br>
+ * LogicExpression has two form, the binary and unary. Binary logic expression takes the form of
+ * <br>
  * <code>LogicExpressionBinary -- (Operand Operator Operand)</code><br>
  * <code>LogicExpressionUnary  -- (Operator Operand)</code>
  */

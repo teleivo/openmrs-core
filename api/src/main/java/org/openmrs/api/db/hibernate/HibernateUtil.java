@@ -120,8 +120,8 @@ public class HibernateUtil {
 				log.warn("Error generated", e);
 			}
 			//insert an escape character before each sql wildcard in the search phrase
-			return StringUtils.replaceEach(oldString, new String[] { "%", "_", "*", "'" }, new String[] {
-			        escapeCharacter + "%", escapeCharacter + "_", escapeCharacter + "*", "''" });
+			return StringUtils.replaceEach(oldString, new String[] { "%", "_", "*", "'" },
+			    new String[] { escapeCharacter + "%", escapeCharacter + "_", escapeCharacter + "*", "''" });
 		} else {
 			return oldString;
 		}

@@ -67,8 +67,8 @@ public class ConceptReferenceTermValidator implements Validator {
 	public void validate(Object obj, Errors errors) throws APIException {
 		
 		if (obj == null || !(obj instanceof ConceptReferenceTerm)) {
-			throw new IllegalArgumentException("The parameter obj should not be null and must be of type"
-			        + ConceptReferenceTerm.class);
+			throw new IllegalArgumentException(
+			        "The parameter obj should not be null and must be of type" + ConceptReferenceTerm.class);
 		}
 		
 		ConceptReferenceTerm conceptReferenceTerm = (ConceptReferenceTerm) obj;

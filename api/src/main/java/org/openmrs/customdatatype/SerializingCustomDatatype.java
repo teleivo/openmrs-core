@@ -29,11 +29,11 @@ public abstract class SerializingCustomDatatype<T> implements CustomDatatype<T> 
 	public abstract T deserialize(String serializedValue);
 	
 	/**
-	 * Most implementations should override this method to return plain-text summary of the typed value, as defined
-	 * by {@link CustomDatatype#getTextSummary(String)}. If {@link #deserialize(String)} is expensive, then the
-	 * implementation should override {@link #getTextSummary(String)} instead.
-	 *
-	 * The default implementation returns typedValue.toString(), and indicates it is complete.
+	 * Most implementations should override this method to return plain-text summary of the typed
+	 * value, as defined by {@link CustomDatatype#getTextSummary(String)}. If
+	 * {@link #deserialize(String)} is expensive, then the implementation should override
+	 * {@link #getTextSummary(String)} instead. The default implementation returns
+	 * typedValue.toString(), and indicates it is complete.
 	 *
 	 * @param typedValue
 	 * @return a plain-text summary of the typed value
@@ -44,6 +44,7 @@ public abstract class SerializingCustomDatatype<T> implements CustomDatatype<T> 
 	
 	/**
 	 * Does nothing in the default implementation
+	 * 
 	 * @see org.openmrs.customdatatype.CustomDatatype#setConfiguration(java.lang.String)
 	 */
 	@Override
@@ -53,6 +54,7 @@ public abstract class SerializingCustomDatatype<T> implements CustomDatatype<T> 
 	
 	/**
 	 * Passes for all non-null values in the default implementation
+	 * 
 	 * @see org.openmrs.customdatatype.CustomDatatype#validate(java.lang.Object)
 	 */
 	@Override
@@ -89,8 +91,10 @@ public abstract class SerializingCustomDatatype<T> implements CustomDatatype<T> 
 	}
 	
 	/**
-	 * Default implementation calls {@link #doGetTextSummary(Object)}. Most implementations should override that
-	 * other method, but if {@link #deserialize(String)} is expensive, then you should override this method instead.
+	 * Default implementation calls {@link #doGetTextSummary(Object)}. Most implementations should
+	 * override that other method, but if {@link #deserialize(String)} is expensive, then you should
+	 * override this method instead.
+	 * 
 	 * @see org.openmrs.customdatatype.CustomDatatype#getTextSummary(java.lang.String)
 	 */
 	@Override

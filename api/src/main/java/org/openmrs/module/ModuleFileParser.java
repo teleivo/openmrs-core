@@ -158,8 +158,9 @@ public class ModuleFileParser {
 				configStream = jarfile.getInputStream(config);
 			}
 			catch (IOException e) {
-				throw new ModuleException(Context.getMessageSourceService().getMessage(
-				    "Module.error.cannotGetConfigFileStream"), moduleFile.getName(), e);
+				throw new ModuleException(
+				        Context.getMessageSourceService().getMessage("Module.error.cannotGetConfigFileStream"),
+				        moduleFile.getName(), e);
 			}
 			
 			// turn the config file into an xml document
@@ -207,9 +208,8 @@ public class ModuleFileParser {
 				}
 				
 				log.error("config.xml content: " + output);
-				throw new ModuleException(
-				        Context.getMessageSourceService().getMessage("Module.error.cannotParseConfigFile"), moduleFile
-				                .getName(), e);
+				throw new ModuleException(Context.getMessageSourceService().getMessage("Module.error.cannotParseConfigFile"),
+				        moduleFile.getName(), e);
 			}
 			
 			Element rootNode = configDoc.getDocumentElement();
@@ -234,7 +234,8 @@ public class ModuleFileParser {
 				        moduleFile.getName());
 			}
 			if (moduleId == null || moduleId.length() == 0) {
-				throw new ModuleException(Context.getMessageSourceService().getMessage("Module.error.idCannotBeEmpty"), name);
+				throw new ModuleException(Context.getMessageSourceService().getMessage("Module.error.idCannotBeEmpty"),
+				        name);
 			}
 			if (packageName == null || packageName.length() == 0) {
 				throw new ModuleException(Context.getMessageSourceService().getMessage("Module.error.packageCannotBeEmpty"),
@@ -293,9 +294,9 @@ public class ModuleFileParser {
 	
 	/**
 	 * Parses conditionalResources tag.
+	 * 
 	 * @param rootNode
 	 * @return
-	 *
 	 * @should parse openmrsVersion and modules
 	 * @should parse conditionalResource with whitespace
 	 * @should throw exception if multiple conditionalResources tags found
@@ -525,9 +526,8 @@ public class ModuleFileParser {
 						extensions.put(point, extClass);
 					}
 				} else {
-					log
-					        .warn("'point' and 'class' are required for extensions. Given '" + point + "' and '" + extClass
-					                + "'");
+					log.warn(
+					    "'point' and 'class' are required for extensions. Given '" + point + "' and '" + extClass + "'");
 				}
 				i++;
 			}
@@ -536,7 +536,7 @@ public class ModuleFileParser {
 		return extensions;
 		
 	}
-		
+	
 	/**
 	 * load in required privileges
 	 *
@@ -572,8 +572,8 @@ public class ModuleFileParser {
 				if (name.length() > 0 && description.length() > 0) {
 					privileges.add(new Privilege(name, description));
 				} else {
-					log.warn("'name' and 'description' are required for privileges. Given '" + name + "' and '"
-					        + description + "'");
+					log.warn("'name' and 'description' are required for privileges. Given '" + name + "' and '" + description
+					        + "'");
 				}
 				
 				i++;
@@ -637,11 +637,13 @@ public class ModuleFileParser {
 					}
 					catch (ClassCastException ex) {
 						log.error("The class specified by 'datatypeClassname' (" + datatypeClassname
-						        + ") must be a subtype of 'org.openmrs.customdatatype.CustomDatatype<?>'.", ex);
+						        + ") must be a subtype of 'org.openmrs.customdatatype.CustomDatatype<?>'.",
+						    ex);
 					}
 					catch (ClassNotFoundException ex) {
-						log.error("The class specified by 'datatypeClassname' (" + datatypeClassname
-						        + ") could not be found.", ex);
+						log.error(
+						    "The class specified by 'datatypeClassname' (" + datatypeClassname + ") could not be found.",
+						    ex);
 					}
 				} else if (property.length() > 0) {
 					properties.add(new GlobalProperty(property, defaultValue, description));

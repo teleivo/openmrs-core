@@ -21,25 +21,23 @@ import org.springframework.validation.Validator;
 
 /**
  * Validates {@link Cohort} objects.
+ * 
  * @since 2.1.0
  */
-@Handler(supports = {Cohort.class}, order=50)
+@Handler(supports = { Cohort.class }, order = 50)
 public class CohortValidator implements Validator {
-
+	
 	@Override
 	public boolean supports(Class<?> c) {
 		return Cohort.class.isAssignableFrom(c);
 	}
-
+	
 	@Override
 	public void validate(Object obj, Errors errors) {
 		if (obj == null || !(obj instanceof Cohort)) {
-			throw new IllegalArgumentException("The parameter obj should not be null and must be of type"
-					+ Cohort.class);
+			throw new IllegalArgumentException("The parameter obj should not be null and must be of type" + Cohort.class);
 		}
-
-
-
+		
 		Cohort cohort = (Cohort) obj;
 		Collection<CohortMembership> members = cohort.getMembers();
 		if (!CollectionUtils.isEmpty(members)) {

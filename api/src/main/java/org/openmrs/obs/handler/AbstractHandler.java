@@ -65,8 +65,8 @@ public class AbstractHandler {
 		String extension = getExtension(t);
 		String title = obs.getComplexData().getTitle();
 		
-		File dir = OpenmrsUtil.getDirectoryInApplicationDataDirectory(Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_COMPLEX_OBS_DIR));
+		File dir = OpenmrsUtil.getDirectoryInApplicationDataDirectory(
+		    Context.getAdministrationService().getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_COMPLEX_OBS_DIR));
 		File outputfile = null;
 		
 		// Get the output stream
@@ -90,8 +90,8 @@ public class AbstractHandler {
 			tmp = String.valueOf(outputfile.getAbsolutePath().replace("." + extension, ""));
 			outputfile = null;
 			// Append two-digit count number to the filename.
-			String filename = (i < 1) ? tmp + "_" + nf.format(Integer.valueOf(++i)) : tmp.replace(nf.format(Integer
-			        .valueOf(i)), nf.format(Integer.valueOf(++i)));
+			String filename = (i < 1) ? tmp + "_" + nf.format(Integer.valueOf(++i))
+			        : tmp.replace(nf.format(Integer.valueOf(i)), nf.format(Integer.valueOf(++i)));
 			// Append the extension to the filename.
 			outputfile = new File(filename + "." + extension);
 		}
@@ -152,8 +152,8 @@ public class AbstractHandler {
 			return true;
 		}
 		
-		log.warn("Could not delete complex data object for obsId=" + obs.getObsId() + " located at "
-		        + file.getAbsolutePath());
+		log.warn(
+		    "Could not delete complex data object for obsId=" + obs.getObsId() + " located at " + file.getAbsolutePath());
 		return false;
 	}
 	
@@ -166,8 +166,8 @@ public class AbstractHandler {
 	public static File getComplexDataFile(Obs obs) {
 		String[] names = obs.getValueComplex().split("\\|");
 		String filename = names.length < 2 ? names[0] : names[names.length - 1];
-		File dir = OpenmrsUtil.getDirectoryInApplicationDataDirectory(Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_COMPLEX_OBS_DIR));
+		File dir = OpenmrsUtil.getDirectoryInApplicationDataDirectory(
+		    Context.getAdministrationService().getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_COMPLEX_OBS_DIR));
 		return new File(dir, filename);
 	}
 	

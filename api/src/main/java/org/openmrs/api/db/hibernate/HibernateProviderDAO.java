@@ -151,15 +151,15 @@ public class HibernateProviderDAO implements ProviderDAO {
 		
 		List<Provider> providers = criteria.list();
 		if (serializedAttributeValues != null) {
-			CollectionUtils.filter(providers, new AttributeMatcherPredicate<Provider, ProviderAttributeType>(
-			        serializedAttributeValues));
+			CollectionUtils.filter(providers,
+			    new AttributeMatcherPredicate<Provider, ProviderAttributeType>(serializedAttributeValues));
 		}
 		return providers;
 	}
 	
 	private MatchMode getMatchMode() {
-		String matchMode = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_PROVIDER_SEARCH_MATCH_MODE);
+		String matchMode = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PROVIDER_SEARCH_MATCH_MODE);
 		
 		if (MatchMode.START.toString().equalsIgnoreCase(matchMode)) {
 			return MatchMode.START;

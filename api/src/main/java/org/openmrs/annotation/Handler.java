@@ -40,13 +40,12 @@ import java.lang.annotation.Target;
  * solve. <br>
  * <br>
  * The use of this method would therefore be as follows:<br>
- * 
  * <pre>
  * {@literal @}Handler( supports = { Order.class } )
  * public class OrderValidator implements Validator { ... } 
  * </pre>
  */
-@Target( { ElementType.TYPE })
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
@@ -62,10 +61,10 @@ public @interface Handler {
 	/**
 	 * Provides a means for specifying the relative order of this Handler against another Handler of
 	 * the same type. For example, if two handlers are registered as capable of handling a
-	 * {@link org.openmrs.customdatatype.datatype.DateDatatype} class, and one handler had an order of
-	 * 100 and the other had an order of 50, the
-	 * consuming code could utilize this information to determine which handler is preferred. By
-	 * convention, the handler with the lowest order generally gains precedence.
+	 * {@link org.openmrs.customdatatype.datatype.DateDatatype} class, and one handler had an order
+	 * of 100 and the other had an order of 50, the consuming code could utilize this information to
+	 * determine which handler is preferred. By convention, the handler with the lowest order
+	 * generally gains precedence.
 	 * 
 	 * @return an int specifying the relative order of this Handler
 	 */

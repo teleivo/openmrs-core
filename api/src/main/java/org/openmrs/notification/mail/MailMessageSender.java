@@ -102,8 +102,8 @@ public class MailMessageSender implements MessageSender {
 			mimeMessage.setSender(new InternetAddress(message.getSender()));
 		}
 		
-		mimeMessage
-		        .setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse(message.getRecipients(), false));
+		mimeMessage.setRecipients(javax.mail.Message.RecipientType.TO,
+		    InternetAddress.parse(message.getRecipients(), false));
 		mimeMessage.setSubject(message.getSubject());
 		
 		if (!message.hasAttachment()) {

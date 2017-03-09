@@ -29,7 +29,7 @@ public class PersonAttributeType extends BaseOpenmrsMetadata implements java.io.
 	private Integer foreignKey;
 	
 	private Double sortWeight;
-
+	
 	@Field
 	private Boolean searchable = false;
 	
@@ -104,7 +104,6 @@ public class PersonAttributeType extends BaseOpenmrsMetadata implements java.io.
 	
 	/**
 	 * @return the searchable status
-	 * 
 	 * @deprecated as of 2.0, use {@link #getSearchable()}
 	 */
 	@Deprecated
@@ -176,10 +175,9 @@ public class PersonAttributeType extends BaseOpenmrsMetadata implements java.io.
 	}
 	
 	/**
-	*
-	* @deprecated since 1.12. Use DefaultComparator instead.
-	* Note: this comparator imposes orderings that are inconsistent with equals.
-	*/
+	 * @deprecated since 1.12. Use DefaultComparator instead. Note: this comparator imposes
+	 *             orderings that are inconsistent with equals.
+	 */
 	@Override
 	@SuppressWarnings("squid:S1210")
 	public int compareTo(PersonAttributeType other) {
@@ -188,8 +186,9 @@ public class PersonAttributeType extends BaseOpenmrsMetadata implements java.io.
 	}
 	
 	/**
-	 Provides a default comparator.
-	 @since 1.12
+	 * Provides a default comparator.
+	 * 
+	 * @since 1.12
 	 **/
 	public static class DefaultComparator implements Comparator<PersonAttributeType> {
 		

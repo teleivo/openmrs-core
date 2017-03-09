@@ -23,19 +23,13 @@ import org.openmrs.serialization.OpenmrsSerializer;
  * more practical to use serialization for this. Each available method for managing Serialized
  * Objects on this class is available in two forms. The first form operates on OpenmrsObject
  * instances directly, and isolates the consumer completely from the mechanics of Serialization. You
- * pass in OpenmrsObjects and you get out OpenmrsObjects. For example:
- * 
- * <pre>
+ * pass in OpenmrsObjects and you get out OpenmrsObjects. For example: <pre>
  * MyOpenmrsObject m = getObject(MyOpenmrsObject.class, 10);
- * </pre>
- * 
- * The second form operates on SerializedObject instances directly, and provides the consumer with
- * more control over how to handle these SerializedObjects. A typical reason why this might be
+ * </pre> The second form operates on SerializedObject instances directly, and provides the consumer
+ * with more control over how to handle these SerializedObjects. A typical reason why this might be
  * useful is to provide graceful failure in the event that a persisted Object has had an API change,
  * and thus would fail to deserialize properly. In this case, the consumer can use something like
- * the following:
- * 
- * <pre>
+ * the following: <pre>
  * MyOpenmrsObject m = null;
  * SerializedObject s = getSerializedObject(10);
  * try {

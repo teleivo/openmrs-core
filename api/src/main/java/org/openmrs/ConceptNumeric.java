@@ -44,8 +44,8 @@ public class ConceptNumeric extends Concept {
 	private Boolean allowDecimal = false;
 	
 	/**
-	 * displayPrecision, represents the number of significant digits
-	 * to be used for display of a numeric value
+	 * displayPrecision, represents the number of significant digits to be used for display of a
+	 * numeric value
 	 */
 	private Integer displayPrecision;
 	
@@ -71,11 +71,11 @@ public class ConceptNumeric extends Concept {
 	 * 
 	 * @param c
 	 * @should make deep copy of collections
-	 * @should change reference to the parent object  for objects in answers collection
-	 * @should change reference to the parent object  for objects in conceptSets collection
-	 * @should change reference to the parent object  for objects in names collection
-	 * @should change reference to the parent object  for objects in descriptions collection
-	 * @should change reference to the parent object  for objects in conceptMappings collection
+	 * @should change reference to the parent object for objects in answers collection
+	 * @should change reference to the parent object for objects in conceptSets collection
+	 * @should change reference to the parent object for objects in names collection
+	 * @should change reference to the parent object for objects in descriptions collection
+	 * @should change reference to the parent object for objects in conceptMappings collection
 	 */
 	public ConceptNumeric(Concept c) {
 		this.setChangedBy(c.getChangedBy());
@@ -184,7 +184,7 @@ public class ConceptNumeric extends Concept {
 	public void setUnits(String units) {
 		this.units = units;
 	}
-
+	
 	/**
 	 * This method will <i>always</i> return true for ConceptNumeric objects that have a datatype of
 	 * Numeric
@@ -202,7 +202,7 @@ public class ConceptNumeric extends Concept {
 	public Integer getDisplayPrecision() {
 		return displayPrecision;
 	}
-
+	
 	/**
 	 * @param displayPrecision sets displayPrecision to be used for the display of a numeric value
 	 */

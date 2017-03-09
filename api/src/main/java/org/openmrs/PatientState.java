@@ -192,8 +192,9 @@ public class PatientState extends BaseOpenmrsData implements java.io.Serializabl
 	 * @should return positive if startDates equal and this endDate null
 	 * @should return negative if this startDate null
 	 * @should pass if two states have the same start date, end date and uuid
-	 * @should return positive or negative if two states have the same start date and end date but different uuids
-	 * Note: this comparator imposes orderings that are inconsistent with equals.
+	 * @should return positive or negative if two states have the same start date and end date but
+	 *         different uuids Note: this comparator imposes orderings that are inconsistent with
+	 *         equals.
 	 */
 	@SuppressWarnings("squid:S1210")
 	@Override

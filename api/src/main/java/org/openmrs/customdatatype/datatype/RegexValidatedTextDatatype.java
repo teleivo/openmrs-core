@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Datatype for a String that is validated against a regular expression
+ * 
  * @since 1.9
  */
 @Component

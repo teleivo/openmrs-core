@@ -112,11 +112,9 @@ public class ModuleUtil {
 								log.error("Unable to expand classpath found module: " + modulePath, io);
 							}
 						} else {
-							log
-							        .error("Unable to load module at path: "
-							                + modulePath
-							                + " because no file exists there and it is not found on the classpath. (absolute path tried: "
-							                + file.getAbsolutePath() + ")");
+							log.error("Unable to load module at path: " + modulePath
+							        + " because no file exists there and it is not found on the classpath. (absolute path tried: "
+							        + file.getAbsolutePath() + ")");
 						}
 					}
 				}
@@ -212,7 +210,7 @@ public class ModuleUtil {
 		
 		return file;
 	}
-
+	
 	/**
 	 * Checks if the current OpenMRS version is in an array of versions.
 	 * <p>
@@ -226,12 +224,12 @@ public class ModuleUtil {
 	 * @should return true if current openmrs version matches one element in versions
 	 * @should return false if current openmrs version does not match any element in versions
 	 */
-	public static boolean isOpenmrsVersionInVersions(String ...versions) {
-
+	public static boolean isOpenmrsVersionInVersions(String... versions) {
+		
 		if (versions == null || versions.length == 0) {
 			return false;
 		}
-
+		
 		boolean result = false;
 		for (String version : versions) {
 			if (matchRequiredVersions(OpenmrsConstants.OPENMRS_VERSION_SHORT, version)) {
@@ -259,7 +257,8 @@ public class ModuleUtil {
 	 * Again the possible require version number formats with their interpretation:
 	 * <ul>
 	 * <li>1.2.3 means 1.2.3 and above</li>
-	 * <li>1.2.* means any version of the 1.2.x branch. That is 1.2.0, 1.2.1, 1.2.2,... but not 1.3.0, 1.4.0</li>
+	 * <li>1.2.* means any version of the 1.2.x branch. That is 1.2.0, 1.2.1, 1.2.2,... but not
+	 * 1.3.0, 1.4.0</li>
 	 * <li>1.2.2 - 1.2.3 means 1.2.2 and 1.2.3 (inclusive)</li>
 	 * <li>1.2.* - 1.3.* means any version of the 1.2.x and 1.3.x branch</li>
 	 * </ul>
@@ -351,8 +350,7 @@ public class ModuleUtil {
 					}
 				}
 			}
-		}
-		else {
+		} else {
 			//no version checking if required version is not specified
 			return true;
 		}
@@ -376,7 +374,8 @@ public class ModuleUtil {
 	 * Again the possible require version number formats with their interpretation:
 	 * <ul>
 	 * <li>1.2.3 means 1.2.3 and above</li>
-	 * <li>1.2.* means any version of the 1.2.x branch. That is 1.2.0, 1.2.1, 1.2.2,... but not 1.3.0, 1.4.0</li>
+	 * <li>1.2.* means any version of the 1.2.x branch. That is 1.2.0, 1.2.1, 1.2.2,... but not
+	 * 1.3.0, 1.4.0</li>
 	 * <li>1.2.2 - 1.2.3 means 1.2.2 and 1.2.3 (inclusive)</li>
 	 * <li>1.2.* - 1.3.* means any version of the 1.2.x and 1.3.x branch</li>
 	 * </ul>
@@ -543,10 +542,9 @@ public class ModuleUtil {
 	}
 	
 	/**
-	 * Expand the given <code>fileToExpand</code> jar to the <code>tmpModuleFile</code> directory
-	 *
-	 * If <code>name</code> is null, the entire jar is expanded. If<code>name</code> is not null,
-	 * then only that path/file is expanded.
+	 * Expand the given <code>fileToExpand</code> jar to the <code>tmpModuleFile</code> directory If
+	 * <code>name</code> is null, the entire jar is expanded. If<code>name</code> is not null, then
+	 * only that path/file is expanded.
 	 *
 	 * @param fileToExpand file pointing at a .jar
 	 * @param tmpModuleDir directory in which to place the files
@@ -560,7 +558,8 @@ public class ModuleUtil {
 	 * @should expand directory without parent tree if name is directory and keepFullPath is false
 	 * @should expand file with parent tree if name is file and keepFullPath is true
 	 */
-	public static void expandJar(File fileToExpand, File tmpModuleDir, String name, boolean keepFullPath) throws IOException {
+	public static void expandJar(File fileToExpand, File tmpModuleDir, String name, boolean keepFullPath)
+	        throws IOException {
 		JarFile jarFile = null;
 		InputStream input = null;
 		String docBase = tmpModuleDir.getAbsolutePath();
@@ -842,9 +841,11 @@ public class ModuleUtil {
 	}
 	
 	/**
-	 * @see ModuleUtil#refreshApplicationContext(AbstractRefreshableApplicationContext, boolean, Module)
+	 * @see ModuleUtil#refreshApplicationContext(AbstractRefreshableApplicationContext, boolean,
+	 *      Module)
 	 */
-	public static AbstractRefreshableApplicationContext refreshApplicationContext(AbstractRefreshableApplicationContext ctx) {
+	public static AbstractRefreshableApplicationContext refreshApplicationContext(
+	        AbstractRefreshableApplicationContext ctx) {
 		return refreshApplicationContext(ctx, false, null);
 	}
 	
@@ -957,8 +958,8 @@ public class ModuleUtil {
 	}
 	
 	/**
-	 * Looks at the &lt;moduleid&gt;.mandatory properties and at the currently started modules to make
-	 * sure that all mandatory modules have been started successfully.
+	 * Looks at the &lt;moduleid&gt;.mandatory properties and at the currently started modules to
+	 * make sure that all mandatory modules have been started successfully.
 	 *
 	 * @throws ModuleException if a mandatory module isn't started
 	 * @should throw ModuleException if a mandatory module is not started
@@ -1205,7 +1206,8 @@ public class ModuleUtil {
 	 * @param outerJarFile jar file that contains a jar file
 	 * @param innerJarFileLocation inner jar file location relative to the outer jar
 	 * @param resource path to a resource relative to the inner jar
-	 * @return resource from the inner jar as an input stream or <code>null</code> if resource cannot be loaded
+	 * @return resource from the inner jar as an input stream or <code>null</code> if resource
+	 *         cannot be loaded
 	 */
 	private static InputStream getResourceFromInnerJar(JarFile outerJarFile, String innerJarFileLocation, String resource) {
 		File tempFile = null;
@@ -1229,13 +1231,14 @@ public class ModuleUtil {
 			}
 		}
 		catch (IOException e) {
-			log.error("Unable to get '" + resource + "' from '" + innerJarFileLocation + "' of '" + outerJarFile.getName()
-			        + "'", e);
+			log.error(
+			    "Unable to get '" + resource + "' from '" + innerJarFileLocation + "' of '" + outerJarFile.getName() + "'",
+			    e);
 		}
 		finally {
 			IOUtils.closeQuietly(tempOut);
 			IOUtils.closeQuietly(innerInputStream);
-
+			
 			// close inner jar file before attempting to delete temporary file
 			try {
 				if (innerJarFile != null) {
@@ -1245,7 +1248,7 @@ public class ModuleUtil {
 			catch (IOException e) {
 				log.warn("Unable to close inner jarfile: " + innerJarFile, e);
 			}
-
+			
 			// delete temporary file
 			if (tempFile != null && !tempFile.delete()) {
 				log.warn("Could not delete temporary jarfile: " + tempFile);

@@ -175,7 +175,6 @@ public abstract class BaseOpenmrsMetadata extends BaseOpenmrsObject implements O
 	
 	/**
 	 * @deprecated as of 2.0, use {@link #getRetired()}
-	 * 
 	 * @see org.openmrs.Retireable#isRetired()
 	 */
 	@Override

@@ -32,6 +32,7 @@ public interface OpenmrsMetadataDAO<T extends BaseOpenmrsMetadata> extends Openm
 	
 	/**
 	 * Returns total number of persistents (optionally retired)
+	 * 
 	 * @param includeRetired
 	 * @return total number of persistens
 	 */
@@ -39,6 +40,7 @@ public interface OpenmrsMetadataDAO<T extends BaseOpenmrsMetadata> extends Openm
 	
 	/**
 	 * Return a lists of metadata objects optionally retired, with paging
+	 * 
 	 * @param includeRetired
 	 * @param firstResult
 	 * @param maxResults

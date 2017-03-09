@@ -115,8 +115,8 @@ public class CreateDiscontinueOrders implements CustomTaskChange {
 		throw new CustomChangeException(e);
 	}
 	
-	private List<DiscontinuedOrder> getDiscontinuedOrders(JdbcConnection connection) throws CustomChangeException,
-	        SQLException {
+	private List<DiscontinuedOrder> getDiscontinuedOrders(JdbcConnection connection)
+	        throws CustomChangeException, SQLException {
 		List<DiscontinuedOrder> dcOrders = new ArrayList<DiscontinuedOrder>();
 		PreparedStatement statement = null;
 		try {
@@ -127,9 +127,9 @@ public class CreateDiscontinueOrders implements CustomTaskChange {
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
 				dcOrders.add(new DiscontinuedOrder(rs.getInt("order_id"), rs.getInt("concept_id"), rs.getInt("patient_id"),
-				        rs.getInt("encounter_id"), rs.getInt("discontinued_by"), rs.getInt("discontinued_reason"), rs
-				                .getString("discontinued_reason_non_coded"), rs.getDate("date_stopped"), rs
-				                .getInt("order_type_id")));
+				        rs.getInt("encounter_id"), rs.getInt("discontinued_by"), rs.getInt("discontinued_reason"),
+				        rs.getString("discontinued_reason_non_coded"), rs.getDate("date_stopped"),
+				        rs.getInt("order_type_id")));
 			}
 		}
 		catch (SQLException e) {

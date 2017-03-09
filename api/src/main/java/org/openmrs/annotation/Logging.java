@@ -21,9 +21,7 @@ import java.lang.annotation.Target;
  * needed if a specific method needs some extra information (like if you want to limit the output of
  * this method when being logged because of size concerns or security concerns).<br>
  * <br>
- * To use, simply place the annotation before a method declaration in its interface:
- * 
- * <pre>
+ * To use, simply place the annotation before a method declaration in its interface: <pre>
  *    &#064;Logging(ignoreAllArgumentValues=true)
  *    public SomeString setSomeLargeString(String aVeryLargeString);
  *    
@@ -36,7 +34,7 @@ import java.lang.annotation.Target;
  * 
  * @see org.openmrs.aop.LoggingAdvice
  */
-@Target( { ElementType.METHOD, ElementType.TYPE })
+@Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented

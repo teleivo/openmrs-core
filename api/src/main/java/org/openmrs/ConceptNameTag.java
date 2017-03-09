@@ -136,7 +136,6 @@ public class ConceptNameTag extends BaseOpenmrsObject implements Auditable, Void
 	 * Returns whether the ConceptName has been voided.
 	 * 
 	 * @return true if the ConceptName has been voided, false otherwise.
-	 * 
 	 * @deprecated as of 2.0, use {@link #getVoided()}
 	 */
 	@Override

@@ -23,9 +23,8 @@ import liquibase.exception.ValidationErrors;
 import liquibase.resource.ResourceAccessor;
 
 /**
- * Disables all triggers for the current schema
- * Postgres does not have a call to disable all foreign key constraints. This
- * changeset alters table and disable triggers for all tables.
+ * Disables all triggers for the current schema Postgres does not have a call to disable all foreign
+ * key constraints. This changeset alters table and disable triggers for all tables.
  */
 public class DisableTriggersChangeSet implements CustomTaskChange {
 	

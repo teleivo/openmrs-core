@@ -131,8 +131,8 @@ public abstract class BaseHyphenatedIdentifierValidator implements IdentifierVal
 		}
 		for (int i = 0; i < undecoratedIdentifier.length(); i++) {
 			if (getAllowedCharacters().indexOf(undecoratedIdentifier.charAt(i)) == -1) {
-				throw new UnallowedIdentifierException("\"" + undecoratedIdentifier.charAt(i)
-				        + "\" is an invalid character.");
+				throw new UnallowedIdentifierException(
+				        "\"" + undecoratedIdentifier.charAt(i) + "\" is an invalid character.");
 			}
 		}
 	}

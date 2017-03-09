@@ -59,7 +59,7 @@ public class PatientDataVoidHandler implements VoidHandler<Patient> {
 				}
 			}
 		}
-
+		
 		// if patient is voided, we set the membership containing the patient to be voided
 		CohortService cs = Context.getCohortService();
 		cs.patientVoided(patient);

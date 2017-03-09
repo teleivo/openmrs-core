@@ -27,7 +27,7 @@ public class Allergen {
 	/**
 	 * Default constructor
 	 */
-	public Allergen(){
+	public Allergen() {
 	}
 	
 	/**
@@ -55,24 +55,23 @@ public class Allergen {
 		this.allergenType = allergenType;
 	}
 	
-    /**
-     * @return the codedAllergen
-     */
-    public Concept getCodedAllergen() {
-    	return codedAllergen;
-    }
+	/**
+	 * @return the codedAllergen
+	 */
+	public Concept getCodedAllergen() {
+		return codedAllergen;
+	}
 	
-    
 	/**
 	 * Sets other non coded concept uuid constant.
 	 * 
 	 * @param otherNonCodedConceptUuid
 	 * @since 2.0
 	 */
-    public static void setOtherNonCodedConceptUuid(String otherNonCodedConceptUuid) {
+	public static void setOtherNonCodedConceptUuid(String otherNonCodedConceptUuid) {
 		OTHER_NON_CODED_CONCEPT_UUID = otherNonCodedConceptUuid;
-    }
-    
+	}
+	
 	/**
 	 * Returns other non coded concept uuid constant.
 	 * 
@@ -82,61 +81,59 @@ public class Allergen {
 	public static String getOtherNonCodedConceptUuid() {
 		return OTHER_NON_CODED_CONCEPT_UUID;
 	}
-
-    /**
-     * @param codedAllergen the codedAllergen to set
-     */
-    public void setCodedAllergen(Concept codedAllergen) {
+	
+	/**
+	 * @param codedAllergen the codedAllergen to set
+	 */
+	public void setCodedAllergen(Concept codedAllergen) {
 		this.codedAllergen = codedAllergen;
 		if (codedAllergen != null && !codedAllergen.getUuid().equals(getOtherNonCodedConceptUuid())) {
 			nonCodedAllergen = null;
 		}
-    }
+	}
 	
-    /**
-     * @return the nonCodedAllergen
-     */
-    public String getNonCodedAllergen() {
-    	return nonCodedAllergen;
-    }
-
-    /**
-     * @param nonCodedAllergen the nonCodedAllergen to set
-     */
-    public void setNonCodedAllergen(String nonCodedAllergen) {
+	/**
+	 * @return the nonCodedAllergen
+	 */
+	public String getNonCodedAllergen() {
+		return nonCodedAllergen;
+	}
+	
+	/**
+	 * @param nonCodedAllergen the nonCodedAllergen to set
+	 */
+	public void setNonCodedAllergen(String nonCodedAllergen) {
 		this.nonCodedAllergen = nonCodedAllergen;
 		if (StringUtils.isNotBlank(nonCodedAllergen)) {
 			if (codedAllergen != null && !codedAllergen.getUuid().equals(getOtherNonCodedConceptUuid())) {
 				codedAllergen = null;
 			}
 		}
-    }
-
-	public boolean isCoded(){
+	}
+	
+	public boolean isCoded() {
 		if (codedAllergen == null || codedAllergen.getUuid().equals(getOtherNonCodedConceptUuid())) {
 			return false;
 		}
 		return true;
 	}
-
+	
 	@Override
-    public String toString() {
-	    if (StringUtils.isNotBlank(nonCodedAllergen)) {
-	    	return nonCodedAllergen;
-	    }
-	    return codedAllergen.getName().getName();
-    }
+	public String toString() {
+		if (StringUtils.isNotBlank(nonCodedAllergen)) {
+			return nonCodedAllergen;
+		}
+		return codedAllergen.getName().getName();
+	}
 	
 	/**
 	 * Checks if this allergen is the same as the given one
 	 * 
 	 * @param allergen the given allergen to test with
-	 * 
 	 * @should return true for same coded allergen
 	 * @should return false for different coded allergen
 	 * @should return true for same non coded allergen
 	 * @should return false for different non coded allergen
-	 * 
 	 * @return true if the same, else false
 	 */
 	public boolean isSameAllergen(Allergen allergen) {
@@ -147,8 +144,7 @@ public class Allergen {
 			if (!codedAllergen.equals(allergen.getCodedAllergen())) {
 				return false;
 			}
-		}
-		else {
+		} else {
 			if (nonCodedAllergen == null || allergen.getNonCodedAllergen() == null) {
 				return false;
 			}

@@ -56,9 +56,8 @@ import org.openmrs.util.OpenmrsUtil;
  * new Obs and void the old one:
  * </p>
  * Obs newObs = Obs.newInstance(oldObs); //copies values from oldObs
- * newObs.setPreviousVersion(oldObs);
- * Context.getObsService().saveObs(newObs,"Your reason for the change here");
- * Context.getObsService().voidObs(oldObs, "Your reason for the change here");
+ * newObs.setPreviousVersion(oldObs); Context.getObsService().saveObs(newObs,"Your reason for the
+ * change here"); Context.getObsService().voidObs(oldObs, "Your reason for the change here");
  * 
  * @see Encounter
  */
@@ -199,7 +198,7 @@ public class Obs extends BaseOpenmrsData {
 		
 		newObs.setValueComplex(obsToCopy.getValueComplex());
 		newObs.setComplexData(obsToCopy.getComplexData());
-		newObs.setFormField(obsToCopy.getFormFieldNamespace(),obsToCopy.getFormFieldPath());
+		newObs.setFormField(obsToCopy.getFormFieldNamespace(), obsToCopy.getFormFieldPath());
 		
 		// Copy list of all members, including voided, and put them in respective groups
 		if (obsToCopy.hasGroupMembers(true)) {
@@ -338,8 +337,8 @@ public class Obs extends BaseOpenmrsData {
 	/**
 	 * Convenience method that checks for if this obs has 1 or more group members (either voided or
 	 * non-voided) Note this method differs from hasGroupMembers(), as that method excludes voided
-	 * obs; logic is that while a obs that has only voided group members should be seen as
-	 * "having no group members" it still should be considered an "obs grouping"
+	 * obs; logic is that while a obs that has only voided group members should be seen as "having
+	 * no group members" it still should be considered an "obs grouping"
 	 * <p>
 	 * NOTE: This method could also be called "isObsGroup" for a little less confusion on names.
 	 * However, jstl in a web layer (or any psuedo-getter) access isn't good with both an
@@ -610,8 +609,8 @@ public class Obs extends BaseOpenmrsData {
 	 */
 	public void setValueBoolean(Boolean valueBoolean) {
 		if (valueBoolean != null && getConcept() != null && getConcept().getDatatype().isBoolean()) {
-			setValueCoded(valueBoolean.booleanValue() ? Context.getConceptService().getTrueConcept() : Context
-			        .getConceptService().getFalseConcept());
+			setValueCoded(valueBoolean.booleanValue() ? Context.getConceptService().getTrueConcept()
+			        : Context.getConceptService().getFalseConcept());
 		} else if (valueBoolean == null) {
 			setValueCoded(null);
 		}
@@ -883,13 +882,8 @@ public class Obs extends BaseOpenmrsData {
 	 * Get the ComplexData. This is retrieved by the {@link ComplexObsHandler} from the file system
 	 * or another location, not from the database. <br>
 	 * <br>
-	 * This will be null unless you call:
-	 * 
-	 * <pre>
-	 * Obs obsWithComplexData =
-	 * Context.getObsService().getComplexObs(obsId, OpenmrsConstants.RAW_VIEW);
-	 * 
-	 * <pre/>
+	 * This will be null unless you call: <pre> Obs obsWithComplexData =
+	 * Context.getObsService().getComplexObs(obsId, OpenmrsConstants.RAW_VIEW); <pre/>
 	 *
 	 * @return the complex data for this obs (if its a complex obs)
 	 * @since 1.5

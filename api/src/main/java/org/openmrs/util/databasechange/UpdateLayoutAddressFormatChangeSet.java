@@ -50,8 +50,8 @@ public class UpdateLayoutAddressFormatChangeSet implements CustomTaskChange {
 				String value = rs.getString("property_value");
 				value = value.replace("org.openmrs.layout.web.", "org.openmrs.layout.");
 				
-				pStmt = connection
-				        .prepareStatement("UPDATE global_property SET property_value = ? WHERE property = 'layout.address.format'");
+				pStmt = connection.prepareStatement(
+				    "UPDATE global_property SET property_value = ? WHERE property = 'layout.address.format'");
 				pStmt.setString(1, value);
 				pStmt.addBatch();
 				pStmt.executeBatch();

@@ -45,8 +45,7 @@ public class BinaryDataHandler extends AbstractHandler implements ComplexObsHand
 	}
 	
 	/**
-	 * Currently supports the following views:
-	 * org.openmrs.obs.ComplexObsHandler#RAW_VIEW
+	 * Currently supports the following views: org.openmrs.obs.ComplexObsHandler#RAW_VIEW
 	 * 
 	 * @see org.openmrs.obs.ComplexObsHandler#getObs(org.openmrs.Obs, java.lang.String)
 	 */

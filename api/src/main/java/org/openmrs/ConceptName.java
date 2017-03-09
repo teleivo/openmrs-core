@@ -145,7 +145,7 @@ public class ConceptName extends BaseOpenmrsObject implements Auditable, Voidabl
 	public void setLocale(Locale locale) {
 		this.locale = locale;
 	}
-
+	
 	/**
 	 * @return Returns the creator.
 	 */
@@ -182,7 +182,6 @@ public class ConceptName extends BaseOpenmrsObject implements Auditable, Voidabl
 	 * Returns whether the ConceptName has been voided.
 	 *
 	 * @return true if the ConceptName has been voided, false otherwise.
-	 * 
 	 * @deprecated as of 2.0, use {@link #getVoided()}
 	 */
 	@Override
@@ -311,7 +310,6 @@ public class ConceptName extends BaseOpenmrsObject implements Auditable, Voidabl
 	 * Getter for localePreferred
 	 *
 	 * @return localPreferred
-	 * 
 	 * @deprecated as of 2.0, use {@link #getLocalePreferred()}
 	 */
 	@Deprecated

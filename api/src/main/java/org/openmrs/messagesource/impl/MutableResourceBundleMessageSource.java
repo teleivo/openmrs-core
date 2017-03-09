@@ -40,7 +40,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
  * additional features of a MutableMessageSource.
  */
 public class MutableResourceBundleMessageSource extends ReloadableResourceBundleMessageSource implements MutableMessageSource {
-
+	
 	private Log log = LogFactory.getLog(getClass());
 	
 	/**
@@ -141,8 +141,8 @@ public class MutableResourceBundleMessageSource extends ReloadableResourceBundle
 			try {
 				OpenmrsUtil.loadProperties(props, propertiesFile.getInputStream());
 				for (Map.Entry<Object, Object> property : props.entrySet()) {
-					presentations.add(new PresentationMessage(property.getKey().toString(), currentLocale, property
-					        .getValue().toString(), ""));
+					presentations.add(new PresentationMessage(property.getKey().toString(), currentLocale,
+					        property.getValue().toString(), ""));
 				}
 			}
 			catch (Exception e) {
@@ -180,7 +180,7 @@ public class MutableResourceBundleMessageSource extends ReloadableResourceBundle
 		//add module file urls to basenames used for locating message properties files
 		Collection<Module> modules = ModuleFactory.getStartedModules();
 		if (!modules.isEmpty()) {
-			String[] names =  new String[this.basenames.length + modules.size()];
+			String[] names = new String[this.basenames.length + modules.size()];
 			System.arraycopy(this.basenames, 0, names, 0, this.basenames.length);
 			int index = this.basenames.length;
 			for (Module module : modules) {
@@ -272,10 +272,11 @@ public class MutableResourceBundleMessageSource extends ReloadableResourceBundle
 	 * @return an array of property file names
 	 */
 	private Resource[] findPropertiesFiles() {
-		Resource[] propertiesFiles = new Resource[]{};
+		Resource[] propertiesFiles = new Resource[] {};
 		try {
 			String pattern = "classpath*:messages*.properties";
-			ResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver(OpenmrsClassLoader.getInstance());
+			ResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver(
+			        OpenmrsClassLoader.getInstance());
 			propertiesFiles = resourceResolver.getResources(pattern);
 		}
 		catch (IOException e) {

@@ -91,16 +91,16 @@ public interface ContextDAO {
 	 * @see org.openmrs.api.context.Context#evictFromSession(Object)
 	 */
 	public void evictFromSession(Object obj);
-
+	
 	/**
 	 * Used to re-read the state of the given instance from the underlying database.
+	 * 
 	 * @since 2.0
-	 *
 	 * @param obj The object to refresh from the database in the session
 	 * @see org.openmrs.api.context.Context#refreshEntity(Object)
 	 */
 	public void refreshEntity(Object obj);
-
+	
 	/**
 	 * Starts the OpenMRS System
 	 * <p>
@@ -126,8 +126,8 @@ public interface ContextDAO {
 	/**
 	 * Updates the search index if necessary.
 	 * <p>
-	 * The update is triggered if {@link OpenmrsConstants#GP_SEARCH_INDEX_VERSION} is blank
-	 * or the value does not match {@link OpenmrsConstants#SEARCH_INDEX_VERSION}.
+	 * The update is triggered if {@link OpenmrsConstants#GP_SEARCH_INDEX_VERSION} is blank or the
+	 * value does not match {@link OpenmrsConstants#SEARCH_INDEX_VERSION}.
 	 */
 	public void setupSearchIndex();
 	
@@ -135,7 +135,7 @@ public interface ContextDAO {
 	 * @see Context#updateSearchIndex()
 	 */
 	public void updateSearchIndex();
-
+	
 	/**
 	 * @see Context#updateSearchIndexAsync()
 	 */

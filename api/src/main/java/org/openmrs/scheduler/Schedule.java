@@ -96,8 +96,8 @@ public class Schedule {
 	 * 
 	 * @param startTime Date for when to start the task (does not need to be in the future if the
 	 *            interval is specified).
-	 * @param repeatInterval interval time in seconds to wait between executing task (&lt;= 0 indicates
-	 *            that it should only be run once)
+	 * @param repeatInterval interval time in seconds to wait between executing task (&lt;= 0
+	 *            indicates that it should only be run once)
 	 */
 	public Schedule(Date startTime, long repeatInterval) {
 		this(null, null, startTime, repeatInterval);
@@ -110,8 +110,8 @@ public class Schedule {
 	 * @param description
 	 * @param startTime Date for when to start the task (does not need to be in the future if the
 	 *            interval is specified).
-	 * @param repeatInterval interval time in seconds to wait between executing task (&lt;= 0 indicates
-	 *            that it should only be run once)
+	 * @param repeatInterval interval time in seconds to wait between executing task (&lt;= 0
+	 *            indicates that it should only be run once)
 	 */
 	public Schedule(String name, String description, Date startTime, long repeatInterval) {
 		this.name = name;
@@ -211,7 +211,7 @@ public class Schedule {
 		             }
 			}
 	*/
-
+	
 	/**
 	 * Gets the number of seconds until task is executed again.
 	 * 

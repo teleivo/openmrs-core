@@ -32,7 +32,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * In English, we run into a tricky RelationshipType with aunts and uncles. We have chosen to define
  * them as aunt/uncle-niece/nephew.
  */
-public class RelationshipType extends BaseOpenmrsMetadata{
+public class RelationshipType extends BaseOpenmrsMetadata {
 	
 	public static final long serialVersionUID = 4223L;
 	
@@ -119,7 +119,6 @@ public class RelationshipType extends BaseOpenmrsMetadata{
 	 * adding/editing a person's relationships
 	 * 
 	 * @return the preferred status
-	 * 
 	 * @deprecated as of 2.0, use {@link #getPrefered()}
 	 */
 	@Deprecated

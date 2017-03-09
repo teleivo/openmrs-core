@@ -14,7 +14,8 @@ import org.openmrs.attribute.BaseAttributeType;
 
 /**
  * A user-defined extension to the {@link Visit} class.
- * @see AttributeType 
+ * 
+ * @see AttributeType
  */
 public class VisitAttributeType extends BaseAttributeType<Visit> implements AttributeType<Visit> {
 	

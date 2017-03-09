@@ -85,7 +85,7 @@ public class AlertServiceImpl extends BaseOpenmrsService implements Serializable
 		
 		return dao.saveAlert(alert);
 	}
-
+	
 	/**
 	 * @see org.openmrs.notification.AlertService#getAlert(java.lang.Integer)
 	 */
@@ -131,7 +131,7 @@ public class AlertServiceImpl extends BaseOpenmrsService implements Serializable
 		
 		return Context.getAlertService().getAlerts(user, false, false);
 	}
-
+	
 	/**
 	 * @see org.openmrs.notification.AlertService#getAlerts(org.openmrs.User, boolean, boolean)
 	 */

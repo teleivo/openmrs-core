@@ -15,9 +15,8 @@ import org.openmrs.api.context.Context;
 import org.springframework.util.StringUtils;
 
 /**
- * ConceptStopWord is the real world term used to filter the words for indexing
- * from search phrase. Common words like 'and', 'if' are examples of this. It's
- * specific to locale.
+ * ConceptStopWord is the real world term used to filter the words for indexing from search phrase.
+ * Common words like 'and', 'if' are examples of this. It's specific to locale.
  * 
  * @since 1.8
  */
@@ -41,8 +40,7 @@ public class ConceptStopWord extends BaseOpenmrsObject {
 	}
 	
 	/**
-	 * Convenience constructor to create a ConceptStopWord object with default
-	 * locale English
+	 * Convenience constructor to create a ConceptStopWord object with default locale English
 	 * 
 	 * @param value
 	 */
@@ -51,8 +49,7 @@ public class ConceptStopWord extends BaseOpenmrsObject {
 	}
 	
 	/**
-	 * Convenience constructor to create a ConceptStopWord object with value and
-	 * locale
+	 * Convenience constructor to create a ConceptStopWord object with value and locale
 	 * 
 	 * @param value
 	 * @param locale

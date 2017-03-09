@@ -57,8 +57,8 @@ public class SerializationServiceImpl extends BaseOpenmrsService implements Seri
 	@Override
 	@Transactional(readOnly = true)
 	public OpenmrsSerializer getDefaultSerializer() {
-		String prop = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_SERIALIZER);
+		String prop = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_SERIALIZER);
 		if (StringUtils.isNotEmpty(prop)) {
 			try {
 				Class<?> clazz = Context.loadClass(prop);

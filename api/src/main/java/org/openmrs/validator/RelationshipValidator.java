@@ -18,6 +18,7 @@ import org.springframework.validation.Validator;
 
 /**
  * Validator for the Relationship class
+ * 
  * @since 1.11.0
  */
 
@@ -39,15 +40,12 @@ public class RelationshipValidator implements Validator {
 	 *
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 *
 	 * @should fail if end date is prior to the start date
 	 * @should fail if start date is a future date
 	 * @should pass validation if field lengths are correct
 	 * @should fail validation if field lengths are not correct
 	 * @param target Relationship object to be validate
 	 * @param errors Error object to hold any errors encounter in the test
-	 *
-	 *
 	 **/
 	@Override
 	public void validate(Object target, Errors errors) {

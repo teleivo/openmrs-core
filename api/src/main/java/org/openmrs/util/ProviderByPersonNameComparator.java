@@ -14,12 +14,9 @@ import java.util.Comparator;
 import org.openmrs.Provider;
 
 /**
- * Sorts providers by the primary person name associated with the underlying person
- *
- * Note that this ignores any values stored in the provider "name" property and sorts
- * solely on the underlying person name               l
- *
- * Utilizes the {@link PersonByNameComparator} comparator to do the underlying sort
+ * Sorts providers by the primary person name associated with the underlying person Note that this
+ * ignores any values stored in the provider "name" property and sorts solely on the underlying
+ * person name l Utilizes the {@link PersonByNameComparator} comparator to do the underlying sort
  */
 public class ProviderByPersonNameComparator implements Comparator<Provider> {
 	
