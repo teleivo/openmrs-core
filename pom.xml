@@ -1,15 +1,9 @@
-<!--
-
-    This Source Code Form is subject to the terms of the Mozilla Public License,
-    v. 2.0. If a copy of the MPL was not distributed with this file, You can
-    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
-    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
-
-    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
-    graphic logo is a trademark of OpenMRS Inc.
-
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!-- This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed 
+	with this file, You can obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under the terms of the Healthcare 
+	Disclaimer located at http://openmrs.org/license. Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS 
+	graphic logo is a trademark of OpenMRS Inc. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.openmrs</groupId>
@@ -247,8 +241,7 @@
 				<artifactId>hibernate-ehcache</artifactId>
 				<version>${hibernateVersion}</version>
 				<exclusions>
-					<!-- Excluding since we are using a newer version where
-					arifactId is ehcache instead of ehcache-core -->
+					<!-- Excluding since we are using a newer version where arifactId is ehcache instead of ehcache-core -->
 					<exclusion>
 						<groupId>net.sf.ehcache</groupId>
 						<artifactId>ehcache-core</artifactId>
@@ -296,41 +289,38 @@
 				<version>1.0.1</version>
 			</dependency>
 
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>1.2.15</version>
-				<exclusions>
-					<exclusion>
-						<groupId>javax.jms</groupId>
-						<artifactId>jms</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.sun.jdmk</groupId>
-						<artifactId>jmxtools</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.sun.jmx</groupId>
-						<artifactId>jmxri</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
+			<!-- Logging Dependencies START -->
+			<!-- Logging Facade to abstract Logging Implementation -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.6.0</version>
+				<version>${slf4jVersion}</version>
+			</dependency>
+			<!-- Logging Implementation Log4J 2 -->
+			<!-- slf4j binding for Log4J -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>${log4jVersion}</version>
+			</dependency>
+			<!-- Log4J API and Core implementation -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>${log4jVersion}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
-				<version>1.6.0</version>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4jVersion}</version>
 			</dependency>
+			<!-- Log4J Legacy Bridge to support code of 1.2 using 2.x -->
 			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>1.6.0</version>
-				<scope>runtime</scope>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-1.2-api</artifactId>
+				<version>${log4jVersion}</version>
 			</dependency>
+			<!-- Logging Dependencies END -->
 			<dependency>
 				<groupId>ca.uhn.hapi</groupId>
 				<artifactId>hapi-base</artifactId>
@@ -628,8 +618,7 @@
 							<artifactId>openmrs-tools</artifactId>
 							<version>${project.version}</version>
 						</tagletArtifact>
-						<!-- For some reason some packages from org.springframework are being
-						included and causing errors. -->
+						<!-- For some reason some packages from org.springframework are being included and causing errors. -->
 						<excludePackageNames>org.springframework.*</excludePackageNames>
 					</configuration>
 					<executions>
@@ -641,8 +630,7 @@
 						</execution>
 					</executions>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings
-					only. It has no influence on the Maven build itself. -->
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -666,7 +654,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -685,7 +673,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -706,7 +694,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -944,8 +932,10 @@
 				<version>2.10.3</version>
 				<configuration>
 					<docfilessubdirs>true</docfilessubdirs>
-					<bottom>&lt;em&gt;&lt;small&gt; Generated ${TIMESTAMP} NOTE - these libraries are in active development and subject to change&lt;/small&gt;&lt;/em&gt;</bottom>
-					<header>&lt;a href="http://www.openmrs.org" target=_top&gt;&lt;img src="resources/openmrs-logo-small.gif" border=0/&gt;&lt;/a&gt;</header>
+					<bottom>&lt;em&gt;&lt;small&gt; Generated ${TIMESTAMP} NOTE - these libraries are in active development and subject to
+						change&lt;/small&gt;&lt;/em&gt;</bottom>
+					<header>&lt;a href="http://www.openmrs.org" target=_top&gt;&lt;img src="resources/openmrs-logo-small.gif"
+						border=0/&gt;&lt;/a&gt;</header>
 					<footer>&lt;a href="http://www.openmrs.org" target=_top&gt;${project.name}&lt;/a&gt;</footer>
 				</configuration>
 			</plugin>
@@ -995,14 +985,17 @@
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 		<TIMESTAMP>${maven.build.timestamp}</TIMESTAMP>
 
-		<openmrs.version.long>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion} ${parsedVersion.qualifier} Build ${revisionNumber}</openmrs.version.long>
+		<openmrs.version.long>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}
+			${parsedVersion.qualifier} Build ${revisionNumber}</openmrs.version.long>
 		<openmrs.version.short>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${revisionNumber}</openmrs.version.short>
 		<openmrs.version.shortnumericonly>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</openmrs.version.shortnumericonly>
 		<openmrs.version>${project.version}</openmrs.version>
 
 		<springVersion>4.1.4.RELEASE</springVersion>
 		<hibernateVersion>4.3.9.Final</hibernateVersion>
-		<customArgLineForTesting/>
+		<slf4jVersion>1.7.24</slf4jVersion>
+		<log4jVersion>2.8.1</log4jVersion>
+		<customArgLineForTesting />
 
 		<sonar.host.url>https://sonar.openmrs.org/sonar</sonar.host.url>
 		<sonar.issuesReport.html.enable>true</sonar.issuesReport.html.enable>
