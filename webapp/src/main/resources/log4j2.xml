@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<Configuration status="WARN" name="OpenMRS">
+	<Appenders>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="%p - %C{1}.%M(%L) |%d{ISO8601}| %m%n"/>
+		</Console>
+		<RollingFileAppender name="DEBUGGING_FILE_APPENDER" fileName="openmrs.log" append="false">
+			<PatternLayout pattern="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
+		</RollingFileAppender>
+	</Appenders>
+	<Loggers>
+		<Root level="WARN">
+			<AppenderRef ref="CONSOLE"/>
+		</Root>
+
+		<Logger name="org.apache" level="WARN">
+		</Logger>
+	
+		<Logger name="org.hibernate" level="ERROR">
+		</Logger>
+	
+		<Logger name="net.sf.ehcache" level="ERROR">
+		</Logger>
+
+		<Logger name="org.springframework" level="WARN">
+		</Logger>
+
+		<Logger name="org.openmrs" level="WARN">
+		</Logger>
+
+		<!-- 
+			This controls the LoggingAdvice class that wraps around the OpenMRS services 
+			WARN == don't log anything special for the services
+			INFO == log all setters
+			DEBUG == log all setters & log all getters & log execution time
+		-->
+		<Logger name="org.openmrs.api" level="INFO">
+		</Logger>
+
+		<Logger name="org.apache.fop" level="ERROR">
+		</Logger>
+
+		<!-- Hide the useless MissingResourceException -->
+		<Logger name="org.springframework.context.support.ResourceBundleMessageSource" level="ERROR">
+		</Logger>
+
+		<Logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="ERROR">
+		</Logger>
+	</Loggers>
+</Configuration>
+
+<!-- This should be done, just check it matches -->
+<!-- 	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%p - %C{1}.%M(%L) |%d{ISO8601}| %m%n" />
+		</layout>
+	</appender>
+ -->	
+
+<!-- TODO MEMORY_APPENDER replacement -->
+<!-- 	<root>
+		<level value="WARN" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="MEMORY_APPENDER" />
+	</root>
+ -->
+
+<!-- 	<appender name="MEMORY_APPENDER" class="org.openmrs.util.MemoryAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%p - %C{1}.%M(%L) |%d{ISO8601}| %m%n" />
+		</layout>
+	</appender>	
+ -->	
+
+<!-- is this one used, i mean its not referenced here but we do log to a file so it must be :) -->
+<!-- 	<appender name="DEBUGGING_FILE_APPENDER" class="org.apache.log4j.RollingFileAppender">
+      <param name="append" value="false"/>
+      <param name="file" value="openmrs.log"/>
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
+      </layout>
+   </appender>
+ -->

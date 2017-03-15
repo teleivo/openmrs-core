@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+
+<!-- ######################################################
+     #                                                    #
+     # This log4j file is only used by the unit tests.    #
+     # The /metadata/api/log4j/log4j.xml file is put into #
+     # the api jar and war files.                         #
+     #                                                    #
+     ###################################################### -->
+ 
+<Configuration status="WARN" name="OpenMRS">
+	<Appenders>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="%p - %C{1}.%M(%L) |%d{ISO8601}| %m%n"/>
+		</Console>
+		<RollingFileAppender name="DEBUGGING_FILE_APPENDER" fileName="openmrs.log" append="false">
+			<PatternLayout pattern="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
+		</RollingFileAppender>
+	</Appenders>
+	<Loggers>
+		<Root level="ERROR">
+			<AppenderRef ref="CONSOLE"/>
+		</Root>
+
+		<Logger name="org.hibernate.SQL" level="WARN">
+		</Logger>
+	
+		<Logger name="net.sf.ehcache" level="ERROR">
+		</Logger>
+
+		<Logger name="org.springframework" level="WARN">
+		</Logger>
+
+		<Logger name="org.openmrs.test" level="INFO">
+		</Logger>
+
+		<!-- Hide unnecessary errors logged by Hibernate during unit testing -->
+		<Logger name="org.hibernate.tool.hbm2ddl.SchemaExport" level="FATAL">
+		</Logger>
+
+		<!-- 
+			This controls the LoggingAdvice class that wraps around the OpenMRS services 
+			WARN == don't log anything special for the services
+			INFO == log all setters
+			DEBUG == log all setters & log all getters & log execution time
+		-->
+		<Logger name="org.openmrs.api" level="WARN">
+		</Logger>
+	</Loggers>	
+</Configuration>
