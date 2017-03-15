@@ -126,6 +126,12 @@
 		<groupId>org.apache.logging.log4j</groupId>
 		<artifactId>log4j-core</artifactId>
 	</dependency>
+	<!-- Needed when Log4J is used in webapps -->
+	<!-- see https://logging.apache.org/log4j/2.0/manual/webapp.html -->
+	<dependency>
+		<groupId>org.apache.logging.log4j</groupId>
+		<artifactId>log4j-web</artifactId>
+	</dependency>
 	<!-- Log4J Legacy Bridge to support code of 1.2 using 2.x -->
 	<dependency>
 		<groupId>org.apache.logging.log4j</groupId>
