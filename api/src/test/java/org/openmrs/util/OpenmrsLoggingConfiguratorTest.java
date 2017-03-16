@@ -17,9 +17,11 @@ public class OpenmrsLoggingConfiguratorTest {
 	
 	private Logger defaultClassLogger = LogManager.getLogger(OpenmrsConstants.LOG_CLASS_DEFAULT);
 	
+	private final static Level initialDefaultClassLoggerLevel = Level.WARN;
+	
 	@Before
 	public void setUp() {
-		Configurator.setLevel(OpenmrsConstants.LOG_CLASS_DEFAULT, Level.WARN);
+		Configurator.setLevel(OpenmrsConstants.LOG_CLASS_DEFAULT, initialDefaultClassLoggerLevel);
 	}
 	
 	/**
@@ -53,5 +55,16 @@ public class OpenmrsLoggingConfiguratorTest {
 		OpenmrsLoggingConfigurator.applyLogLevel(" ", "info");
 		
 		assertThat(defaultClassLogger.getLevel(), is(Level.INFO));
+	}
+	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevel(String, String)
+	 */
+	@Test
+	public void applyLogLevel_shouldNotApplyTheGivenLogLevelAndLogAWarningIfGivenLevelIsNull() throws Exception {
+		
+		OpenmrsLoggingConfigurator.applyLogLevel(OpenmrsConstants.LOG_CLASS_DEFAULT, null);
+		
+		assertThat(defaultClassLogger.getLevel(), is(initialDefaultClassLoggerLevel));
 	}
 }

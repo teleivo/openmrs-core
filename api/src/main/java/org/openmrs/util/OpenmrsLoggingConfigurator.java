@@ -28,6 +28,9 @@ public final class OpenmrsLoggingConfigurator {
 		} else {
 			logger = loggerName;
 		}
+		if (level == null) {
+			return;
+		}
 		Level logLevel = Level.toLevel(level);
 		Configurator.setLevel(logger, logLevel);
 	}
