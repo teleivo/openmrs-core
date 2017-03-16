@@ -42,8 +42,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Appender;
-import org.apache.log4j.Logger;
 import org.openmrs.ImplementationId;
 import org.openmrs.api.APIAuthenticationException;
 import org.openmrs.api.PasswordException;
@@ -57,7 +55,6 @@ import org.openmrs.util.DatabaseUpdater;
 import org.openmrs.util.DatabaseUpdater.ChangeSetExecutorCallback;
 import org.openmrs.util.DatabaseUtil;
 import org.openmrs.util.InputRequiredException;
-import org.openmrs.util.MemoryAppender;
 import org.openmrs.util.OpenmrsConstants;
 import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.util.PrivilegeConstants;
@@ -235,19 +232,18 @@ public class InitializationFilter extends StartupFilter {
 					result.put("executedTasks", initJob.getExecutedTasks());
 					result.put("completedPercentage", initJob.getCompletedPercentage());
 				}
-				
-				Appender appender = Logger.getRootLogger().getAppender("MEMORY_APPENDER");
-				if (appender instanceof MemoryAppender) {
-					MemoryAppender memoryAppender = (MemoryAppender) appender;
-					List<String> logLines = memoryAppender.getLogLines();
-					// truncate the list to the last 5 so we don't overwhelm jquery
-					if (logLines.size() > 5) {
-						logLines = logLines.subList(logLines.size() - 5, logLines.size());
-					}
-					result.put("logLines", logLines);
-				} else {
-					result.put("logLines", new ArrayList<String>());
-				}
+//				Appender appender = Logger.getRootLogger().getAppender("MEMORY_APPENDER");
+//				if (appender instanceof MemoryAppender) {
+//					MemoryAppender memoryAppender = (MemoryAppender) appender;
+//					List<String> logLines = memoryAppender.getLogLines();
+//					// truncate the list to the last 5 so we don't overwhelm jquery
+//					if (logLines.size() > 5) {
+//						logLines = logLines.subList(logLines.size() - 5, logLines.size());
+//					}
+//					result.put("logLines", logLines);
+//				} else {
+//					result.put("logLines", new ArrayList<String>());
+//				}
 			}
 			
 			PrintWriter writer = httpResponse.getWriter();
