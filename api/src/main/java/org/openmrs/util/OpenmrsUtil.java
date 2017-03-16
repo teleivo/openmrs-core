@@ -69,7 +69,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Appender;
 import org.apache.log4j.FileAppender;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.RollingFileAppender;
@@ -483,15 +482,7 @@ public class OpenmrsUtil {
 		AdministrationService adminService = Context.getAdministrationService();
 		String logLevel = adminService.getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_LOG_LEVEL, "");
 		
-		String[] levels = logLevel.split(",");
-		for (String level : levels) {
-			String[] classAndLevel = level.split(":");
-			if (classAndLevel.length == 1) {
-				applyLogLevel(OpenmrsConstants.LOG_CLASS_DEFAULT, logLevel);
-			} else {
-				applyLogLevel(classAndLevel[0].trim(), classAndLevel[1].trim());
-			}
-		}
+		OpenmrsLoggingConfigurator.applyLogLevels(logLevel);
 	}
 	
 	/**
@@ -541,36 +532,12 @@ public class OpenmrsUtil {
 	 * @param logClass optional string giving the class level to change. Defaults to
 	 *            OpenmrsConstants.LOG_CLASS_DEFAULT . Should be something like org.openmrs.___
 	 * @param logLevel one of OpenmrsConstants.LOG_LEVEL_*
+	 * @deprecated As of 2.2.0, replaced by
+	 *             {@link OpenmrsLoggingConfigurator#applyLogLevel(String, String)}
 	 */
+	@Deprecated
 	public static void applyLogLevel(String logClass, String logLevel) {
-		
-		if (logLevel != null) {
-			
-			// the default log level is org.openmrs
-			if (StringUtils.isEmpty(logClass)) {
-				logClass = OpenmrsConstants.LOG_CLASS_DEFAULT;
-			}
-			
-			Logger logger = Logger.getLogger(logClass);
-			
-			logLevel = logLevel.toLowerCase();
-			if (OpenmrsConstants.LOG_LEVEL_TRACE.equals(logLevel)) {
-				logger.setLevel(Level.TRACE);
-			} else if (OpenmrsConstants.LOG_LEVEL_DEBUG.equals(logLevel)) {
-				logger.setLevel(Level.DEBUG);
-			} else if (OpenmrsConstants.LOG_LEVEL_INFO.equals(logLevel)) {
-				logger.setLevel(Level.INFO);
-			} else if (OpenmrsConstants.LOG_LEVEL_WARN.equals(logLevel)) {
-				logger.setLevel(Level.WARN);
-			} else if (OpenmrsConstants.LOG_LEVEL_ERROR.equals(logLevel)) {
-				logger.setLevel(Level.ERROR);
-			} else if (OpenmrsConstants.LOG_LEVEL_FATAL.equals(logLevel)) {
-				logger.setLevel(Level.FATAL);
-			} else {
-				log.warn("Global property " + logLevel + " is invalid. "
-				        + "Valid values are trace, debug, info, warn, error or fatal");
-			}
-		}
+		OpenmrsLoggingConfigurator.applyLogLevel(logClass, logLevel);
 	}
 	
 	/**
