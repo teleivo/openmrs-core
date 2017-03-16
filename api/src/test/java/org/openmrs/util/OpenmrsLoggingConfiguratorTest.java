@@ -67,4 +67,15 @@ public class OpenmrsLoggingConfiguratorTest {
 		
 		assertThat(defaultClassLogger.getLevel(), is(initialDefaultClassLoggerLevel));
 	}
+	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevel(String, String)
+	 */
+	@Test
+	public void applyLogLevel_shouldNotApplyTheGivenLogLevelAndLogAWarningIfGivenLevelIsBlank() throws Exception {
+		
+		OpenmrsLoggingConfigurator.applyLogLevel(OpenmrsConstants.LOG_CLASS_DEFAULT, " ");
+		
+		assertThat(defaultClassLogger.getLevel(), is(initialDefaultClassLoggerLevel));
+	}
 }

@@ -22,16 +22,21 @@ public final class OpenmrsLoggingConfigurator {
 	 */
 	public static void applyLogLevel(String loggerName, String level) {
 		
+		String logger = defaultLoggerNameIfBlank(loggerName);
+		if (StringUtils.isBlank(level)) {
+			return;
+		}
+		Level logLevel = Level.toLevel(level);
+		Configurator.setLevel(logger, logLevel);
+	}
+
+	private static String defaultLoggerNameIfBlank(String loggerName) {
 		String logger;
 		if (StringUtils.isBlank(loggerName)) {
 			logger = OpenmrsConstants.LOG_CLASS_DEFAULT;
 		} else {
 			logger = loggerName;
 		}
-		if (level == null) {
-			return;
-		}
-		Level logLevel = Level.toLevel(level);
-		Configurator.setLevel(logger, logLevel);
+		return logger;
 	}
 }
