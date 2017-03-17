@@ -2,6 +2,7 @@ package org.openmrs.util;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.when;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,14 +19,24 @@ import org.apache.logging.log4j.test.appender.ListAppender;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.openmrs.api.AdministrationService;
+import org.openmrs.api.context.Context;
+import org.openmrs.test.BaseContextMockTest;
 
 /**
  * Tests the {@link OpenmrsLoggingConfigurator}.
  */
-public class OpenmrsLoggingConfiguratorTest {
+public class OpenmrsLoggingConfiguratorTest extends BaseContextMockTest {
 	
 	@Rule
 	public LoggerContextRule ctx = new LoggerContextRule("org/openmrs/util/OpenmrsLoggingConfiguratorTest.xml");
+	
+	@Mock
+	Context context;
+	
+	@Mock
+	AdministrationService administrationService;
 	
 	private Logger defaultClassLogger;
 	
@@ -101,6 +112,9 @@ public class OpenmrsLoggingConfiguratorTest {
 		//		    "Trying set invalid log level ' '. Valid values are trace, debug, info, warn, error or fatal");
 	}
 	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevel(String, String)
+	 */
 	@Test
 	public void applyLogLevel_shouldNotChangeTheLogLevelAndLogAWarningIfGivenLevelIsNotOneOfTheOpenmrsLogLevelContants()
 	        throws Exception {
@@ -113,6 +127,9 @@ public class OpenmrsLoggingConfiguratorTest {
 		//		    "Trying set invalid log level 'UNKNOWNLOGLEVEL'. Valid values are trace, debug, info, warn, error or fatal");
 	}
 	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevel(String, String)
+	 */
 	@Test
 	public void applyLogLevel_shouldNotChangeTheLogLevelAndLogAWarningIfGivenLevelIsAllWhichIsValidForLog4jButNotOneOfTheOpenmrsLogLevelContants()
 	        throws Exception {
@@ -125,6 +142,9 @@ public class OpenmrsLoggingConfiguratorTest {
 		//		    "Trying set invalid log level 'ALL'. Valid values are trace, debug, info, warn, error or fatal");
 	}
 	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevel(String, String)
+	 */
 	@Test
 	public void applyLogLevel_shouldNotChangeTheLogLevelAndLogAWarningIfGivenLevelIsOffWhichIsValidForLog4jButNotOneOfTheOpenmrsLogLevelContants()
 	        throws Exception {
@@ -137,9 +157,11 @@ public class OpenmrsLoggingConfiguratorTest {
 		//		    "Trying set invalid log level 'off'. Valid values are trace, debug, info, warn, error or fatal");
 	}
 	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevels(String)
+	 */
 	@Test
-	public void applyLogLevels_shouldApplyLogLevelIfGivenSingleLoggerNameAndLogLevelPair()
-	        throws Exception {
+	public void applyLogLevels_shouldApplyLogLevelIfGivenSingleLoggerNameAndLogLevelPair() throws Exception {
 		
 		Map<String, Level> loggerSettings = new HashMap<>();
 		loggerSettings.put("org.openmrs.module.radiology", Level.INFO);
@@ -152,9 +174,11 @@ public class OpenmrsLoggingConfiguratorTest {
 		assertLoggerLevelsAreSetAsExpected(loggerSettings);
 	}
 	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevels(String)
+	 */
 	@Test
-	public void applyLogLevels_shouldApplyLogLevelsIfGivenMultipleLoggerNameLogLevelPairs()
-	        throws Exception {
+	public void applyLogLevels_shouldApplyLogLevelsIfGivenMultipleLoggerNameLogLevelPairs() throws Exception {
 		
 		Map<String, Level> loggerSettings = new HashMap<>();
 		loggerSettings.put("org.openmrs.module.radiology", Level.INFO);
@@ -168,6 +192,9 @@ public class OpenmrsLoggingConfiguratorTest {
 		assertLoggerLevelsAreSetAsExpected(loggerSettings);
 	}
 	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevels(String)
+	 */
 	@Test
 	public void applyLogLevels_shouldApplyLogLevelsIfGivenMultipleLoggerNameLogLevelPairsWithLeadingTrailingAndInnerWhitespaces()
 	        throws Exception {
@@ -184,9 +211,11 @@ public class OpenmrsLoggingConfiguratorTest {
 		assertLoggerLevelsAreSetAsExpected(loggerSettings);
 	}
 	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevels(String)
+	 */
 	@Test
-	public void applyLogLevels_shouldApplyLogLevelsAndApplySingleLevelToTheDefaultLogClass()
-	        throws Exception {
+	public void applyLogLevels_shouldApplyLogLevelsAndApplySingleLevelToTheDefaultLogClass() throws Exception {
 		
 		Map<String, Level> loggerSettings = new HashMap<>();
 		loggerSettings.put("org.openmrs.module.radiology", Level.INFO);
@@ -202,6 +231,9 @@ public class OpenmrsLoggingConfiguratorTest {
 		assertLoggerLevelsAreSetAsExpected(loggerSettings);
 	}
 	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevels(String)
+	 */
 	@Test
 	public void applyLogLevels_shouldApplyLogLevelToTheDefaultLogClassIfGivenOnlyALogLevel() throws Exception {
 		
@@ -210,6 +242,29 @@ public class OpenmrsLoggingConfiguratorTest {
 		assertThat(ctx.getLogger(OpenmrsConstants.LOG_CLASS_DEFAULT).getLevel(), is(Level.DEBUG));
 	}
 	
+	/**
+	 * @see OpenmrsLoggingConfigurator#applyLogLevelsFromGlobalProperty()
+	 */
+	@Test
+	public void applyLogLevelsFromGlobalProperty_shouldApplyLogLevelsDefinedByGlobalProperty() throws Exception {
+		
+		Map<String, Level> loggerSettings = new HashMap<>();
+		loggerSettings.put("org.openmrs.module.radiology", Level.INFO);
+		loggerSettings.put("org.openmrs.module.reporting", Level.WARN);
+		loggerSettings.put("org.hibernate", Level.DEBUG);
+		
+		String loggerNameLevelPairs = computeLoggerNameLevelPairsWithNoise(loggerSettings);
+		
+		when(Context.getAdministrationService()).thenReturn(administrationService);
+		when(administrationService.getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_LOG_LEVEL, ""))
+		        .thenReturn(loggerNameLevelPairs);
+		
+		OpenmrsLoggingConfigurator.applyLogLevelsFromGlobalProperty();
+		
+		assertLoggerLevelsAreSetAsExpected(loggerSettings);
+	}
+	
+	// TODO - fails if used on a test and all tests are run
 	private void assertThatOneWarningWasLoggedWithMessage(String message) {
 		final ListAppender appender = ctx.getListAppender("LIST");
 		final List<LogEvent> logEvents = appender.getEvents();
@@ -254,8 +309,7 @@ public class OpenmrsLoggingConfiguratorTest {
 	}
 	
 	private void assertLoggerLevelsAreSetAsExpected(Map<String, Level> loggerSettings) {
-		loggerSettings.entrySet().stream().forEach(
-		    e -> assertThat("Level of logger with name: '" + e.getKey() + "'", ctx.getLogger(e.getKey()).getLevel(),
-		        is(e.getValue())));
+		loggerSettings.entrySet().stream().forEach(e -> assertThat("Level of logger with name: '" + e.getKey() + "'",
+		    ctx.getLogger(e.getKey()).getLevel(), is(e.getValue())));
 	}
 }

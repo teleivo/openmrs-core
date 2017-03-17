@@ -26,6 +26,17 @@ public final class OpenmrsLoggingConfigurator {
 	}
 	
 	/**
+	 * Apply the log level's of multiple loggers configured in the global property.
+	 * <p>
+	 * Reads the {@code GlobalProperty} {@link OpenmrsConstants#GLOBAL_PROPERTY_LOG_LEVEL} from the
+	 * database and delegates to {@link #applyLogLevels(String)} to apply the log levels.
+	 * </p>
+	 */
+	public static void applyLogLevelsFromGlobalProperty() {
+		
+	}
+	
+	/**
 	 * Apply the log level to the logger of a given name.
 	 * <p>
 	 * Valid log {@code level}'s are:
