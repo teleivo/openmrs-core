@@ -15,9 +15,6 @@
 		<Console name="CONSOLE" target="SYSTEM_OUT">
 			<PatternLayout pattern="%p - %C{1}.%M(%L) |%d{ISO8601}| %m%n"/>
 		</Console>
-		<RollingFile name="DEBUGGING_FILE_APPENDER" fileName="openmrs.log" append="false">
-			<PatternLayout pattern="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
-		</RollingFile>
 	</Appenders>
 	<Loggers>
 		<Root level="WARN">
