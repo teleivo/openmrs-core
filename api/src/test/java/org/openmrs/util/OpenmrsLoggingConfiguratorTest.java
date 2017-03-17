@@ -2,7 +2,6 @@ package org.openmrs.util;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,24 +18,14 @@ import org.apache.logging.log4j.test.appender.ListAppender;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.openmrs.api.AdministrationService;
-import org.openmrs.api.context.Context;
-import org.openmrs.test.BaseContextMockTest;
 
 /**
  * Tests the {@link OpenmrsLoggingConfigurator}.
  */
-public class OpenmrsLoggingConfiguratorTest extends BaseContextMockTest {
+public class OpenmrsLoggingConfiguratorTest {
 	
 	@Rule
 	public LoggerContextRule ctx = new LoggerContextRule("org/openmrs/util/OpenmrsLoggingConfiguratorTest.xml");
-	
-	@Mock
-	Context context;
-	
-	@Mock
-	AdministrationService administrationService;
 	
 	private Logger defaultClassLogger;
 	
@@ -240,28 +229,6 @@ public class OpenmrsLoggingConfiguratorTest extends BaseContextMockTest {
 		OpenmrsLoggingConfigurator.applyLogLevels("Debug");
 		
 		assertThat(ctx.getLogger(OpenmrsConstants.LOG_CLASS_DEFAULT).getLevel(), is(Level.DEBUG));
-	}
-	
-	/**
-	 * @see OpenmrsLoggingConfigurator#applyLogLevelsFromGlobalProperty()
-	 */
-	@Test
-	public void applyLogLevelsFromGlobalProperty_shouldApplyLogLevelsDefinedByGlobalProperty() throws Exception {
-		
-		Map<String, Level> loggerSettings = new HashMap<>();
-		loggerSettings.put("org.openmrs.module.radiology", Level.INFO);
-		loggerSettings.put("org.openmrs.module.reporting", Level.WARN);
-		loggerSettings.put("org.hibernate", Level.DEBUG);
-		
-		String loggerNameLevelPairs = computeLoggerNameLevelPairsWithNoise(loggerSettings);
-		
-		when(Context.getAdministrationService()).thenReturn(administrationService);
-		when(administrationService.getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_LOG_LEVEL, ""))
-		        .thenReturn(loggerNameLevelPairs);
-		
-		OpenmrsLoggingConfigurator.applyLogLevelsFromGlobalProperty();
-		
-		assertLoggerLevelsAreSetAsExpected(loggerSettings);
 	}
 	
 	// TODO - fails if used on a test and all tests are run
