@@ -290,10 +290,10 @@
 			</dependency>
 
 			<!-- Logging Dependencies START -->
-			<!-- Logging Facade to abstract Logging Implementation -->
+			<!-- Bridging Spring/Others depending on JCL to Logging Facade slf4j -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
+				<artifactId>jcl-over-slf4j</artifactId>
 				<version>${slf4jVersion}</version>
 			</dependency>
 			<!-- Logging Implementation Log4J 2 -->
@@ -319,12 +319,6 @@
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-web</artifactId>
-				<version>${log4jVersion}</version>
-			</dependency>
-			<!-- Log4J Legacy Bridge to support code of 1.2 using 2.x -->
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>log4j-1.2-api</artifactId>
 				<version>${log4jVersion}</version>
 			</dependency>
 			<!-- Log4J testing dependencies -->
