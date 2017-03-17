@@ -7,3 +7,7 @@ or is it that in other tests the log4j2-test.xml is not found?
 
 * the Listener that starts openmrs in webapp depends on the log4j v1 api, how
 did I miss this :horror: ?
+ANSWER: was intentional, I replaced all calls to log that could be replaced
+with slf4j calls. The remaining dependencies were because when the webapp
+starts the class created a logger with log level and logged the runtime
+properties. This should not be needed anymore due to the log4j-web dependency

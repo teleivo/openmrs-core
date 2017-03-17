@@ -32,9 +32,6 @@ import javax.servlet.ServletException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.MandatoryModuleException;
 import org.openmrs.module.Module;
@@ -171,8 +168,12 @@ public final class Listener extends ContextLoader implements ServletContextListe
 				
 				//ensure that we always log the runtime properties file that we are using
 				//since openmrs is just booting, the log levels are not yet set. TRUNK-4835
-				Logger.getLogger(getClass()).setLevel(Level.INFO);
-				contextLog.info("Using runtime properties file: "
+
+				// TODO - check if thats needed, with dependency log4j-web log4j 2 should automatically start and be up before openmrs
+				// https://logging.apache.org/log4j/2.0/manual/webapp.html
+				// Logger.getLogger(getClass()).setLevel(Level.INFO);
+				
+				log.info("Using runtime properties file: "
 				        + OpenmrsUtil.getRuntimePropertiesFilePathName(WebConstants.WEBAPP_NAME));
 			}
 			
@@ -589,8 +590,6 @@ public final class Listener extends ContextLoader implements ServletContextListe
 		MemoryLeakUtil.shutdownMysqlCancellationTimer();
 		
 		OpenmrsClassLoader.onShutdown();
-		
-		LogManager.shutdown();
 		
 		// just to make things nice and clean.
 		// Suppressing sonar issue squid:S1215
