@@ -1,0 +1,9 @@
+* I get lots of console messages and a
+LOG4J:WARN no appenders could be found for logger org.jboss.logging
+LOG4J:WARN Please initialize log4j system properly
+
+is that because I removed the log4j-1.2-api bridge from legacy v1 to v2?
+or is it that in other tests the log4j2-test.xml is not found?
+
+* the Listener that starts openmrs in webapp depends on the log4j v1 api, how
+did I miss this :horror: ?
