@@ -233,12 +233,13 @@ public class OpenmrsLoggingConfiguratorTest {
 	
 	// TODO - fails if used on a test and all tests are run
 	private void assertThatOneWarningWasLoggedWithMessage(String message) {
+		final String failMessage = "Expect one logged message of level WARN";
 		final ListAppender appender = ctx.getListAppender("LIST");
 		final List<LogEvent> logEvents = appender.getEvents();
-		assertThat(logEvents.size(), is(1));
-		assertThat(logEvents.get(0).getLevel(), is(Level.WARN));
-		assertThat(logEvents.get(0).getLoggerName(), is("org.openmrs.util.OpenmrsLoggingConfigurator"));
-		assertThat(logEvents.get(0).getMessage().getFormattedMessage(), is(message));
+		assertThat(failMessage, logEvents.size(), is(1));
+		assertThat(failMessage, logEvents.get(0).getLevel(), is(Level.WARN));
+		assertThat(failMessage, logEvents.get(0).getLoggerName(), is("org.openmrs.util.OpenmrsLoggingConfigurator"));
+		assertThat(failMessage, logEvents.get(0).getMessage().getFormattedMessage(), is(message));
 	}
 	
 	private String computeLoggerNameLevelPairs(Map<String, Level> loggerSettings) {
