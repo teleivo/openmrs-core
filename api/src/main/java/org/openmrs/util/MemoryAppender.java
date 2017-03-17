@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.buffer.CircularFifoBuffer;
-import org.apache.log4j.spi.LoggingEvent;
+//import org.apache.log4j.spi.LoggingEvent;
 
 /**
  * This class stores a few lines of the output to the log file. This class is set in the log4j
@@ -30,11 +30,11 @@ public class MemoryAppender {
 	}
 	
 	//@Override
-	protected void append(LoggingEvent loggingEvent) {
-		if (buffer != null) {
-			buffer.add(loggingEvent);
-		}
-	}
+	//	protected void append(LoggingEvent loggingEvent) {
+	//		if (buffer != null) {
+	//			buffer.add(loggingEvent);
+	//		}
+	//	}
 	
 	//	@Override
 	public void close() {
@@ -55,7 +55,7 @@ public class MemoryAppender {
 		List<String> logLines = new ArrayList<String>(buffer.size());
 		//		Layout layout = this.getLayout();
 		for (Iterator<?> iterBuffer = buffer.iterator(); iterBuffer.hasNext();) {
-			LoggingEvent loggingEvent = (LoggingEvent) iterBuffer.next();
+			//			LoggingEvent loggingEvent = (LoggingEvent) iterBuffer.next();
 			//			logLines.add(layout.format(loggingEvent));
 		}
 		return logLines;

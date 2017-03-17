@@ -13,11 +13,13 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LogEvent;
+import org.apache.logging.log4j.core.appender.RollingFileAppender;
 import org.apache.logging.log4j.junit.LoggerContextRule;
 import org.apache.logging.log4j.test.appender.ListAppender;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests the {@link OpenmrsLoggingConfigurator}.
@@ -229,6 +231,21 @@ public class OpenmrsLoggingConfiguratorTest {
 		OpenmrsLoggingConfigurator.applyLogLevels("Debug");
 		
 		assertThat(ctx.getLogger(OpenmrsConstants.LOG_CLASS_DEFAULT).getLevel(), is(Level.DEBUG));
+	}
+	
+	@Test
+	public void setupRollingFileAppender_shouldCreateRollingFileAppenderWithLocationAndLayoutFromGlobalProperty()
+	        throws Exception {
+		
+		String fileName = "openmrs.log";
+		
+		OpenmrsLoggingConfigurator.setupRollingFileAppender(fileName);
+		LoggerFactory.getLogger(getClass()).error("asfsd");
+		OpenmrsLoggingConfigurator.setupRollingFileAppender(fileName);
+		
+		RollingFileAppender appender = ctx.getRequiredAppender(OpenmrsConstants.LOG_OPENMRS_FILE_APPENDER,
+		    RollingFileAppender.class);
+		assertThat(appender.getFileName(), is(fileName));
 	}
 	
 	// TODO - fails if used on a test and all tests are run

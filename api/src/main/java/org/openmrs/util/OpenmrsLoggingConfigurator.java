@@ -8,6 +8,10 @@ import org.apache.commons.lang.text.StrTokenizer;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.appender.RollingFileAppender;
+import org.apache.logging.log4j.core.appender.rolling.OnStartupTriggeringPolicy;
+import org.apache.logging.log4j.core.config.Configuration;
 import org.apache.logging.log4j.core.config.Configurator;
 
 /**
@@ -116,5 +120,28 @@ public final class OpenmrsLoggingConfigurator {
 				applyLogLevel(lnlv[0].trim(), lnlv[1].trim());
 			}
 		}
+	}
+	
+	/**
+	 * Ensures rolling file appender for OpenMRS exists and has location and layout configured
+	 * according to global properties.
+	 * <p>
+	 * The {@code RollingFileAppender} is named {@link OpenmrsConstants#LOG_OPENMRS_FILE_APPENDER}
+	 * the location is set to {@code GlobalProperty} {@link OpenmrsConstants#GP_LOG_LOCATION} the
+	 * layout is set to {@code GlobalProperty} {@link OpenmrsConstants#GP_LOG_LAYOUT}
+	 * </p>
+	 * 
+	 * @since 2.2.0
+	 */
+	public static void setupRollingFileAppender(String fileName) {
+		final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+		final Configuration config = ctx.getConfiguration();
+		RollingFileAppender appender = null;
+		//		if (config.getAppender(OpenmrsConstants.LOG_OPENMRS_FILE_APPENDER) == null) {
+		appender = RollingFileAppender.newBuilder().withFileName(fileName).withFilePattern("openmrs-%d{MM-dd-yy}.log")
+		        .withName(OpenmrsConstants.LOG_OPENMRS_FILE_APPENDER).withPolicy(OnStartupTriggeringPolicy.createPolicy(1))
+		        .setConfiguration(config).build();
+		appender.start();
+		config.addAppender(appender);
 	}
 }
