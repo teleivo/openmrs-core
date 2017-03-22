@@ -37,7 +37,6 @@ public class ConceptDatatype extends BaseOpenmrsDatatype<Concept> {
 	
 	/**
 	 * @see BaseOpenmrsDatatype#doGetTextSummary(Object)
-	 * @should use the name in summary instance
 	 */
 	@Override
 	public Summary doGetTextSummary(Concept concept) {

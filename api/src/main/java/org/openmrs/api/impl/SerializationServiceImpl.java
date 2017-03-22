@@ -139,7 +139,6 @@ public class SerializationServiceImpl extends BaseOpenmrsService implements Seri
 	
 	/**
 	 * @param serializers the serializers to set
-	 * @should not reset serializers list when called multiple times
 	 */
 	public void setSerializers(List<? extends OpenmrsSerializer> serializers) {
 		if (serializers == null || serializerMap == null) {

@@ -271,9 +271,6 @@ public class OpenmrsUtil {
 	 * @param inputStream Stream to copy from
 	 * @param outputStream Stream/location to copy to
 	 * @throws IOException thrown if an error occurs during read/write
-	 * @should not copy the outputstream if outputstream is null
-	 * @should not copy the outputstream if inputstream is null
-	 * @should copy inputstream to outputstream and close the outputstream
 	 */
 	public static void copyFile(InputStream inputStream, OutputStream outputStream) throws IOException {
 		
@@ -935,7 +932,6 @@ public class OpenmrsUtil {
 	 * 
 	 * @param url an URL
 	 * @return file object for given URL or <code>null</code> if URL is not local
-	 * @should return null given null parameter
 	 */
 	public static File url2file(final URL url) {
 		if (url == null || !"file".equalsIgnoreCase(url.getProtocol())) {
@@ -1327,8 +1323,6 @@ public class OpenmrsUtil {
 	 * locale.
 	 * 
 	 * @return a simple date format
-	 * @should return a pattern with four y characters in it
-	 * @should not allow the returned SimpleDateFormat to be modified
 	 * @since 1.5
 	 */
 	public static SimpleDateFormat getDateFormat(Locale locale) {
@@ -1366,8 +1360,6 @@ public class OpenmrsUtil {
 	 * Get the current user's time format Will look similar to "hh:mm a". Depends on user's locale.
 	 * 
 	 * @return a simple time format
-	 * @should return a pattern with two h characters in it
-	 * @should not allow the returned SimpleDateFormat to be modified
 	 * @since 1.9
 	 */
 	public static SimpleDateFormat getTimeFormat(Locale locale) {
@@ -1394,8 +1386,6 @@ public class OpenmrsUtil {
 	 * user's locale.
 	 * 
 	 * @return a simple date format
-	 * @should return a pattern with four y characters and two h characters in it
-	 * @should not allow the returned SimpleDateFormat to be modified
 	 * @since 1.9
 	 */
 	public static SimpleDateFormat getDateTimeFormat(Locale locale) {
@@ -1514,8 +1504,6 @@ public class OpenmrsUtil {
 	 * @param objects collection to loop over
 	 * @param obj Object to look for in the <code>objects</code>
 	 * @return true/false whether the given object is found
-	 * @should use equals method for comparison instead of compareTo given List collection
-	 * @should use equals method for comparison instead of compareTo given SortedSet collection
 	 */
 	public static boolean collectionContains(Collection<?> objects, Object obj) {
 		if (obj == null || objects == null) {
@@ -1790,29 +1778,6 @@ public class OpenmrsUtil {
 	 * @param systemId system id of the user with password to be validated
 	 * @throws PasswordException
 	 * @since 1.5
-	 * @should fail with short password by default
-	 * @should fail with short password if not allowed
-	 * @should pass with short password if allowed
-	 * @should fail with digit only password by default
-	 * @should fail with digit only password if not allowed
-	 * @should pass with digit only password if allowed
-	 * @should fail with char only password by default
-	 * @should fail with char only password if not allowed
-	 * @should pass with char only password if allowed
-	 * @should fail without both upper and lower case password by default
-	 * @should fail without both upper and lower case password if not allowed
-	 * @should pass without both upper and lower case password if allowed
-	 * @should fail with password equals to user name by default
-	 * @should fail with password equals to user name if not allowed
-	 * @should pass with password equals to user name if allowed
-	 * @should fail with password equals to system id by default
-	 * @should fail with password equals to system id if not allowed
-	 * @should pass with password equals to system id if allowed
-	 * @should fail with password not matching configured regex
-	 * @should pass with password matching configured regex
-	 * @should allow password to contain non alphanumeric characters
-	 * @should allow password to contain white spaces
-	 * @should still work without an open session
 	 */
 	public static void validatePassword(String username, String password, String systemId) throws PasswordException {
 		
@@ -1896,9 +1861,6 @@ public class OpenmrsUtil {
 	/**
 	 * @param test the string to test
 	 * @return true if the passed string contains both upper and lower case characters
-	 * @should return true if string contains upper and lower case
-	 * @should return false if string does not contain lower case characters
-	 * @should return false if string does not contain upper case characters
 	 */
 	public static boolean containsUpperAndLowerCase(String test) {
 		if (test != null) {
@@ -1912,8 +1874,6 @@ public class OpenmrsUtil {
 	/**
 	 * @param test the string to test
 	 * @return true if the passed string contains only numeric characters
-	 * @should return true if string contains only digits
-	 * @should return false if string contains any non-digits
 	 */
 	public static boolean containsOnlyDigits(String test) {
 		if (test != null) {
@@ -1929,8 +1889,6 @@ public class OpenmrsUtil {
 	/**
 	 * @param test the string to test
 	 * @return true if the passed string contains any numeric characters
-	 * @should return true if string contains any digits
-	 * @should return false if string contains no digits
 	 */
 	public static boolean containsDigit(String test) {
 		if (test != null) {
@@ -1966,8 +1924,6 @@ public class OpenmrsUtil {
 	 * 
 	 * @param stackTrace original stack trace from an error
 	 * @return shortened stack trace
-	 * @should return null if stackTrace is null
-	 * @should remove springframework and reflection related lines
 	 * @since 1.7
 	 */
 	public static String shortenedStackTrace(String stackTrace) {
@@ -2138,8 +2094,6 @@ public class OpenmrsUtil {
 	 * @param s1 the string to compare
 	 * @param s2 the string to compare
 	 * @return true if strings are equal (ignoring case)
-	 * @should return false if only one of the strings is null
-	 * @should be case insensitive
 	 * @since 1.8
 	 */
 	public static boolean nullSafeEqualsIgnoreCase(String s1, String s2) {

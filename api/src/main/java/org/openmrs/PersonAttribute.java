@@ -123,7 +123,6 @@ public class PersonAttribute extends BaseOpenmrsData implements java.io.Serializ
 	 * 
 	 * @param otherAttribute PersonAttribute with which to compare
 	 * @return boolean true/false whether or not they are the same attributes
-	 * @should return true if attributeType value and void status are the same
 	 */
 	@SuppressWarnings("unchecked")
 	public boolean equalsContent(PersonAttribute otherAttribute) {
@@ -208,7 +207,6 @@ public class PersonAttribute extends BaseOpenmrsData implements java.io.Serializ
 	
 	/**
 	 * @see java.lang.Object#toString()
-	 * @should return toString of hydrated value
 	 */
 	@Override
 	public String toString() {
@@ -241,8 +239,6 @@ public class PersonAttribute extends BaseOpenmrsData implements java.io.Serializ
 	 * <code>Attributable</code>, hydrate(value) is called. Defaults to just returning getValue()
 	 * 
 	 * @return hydrated object or getValue()
-	 * @should load class in format property
-	 * @should still load class in format property if not Attributable
 	 */
 	@SuppressWarnings("unchecked")
 	public Object getHydratedObject() {
@@ -285,7 +281,6 @@ public class PersonAttribute extends BaseOpenmrsData implements java.io.Serializ
 	 * Convenience method for voiding this attribute
 	 * 
 	 * @param reason
-	 * @should set voided bit to true
 	 */
 	public void voidAttribute(String reason) {
 		setVoided(true);
@@ -296,12 +291,6 @@ public class PersonAttribute extends BaseOpenmrsData implements java.io.Serializ
 	
 	/**
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 * @should return negative if other attribute is voided
-	 * @should return negative if other attribute has earlier date created
-	 * @should return negative if this attribute has lower attribute type than argument
-	 * @should return negative if other attribute has lower value
-	 * @should return negative if this attribute has lower attribute id than argument
-	 * @should not throw exception if attribute type is null
 	 * Note: this comparator imposes orderings that are inconsistent with equals
 	 */
 	@Override

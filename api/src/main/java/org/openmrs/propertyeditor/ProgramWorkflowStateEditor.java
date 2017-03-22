@@ -34,8 +34,6 @@ public class ProgramWorkflowStateEditor extends PropertyEditorSupport {
 	}
 	
 	/**
-	 * @should set using id
-	 * @should set using uuid
 	 */
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {

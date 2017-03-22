@@ -71,7 +71,6 @@ public class Encounter extends BaseOpenmrsData {
 	
 	/**
 	 * @param encounterId
-	 * @should set encounter id
 	 */
 	public Encounter(Integer encounterId) {
 		this.encounterId = encounterId;
@@ -137,15 +136,6 @@ public class Encounter extends BaseOpenmrsData {
 	
 	/**
 	 * @return Returns a Set&lt;Obs&gt; of all non-voided, non-obsGroup children Obs of this Encounter
-	 * @should not return null with null obs set
-	 * @should get obs
-	 * @should not get voided obs
-	 * @should only get child obs
-	 * @should not get child obs if child also on encounter
-	 * @should get both child and parent obs after removing child from parent grouping
-	 * @should get obs with two levels of hierarchy
-	 * @should get obs with three levels of hierarchy
-	 * @should not get voided obs with three layers of hierarchy
 	 */
 	public Set<Obs> getObs() {
 		Set<Obs> ret = new LinkedHashSet<>();
@@ -193,11 +183,6 @@ public class Encounter extends BaseOpenmrsData {
 	 *
 	 * @param includeVoided specifies whether or not to include voided Obs
 	 * @return Returns the all Obs.
-	 * @should not return null with null obs set
-	 * @should get obs
-	 * @should get both parent and child obs
-	 * @should get both parent and child with child directly on encounter
-	 * @should get both child and parent obs after removing child from parent grouping
 	 */
 	public Set<Obs> getAllObs(boolean includeVoided) {
 		if (includeVoided && obs != null) {
@@ -218,7 +203,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * Convenience method to call {@link #getAllObs(boolean)} with a false parameter
 	 *
 	 * @return all non-voided obs
-	 * @should not get voided obs
 	 */
 	public Set<Obs> getAllObs() {
 		return getAllObs(false);
@@ -229,12 +213,6 @@ public class Encounter extends BaseOpenmrsData {
 	 *
 	 * @param includeVoided specifies whether or not to include voided Obs
 	 * @return Returns all obs at top level -- will not be null
-	 * @should not return null with null obs set
-	 * @should get obs
-	 * @should not get voided obs
-	 * @should only get parents obs
-	 * @should only return the grouped top level obs
-	 * @should get both child and parent obs after removing child from parent grouping
 	 */
 	public Set<Obs> getObsAtTopLevel(boolean includeVoided) {
 	
@@ -254,12 +232,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * Add the given Obs to the list of obs for this Encounter.
 	 *
 	 * @param observation the Obs to add to this encounter
-	 * @should add obs with null values
-	 * @should not fail with null obs
-	 * @should set encounter attribute on obs
-	 * @should add obs to non null initial obs set
-	 * @should add encounter attrs to obs if attributes are null
-	 * @should add encounter attrs to obs groupMembers if attributes are null
 	 */
 	public void addObs(Obs observation) {
 		if (obs == null) {
@@ -314,9 +286,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * Remove the given observation from the list of obs for this Encounter
 	 *
 	 * @param observation
-	 * @should remove obs successfully
-	 * @should not throw error when removing null obs from empty set
-	 * @should not throw error when removing null obs from non empty set
 	 */
 	public void removeObs(Obs observation) {
 		if (obs != null) {
@@ -345,11 +314,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * Add the given Order to the list of orders for this Encounter
 	 *
 	 * @param order
-	 * @should add order with null values
-	 * @should not fail with null obs passed to add order
-	 * @should set encounter attribute
-	 * @should add order to non null initial order set
-	 * @should add order to encounter when adding order to set returned from getOrders
 	 */
 	public void addOrder(Order order) {
 		if (order != null) {
@@ -362,9 +326,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * Remove the given observation from the list of orders for this Encounter
 	 *
 	 * @param order
-	 * @should remove order from encounter
-	 * @should not fail when removing null order
-	 * @should not fail when removing non existent order
 	 */
 	public void removeOrder(Order order) {
 		if (orders != null) {
@@ -448,7 +409,6 @@ public class Encounter extends BaseOpenmrsData {
 	
 	/**
 	 * @see java.lang.Object#toString()
-	 * @should not fail with empty object
 	 */
 	@Override
 	public String toString() {
@@ -509,8 +469,6 @@ public class Encounter extends BaseOpenmrsData {
 	 *
 	 * @return map of unvoided providers keyed by roles
 	 * @since 1.9
-	 * @should return empty map if no unvoided providers
-	 * @should return all roles and unvoided providers
 	 */
 	public Map<EncounterRole, Set<Provider>> getProvidersByRoles() {
 		return getProvidersByRoles(false);
@@ -522,8 +480,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * @param includeVoided set to true to include voided providers, else set to false
 	 * @return map of providers keyed by roles
 	 * @since 1.9
-	 * @should return empty map if no providers
-	 * @should return all roles and providers
 	 */
 	public Map<EncounterRole, Set<Provider>> getProvidersByRoles(boolean includeVoided) {
 		
@@ -539,9 +495,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * @param role
 	 * @return unvoided providers or empty set if none was found
 	 * @since 1.9
-	 * @should return unvoided providers for role
-	 * @should return empty set for no role
-	 * @should return empty set for null role
 	 */
 	public Set<Provider> getProvidersByRole(EncounterRole role) {
 		return getProvidersByRole(role, false);
@@ -554,9 +507,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * @param includeVoided set to true to include voided providers, else set to false
 	 * @return providers or empty set if none was found
 	 * @since 1.9
-	 * @should return providers for role
-	 * @should return empty set for no role
-	 * @should return empty set for null role
 	 */
 	public Set<Provider> getProvidersByRole(EncounterRole role, boolean includeVoided) {
 		
@@ -572,9 +522,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * @param role
 	 * @param provider
 	 * @since 1.9
-	 * @should add provider for new role
-	 * @should add second provider for role
-	 * @should not add same provider twice for role
 	 */
 	public void addProvider(EncounterRole role, Provider provider) {
 		// first, make sure the provider isn't already there
@@ -600,9 +547,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * @param role
 	 * @param provider
 	 * @since 1.9
-	 * @should set provider for new role
-	 * @should clear providers and set provider for role
-	 * @should void existing EncounterProvider
 	 */
 	public void setProvider(EncounterRole role, Provider provider) {
 		boolean hasProvider = false;
@@ -630,7 +574,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * @param role the role.
 	 * @param provider the provider.
 	 * @since 1.9
-	 * @should void existing EncounterProvider
 	 */
 	public void removeProvider(EncounterRole role, Provider provider) {
 		for (EncounterProvider encounterProvider : encounterProviders) {
@@ -649,7 +592,6 @@ public class Encounter extends BaseOpenmrsData {
 	 * @param patient the Patient that will be assign to copied Encounter
 	 * @return copied encounter
 	 *
-	 * @should copy all Encounter data except visit and assign copied Encounter to given Patient
 	 */
 	public Encounter copyAndAssignToAnotherPatient(Patient patient) {
 		Encounter target = new Encounter();

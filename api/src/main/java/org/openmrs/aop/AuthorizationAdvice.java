@@ -39,7 +39,6 @@ public class AuthorizationAdvice implements MethodBeforeAdvice {
 	 * @param args
 	 * @param target
 	 * @throws Throwable
-	 * @should notify listeners about checked privileges
 	 */
 	@Override
 	@SuppressWarnings( { "unchecked" })

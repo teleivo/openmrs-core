@@ -138,7 +138,6 @@ public class CustomDatatypeUtil {
 	 *
 	 * @param serializedConfig
 	 * @return deserialized configuration
-	 * @should deserialize a configuration serialized by the corresponding serialize method
 	 */
 	@SuppressWarnings("unchecked")
 	public static Map<String, String> deserializeSimpleConfiguration(String serializedConfig) {

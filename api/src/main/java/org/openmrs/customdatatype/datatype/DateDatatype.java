@@ -38,7 +38,6 @@ public class DateDatatype extends SerializingCustomDatatype<Date> {
 	
 	/**
 	 * @see org.openmrs.customdatatype.SerializingCustomDatatype#deserialize(java.lang.String)
-	 * @should reconstruct a date serialized by this handler
 	 */
 	@Override
 	public Date deserialize(String serializedValue) {
@@ -55,7 +54,6 @@ public class DateDatatype extends SerializingCustomDatatype<Date> {
 	
 	/**
 	 * @see org.openmrs.customdatatype.SerializingCustomDatatype#serialize(java.lang.Object)
-	 * @should convert a date into a ymd string representation
 	 */
 	@Override
 	public String serialize(Date typedValue) {

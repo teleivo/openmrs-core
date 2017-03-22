@@ -50,14 +50,6 @@ public class FieldValidator implements Validator {
 	 * @param errors Errors
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail if field name is null
-	 * @should fail if field name is empty
-	 * @should fail if field name is all whitespace
-	 * @should fail if selectMultiple is null
-	 * @should fail if retired is null
-	 * @should pass if name is ok and fieldType, selectMultiple, and retired are non-null
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 * should not fail if fieldType is null
 	 */
 	@Override

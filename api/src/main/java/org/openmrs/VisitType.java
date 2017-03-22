@@ -28,7 +28,6 @@ public class VisitType extends BaseOpenmrsMetadata{
 	/**
 	 * Constructor with id
 	 * 
-	 * @should set visit type id with given parameter
 	 */
 	public VisitType(Integer visitTypeId) {
 		this.visitTypeId = visitTypeId;

@@ -40,14 +40,6 @@ public class ConceptMapTypeValidator implements Validator {
 	 *
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail if the concept map type object is null
-	 * @should fail if the name is null
-	 * @should fail if the name is an empty string
-	 * @should fail if the name is a white space character
-	 * @should fail if the concept map type name is a duplicate
-	 * @should pass if the name is unique amongst all concept map type names
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public void validate(Object obj, Errors errors) {

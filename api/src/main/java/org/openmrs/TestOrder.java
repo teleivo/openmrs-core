@@ -43,7 +43,6 @@ public class TestOrder extends Order {
 	
 	/**
 	 * @see org.openmrs.Order#copy()
-	 * @should copy all test order fields
 	 */
 	@Override
 	public TestOrder copy() {
@@ -154,7 +153,6 @@ public class TestOrder extends Order {
 	 * @see org.openmrs.Order#cloneForDiscontinuing()
 	 * @return the newly created order
 	 * @since 1.10
-	 * @should set all the relevant fields
 	 */
 	@Override
 	public TestOrder cloneForDiscontinuing() {
@@ -174,8 +172,6 @@ public class TestOrder extends Order {
 	 * 
 	 * @return the newly created order
 	 * @since 1.10
-	 * @should set all the relevant fields
-	 * @should set the relevant fields for a DC order
 	 */
 	@Override
 	public TestOrder cloneForRevision() {

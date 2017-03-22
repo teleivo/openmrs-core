@@ -37,11 +37,6 @@ public class DrugEditor extends PropertyEditorSupport {
 	 * Sets the value of the property editor given the drug identifier.
 	 * 
 	 * @see java.beans.PropertyEditorSupport#setAsText(java.lang.String)
-	 * @should set value to the drug with the specified identifier
-	 * @should set value to null if given empty string
-	 * @should set value to null if given null value
-	 * @should set using uuid
-	 * @should fail if drug does not exist with non-empty identifier
 	 */
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
@@ -67,8 +62,6 @@ public class DrugEditor extends PropertyEditorSupport {
 	 * Gets the drug identifier associated with this property editor.
 	 * 
 	 * @see java.beans.PropertyEditorSupport#getAsText()
-	 * @should return drug identifier as string when editor has a value
-	 * @should return empty string when editor has a null value
 	 */
 	@Override
 	public String getAsText() {

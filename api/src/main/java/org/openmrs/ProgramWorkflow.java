@@ -176,7 +176,6 @@ public class ProgramWorkflow extends BaseOpenmrsMetadata {
 	 * {@link ConceptName}
 	 * 
 	 * @return Set&lt;ProgramWorkflowState&gt; - all ProgramWorkflowStates, sorted by {@link ConceptName}
-	 * @should sort names containing numbers intelligently
 	 */
 	public Set<ProgramWorkflowState> getSortedStates() {
 		final Comparator<String> naturalComparator = NaturalStrings.getNaturalComparator();

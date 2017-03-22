@@ -54,33 +54,7 @@ public class DrugOrderValidator extends OrderValidator implements Validator {
 	 * 
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail validation if asNeeded is null
-	 * @should fail validation if dosingType is null
-	 * @should fail validation if drug concept is different from order concept
-	 * @should fail validation if dose is null for SimpleDosingInstructions dosingType
-	 * @should fail validation if doseUnits is null for SimpleDosingInstructions dosingType
-	 * @should fail validation if route is null for SimpleDosingInstructions dosingType
-	 * @should fail validation if frequency is null for SimpleDosingInstructions dosingType
-	 * @should fail validation if dosingInstructions is null for FreeTextDosingInstructions
 	 *         dosingType
-	 * @should fail validation if numberOfRefills is null for outpatient careSetting
-	 * @should fail validation if quantity is null for outpatient careSetting
-	 * @should fail validation if doseUnits is null when dose is present
-	 * @should fail validation if doseUnits is not a dose unit concept
-	 * @should fail validation if quantityUnits is null when quantity is present
-	 * @should fail validation if quantityUnits it not a quantity unit concept
-	 * @should fail validation if durationUnits is null when duration is present
-	 * @should fail validation if durationUnits is not a duration unit concept
-	 * @should pass validation if all fields are correct
-	 * @should not require all fields for a discontinuation order
-	 * @should fail if route is not a valid concept
-	 * @should fail if concept is null and drug is not specified
-	 * @should fail if concept is null and cannot infer it from drug
-	 * @should pass if concept is null and drug is set
-	 * @should not validate a custom dosing type against any other dosing type validation
-	 * @should apply validation for a custom dosing type
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public void validate(Object obj, Errors errors) {

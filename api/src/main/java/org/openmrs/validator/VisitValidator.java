@@ -40,29 +40,9 @@ public class VisitValidator extends BaseCustomizableValidator implements Validat
 	/**
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should accept a visit that has the right number of attribute occurrences
-	 * @should reject a visit if it has fewer than min occurs of an attribute
-	 * @should reject a visit if it has more than max occurs of an attribute
-	 * @should fail if patient is not set
-	 * @should fail if visit type is not set
-	 * @should fail if startDatetime is not set
-	 * @should fail if the endDatetime is before the startDatetime
-	 * @should fail if the startDatetime is after any encounter
-	 * @should fail if the stopDatetime is before any encounter
-	 * @should fail if an attribute is bad
 	 *
-	 * @should reject a visit if startDateTime is equal to startDateTime of another visit of the same patient
-	 * @should reject a visit if startDateTime falls into another visit of the same patient
-	 * @should reject a visit if stopDateTime falls into another visit of the same patient
-	 * @should reject a visit if it contains another visit of the same patient
 
-	 * @should accept a visit if startDateTime is equal to startDateTime of another voided visit of the same patient
-	 * @should accept a visit if startDateTime falls into another voided visit of the same patient
-	 * @should accept a visit if stopDateTime falls into another voided visit of the same patient
-	 * @should accept a visit if it contains another voided visit of the same patient
 	 *
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public void validate(Object target, Errors errors) {

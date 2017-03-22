@@ -49,15 +49,6 @@ public class DrugValidator implements Validator {
 	 * 
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail if the drug object is null
-	 * @should fail if drug on drugReferenceMap is null
-	 * @should fail if conceptReferenceTerm on drugReferenceMap is null
-	 * @should invoke ConceptReferenceTermValidator if term on drugReferenceMap is new
-	 * @should invoke ConceptMapTypeValidator if conceptMapType on drugReferenceMap is new
-	 * @should pass if all fields are correct
-	 * @should reject drug multiple mappings to the same term
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public void validate(Object obj, Errors errors) {

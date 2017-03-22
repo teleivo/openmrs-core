@@ -96,7 +96,6 @@ public abstract class BaseOpenmrsObject implements Serializable, OpenmrsObject {
 	 * {@link Object#hashCode()}.
 	 *
 	 * @see java.lang.Object#hashCode()
-	 * @should not fail if uuid is null
 	 */
 	@Override
 	public int hashCode() {
@@ -113,12 +112,6 @@ public abstract class BaseOpenmrsObject implements Serializable, OpenmrsObject {
 	 * <code>true</code>).
 	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
-	 * @should return false if given obj is not instance of BaseOpenmrsObject
-	 * @should return false if given obj is null
-	 * @should return false if given obj has null uuid
-	 * @should return false if uuid is null
-	 * @should return true if objects are the same
-	 * @should return true if uuids are equal
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -150,8 +143,6 @@ public abstract class BaseOpenmrsObject implements Serializable, OpenmrsObject {
 	 * If the <code>uuid</code> field is <code>null</code>, it returns: <blockquote>
 	 * ClassName{hashCode=...} </blockquote>
 	 *
-	 * @should include hashCode if uuid is null
-	 * @should include uuid if not null
 	 */
 	@Override
 	public String toString() {

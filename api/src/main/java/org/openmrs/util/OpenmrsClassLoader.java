@@ -132,10 +132,6 @@ public class OpenmrsClassLoader extends URLClassLoader {
 	 * tries module class loaders.
 	 * 
 	 * @see java.lang.ClassLoader#loadClass(java.lang.String, boolean)
-	 * @should load class from cache second time
-	 * @should not load class from cache if class loader has been disposed
-	 * @should load class from parent first
-	 * @should load class if two module class loaders have same packages
 	 */
 	@Override
 	public synchronized Class<?> loadClass(String name, final boolean resolve) throws ClassNotFoundException {

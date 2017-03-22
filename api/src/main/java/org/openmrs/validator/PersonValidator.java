@@ -48,15 +48,6 @@ public class PersonValidator implements Validator {
 	/**
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail validation if birthdate makes patient older that 120 years old
-	 * @should fail validation if birthdate is a future date
-	 * @should fail validation if deathdate is a future date
-	 * @should fail validation if birthdate is after death date
-	 * @should fail validation if voidReason is blank when patient is voided
-	 * @should fail validation if causeOfDeath is blank when patient is dead
-	 * @should pass validation if gender is blank for Persons
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public void validate(Object target, Errors errors) {

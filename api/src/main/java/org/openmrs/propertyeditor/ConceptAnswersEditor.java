@@ -52,7 +52,6 @@ public class ConceptAnswersEditor extends PropertyEditorSupport {
 	 * conceptIds^drugIds separated by spaces.
 	 * 
 	 * @param text list of conceptIds (not conceptAnswerIds)
-	 * @should set the sort weights with the least possible changes
 	 */
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {

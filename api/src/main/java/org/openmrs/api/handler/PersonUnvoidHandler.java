@@ -34,12 +34,6 @@ public class PersonUnvoidHandler implements UnvoidHandler<Person> {
 	 * 
 	 * @see org.openmrs.api.handler.RequiredDataHandler#handle(org.openmrs.OpenmrsObject,
 	 *      org.openmrs.User, java.util.Date, java.lang.String)
-	 * @should unset the personVoided bit
-	 * @should unset the personVoider
-	 * @should unset the personDateVoided
-	 * @should unset the personVoidReason
-	 * @should only act on already personVoided objects
-	 * @should not act on objects with a different personDateVoided
 	 */
 	@Override
 	public void handle(Person person, User unvoidingUser, Date origParentVoidedDate, String unused) {

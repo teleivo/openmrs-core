@@ -89,7 +89,6 @@ public abstract class BaseCustomizableData<A extends Attribute> extends BaseOpen
 	
 	/**
 	 * Convenience method that voids all existing attributes of the given type, and sets this new one.
-	 * @should void the attribute if an attribute with same attribute type already exists and the maxOccurs is set to 1
 	 *
 	 * @param attribute
 	 */

@@ -242,7 +242,6 @@ public class DatabaseUpdater {
 	 * Ask Liquibase if it needs to do any updates. Only looks at the {@link #CHANGE_LOG_FILE}
 	 *
 	 * @return true/false whether database updates are required
-	 * @should always have a valid update to latest file
 	 */
 	public static boolean updatesRequired() throws Exception {
 		log.debug("checking for updates");
@@ -268,7 +267,6 @@ public class DatabaseUpdater {
 	 *
 	 * @param changeLogFilenames the filenames of all files to search for unrun changesets
 	 * @return true/false whether database updates are required
-	 * @should always have a valid update to latest file
 	 */
 	public static boolean updatesRequired(String... changeLogFilenames) throws Exception {
 		log.debug("checking for updates");

@@ -25,10 +25,6 @@ public class DateOrDatetimeEditor extends PropertyEditorSupport {
 	
 	/**
 	 * @see java.beans.PropertyEditorSupport#setAsText(java.lang.String)
-	 * @should handle date
-	 * @should handle date and time
-	 * @should fail on partial date
-	 * @should fail on partial date and time
 	 */
 	@Override
 	public void setAsText(String asString) throws IllegalArgumentException {
@@ -54,8 +50,6 @@ public class DateOrDatetimeEditor extends PropertyEditorSupport {
 	
 	/**
 	 * @see java.beans.PropertyEditorSupport#getAsText()
-	 * @should print date without time
-	 * @should print date and time with time
 	 */
 	@Override
 	public String getAsText() {

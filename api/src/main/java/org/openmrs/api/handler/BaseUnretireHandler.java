@@ -41,12 +41,6 @@ public class BaseUnretireHandler implements UnretireHandler<Retireable> {
 	 * 
 	 * @see org.openmrs.api.handler.RequiredDataHandler#handle(org.openmrs.OpenmrsObject,
 	 *      org.openmrs.User, java.util.Date, java.lang.String)
-	 * @should unset the retired bit
-	 * @should unset the retirer
-	 * @should unset the date retired
-	 * @should unset the retire reason
-	 * @should not act on already unretired objects
-	 * @should not act on retired objects with a different dateRetired
 	 */
 	@Override
 	public void handle(Retireable retireableObject, User retiringUser, Date origParentRetiredDate, String unused) {

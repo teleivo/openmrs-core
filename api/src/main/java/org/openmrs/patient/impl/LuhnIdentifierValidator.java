@@ -90,8 +90,6 @@ public class LuhnIdentifierValidator extends BaseHyphenatedIdentifierValidator {
 	
 	/**
 	 * @see org.openmrs.patient.IdentifierValidator#getValidIdentifier(java.lang.String)
-	 * @should get valid identifier
-	 * @should fail with invalid identifiers
 	 */
 	@Override
 	public String getValidIdentifier(String undecoratedIdentifier) throws UnallowedIdentifierException {

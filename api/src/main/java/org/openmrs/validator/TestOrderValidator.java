@@ -48,8 +48,6 @@ public class TestOrderValidator extends OrderValidator implements Validator {
 	 * 
 	 * @see org.springframework.validation.Validator#validate(Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail validation if the specimen source is invalid
-	 * @should pass validation if the specimen source is valid
 	 */
 	@Override
 	public void validate(Object obj, Errors errors) {

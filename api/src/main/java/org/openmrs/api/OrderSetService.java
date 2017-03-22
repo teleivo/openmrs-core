@@ -101,8 +101,6 @@ public interface OrderSetService extends OpenmrsService {
 	 *
 	 * @param uuid
 	 * @return
-	 * @should find object given valid uuid
-	 * @should return null if no object found with given uuid
 	 */
 	@Authorized(PrivilegeConstants.GET_ORDER_SETS)
 	OrderSetMember getOrderSetMemberByUuid(String uuid);

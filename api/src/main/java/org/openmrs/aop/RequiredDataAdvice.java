@@ -81,7 +81,6 @@ public class RequiredDataAdvice implements MethodBeforeAdvice {
 	/**
 	 * @see org.springframework.aop.MethodBeforeAdvice#before(java.lang.reflect.Method,
 	 *      java.lang.Object[], java.lang.Object)
-	 * @should not fail on update method with no arguments
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
@@ -299,9 +298,6 @@ public class RequiredDataAdvice implements MethodBeforeAdvice {
 	 * @param openmrsObject the object to get the collection off of
 	 * @param field the name of the field that is the collection
 	 * @return the actual collection of objects that is on the given <code>openmrsObject</code>
-	 * @should get value of given child collection on given field
-	 * @should should be able to get annotated private fields
-	 * @should throw APIException if getter method not found
 	 */
 	@SuppressWarnings("unchecked")
 	protected static Collection<OpenmrsObject> getChildCollection(OpenmrsObject openmrsObject, Field field) {
@@ -352,9 +348,6 @@ public class RequiredDataAdvice implements MethodBeforeAdvice {
 	 *
 	 * @param arg the actual object being passed in
 	 * @return true if it is a Collection of some kind of OpenmrsObject
-	 * @should return true if class is openmrsObject list
-	 * @should return true if class is openmrsObject set
-	 * @should return false if collection is empty regardless of type held
 	 */
 	protected static boolean isOpenmrsObjectCollection(Object arg) {
 		

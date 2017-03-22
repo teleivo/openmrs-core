@@ -182,7 +182,6 @@ public class Context {
 	 * @param className the class to load
 	 * @return the class that was loaded
 	 * @throws ClassNotFoundException
-	 * @should load class with the OpenmrsClassLoader
 	 */
 	public static Class<?> loadClass(String className) throws ClassNotFoundException {
 		return OpenmrsClassLoader.getInstance().loadClass(className);
@@ -221,7 +220,6 @@ public class Context {
 	 * same time.
 	 *
 	 * @return The current UserContext for this thread.
-	 * @should fail if session hasn't been opened
 	 */
 	public static UserContext getUserContext() {
 		Object[] arr = userContextHolder.get();
@@ -276,11 +274,6 @@ public class Context {
 	 * @param username user's identifier token for login
 	 * @param password user's password for authenticating to context
 	 * @throws ContextAuthenticationException
-	 * @should not authenticate with null username and password
-	 * @should not authenticate with null password
-	 * @should not authenticate with null username
-	 * @should not authenticate with null password and proper username
-	 * @should not authenticate with null password and proper system id
 	 */
 	public static void authenticate(String username, String password) throws ContextAuthenticationException {
 		if (log.isDebugEnabled()) {
@@ -302,7 +295,6 @@ public class Context {
 	 * the (cached) {@link #getAuthenticatedUser()} User object.
 	 *
 	 * @since 1.5
-	 * @should get fresh values from the database
 	 */
 	public static void refreshAuthenticatedUser() {
 		if (Daemon.isDaemonThread()) {
@@ -321,7 +313,6 @@ public class Context {
 	 *
 	 * @param systemId
 	 * @throws ContextAuthenticationException
-	 * @should change locale when become another user
 	 */
 	public static void becomeUser(String systemId) throws ContextAuthenticationException {
 		if (log.isInfoEnabled()) {
@@ -602,7 +593,6 @@ public class Context {
 	 * logs out the "active" (authenticated) user within context
 	 *
 	 * @see #authenticate
-	 * @should not fail if session hasn't been opened yet
 	 */
 	public static void logout() {
 		if (!isSessionOpen()) {
@@ -630,7 +620,6 @@ public class Context {
 	/**
 	 * Convenience method. Passes through to userContext.hasPrivilege(String)
 	 *
-	 * @should give daemon user full privileges
 	 */
 	public static boolean hasPrivilege(String privilege) {
 		// the daemon threads have access to all things
@@ -687,7 +676,6 @@ public class Context {
 	/**
 	 * Convenience method. Passes through to {@link UserContext#getLocale()}
 	 *
-	 * @should not fail if session hasn't been opened
 	 */
 	public static Locale getLocale() {
 		// if a session hasn't been opened, just fetch the default
@@ -767,7 +755,6 @@ public class Context {
 	 *
 	 * @return true if {@link #openSession()} has been called already.
 	 * @since 1.5
-	 * @should return true if session is closed
 	 */
 	public static boolean isSessionOpen() {
 		return userContextHolder.get() != null;
@@ -917,7 +904,6 @@ public class Context {
 	 *
 	 * @param cls The Class of the service to get
 	 * @return The requested Service
-	 * @should return the same object when called multiple times for the same class
 	 */
 	public static <T extends Object> T getService(Class<? extends T> cls) {
 		return getServiceContext().getService(cls);
@@ -1139,7 +1125,6 @@ public class Context {
 	 *
 	 * @return SimpleDateFormat for the user's current locale
 	 * @see org.openmrs.util.OpenmrsUtil#getDateFormat(Locale)
-	 * @should return a pattern with four y characters in it
 	 */
 	public static SimpleDateFormat getDateFormat() {
 		return OpenmrsUtil.getDateFormat(getLocale());
@@ -1151,7 +1136,6 @@ public class Context {
 	 *
 	 * @return SimpleDateFormat for the user's current locale
 	 * @see org.openmrs.util.OpenmrsUtil#getTimeFormat(Locale)
-	 * @should return a pattern with two h characters in it
 	 */
 	public static SimpleDateFormat getTimeFormat() {
 		return OpenmrsUtil.getTimeFormat(getLocale());
@@ -1163,7 +1147,6 @@ public class Context {
 	 *
 	 * @return SimpleDateFormat for the user's current locale
 	 * @see org.openmrs.util.OpenmrsUtil#getDateTimeFormat(Locale)
-	 * @should return a pattern with four y characters and two h characters in it
 	 */
 	public static SimpleDateFormat getDateTimeFormat() {
 		return OpenmrsUtil.getDateTimeFormat(getLocale());

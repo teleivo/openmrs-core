@@ -33,15 +33,6 @@ public abstract class BaseAttributeTypeValidator<T extends AttributeType<?>> imp
 	
 	/**
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object, org.springframework.validation.Errors)
-	 * @should require name
-	 * @should require minOccurs
-	 * @should not allow maxOccurs less than 1
-	 * @should not allow maxOccurs less than minOccurs
-	 * @should require datatypeClassname
-	 * @should require DatatypeConfiguration if Datatype equals Regex-Validated Text
-	 * @should pass validation if all required values are set
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public void validate(Object target, Errors errors) {

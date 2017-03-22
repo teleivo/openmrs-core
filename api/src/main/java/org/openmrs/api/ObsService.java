@@ -58,7 +58,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param obsId integer obsId of observation desired
 	 * @return matching Obs
 	 * @throws APIException
-	 * @should get obs matching given obsId
 	 */
 	@Authorized(PrivilegeConstants.GET_OBS)
 	public Obs getObs(Integer obsId) throws APIException;
@@ -68,8 +67,6 @@ public interface ObsService extends OpenmrsService {
 	 * 
 	 * @param uuid
 	 * @return obs or null
-	 * @should find object given valid uuid
-	 * @should return null if no object found with given uuid
 	 */
 	@Authorized(PrivilegeConstants.GET_OBS)
 	public Obs getObsByUuid(String uuid) throws APIException;
@@ -80,8 +77,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param obs
 	 * @return obs or null
 	 * @since 2.1
-	 * @should find revision obs for given valid obs
-	 * @should return null if no revision obs found for given obs
 	 */
 	@Authorized(PrivilegeConstants.GET_OBS)
 	public Obs getRevisionObs(Obs initialObs);
@@ -101,18 +96,6 @@ public interface ObsService extends OpenmrsService {
 	 *            updated, it would be required
 	 * @return Obs that was saved to the database
 	 * @throws APIException
-	 * @should create new file from complex data for new obs
-	 * @should not overwrite file when updating a complex obs
-	 * @should void the given obs in the database
-	 * @should create very basic obs and add new obsId
-	 * @should allow changing of every property on obs
-	 * @should return a different object when updating an obs
-	 * @should set creator and dateCreated on new obs
-	 * @should cascade save to child obs groups
-	 * @should cascade update to new child obs groups
-	 * @should link original and updated obs
-	 * @should set void reason message to changeMessage
-     * @should not void an Obs with no changes
 	 */
 	@Authorized( { PrivilegeConstants.ADD_OBS, PrivilegeConstants.EDIT_OBS })
 	public Obs saveObs(Obs obs, String changeMessage) throws APIException;
@@ -123,8 +106,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param obs Obs to void
 	 * @param reason String reason it's being voided
 	 * @throws APIException
-	 * @should set voided bit on given obs
-	 * @should fail if reason parameter is empty
 	 */
 	@Authorized(PrivilegeConstants.EDIT_OBS)
 	public Obs voidObs(Obs obs, String reason) throws APIException;
@@ -134,8 +115,6 @@ public interface ObsService extends OpenmrsService {
 	 * 
 	 * @param obs Obs to unvoid
 	 * @throws APIException
-	 * @should unset voided bit on given obs
-	 * @should cascade unvoid to child grouped obs
 	 */
 	@Authorized(PrivilegeConstants.EDIT_OBS)
 	public Obs unvoidObs(Obs obs) throws APIException;
@@ -149,7 +128,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param obs
 	 * @throws APIException
 	 * @see #purgeObs(Obs, boolean)
-	 * @should delete the given obs from the database
 	 */
 	@Authorized(PrivilegeConstants.DELETE_OBS)
 	public void purgeObs(Obs obs) throws APIException;
@@ -165,9 +143,6 @@ public interface ObsService extends OpenmrsService {
 	 * @throws APIException
 	 * @see #purgeObs(Obs, boolean)
 	 *
-	 * @should throw APIException if given true cascade
-	 * @should delete any obsGroupMembers before deleting the obs
-	 * @should not delete referenced orders when purging obs
 	 */
 	@Authorized(PrivilegeConstants.DELETE_OBS)
 	public void purgeObs(Obs obs, boolean cascade) throws APIException;
@@ -180,7 +155,6 @@ public interface ObsService extends OpenmrsService {
 	 * @return a List&lt;Obs&gt; object containing all non-voided observations for the specified person
 	 * @see #getObservations(List, List, List, List, List, List, List, Integer, Integer, Date, Date,
 	 *      boolean)
-	 * @should get all observations assigned to given person
 	 */
 	@Authorized(PrivilegeConstants.GET_OBS)
 	public List<Obs> getObservationsByPerson(Person who);
@@ -249,21 +223,6 @@ public interface ObsService extends OpenmrsService {
 	 * @return list of Observations that match all of the criteria given in the arguments
 	 * @since 1.12
 	 * @throws APIException
-	 * @should compare dates using lte and gte
-	 * @should get all obs assigned to given encounters
-	 * @should get all obs with question concept in given questions parameter
-	 * @should get all obs with answer concept in given answers parameter
-	 * @should return all obs whose person is a person only
-	 * @should return obs whose person is a patient only
-	 * @should return obs whose person is a user only
-	 * @should return obs with location in given locations parameter
-	 * @should sort returned obs by obsDatetime if sort is empty
-	 * @should sort returned obs by conceptId if sort is concept
-	 * @should limit number of obs returned to mostReturnN parameter
-	 * @should return obs whose groupId is given obsGroupId
-	 * @should not include voided obs
-	 * @should include voided obs if includeVoidedObs is true
-	 * @should only return observations with matching accession number
 	 */
 	@Authorized(PrivilegeConstants.GET_OBS)
 	public List<Obs> getObservations(List<Person> whom, List<Encounter> encounters, List<Concept> questions,
@@ -330,18 +289,6 @@ public interface ObsService extends OpenmrsService {
 	 * @return list of Observations that match all of the criteria given in the arguments
 	 * @since 1.12
 	 * @throws APIException
-	 * @should compare dates using lte and gte
-	 * @should get the count of all obs assigned to given encounters
-	 * @should get the count of all obs with question concept in given questions parameter
-	 * @should get the count of all obs with answer concept in given answers parameter
-	 * @should return the count of all obs whose person is a person only
-	 * @should return the count of all obs whose person is a patient only
-	 * @should return the count of obs whose person is a user only
-	 * @should return the count of obs with location in given locations parameter
-	 * @should return the count of obs whose groupId is given obsGroupId
-	 * @should not include count of voided obs
-	 * @should include count of voided obs if includeVoidedObs is true
-	 * @should return count of obs with matching accession number
 	 */
 	@Authorized(PrivilegeConstants.GET_OBS)
 	public Integer getObservationCount(List<Person> whom, List<Encounter> encounters, List<Concept> questions,
@@ -354,9 +301,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param searchString The string to search on
 	 * @return observations matching the given string
 	 * @throws APIException
-	 * @should get obs matching patient identifier in searchString
-	 * @should get obs matching encounterId in searchString
-	 * @should get obs matching obsId in searchString
 	 */
 	@Authorized(PrivilegeConstants.GET_OBS)
 	public List<Obs> getObservations(String searchString) throws APIException;
@@ -371,8 +315,6 @@ public interface ObsService extends OpenmrsService {
 	 * @throws APIException
 	 * @see #getObservations(List, List, List, List, List, List, List, Integer, Integer, Date, Date,
 	 *      boolean)
-	 * @should get observations matching person and question
-	 * @should not fail with null person parameter
 	 */
 	@Authorized(PrivilegeConstants.GET_OBS)
 	public List<Obs> getObservationsByPersonAndConcept(Person who, Concept question) throws APIException;
@@ -383,9 +325,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param obsId
 	 * @return Obs with a ComplexData
 	 * @since 1.5
-	 * @should fill in complex data object for complex obs
-	 * @should return normal obs for non complex obs
-	 * @should not fail with null view
 	 * @deprecated as of 2.1.0, use {@link #getObs(Integer)} 
 	 */
 	@Deprecated
@@ -398,8 +337,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param key that has been registered with a handler class
 	 * @return Object representing the handler for the given key
 	 * @since 1.5
-	 * @should get handler with matching key
-	 * @should have default image and text handlers registered by spring
 	 */
 	public ComplexObsHandler getHandler(String key) throws APIException;
 	
@@ -412,7 +349,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param obs A complex Obs.
 	 * @return ComplexObsHandler for the complex Obs. or null on error.
 	 * @since 1.12
-	 * @should get handler associated with complex observation
 	 */
 	public ComplexObsHandler getHandler(Obs obs) throws APIException;
 	
@@ -425,8 +361,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param handlers Map of class to handler object
 	 * @throws APIException
 	 * @since 1.5
-	 * @should override handlers with same key
-	 * @should add new handlers with new keys
 	 */
 	public void setHandlers(Map<String, ComplexObsHandler> handlers) throws APIException;
 	
@@ -436,7 +370,6 @@ public interface ObsService extends OpenmrsService {
 	 * @return map of keys to handlers
 	 * @since 1.5
 	 * @throws APIException
-	 * @should never return null
 	 */
 	public Map<String, ComplexObsHandler> getHandlers() throws APIException;
 	
@@ -448,7 +381,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param handler the class to register with this key
 	 * @throws APIException
 	 * @since 1.5
-	 * @should register handler with the given key
 	 */
 	public void registerHandler(String key, ComplexObsHandler handler) throws APIException;
 	
@@ -459,7 +391,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param handlerClass the class to register with this key
 	 * @throws APIException
 	 * @since 1.5
-	 * @should load handler and register key
 	 */
 	public void registerHandler(String key, String handlerClass) throws APIException;
 	
@@ -468,8 +399,6 @@ public interface ObsService extends OpenmrsService {
 	 * 
 	 * @param key the key of the handler to unregister
 	 * @since 1.5
-	 * @should remove handler with matching key
-	 * @should not fail with invalid key
 	 */
 	public void removeHandler(String key) throws APIException;
 	
@@ -480,9 +409,6 @@ public interface ObsService extends OpenmrsService {
 	 * @param conceptNames the conceptNames to be searched against
 	 * @param includeVoided whether voided observation should be included
 	 * @return The number of observations using the specified conceptNames as valueCodedNames
-	 * @should return the count of all observations using the specified conceptNames as answers
-	 * @should include voided observations using the specified conceptNames as answers
-	 * @should return zero if no observation is using any of the concepNames in the list
 	 * @since Version 1.7
 	 */
 	@Authorized(PrivilegeConstants.GET_OBS)

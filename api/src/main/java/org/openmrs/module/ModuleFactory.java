@@ -119,11 +119,6 @@ public class ModuleFactory {
 	 * 
 	 * @param module
 	 * @param replaceIfExists unload a module that has the same moduleId if one is loaded already
-	 * @should load module if it is currently not loaded
-	 * @should not load module if already loaded
-	 * @should always load module if replacement is wanted
-	 * @should not load an older version of the same module
-	 * @should load a newer version of the same module
 	 * @return module the module that was loaded or if the module exists already with the same
 	 *         version, the old module
 	 */
@@ -181,9 +176,6 @@ public class ModuleFactory {
 	 * Attempt to load the given files as OpenMRS modules
 	 * 
 	 * @param modulesToLoad the list of files to try and load
-	 * @should not crash when file is not found or broken
-	 * @should setup requirement mappings for every module
-	 * @should not start the loaded modules
 	 */
 	public static void loadModules(List<File> modulesToLoad) {
 		// loop over the modules and load all the modules that we can

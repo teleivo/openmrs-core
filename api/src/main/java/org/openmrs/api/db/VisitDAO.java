@@ -105,8 +105,6 @@ public interface VisitDAO {
 	 * @param includeVoided specifies if voided visits should also be returned
 	 * @return a list of visits
 	 * @throws DAOException
-	 * @should return all unvoided visits if includeEnded is set to true
-	 * @should return only active visits if includeEnded is set to false
 	 */
 	public List<Visit> getVisits(Collection<VisitType> visitTypes, Collection<Patient> patients,
 	        Collection<Location> locations, Collection<Concept> indications, Date minStartDatetime, Date maxStartDatetime,
@@ -152,7 +150,6 @@ public interface VisitDAO {
 	 * @param visitTypes a collection of visit types to match against
 	 * @param maximumStartDate the next visit should have been created before or at this date time
 	 * @return a {@link Visit}
-	 * @should return the next unvoided active visit matching the specified types and startDate
 	 */
 	public Visit getNextVisit(Visit previousVisit, Collection<VisitType> visitTypes, Date maximumStartDate);
 	

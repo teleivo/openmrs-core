@@ -32,8 +32,6 @@ public class VisitAttributeTypeValidator extends BaseAttributeTypeValidator<Visi
 	}
 	
 	/**
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public void validate(Object obj, Errors errors) {

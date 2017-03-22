@@ -31,8 +31,6 @@ public class PersonAttributeTypeEditor extends PropertyEditorSupport {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	/**
-	 * @should set using id
-	 * @should set using uuid
 	 */
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {

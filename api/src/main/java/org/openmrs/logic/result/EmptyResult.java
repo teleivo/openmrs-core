@@ -60,7 +60,6 @@ public class EmptyResult extends Result {
 	
 	/**
 	 * @see org.openmrs.logic.result.Result#isEmpty()
-	 * @should return true
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -77,7 +76,6 @@ public class EmptyResult extends Result {
 	
 	/**
 	 * @see org.openmrs.logic.result.Result#isNull()
-	 * @should return true
 	 */
 	@Override
 	public boolean isNull() {

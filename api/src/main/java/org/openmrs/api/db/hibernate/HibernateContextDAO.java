@@ -396,7 +396,6 @@ public class HibernateContextDAO implements ContextDAO {
 	 * and merges it into the user-defined runtime properties
 	 * 
 	 * @see org.openmrs.api.db.ContextDAO#mergeDefaultRuntimeProperties(java.util.Properties)
-	 * @should merge default runtime properties
 	 */
 	@Override
 	public void mergeDefaultRuntimeProperties(Properties runtimeProperties) {

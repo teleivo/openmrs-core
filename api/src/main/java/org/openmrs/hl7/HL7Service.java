@@ -98,7 +98,6 @@ public interface HL7Service extends OpenmrsService {
 	 * 
 	 * @param hl7InQueue the queue item to save
 	 * @return the saved queue item
-	 * @should add generated uuid if uuid is null
 	 */
 	@Authorized(value = { PrivilegeConstants.PRIV_UPDATE_HL7_IN_QUEUE, PrivilegeConstants.PRIV_ADD_HL7_IN_QUEUE }, requireAll = false)
 	public HL7InQueue saveHL7InQueue(HL7InQueue hl7InQueue) throws APIException;
@@ -371,9 +370,6 @@ public interface HL7Service extends OpenmrsService {
 	 * @param pl HL7 component of data type PL (person location) (see Ch 2.A.53)
 	 * @return internal identifier of the specified location, or null if it is not found or
 	 *         ambiguous
-	 * @should return internal identifier of location if only location name is specified
-	 * @should return internal identifier of location if only location id is specified
-	 * @should return null if location id and name are incorrect
 	 */
 	public Integer resolveLocationId(PL pl) throws HL7Exception;
 	
@@ -393,10 +389,6 @@ public interface HL7Service extends OpenmrsService {
 	 * @return The internal id number of a Person based on one of the given identifiers, or null if
 	 *         the Person is not found
 	 * @throws HL7Exception
-	 * @should find a person based on a patient identifier
-	 * @should find a person based on a UUID
-	 * @should find a person based on the internal person ID
-	 * @should return null if no person is found
 	 */
 	public Person resolvePersonFromIdentifiers(CX[] identifiers) throws HL7Exception;
 	
@@ -414,10 +406,6 @@ public interface HL7Service extends OpenmrsService {
 	 * 
 	 * @param inQueue the {@link HL7InQueue} to parse and save all encounters/obs to the db
 	 * @return the processed {@link HL7InQueue}
-	 * @should create HL7InArchive after successful parsing
-	 * @should create HL7InError after failed parsing
-	 * @should fail if given inQueue is already marked as processing
-	 * @should parse oru r01 message using overridden parser provided by a module
 	 */
 	public HL7InQueue processHL7InQueue(HL7InQueue inQueue) throws HL7Exception;
 	
@@ -428,7 +416,6 @@ public interface HL7Service extends OpenmrsService {
 	 * @return the {@link Message} that the given hl7 string represents
 	 * @throws HL7Exception
 	 * @see #processHL7InQueue(HL7InQueue)
-	 * @should parse the given string into Message
 	 */
 	@Logging(ignoreAllArgumentValues = true)
 	public Message parseHL7String(String hl7String) throws HL7Exception;
@@ -440,8 +427,6 @@ public interface HL7Service extends OpenmrsService {
 	 * @return the processed message
 	 * @throws HL7Exception
 	 * @see #processHL7InQueue(HL7InQueue)
-	 * @should save hl7Message to the database
-	 * @should parse message type supplied by module
 	 */
 	public Message processHL7Message(Message hl7Message) throws HL7Exception;
 	
@@ -463,11 +448,6 @@ public interface HL7Service extends OpenmrsService {
 	 * @param identifiers
 	 * @return the UUID or null
 	 * @throws HL7Exception
-	 * @should return null if no UUID found
-	 * @should find a UUID in any position of the array
-	 * @should not fail if multiple similar UUIDs exist in identifiers
-	 * @should not fail if no assigning authority is found
-	 * @should fail if multiple different UUIDs exist in identifiers
 	 */
 	public String getUuidFromIdentifiers(CX[] identifiers) throws HL7Exception;
 	
@@ -478,12 +458,6 @@ public interface HL7Service extends OpenmrsService {
 	 * @param nk1 the NK1 segment with person information
 	 * @return the newly formed (but not saved) person
 	 * @throws HL7Exception
-	 * @should return a saved new person
-	 * @should return a Patient if valid patient identifiers exist
-	 * @should fail if a person with the same UUID exists
-	 * @should fail on an invalid gender
-	 * @should fail if no gender specified
-	 * @should fail if no birthdate specified
 	 */
 	public Person createPersonFromNK1(NK1 nk1) throws HL7Exception;
 	

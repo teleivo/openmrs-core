@@ -32,8 +32,6 @@ public class ConceptDrugValidator implements Validator {
 	 * Determines if the command object being submitted is a valid type
 	 *
 	 * @see org.springframework.validation.Validator#supports(java.lang.Class)
-	 * @should support Drug class
-	 * @should reject classes not extending Drug
 	 */
 	@Override
 	public boolean supports(Class<?> c) {
@@ -49,7 +47,6 @@ public class ConceptDrugValidator implements Validator {
 	 *         null or not of type <code>Drug</code>
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail if a concept is not specified
 	 */
 	@Override
 	public void validate(Object obj, Errors errors) throws IllegalArgumentException {

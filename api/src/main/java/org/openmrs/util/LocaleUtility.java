@@ -46,11 +46,6 @@ public class LocaleUtility implements GlobalPropertyListener {
 	 *
 	 * @return default locale object.
 	 * @since 1.5
-	 * @should not return null if global property does not exist
-	 * @should not fail with empty global property value
-	 * @should not fail with bogus global property value
-	 * @should return locale object for global property
-	 * @should not cache locale when session is not open
 	 */
 	public static Locale getDefaultLocale() {
 		if (defaultLocaleCache == null) {
@@ -97,12 +92,6 @@ public class LocaleUtility implements GlobalPropertyListener {
 	 * @param lhs left hand side Locale
 	 * @param rhs right hand side Locale
 	 * @return true if the two locales are compatible, false otherwise
-	 * @should confirm different language missing country as compatible
-	 * @should confirm same language missing country as compatible
-	 * @should not confirm different country as compatible
-	 * @should confirm matching country as compatible
-	 * @should not confirm different language as compatible
-	 * @should confirm matching language as compatible
 	 */
 	public static boolean areCompatible(Locale lhs, Locale rhs) {
 		if (lhs.equals(rhs)) {
@@ -128,9 +117,6 @@ public class LocaleUtility implements GlobalPropertyListener {
 	 *
 	 * @param localeSpecification encoded locale specification
 	 * @return the representative Locale, or null if the specification is invalid
-	 * @should get locale from two character language code
-	 * @should get locale from language code and country code
-	 * @should get locale from language code country code and variant
 	 */
 	public static Locale fromSpecification(String localeSpecification) {
 		Locale createdLocale = null;
@@ -158,12 +144,6 @@ public class LocaleUtility implements GlobalPropertyListener {
 	 * very end of the set if it isn't yet among them.
 	 *
 	 * @return a collection of all specified and allowed locales with no duplicates.
-	 * @should return a set of locales with a predictable order
-	 * @should return a set of locales with no duplicates
-	 * @should have default locale as the first element if user has no preferred locale
-	 * @should have default locale as the second element if user has a preferred locale
-	 * @should always have english included in the returned collection
-	 * @should always have default locale default value included in the returned collection
 	 * @since 1.7
 	 */
 	public static Set<Locale> getLocalesInOrder() {

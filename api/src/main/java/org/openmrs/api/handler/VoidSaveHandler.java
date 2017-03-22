@@ -47,16 +47,6 @@ public class VoidSaveHandler implements SaveHandler<Voidable> {
 	 * 
 	 * @see org.openmrs.api.handler.RequiredDataHandler#handle(org.openmrs.OpenmrsObject,
 	 *      org.openmrs.User, java.util.Date, java.lang.String)
-	 * @should not set the voided bit
-	 * @should not set the voidReason
-	 * @should set voided by
-	 * @should not set voided by if non null
-	 * @should set dateVoided
-	 * @should not set dateVoided if non null
-	 * @should not set the dateVoided if voided is false
-	 * @should set voidReason to null if voided is true
-	 * @should set dateVoided to null if voided is true
-	 * @should set voidedBy to null if voided is true
 	 */
 	@Override
 	public void handle(Voidable voidableObject, User currentUser, Date currentDate, String notUsed) {

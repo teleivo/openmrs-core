@@ -34,10 +34,6 @@ public class PersonByNameComparator implements Comparator<Person> {
 	/**
 	 * Compares two person objects by name
 	 * 
-	 * @should return negative if personName for person1 comes before that of person2
-	 * @should return positive if personName for person1 comes after that of person2
-	 * @should return zero if the givenName middleName and familyName match
-	 * @should be case insensitive
 	 * @since 1.8
 	 */
 	public static int comparePersonsByName(Person person1, Person person2) {

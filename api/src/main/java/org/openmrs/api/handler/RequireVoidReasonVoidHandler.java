@@ -35,11 +35,6 @@ public class RequireVoidReasonVoidHandler implements VoidHandler<Voidable> {
 	/**
 	 * Validates that the voidReason is non-null and non-empty for supported objects
 	 * 
-	 * @should throw IllegalArgumentException if Patient voidReason is null
-	 * @should throw IllegalArgumentException if Encounter voidReason is empty
-	 * @should throw IllegalArgumentException if Obs voidReason is blank
-	 * @should not throw Exception if voidReason is not blank
-	 * @should not throw Exception if voidReason is null for unsupported types
 	 */
 	@Override
 	public void handle(Voidable voidableObject, User voidingUser, Date voidedDate, String voidReason) {

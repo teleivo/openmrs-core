@@ -207,8 +207,6 @@ public class PatientSearchCriteria {
 	}
 	
 	/**
-	 * @should return source value when target is blank
-	 * @should return target value when target is non-blank
 	 */
 	String copySearchParameter(String source, String target) {
 		if (!StringUtils.isBlank(source) && StringUtils.isBlank(target)) {
@@ -218,12 +216,6 @@ public class PatientSearchCriteria {
 	}
 	
 	/**
-	 * @should identify search by name
-	 * @should identify search by identifier
-	 * @should identify search by identifier type list
-	 * @should identify search by identifier and identifier type list
-	 * @should identify search by name or identifier
-	 * @should identify search by name and identifier
 	 */
 	PatientSearchMode getSearchMode(String name, String identifier, List<PatientIdentifierType> identifierTypes,
 	        boolean searchOnNamesOrIdentifiers) {
@@ -433,11 +425,6 @@ public class PatientSearchCriteria {
 	}
 	
 	/**
-	 * @should process simple space as separator
-	 * @should process comma as separator
-	 * @should process mixed separators
-	 * @should not return empty name parts
-	 * @should reject null as name
 	 **/
 	String[] getQueryParts(String query) {
 		if (query == null) {
@@ -490,8 +477,6 @@ public class PatientSearchCriteria {
 	}
 	
 	/**
-	 * @should recognise short name
-	 * @should recognise long name
 	 */
 	Boolean isShortName(String name) {
 		Integer minChars = Context.getAdministrationService().getGlobalPropertyValue(
@@ -565,9 +550,6 @@ public class PatientSearchCriteria {
 	}
 	
 	/**
-	 * @should return start as default match mode
-	 * @should return start as configured match mode
-	 * @should return anywhere as configured match mode
 	 */
 	MatchMode getMatchMode() {
 		String matchMode = Context.getAdministrationService().getGlobalProperty(

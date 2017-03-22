@@ -91,7 +91,6 @@ public class PresentationMessageMap implements Map<String, PresentationMessage> 
 	
 	/**
 	 * @see java.util.Map#put(java.lang.Object, java.lang.Object)
-	 * @should should ignore non matching locale messages
 	 */
 	@Override
 	public PresentationMessage put(String key, PresentationMessage value) {
@@ -106,7 +105,6 @@ public class PresentationMessageMap implements Map<String, PresentationMessage> 
 	 * Adds all entries from an input Map which have PresentationMessages from the same locale.
 	 * 
 	 * @see java.util.Map#putAll(java.util.Map)
-	 * @should filter out non matching locale messages from batch add
 	 */
 	@Override
 	public void putAll(Map<? extends String, ? extends PresentationMessage> t) {

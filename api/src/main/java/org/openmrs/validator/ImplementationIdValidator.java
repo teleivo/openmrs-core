@@ -34,11 +34,6 @@ public class ImplementationIdValidator implements Validator {
 	}
 	
 	/*
-	 * @should should fail validation if implementation id is null
-	 * @should should fail validation if description is null
-	 * @should should fail validation if pass phrase is null
-	 * @should should fail if given empty implementationId object
-	 * @should should fail if given a pipe in the implementationId code
 	 * 
 	 */
 

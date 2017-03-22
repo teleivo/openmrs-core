@@ -46,7 +46,6 @@ public class Form extends BaseOpenmrsMetadata {
 	/**
 	 * Constructor with id
 	 *
-	 * @should set formId with given parameter
 	 */
 	public Form(Integer formId) {
 		this.formId = formId;

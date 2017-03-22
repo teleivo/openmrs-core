@@ -42,10 +42,6 @@ public class ConceptNameSaveHandler implements SaveHandler<ConceptName> {
 	 * 
 	 * @see org.openmrs.api.handler.RequiredDataHandler#handle(org.openmrs.OpenmrsObject,
 	 *      org.openmrs.User, java.util.Date, java.lang.String)
-	 * @should not fail if tags is null
-	 * @should replace tags without ids with database fetched tag
-	 * @should not replace tags without ids that are not in the database
-	 * @should not replace tags that have ids
 	 */
 	@Override
 	public void handle(ConceptName conceptName, User currentUser, Date currentDate, String reason) {

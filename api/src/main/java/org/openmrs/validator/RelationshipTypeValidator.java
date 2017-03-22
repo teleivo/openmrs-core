@@ -42,13 +42,6 @@ public class RelationshipTypeValidator implements Validator {
 	
 	/**
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object, org.springframework.validation.Errors)
-	 * @should fail validation if aIsToB(or A is To B) is null or empty or whitespace
-	 * @should fail validation if bIsToA(or B is To A) is null or empty or whitespace
-	 * @should fail validation if description is null or empty or whitespace
-	 * @should pass validation if all required fields are set
-	 * @should fail validation if relationshipTypeName already exist
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public void validate(Object obj, Errors errors) {

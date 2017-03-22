@@ -45,12 +45,6 @@ public class ConceptNameTagValidator implements Validator {
 	 *
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail validation if conceptNameTag is null
-	 * @should fail validation if tag is null or empty or whitespace
-	 * @should pass validation if tag does not exist and is not null, empty or whitespace
-	 * @should fail if the concept name tag is a duplicate
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	
 	@Override

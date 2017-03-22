@@ -103,7 +103,6 @@ public class Provider extends BaseCustomizableMetadata<ProviderAttribute> {
 	
 	/**
 	 * @see org.openmrs.BaseOpenmrsMetadata#getName()
-	 * @should return person full name if person is not null or null otherwise
 	 */
 	
 	@Override

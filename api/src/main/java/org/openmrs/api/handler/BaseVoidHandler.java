@@ -43,14 +43,6 @@ public class BaseVoidHandler implements VoidHandler<Voidable> {
 	 * 
 	 * @see org.openmrs.api.handler.RequiredDataHandler#handle(org.openmrs.OpenmrsObject,
 	 *      org.openmrs.User, java.util.Date, java.lang.String)
-	 * @should set the voided bit
-	 * @should set the voidReason
-	 * @should set voidedBy
-	 * @should not set voidedBy if non null
-	 * @should set dateVoided
-	 * @should not set dateVoided if non null
-	 * @should not set the voidReason if already voided
-	 * @should set voidedBy even if voided bit is set but voidedBy is null
 	 */
 	@Override
 	public void handle(Voidable voidableObject, User voidingUser, Date voidedDate, String voidReason) {

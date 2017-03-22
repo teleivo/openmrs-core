@@ -296,11 +296,6 @@ public class ModuleFileParser {
 	 * @param rootNode
 	 * @return
 	 *
-	 * @should parse openmrsVersion and modules
-	 * @should parse conditionalResource with whitespace
-	 * @should throw exception if multiple conditionalResources tags found
-	 * @should throw exception if conditionalResources contains invalid tag
-	 * @should throw exception if path is blank
 	 */
 	List<ModuleConditionalResource> getConditionalResources(Element rootNode) {
 		List<ModuleConditionalResource> conditionalResources = new ArrayList<ModuleConditionalResource>();

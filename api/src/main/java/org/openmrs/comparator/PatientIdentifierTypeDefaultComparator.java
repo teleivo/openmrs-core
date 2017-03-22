@@ -74,7 +74,6 @@ public class PatientIdentifierTypeDefaultComparator implements Comparator<Patien
 	/**
 	 * Orders by retired (true last), required (true first), name and id.
 	 * 
-	 * @should order properly
 	 */
 	@Override
 	public int compare(PatientIdentifierType pit1, PatientIdentifierType pit2) {

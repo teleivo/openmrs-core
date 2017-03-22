@@ -32,8 +32,6 @@ public class LocationTagEditor extends PropertyEditorSupport {
 	}
 	
 	/**
-	 * @should set using id
-	 * @should set using uuid
 	 * 
 	 * @see java.beans.PropertyEditorSupport#setAsText(java.lang.String)
 	 */

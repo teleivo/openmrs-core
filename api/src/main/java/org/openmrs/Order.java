@@ -130,7 +130,6 @@ public class Order extends BaseOpenmrsData {
 	 * Performs a shallow copy of this Order. Does NOT copy orderId.
 	 * 
 	 * @return a shallow copy of this Order
-	 * @should copy all fields
 	 */
 	public Order copy() {
 		return copyHelper(new Order());
@@ -375,10 +374,6 @@ public class Order extends BaseOpenmrsData {
 	 * @param checkDate - the date on which to check order. if null, will use current date
 	 * @return boolean indicating whether the order was activated before or on the check date
 	 * @since 2.0
-	 * @should return true if an order was activated on the check date
-	 * @should return true if an order was activated before the check date
-	 * @should return false if dateActivated is null
-	 * @should return false for an order activated after the check date
 	 */
 	public boolean isActivated(Date checkDate) {
 		if (dateActivated == null) {
@@ -406,15 +401,6 @@ public class Order extends BaseOpenmrsData {
 	 * @param checkDate - the date on which to check order. if null, will use current date
 	 * @return boolean indicating whether the order was active on the check date
 	 * @since 1.10.1
-	 * @should return true if an order expired on the check date
-	 * @should return true if an order was discontinued on the check date
-	 * @should return true if an order was activated on the check date
-	 * @should return true if an order was activated on the check date but scheduled for the future
-	 * @should return false for a voided order
-	 * @should return false for a discontinued order
-	 * @should return false for an expired order
-	 * @should return false for an order activated after the check date
-	 * @should return false for a discontinuation order
 	 */
 	public boolean isActive(Date aCheckDate) {
 		if (getVoided() || action == Action.DISCONTINUE) {
@@ -443,13 +429,6 @@ public class Order extends BaseOpenmrsData {
 	 * @param checkDate - the date on which to check order. if null, will use current date
 	 * @return boolean indicating whether the order is started as of the check date
 	 * @since 1.10.1
-	 * @should return false for a voided order
-	 * @should return false if dateActivated is null
-	 * @should return false if the order is not yet activated as of the check date
-	 * @should return false if the order was scheduled to start after the check date
-	 * @should return true if the order was scheduled to start on the check date
-	 * @should return true if the order was scheduled to start before the check date
-	 * @should return true if the order is started and not scheduled
 	 */
 	public boolean isStarted(Date aCheckDate) {
 		if (getVoided()) {
@@ -467,16 +446,6 @@ public class Order extends BaseOpenmrsData {
 	 * 
 	 * @param checkDate - the date on which to check order. if null, will use current date
 	 * @return boolean indicating whether the order was discontinued on the input date
-	 * @should return false for a voided order
-	 * @should return false if date stopped and auto expire date are both null
-	 * @should return false if auto expire date is null and date stopped is equal to check date
-	 * @should return false if auto expire date is null and date stopped is after check date
-	 * @should return false if dateActivated is after check date
-	 * @should return true if auto expire date is null and date stopped is before check date
-	 * @should fail if date stopped is after auto expire date
-	 * @should return true if check date is after date stopped but before auto expire date
-	 * @should return true if check date is after both date stopped auto expire date
-	 * @should return true if the order is scheduled for the future and activated on check date but
 	 *         the check date is after date stopped
 	 */
 	public boolean isDiscontinued(Date aCheckDate) {
@@ -508,15 +477,6 @@ public class Order extends BaseOpenmrsData {
 	 * 
 	 * @param checkDate - the date on which to check order. if null, will use current date
 	 * @return boolean indicating whether the order was expired on the input date
-	 * @should return false for a voided order
-	 * @should return false if date stopped and auto expire date are both null
-	 * @should return false if date stopped is null and auto expire date is equal to check date
-	 * @should return false if date stopped is null and auto expire date is after check date
-	 * @should return false if check date is after both date stopped auto expire date
-	 * @should return false if dateActivated is after check date
-	 * @should return false if check date is after date stopped but before auto expire date
-	 * @should fail if date stopped is after auto expire date
-	 * @should return true if date stopped is null and auto expire date is before check date
 	 * @since 1.10.1
 	 */
 	public boolean isExpired(Date aCheckDate) {
@@ -687,7 +647,6 @@ public class Order extends BaseOpenmrsData {
 	 * 
 	 * @return the newly created order
 	 * @since 1.10
-	 * @should set all the relevant fields
 	 */
 	public Order cloneForDiscontinuing() {
 		Order newOrder = new Order();
@@ -706,8 +665,6 @@ public class Order extends BaseOpenmrsData {
 	 * 
 	 * @return the newly created order
 	 * @since 1.10
-	 * @should set all the relevant fields
-	 * @should set the relevant fields for a DC order
 	 */
 	public Order cloneForRevision() {
 		return cloneForRevisionHelper(new Order());
@@ -753,8 +710,6 @@ public class Order extends BaseOpenmrsData {
 	 * @since 1.10
 	 * @param orderType the orderType to match on
 	 * @return true if the type of the order matches or is a sub type of the other order
-	 * @should true if it is the same or is a subtype
-	 * @should false if it neither the same nor a subtype
 	 */
 	public boolean isType(OrderType orderType) {
 		return OrderUtil.isType(orderType, this.orderType);
@@ -767,9 +722,6 @@ public class Order extends BaseOpenmrsData {
 	 * @since 1.10
 	 * @param otherOrder the other order to match on
 	 * @return true if the concept of the orders match
-	 * @should return false if the concept of the orders do not match
-	 * @should return false if other order is null
-	 * @should return true if the orders have the same concept
 	 */
 	public boolean hasSameOrderableAs(Order otherOrder) {
 		if (otherOrder == null) {
@@ -782,8 +734,6 @@ public class Order extends BaseOpenmrsData {
 	 * A convenience method to return start of the schedule for order.
 	 * 
 	 * @since 1.10
-	 * @should return scheduledDate if Urgency is Scheduled
-	 * @should return dateActivated if Urgency is not Scheduled
 	 */
 	public Date getEffectiveStartDate() {
 		return this.urgency == Urgency.ON_SCHEDULED_DATE ? this.getScheduledDate() : this.getDateActivated();
@@ -793,8 +743,6 @@ public class Order extends BaseOpenmrsData {
 	 * A convenience method to return end of the schedule for order.
 	 * 
 	 * @since 1.10
-	 * @should return dateStopped if dateStopped is not null
-	 * @should return autoExpireDate if dateStopped is null
 	 */
 	public Date getEffectiveStopDate() {
 		return this.getDateStopped() != null ? this.getDateStopped() : this.getAutoExpireDate();

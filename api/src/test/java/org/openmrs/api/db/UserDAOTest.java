@@ -23,7 +23,6 @@ import org.openmrs.PersonName;
 import org.openmrs.User;
 import org.openmrs.api.context.Context;
 import org.openmrs.test.BaseContextSensitiveTest;
-import org.openmrs.test.Verifies;
 import org.openmrs.util.Security;
 
 public class UserDAOTest extends BaseContextSensitiveTest {
@@ -68,11 +67,9 @@ public class UserDAOTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies {@link UserDAO#getUsers(String,List<QRole;>,null)} test = should escape sql
 	 *           wildcards in searchPhrase
 	 */
 	@Test
-	@Verifies(value = "should escape sql wildcards in searchPhrase", method = "getUsers(String, List, Boolean)")
 	public void getUsers_shouldEscapeSqlWildcardsInSearchPhrase() throws Exception {
 		
 		User u = new User();
@@ -103,7 +100,6 @@ public class UserDAOTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "creates a new user", method = "saveUser(u, pwd)")
 	public void saveUser_shouldCreateNewUser() throws Exception {
 		dao.saveUser(userJoe, "Openmr5xy");
 		User u2 = dao.getUser(userJoe.getId());
@@ -111,7 +107,6 @@ public class UserDAOTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should not overwrite user secret question or answer on password change", method = "changePassword(User, String)")
 	public void updateUserPassword_shouldNotOverwriteUserSecretQuestionOrAnswer() throws Exception {
 		dao.changePassword(userJoe, PASSWORD);
 		dao.changeQuestionAnswer(userJoe, SECRET_QUESTION, SECRET_ANSWER);
@@ -126,7 +121,6 @@ public class UserDAOTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should not overwrite user secret question or answer when saving existing user", method = "saveUser(User, String)")
 	public void saveUser_shouldNotOverwriteUserSecretQuestionOrAnswer() throws Exception {
 		dao.saveUser(userJoe, PASSWORD);
 		dao.changeQuestionAnswer(userJoe, SECRET_QUESTION, SECRET_ANSWER);
@@ -142,7 +136,6 @@ public class UserDAOTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should not overwrite user secret question or answer when changing password", method = "changePassword(String, String)")
 	public void changePassword_shouldNotOverwriteUserSecretQuestionOrAnswer() throws Exception {
 		dao.changePassword(userJoe, PASSWORD);
 		dao.changeQuestionAnswer(userJoe, SECRET_QUESTION, SECRET_ANSWER);
@@ -158,7 +151,6 @@ public class UserDAOTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should not overwrite user secret question or answer when saving hashed password", method = "changeHashedPassword(User, String, String)")
 	public void changeHashedPassword_shouldNotOverwriteUserSecretQuestionOrAnswer() throws Exception {
 		dao.changePassword(userJoe, PASSWORD);
 		dao.changeQuestionAnswer(userJoe, SECRET_QUESTION, SECRET_ANSWER);
@@ -174,7 +166,6 @@ public class UserDAOTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should return true when supplied secret answer matches", method = "isSecretAnswer(User, String)")
 	public void isSecretAnswer_shouldReturnTrueWhenTheAnswerMatches() {
 		dao.saveUser(userJoe, PASSWORD);
 		dao.changeQuestionAnswer(userJoe, SECRET_QUESTION, SECRET_ANSWER);
@@ -182,7 +173,6 @@ public class UserDAOTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should return false when supplied secret answer does not match", method = "isSecretAnswer(User, String)")
 	public void isSecretAnswer_shouldReturnFalseWhenTheAnswerDoesNotMatch() {
 		dao.saveUser(userJoe, PASSWORD);
 		dao.changeQuestionAnswer(userJoe, SECRET_QUESTION, SECRET_ANSWER);

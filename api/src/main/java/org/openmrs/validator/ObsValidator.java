@@ -40,7 +40,6 @@ public class ObsValidator implements Validator {
 	
 	/**
 	 * @see org.springframework.validation.Validator#supports(java.lang.Class)
-	 * @should support Obs class
 	 */
 	@Override
 	public boolean supports(Class<?> c) {
@@ -50,24 +49,6 @@ public class ObsValidator implements Validator {
 	/**
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail validation if personId is null
-	 * @should fail validation if obsDatetime is null
-	 * @should fail validation if concept is null
-	 * @should fail validation if concept datatype is boolean and valueBoolean is null
-	 * @should fail validation if concept datatype is coded and valueCoded is null
-	 * @should fail validation if concept datatype is date and valueDatetime is null
-	 * @should fail validation if concept datatype is numeric and valueNumeric is null
-	 * @should fail validation if concept datatype is text and valueText is null
-	 * @should fail validation if obs ancestors contains obs
-	 * @should pass validation if all values present
-	 * @should fail validation if the parent obs has values
-	 * @should reject an invalid concept and drug combination
-	 * @should pass if answer concept and concept of value drug match
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
-	 * @should not validate if obs is voided
-	 * @should not validate a voided child obs
-	 * @should fail for a null object
 	 */
 	@Override
 	public void validate(Object obj, Errors errors) {

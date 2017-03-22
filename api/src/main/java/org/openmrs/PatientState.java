@@ -88,15 +88,6 @@ public class PatientState extends BaseOpenmrsData implements java.io.Serializabl
 	 * 
 	 * @param onDate - {@link Date} to check for {@link PatientState} enrollment
 	 * @return boolean - true if this {@link PatientState} is active as of the passed {@link Date}
-	 * @should return false if voided and date in range
-	 * @should return false if voided and date not in range
-	 * @should return true if not voided and date in range
-	 * @should return false if not voided and date earlier than startDate
-	 * @should return false if not voided and date later than endDate
-	 * @should return true if not voided and date in range with null startDate
-	 * @should return true if not voided and date in range with null endDate
-	 * @should return true if not voided and both startDate and endDate nulled
-	 * @should compare with current date if date null
 	 */
 	public boolean getActive(Date onDate) {
 		if (onDate == null) {
@@ -189,10 +180,6 @@ public class PatientState extends BaseOpenmrsData implements java.io.Serializabl
 	 * Compares by startDate with null as earliest and endDate with null as latest.
 	 * 
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 * @should return positive if startDates equal and this endDate null
-	 * @should return negative if this startDate null
-	 * @should pass if two states have the same start date, end date and uuid
-	 * @should return positive or negative if two states have the same start date and end date but different uuids
 	 * Note: this comparator imposes orderings that are inconsistent with equals.
 	 */
 	@SuppressWarnings("squid:S1210")

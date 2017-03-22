@@ -29,7 +29,6 @@ import org.openmrs.Patient;
 import org.openmrs.User;
 import org.openmrs.api.context.Context;
 import org.openmrs.test.BaseContextSensitiveTest;
-import org.openmrs.test.Verifies;
 
 /**
  * Tests methods in the CohortService class TODO add all the rest of the tests
@@ -57,7 +56,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * @see CohortService#getCohort(String)
 	 */
 	@Test
-	@Verifies(value = "should only get non voided cohorts by name", method = "getCohort(String)")
 	public void getCohort_shouldOnlyGetNonVoidedCohortsByName() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -80,7 +78,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should find object given valid uuid", method = "getCohortByUuid(String)")
 	public void getCohortByUuid_shouldFindObjectGivenValidUuid() throws Exception {
 		executeDataSet(COHORT_XML);
 		String uuid = "h9a9m0i6-15e6-467c-9d4b-mbi7teu9lf0f";
@@ -93,7 +90,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should return null if no object found with given uuid", method = "getCohortByUuid(String)")
 	public void getCohortByUuid_shouldReturnNullIfNoObjectFoundWithGivenUuid() throws Exception {
 		assertNull(Context.getCohortService().getCohortByUuid("some invalid uuid"));
 	}
@@ -102,7 +98,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * @see CohortService#purgeCohort(Cohort)
 	 */
 	@Test
-	@Verifies(value = "should delete cohort from database", method = "purgeCohort(Cohort)")
 	public void purgeCohort_shouldDeleteCohortFromDatabase() throws Exception {
 		executeDataSet(COHORT_XML);
 		List<Cohort> allCohorts = service.getAllCohorts(true);
@@ -116,7 +111,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * @see CohortService#getCohorts(String)
 	 */
 	@Test
-	@Verifies(value = "should match cohorts by partial name", method = "getCohorts(String)")
 	public void getCohorts_shouldMatchCohortsByPartialName() throws Exception {
 		executeDataSet(COHORT_XML);
 		List<Cohort> matchedCohorts = service.getCohorts("Example");
@@ -134,7 +128,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should create new cohorts", method = "saveCohort(Cohort)")
 	public void saveCohort_shouldCreateNewCohorts() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -159,7 +152,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should update an existing cohort", method = "saveCohort(Cohort)")
 	public void saveCohort_shouldUpdateAnExistingCohort() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -178,7 +170,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should fail if reason is empty", method = "voidCohort(Cohort,String)")
 	public void voidCohort_shouldFailIfReasonIsEmpty() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -204,7 +195,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should fail if reason is null", method = "voidCohort(Cohort,String)")
 	public void voidCohort_shouldFailIfReasonIsNull() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -236,7 +226,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should not change an already voided cohort", method = "voidCohort(Cohort,String)")
 	public void voidCohort_shouldNotChangeAnAlreadyVoidedCohort() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -264,7 +253,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should void cohort", method = "voidCohort(Cohort,String)")
 	public void voidCohort_shouldVoidCohort() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -284,7 +272,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should get cohort by id", method = "getCohort(Integer)")
 	public void getCohort_shouldGetCohortById() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -298,7 +285,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should get cohort given a name", method = "getCohort(String)")
 	public void getCohort_shouldGetCohortGivenAName() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -311,7 +297,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should get the nonvoided cohort if two exist with same name", method = "getCohort(String)")
 	public void getCohort_shouldGetTheNonvoidedCohortIfTwoExistWithSameName() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -331,11 +316,9 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies {@link CohortService#getAllCohorts()}
 	 * test = should get all nonvoided cohorts in database
 	 */
 	@Test
-	@Verifies(value = "should get all nonvoided cohorts in database", method = "getAllCohorts()")
 	public void getAllCohorts_shouldGetAllNonvoidedCohortsInDatabase() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -352,7 +335,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should not return any voided cohorts", method = "getAllCohorts()")
 	public void getAllCohorts_shouldNotReturnAnyVoidedCohorts() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -376,7 +358,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 *
 	 */
 	@Test
-	@Verifies(value = "should return all cohorts and voided", method = "getAllCohorts(null)")
 	public void getAllCohorts_shouldReturnAllCohortsAndVoided() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -400,7 +381,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should never return null", method = "getCohorts(String)")
 	public void getCohorts_shouldNeverReturnNull() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -415,7 +395,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should not return voided cohorts", method = "getCohortsContainingPatient(Patient)")
 	public void getCohortsContainingPatient_shouldNotReturnVoidedCohorts() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -442,7 +421,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should return cohorts that have given patient", method = "getCohortsContainingPatient(Patient)")
 	public void getCohortsContainingPatient_shouldReturnCohortsThatHaveGivenPatient() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -459,7 +437,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should add a patient and save the cohort", method = "addPatientToCohort(Cohort,Patient)")
 	public void addPatientToCohort_shouldAddAPatientAndSaveTheCohort() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -475,7 +452,6 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 */
 	@Test
-	@Verifies(value = "should not fail if cohort already contains patient", method = "addPatientToCohort(Cohort,Patient)")
 	public void addPatientToCohort_shouldNotFailIfCohortAlreadyContainsPatient() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -494,11 +470,9 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies {@link CohortService#removePatientFromCohort(Cohort,Patient)}
 	 * test = should not fail if cohort does not contain patient
 	 */
 	@Test
-	@Verifies(value = "should not fail if cohort doesn't contain patient", method = "removePatientFromCohort(Cohort,Patient)")
 	public void removePatientFromCohort_shouldNotFailIfCohortDoesNotContainPatient() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -516,11 +490,9 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies {@link CohortService#removePatientFromCohort(Cohort,Patient)}
 	 * test = should save cohort after removing patient
 	 */
 	@Test
-	@Verifies(value = "should save cohort after removing patient", method = "removePatientFromCohort(Cohort,Patient)")
 	public void removePatientFromCohort_shouldSaveCohortAfterRemovingPatient() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -538,10 +510,8 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	}
 
 	/**
-	 * @verifies {@link CohortService#addMembershipToCohort(Cohort, CohortMembership)}
 	 */
 	@Test
-	@Verifies(value = "should add membership to cohort", method = "addMembershipToCohort(Cohort, CohortMembership)")
 	public void addMembershipToCohort_shouldAddMembershipToCohort() throws Exception {
 		executeDataSet(COHORT_XML);
 		
@@ -552,10 +522,8 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	}
 
 	/**
-	 * @verifies {@link CohortService#removeMemberShipFromCohort(Cohort, CohortMembership)}
 	 */
 	@Test
-	@Verifies(value = "should remove membership from cohort", method = "removeMemberShipFromCohort(Cohort, CohortMembership)")
 	public void removeMembershipFromCohort_shouldRemoveMembershipFromCohort() throws Exception {
 		executeDataSet(COHORT_XML);
 
@@ -569,10 +537,8 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	}
 
 	/**
-	 * @verifies {@link CohortService#patientVoided(Patient)}
 	 */
 	@Test
-	@Verifies(value = "should void membership for every patient voided", method = "patientVoided(Patient)")
 	public void patientVoided_shouldVoidMemberships() throws Exception {
 		executeDataSet(COHORT_XML);
 
@@ -595,10 +561,8 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies {@link CohortService#patientUnvoided(Patient, User, Date, String)}
 	 */
 	@Test
-	@Verifies(value = "should unvoid membership for every patient unvoided", method = "patientUnvoided(Patient, User, "
 			+ "Date, String)")
 	public void patientUnvoided_shouldUnvoidMemberships() throws Exception {
 		executeDataSet(COHORT_XML);
@@ -625,10 +589,8 @@ public class CohortServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies {@link Cohort#getMemberships(Date)}
 	 */
 	@Test
-	@Verifies(value = "should get memberships of a cohort as of a date", method = "getMemberships(Date)")
 	public void getMemberships_shouldGetMembershipsAsOfADate() throws Exception {
 		executeDataSet(COHORT_XML);
 

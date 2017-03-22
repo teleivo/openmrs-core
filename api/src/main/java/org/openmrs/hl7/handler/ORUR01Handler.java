@@ -114,32 +114,8 @@ public class ORUR01Handler implements Application {
 	/**
 	 * Processes an ORU R01 event message
 	 *
-	 * @should create encounter and obs from hl7 message
-	 * @should create basic concept proposal
-	 * @should create concept proposal and with obs alongside
-	 * @should not create problem list observation with concept proposals
-	 * @should append to an existing encounter
-	 * @should create obs group for OBRs
-	 * @should create obs valueCodedName
-	 * @should fail on empty concept proposals
-	 * @should fail on empty concept answers
-	 * @should set value_Coded matching a boolean concept for obs if the answer is 0 or 1 and
 	 *         Question datatype is coded
-	 * @should set value as boolean for obs if the answer is 0 or 1 and Question datatype is Boolean
-	 * @should set value_Numeric for obs if Question datatype is Numeric and the answer is either 0
 	 *         or 1
-	 * @should set value_Numeric for obs if Question datatype is Numeric
-	 * @should fail if question datatype is coded and a boolean is not a valid answer
-	 * @should fail if question datatype is neither Boolean nor numeric nor coded
-	 * @should create an encounter and find the provider by identifier
-	 * @should create an encounter and find the provider by personId
-	 * @should create an encounter and find the provider by uuid
-	 * @should create an encounter and find the provider by providerId
-	 * @should fail if the provider name type code is not specified and is not a personId
-	 * @should understand form uuid if present
-	 * @should prefer form uuid over id if both are present
-	 * @should prefer form id if uuid is not found
-	 * @should set complex data for obs with complex concepts
 	 */
 	@Override
 	public Message processMessage(Message message) throws ApplicationException {
@@ -176,7 +152,6 @@ public class ORUR01Handler implements Application {
 	 * @param oru the message to process
 	 * @return the processed message
 	 * @throws HL7Exception
-	 * @should process multiple NK1 segments
 	 */
 	private Message processORU_R01(ORU_R01 oru) throws HL7Exception {
 		
@@ -395,12 +370,6 @@ public class ORUR01Handler implements Application {
 	 * @param patient
 	 * @param nk1
 	 * @throws HL7Exception
-	 * @should create a relationship from a NK1 segment
-	 * @should not create a relationship if one exists
-	 * @should create a person if the relative is not found
-	 * @should fail if the coding system is not 99REL
-	 * @should fail if the relationship identifier is formatted improperly
-	 * @should fail if the relationship type is not found
 	 */
 	protected void processNK1(Patient patient, NK1 nk1) throws HL7Exception {
 		// guarantee we are working with our custom coding system
@@ -600,9 +569,6 @@ public class ORUR01Handler implements Application {
 	 * @return Obs pojo with all values filled in
 	 * @throws HL7Exception if there is a parsing exception
 	 * @throws ProposingConceptException if the answer to this obs is a proposed concept
-	 * @should add comments to an observation from NTE segments
-	 * @should add multiple comments for an observation as one comment
-	 * @should add comments to an observation group
 	 */
 	private Obs parseObs(Encounter encounter, OBX obx, OBR obr, String uid) throws HL7Exception, ProposingConceptException {
 		if (log.isDebugEnabled()) {
@@ -956,9 +922,6 @@ public class ORUR01Handler implements Application {
 	 * @param codingSystem the coding system for this conceptid (e.g. 99DCT)
 	 * @param uid unique string for this message for any error reporting purposes
 	 * @return a Concept object or null if no conceptId with given coding system found
-	 * @should return null if codingSystem not found
-	 * @should return a Concept if given local coding system
-	 * @should return a mapped Concept if given a valid mapping
 	 */
 	protected Concept getConcept(String hl7ConceptId, String codingSystem, String uid) throws HL7Exception {
 		if (codingSystem == null || HL7Constants.HL7_LOCAL_CONCEPT.equals(codingSystem)) {
@@ -1124,8 +1087,6 @@ public class ORUR01Handler implements Application {
 	 *
 	 * @param msh
 	 * @return
-	 * @should pass if return value is null when uuid and id is null
-	 * @should pass if return value is not null when uuid or id is not null
 	 * @throws HL7Exception
 	 */
 	public Form getForm(MSH msh) throws HL7Exception {

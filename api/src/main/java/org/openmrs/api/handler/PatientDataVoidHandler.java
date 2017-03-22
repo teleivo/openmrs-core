@@ -40,7 +40,6 @@ public class PatientDataVoidHandler implements VoidHandler<Patient> {
 	/**
 	 * @see org.openmrs.api.handler.VoidHandler#handle(org.openmrs.Voidable, org.openmrs.User,
 	 *      java.util.Date, java.lang.String)
-	 * @should void the orders encounters and observations associated with the patient
 	 */
 	@Override
 	public void handle(Patient patient, User voidingUser, Date voidedDate, String voidReason) {

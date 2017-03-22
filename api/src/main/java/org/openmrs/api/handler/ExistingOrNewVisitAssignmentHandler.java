@@ -50,9 +50,6 @@ public class ExistingOrNewVisitAssignmentHandler extends ExistingVisitAssignment
 	
 	/**
 	 * @see org.openmrs.api.handler.ExistingVisitAssignmentHandler#beforeCreateEncounter(org.openmrs.Encounter)
-	 * @should assign existing visit if match found
-	 * @should assign new visit if no match found
-	 * @should resolve encounter and visit type uuids as global property values
 	 */
 	@Override
 	public void beforeCreateEncounter(Encounter encounter) {

@@ -93,7 +93,6 @@ public class Result extends ArrayList<Result> {
 	 * list of other results.
 	 * 
 	 * @param result the result that will be the sole member of the new result
-	 * @should not fail with null result
 	 */
 	public Result(Result result) {
 		if (result != null) {
@@ -105,8 +104,6 @@ public class Result extends ArrayList<Result> {
 	 * Builds a result from a list of results
 	 * 
 	 * @param list a list of results
-	 * @should not fail with null list
-	 * @should not fail with empty list
 	 */
 	public Result(List<Result> list) {
 		if (!(list == null || list.isEmpty())) {
@@ -648,8 +645,6 @@ public class Result extends ArrayList<Result> {
 	/**
 	 * @return the object associated with the result (generally, this is used internally or for
 	 *         advanced rule design)
-	 * @should return resultObject for single results
-	 * @should return all results for result list
 	 */
 	public Object toObject() {
 		if (isSingleResult()) {
@@ -831,7 +826,6 @@ public class Result extends ArrayList<Result> {
 	 *         return the result only if <em>index</em> is equal to zero (0); otherwise, returns an
 	 *         empty result
 	 * @see java.util.List#get(int)
-	 * @should get empty result for indexes out of range
 	 */
 	@Override
 	public Result get(int index) {
@@ -847,11 +841,6 @@ public class Result extends ArrayList<Result> {
 	
 	/**
 	 * @return the chronologically (based on result date) first result
-	 * @should get the first result given multiple results
-	 * @should get the result given a single result
-	 * @should get an empty result given an empty result
-	 * @should not get the result with null result date given other results
-	 * @should get one result with null result dates for all results
 	 */
 	public Result earliest() {
 		if (isSingleResult()) {
@@ -877,10 +866,6 @@ public class Result extends ArrayList<Result> {
 	
 	/**
 	 * @return the chronologically (based on result date) last result
-	 * @should get the most recent result given multiple results
-	 * @should get the result given a single result
-	 * @should get an empty result given an empty result
-	 * @should get the result with null result date
 	 */
 	public Result latest() {
 		if (isSingleResult()) {

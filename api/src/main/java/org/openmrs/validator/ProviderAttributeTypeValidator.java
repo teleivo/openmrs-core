@@ -25,8 +25,6 @@ public class ProviderAttributeTypeValidator extends BaseAttributeTypeValidator<P
 	 * Determines if the command object being submitted is a valid type
 	 *
 	 * @see org.springframework.validation.Validator#supports(java.lang.Class)
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public boolean supports(Class<?> c) {

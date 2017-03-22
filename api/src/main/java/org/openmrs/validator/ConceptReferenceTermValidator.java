@@ -46,22 +46,6 @@ public class ConceptReferenceTermValidator implements Validator {
 	 *
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail if the concept reference term object is null
-	 * @should fail if the name is a white space character
-	 * @should fail if the code is null
-	 * @should fail if the code is an empty string
-	 * @should fail if the code is a white space character
-	 * @should fail if the concept reference term code is a duplicate in its concept source
-	 * @should fail if the concept source is null
-	 * @should pass if all the required fields are set and valid
-	 * @should pass if the duplicate name is for a term from another concept source
-	 * @should pass if the duplicate code is for a term from another concept source
-	 * @should fail if a concept reference term map has no concept map type
-	 * @should fail if termB of a concept reference term map is not set
-	 * @should fail if a term is mapped to itself
-	 * @should fail if a term is mapped multiple times to the same term
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public void validate(Object obj, Errors errors) throws APIException {

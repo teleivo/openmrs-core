@@ -27,7 +27,6 @@ import org.openmrs.logic.LogicException;
 public class ResultTest {
 	
 	/**
-	 * @verifies {@link Result#toObject()} test = should return resultObject for single results
 	 */
 	@SuppressWarnings( { "MismatchedQueryAndUpdateOfCollection" })
 	@Test
@@ -38,7 +37,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#Result(List<QResult;>)} test = should not fail with null list
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
@@ -47,7 +45,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#Result(List<QResult;>)} test = should not fail with empty list
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
@@ -56,7 +53,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#Result(Result)} test = should not fail with null result
 	 */
 	@Test
 	public void Result_shouldNotFailWithNullResult() throws Exception {
@@ -64,7 +60,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#earliest()} test = should get the first result given multiple results
 	 */
 	@Test
 	public void earliest_shouldGetTheFirstResultGivenMultipleResults() throws Exception {
@@ -79,7 +74,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#earliest()} test = should get the result given a single result
 	 */
 	@Test
 	public void earliest_shouldGetTheResultGivenASingleResult() throws Exception {
@@ -94,7 +88,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#earliest()} test = should get an empty result given an empty result
 	 */
 	@Test
 	public void earliest_shouldGetAnEmptyResultGivenAnEmptyResult() throws Exception {
@@ -103,7 +96,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#earliest()} test = should not get the result with null result date
 	 *           given other results
 	 */
 	@Test
@@ -119,7 +111,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#earliest()} test = should get one result with null result dates for
 	 *           all results
 	 */
 	@Test
@@ -135,7 +126,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#equals(Object)} test = should return true on two empty results
 	 */
 	@Test
 	public void equals_shouldReturnTrueOnTwoEmptyResults() throws Exception {
@@ -143,7 +133,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#get(int)} test = should get empty result for indexes out of range
 	 */
 	@Test
 	public void get_shouldGetEmptyResultForIndexesOutOfRange() throws Exception {
@@ -159,7 +148,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#isNull()} test = should return false
 	 */
 	@Test
 	public void isNull_shouldReturnFalse() throws Exception {
@@ -167,7 +155,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#latest()} test = should get the most recent result given multiple
 	 *           results
 	 */
 	@Test
@@ -183,7 +170,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#latest()} test = should get the result given a single result
 	 */
 	@Test
 	public void latest_shouldGetTheResultGivenASingleResult() throws Exception {
@@ -193,7 +179,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#latest()} test = should get an empty result given an empty result
 	 */
 	@Test
 	public void latest_shouldGetAnEmptyResultGivenAnEmptyResult() throws Exception {
@@ -201,7 +186,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#latest()} test = should get the result with null result date
 	 */
 	@Test
 	public void latest_shouldGetTheResultWithNullResultDate() throws Exception {
@@ -216,7 +200,6 @@ public class ResultTest {
 	}
 	
 	/**
-	 * @verifies {@link Result#toObject()} test = should fail when contains multiple results
 	 */
 	@Test(expected = LogicException.class)
 	public void toObject_shouldFailWhenContainsMultipleResults() throws Exception {

@@ -46,15 +46,6 @@ public class OrderFrequencyValidator implements Validator {
 	 * 
 	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
 	 *      org.springframework.validation.Errors)
-	 * @should fail if orderFrequency is null
-	 * @should fail if concept is null
-	 * @should fail if the concept is not of class frequency
-	 * @should fail if concept is used by another frequency
-	 * @should pass for a valid new order frequency
-	 * @should pass for a valid existing order frequency
-	 * @should be invoked when an order frequency is saved
-	 * @should pass validation if field lengths are correct
-	 * @should fail validation if field lengths are not correct
 	 */
 	@Override
 	public void validate(Object obj, Errors errors) {

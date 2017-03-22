@@ -78,7 +78,6 @@ import org.openmrs.order.OrderUtilTest;
 import org.openmrs.orders.TimestampOrderNumberGenerator;
 import org.openmrs.test.BaseContextSensitiveTest;
 import org.openmrs.test.TestUtil;
-import org.openmrs.test.Verifies;
 import org.openmrs.util.DateUtil;
 import org.openmrs.util.OpenmrsConstants;
 import org.openmrs.util.PrivilegeConstants;
@@ -147,7 +146,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
-	@Verifies(value = "should not save order if order doesnt validate", method = "saveOrder(Order)")
 	public void saveOrder_shouldNotSaveOrderIfOrderDoesntValidate() throws Exception {
 		Order order = new Order();
 		order.setPatient(null);
@@ -161,7 +159,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#getOrderByUuid(String)
 	 */
 	@Test
-	@Verifies(value = "should find object given valid uuid", method = "getOrderByUuid(String)")
 	public void getOrderByUuid_shouldFindObjectGivenValidUuid() throws Exception {
 		String uuid = "921de0a3-05c4-444a-be03-e01b4c4b9142";
 		Order order = orderService.getOrderByUuid(uuid);
@@ -172,13 +169,11 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#getOrderByUuid(String)
 	 */
 	@Test
-	@Verifies(value = "should return null if no object found with given uuid", method = "getOrderByUuid(String)")
 	public void getOrderByUuid_shouldReturnNullIfNoObjectFoundWithGivenUuid() throws Exception {
 		Assert.assertNull(orderService.getOrderByUuid("some invalid uuid"));
 	}
 	
 	/**
-	 * @verifies delete any Obs associated to the order when cascade is true
 	 * @see OrderService#purgeOrder(org.openmrs.Order, boolean)
 	 */
 	@Test
@@ -211,7 +206,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies delete order from the database
 	 * @see OrderService#purgeOrder(org.openmrs.Order, boolean)
 	 */
 	@Test
@@ -227,7 +221,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderNumberGenerator#getNewOrderNumber(OrderContext)
 	 */
 	@Test
-	@Verifies(value = "should always return unique orderNumbers when called multiple times without saving orders", method = "getNewOrderNumber()")
 	public void getNewOrderNumber_shouldAlwaysReturnUniqueOrderNumbersWhenCalledMultipleTimesWithoutSavingOrders()
 	    throws Exception {
 		
@@ -265,7 +258,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#getOrderByOrderNumber(String)
 	 */
 	@Test
-	@Verifies(value = "should find object given valid order number", method = "getOrderByOrderNumber(String)")
 	public void getOrderByOrderNumber_shouldFindObjectGivenValidOrderNumber() throws Exception {
 		Order order = orderService.getOrderByOrderNumber("1");
 		Assert.assertNotNull(order);
@@ -276,7 +268,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#getOrderByOrderNumber(String)
 	 */
 	@Test
-	@Verifies(value = "should return null if no object found with given order number", method = "getOrderByOrderNumber(String)")
 	public void getOrderByOrderNumber_shouldReturnNullIfNoObjectFoundWithGivenOrderNumber() throws Exception {
 		Assert.assertNull(orderService.getOrderByOrderNumber("some invalid order number"));
 	}
@@ -285,7 +276,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#getOrderHistoryByConcept(Patient,Concept)
 	 */
 	@Test
-	@Verifies(value = "should return orders with the given concept", method = "getOrderHistoryByConcept(Patient,Concept)")
 	public void getOrderHistoryByConcept_shouldReturnOrdersWithTheGivenConcept() throws Exception {
 		//We should have two orders with this concept.
 		Concept concept = Context.getConceptService().getConcept(88);
@@ -313,7 +303,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#getOrderHistoryByConcept(Patient, Concept)
 	 */
 	@Test
-	@Verifies(value = "should return empty list for concept without orders", method = "getOrderHistoryByConcept(Patient,Concept)")
 	public void getOrderHistoryByConcept_shouldReturnEmptyListForConceptWithoutOrders() throws Exception {
 		Concept concept = Context.getConceptService().getConcept(21);
 		Patient patient = Context.getPatientService().getPatient(2);
@@ -322,7 +311,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies reject a null concept
 	 * @see OrderService#getOrderHistoryByConcept(org.openmrs.Patient, org.openmrs.Concept)
 	 */
 	@Test
@@ -333,7 +321,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies reject a null patient
 	 * @see OrderService#getOrderHistoryByConcept(org.openmrs.Patient, org.openmrs.Concept)
 	 */
 	@Test
@@ -347,7 +334,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#getOrderHistoryByOrderNumber(String)
 	 */
 	@Test
-	@Verifies(value = "should return all order history for given order number", method = "getOrderHistoryByOrderNumber(String)")
 	public void getOrderHistoryByOrderNumber_shouldReturnAllOrderHistoryForGivenOrderNumber() throws Exception {
 		List<Order> orders = orderService.getOrderHistoryByOrderNumber("111");
 		assertEquals(2, orders.size());
@@ -356,7 +342,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return the order frequency that matches the specified id
 	 * @see OrderService#getOrderFrequency(Integer)
 	 */
 	@Test
@@ -365,7 +350,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return the order frequency that matches the specified uuid
 	 * @see OrderService#getOrderFrequencyByUuid(String)
 	 */
 	@Test
@@ -375,7 +359,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return the order frequency that matches the specified concept
 	 * @see OrderService#getOrderFrequencyByConcept(org.openmrs.Concept)
 	 */
 	@Test
@@ -385,7 +368,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return only non retired order frequencies if includeRetired is set to false
 	 * @see OrderService#getOrderFrequencies(boolean)
 	 */
 	@Test
@@ -398,7 +380,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return all the order frequencies if includeRetired is set to true
 	 * @see OrderService#getOrderFrequencies(boolean)
 	 */
 	@Test
@@ -411,7 +392,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return all active orders for the specified patient
 	 * @see OrderService#getActiveOrders(org.openmrs.Patient, org.openmrs.OrderType,
 	 *      org.openmrs.CareSetting, java.util.Date)
 	 */
@@ -432,7 +412,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return all active orders for the specified patient and care setting
 	 * @see OrderService#getActiveOrders(org.openmrs.Patient, org.openmrs.OrderType,
 	 *      org.openmrs.CareSetting, java.util.Date)
 	 */
@@ -448,7 +427,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return all active drug orders for the specified patient
 	 * @see OrderService#getActiveOrders(org.openmrs.Patient, org.openmrs.OrderType,
 	 *      org.openmrs.CareSetting, java.util.Date)
 	 */
@@ -463,7 +441,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return all active test orders for the specified patient
 	 * @see OrderService#getActiveOrders(org.openmrs.Patient, org.openmrs.OrderType,
 	 *      org.openmrs.CareSetting, java.util.Date)
 	 */
@@ -477,7 +454,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if patient is null
 	 * @see OrderService#getActiveOrders(org.openmrs.Patient, org.openmrs.OrderType,
 	 *      org.openmrs.CareSetting, java.util.Date)
 	 */
@@ -489,7 +465,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return active orders as of the specified date
 	 * @see OrderService#getActiveOrders(org.openmrs.Patient, org.openmrs.OrderType,
 	 *      org.openmrs.CareSetting, java.util.Date)
 	 */
@@ -554,7 +529,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return all orders if no orderType is specified
 	 * @see OrderService#getActiveOrders(org.openmrs.Patient, org.openmrs.OrderType,
 	 *      org.openmrs.CareSetting, java.util.Date)
 	 */
@@ -569,7 +543,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies include orders for sub types if order type is specified
 	 * @see OrderService#getActiveOrders(org.openmrs.Patient, org.openmrs.OrderType,
 	 *      org.openmrs.CareSetting, java.util.Date)
 	 */
@@ -592,7 +565,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies populate correct attributes on the discontinue and discontinued orders
 	 * @see OrderService#discontinueOrder(org.openmrs.Order, String, java.util.Date,
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
@@ -619,7 +591,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#discontinueOrder(Order,String,Date,Provider,Encounter)
-	 * @verifies pass for an active order which is scheduled and not started as of discontinue date
 	 */
 	@Test
 	public void discontinueOrder_shouldPassForAnActiveOrderWhichIsScheduledAndNotStartedAsOfDiscontinueDate()
@@ -659,7 +630,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies set correct attributes on the discontinue and discontinued orders
 	 * @see OrderService#discontinueOrder(org.openmrs.Order, org.openmrs.Concept, java.util.Date,
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
@@ -686,7 +656,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#discontinueOrder(Order,Concept,Date,Provider,Encounter)
-	 * @verifies pass for an active order which is scheduled and not started as of discontinue date
 	 */
 	@Test
 	public void discontinueOrder_shouldPassForAnActiveOrderWhichIsScheduledAndNotStartedAsOfDiscontinueDateWithParamConcept()
@@ -729,7 +698,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
 	@Test
-	@Verifies(value = "should fail for a discontinuation order", method = "discontinueOrder(Order, String, Date, Provider, Encounter)")
 	public void discontinueOrder_shouldFailForADiscontinuationOrder() throws Exception {
 		executeDataSet("org/openmrs/api/include/OrderServiceTest-discontinuedOrder.xml");
 		Order discontinuationOrder = orderService.getOrder(26);
@@ -745,7 +713,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
 	@Test
-	@Verifies(value = "should not pass for a discontinuation order", method = "discontinueOrder(Order, Concept, Date, Provider, Encounter)")
 	public void discontinueOrder_shouldNotPassForADiscontinuationOrder() throws Exception {
 		executeDataSet("org/openmrs/api/include/OrderServiceTest-discontinuedOrder.xml");
 		executeDataSet("org/openmrs/api/include/OrderServiceTest-discontinueReason.xml");
@@ -758,7 +725,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail for a discontinued order
 	 * @see OrderService#discontinueOrder(org.openmrs.Order, String, java.util.Date,
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
@@ -774,7 +740,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies not pass for a discontinued order
 	 * @see OrderService#discontinueOrder(org.openmrs.Order, org.openmrs.Concept, java.util.Date,
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
@@ -793,7 +758,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
-	@Verifies(value = "should discontinue existing active order if new order being saved with action to discontinue", method = "saveOrder(Order)")
 	public void saveOrder_shouldDiscontinueExistingActiveOrderIfNewOrderBeingSavedWithActionToDiscontinue() throws Exception {
 		DrugOrder order = new DrugOrder();
 		order.setAction(Order.Action.DISCONTINUE);
@@ -832,7 +796,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
-	@Verifies(value = "should discontinue previousOrder if it is not already discontinued", method = "saveOrder(Order)")
 	public void saveOrder_shouldDiscontinuePreviousOrderIfItIsNotAlreadyDiscontinued() throws Exception {
 		//We are trying to discontinue order id 111 in standardTestDataset.xml
 		DrugOrder order = new DrugOrder();
@@ -867,7 +830,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
-	@Verifies(value = "should fail if concept in previous order does not match this concept", method = "saveOrder(Order)")
 	public void saveOrder_shouldFailIfConceptInPreviousOrderDoesNotMatchThisConcept() throws Exception {
 		Order previousOrder = orderService.getOrder(7);
 		assertTrue(OrderUtilTest.isActiveOrder(previousOrder, null));
@@ -886,7 +848,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies reject a future discontinueDate
 	 * @see OrderService#discontinueOrder(org.openmrs.Order, org.openmrs.Concept, java.util.Date,
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
@@ -904,7 +865,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if discontinueDate is in the future
 	 * @see OrderService#discontinueOrder(org.openmrs.Order, String, java.util.Date,
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
@@ -921,7 +881,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies pass if the existing drug order matches the concept and drug of the DC order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -955,7 +914,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if the existing drug order matches the concept and not drug of the DC order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -983,7 +941,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies pass if the existing drug order matches the concept and there is no drug on the
 	 *           previous order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
@@ -1027,7 +984,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail for a stopped order
 	 * @see OrderService#discontinueOrder(org.openmrs.Order, org.openmrs.Concept, java.util.Date,
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
@@ -1042,7 +998,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail for a voided order
 	 * @see OrderService#discontinueOrder(org.openmrs.Order, String, java.util.Date,
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
@@ -1057,7 +1012,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail for an expired order
 	 * @see OrderService#discontinueOrder(org.openmrs.Order, org.openmrs.Concept, java.util.Date,
 	 *      org.openmrs.Provider, org.openmrs.Encounter)
 	 */
@@ -1073,7 +1027,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies not allow editing an existing order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1085,7 +1038,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return the care setting with the specified uuid
 	 * @see OrderService#getCareSettingByUuid(String)
 	 */
 	@Test
@@ -1095,7 +1047,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return the care setting with the specified name
 	 * @see OrderService#getCareSettingByName(String)
 	 */
 	@Test
@@ -1109,7 +1060,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return only un retired care settings if includeRetired is set to false
 	 * @see OrderService#getCareSettings(boolean)
 	 */
 	@Test
@@ -1121,7 +1071,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return retired care settings if includeRetired is set to true
 	 * @see OrderService#getCareSettings(boolean)
 	 */
 	@Test
@@ -1134,7 +1083,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies not allow revising a stopped order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1152,7 +1100,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies not allow revising a voided order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1170,7 +1117,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies not allow revising an expired order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1190,7 +1136,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies not allow revising an order with no previous order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1210,7 +1155,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies save a revised order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1237,7 +1181,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#saveOrder(Order,OrderContext)
-	 * @verifies save a revised order for a scheduled order which is not started
 	 */
 	@Test
 	public void saveOrder_shouldSaveARevisedOrderForAScheduledOrderWhichIsNotStarted() throws Exception {
@@ -1276,7 +1219,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies get non retired frequencies with names matching the phrase if includeRetired is
 	 *           false
 	 * @see OrderService#getOrderFrequencies(String, java.util.Locale, boolean, boolean)
 	 */
@@ -1297,7 +1239,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies include retired frequencies if includeRetired is set to true
 	 * @see OrderService#getOrderFrequencies(String, java.util.Locale, boolean, boolean)
 	 */
 	@Test
@@ -1312,7 +1253,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies get frequencies with names that match the phrase and locales if exact locale is
 	 *           false
 	 * @see OrderService#getOrderFrequencies(String, java.util.Locale, boolean, boolean)
 	 */
@@ -1328,7 +1268,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies get frequencies with names that match the phrase and locale if exact locale is true
 	 * @see OrderService#getOrderFrequencies(String, java.util.Locale, boolean, boolean)
 	 */
 	@Test
@@ -1346,7 +1285,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return unique frequencies
 	 * @see OrderService#getOrderFrequencies(String, java.util.Locale, boolean, boolean)
 	 */
 	@Test
@@ -1373,7 +1311,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies reject a null search phrase
 	 * @see OrderService#getOrderFrequencies(String, java.util.Locale, boolean, boolean)
 	 */
 	@Test
@@ -1384,7 +1321,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should retire given order frequency", method = "retireOrderFrequency(orderFrequency, String)")
 	public void retireOrderFrequency_shouldRetireGivenOrderFrequency() throws Exception {
 		OrderFrequency orderFrequency = orderService.getOrderFrequency(1);
 		assertNotNull(orderFrequency);
@@ -1405,7 +1341,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should unretire given order frequency", method = "unretireOrderFrequency(OrderFrequency)")
 	public void unretireOrderFrequency_shouldUnretireGivenOrderFrequency() throws Exception {
 		OrderFrequency orderFrequency = orderService.getOrderFrequency(3);
 		assertNotNull(orderFrequency);
@@ -1426,7 +1361,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should delete given order frequency", method = "purgeOrderFrequency(OrderFrequency)")
 	public void purgeOrderFrequency_shouldDeleteGivenOrderFrequency() throws Exception {
 		OrderFrequency orderFrequency = orderService.getOrderFrequency(3);
 		assertNotNull(orderFrequency);
@@ -1444,7 +1378,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#saveOrderFrequency(OrderFrequency)
 	 */
 	@Test
-	@Verifies(value = "should add a new order frequency to the database", method = "saveOrderFrequency(OrderFrequency)")
 	public void saveOrderFrequency_shouldAddANewOrderFrequencyToTheDatabase() throws Exception {
 		Concept concept = new Concept();
 		concept.addName(new ConceptName("new name", Context.getLocale()));
@@ -1470,7 +1403,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#saveOrderFrequency(OrderFrequency)
 	 */
 	@Test
-	@Verifies(value = "should edit an existing order frequency that is not in use", method = "saveOrderFrequency(OrderFrequency)")
 	public void saveOrderFrequency_shouldEditAnExistingOrderFrequencyThatIsNotInUse() throws Exception {
 		executeDataSet(OTHER_ORDER_FREQUENCIES_XML);
 		OrderFrequency orderFrequency = orderService.getOrderFrequency(100);
@@ -1484,7 +1416,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#saveOrderFrequency(OrderFrequency)
 	 */
 	@Test
-	@Verifies(value = "should not allow editing an existing order frequency that is in use", method = "saveOrderFrequency(OrderFrequency)")
 	public void saveOrderFrequency_shouldNotAllowEditingAnExistingOrderFrequencyThatIsInUse() throws Exception {
 		OrderFrequency orderFrequency = orderService.getOrderFrequency(1);
 		assertNotNull(orderFrequency);
@@ -1499,7 +1430,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#purgeOrderFrequency(OrderFrequency)
 	 */
 	@Test
-	@Verifies(value = "should not allow deleting an order frequency that is in use", method = "purgeOrderFrequency(OrderFrequency)")
 	public void purgeOrderFrequency_shouldNotAllowDeletingAnOrderFrequencyThatIsInUse() throws Exception {
 		OrderFrequency orderFrequency = orderService.getOrderFrequency(1);
 		assertNotNull(orderFrequency);
@@ -1533,7 +1463,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies set order number specified in the context if specified
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1558,7 +1487,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies set the order number returned by the configured generator
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1579,7 +1507,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail for revision order if an active drug order for the same concept and care
 	 *           settings exists
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
@@ -1635,7 +1562,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies pass for revision order if an active test order for the same concept and care
 	 *           settings exists
 	 * @see OrderService#saveOrder(Order, OrderContext)
 	 */
@@ -1679,7 +1605,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if an active drug order for the same concept and care setting exists
 	 * @see OrderService#saveOrder(Order, OrderContext)
 	 */
 	@Test
@@ -1713,7 +1638,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if an active order for the same concept and care setting exists
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1782,7 +1706,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies pass if an active drug order for the same concept and care setting but different
 	 *           formulation exists
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
@@ -1814,7 +1737,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if an active drug order for the same drug formulation exists
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1845,7 +1767,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies pass if an active order for the same concept exists in a different care setting
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1873,7 +1794,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies roll the autoExpireDate to the end of the day if it has no time component
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1894,7 +1814,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies not change the autoExpireDate if it has a time component
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -1916,7 +1835,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies pass if an active drug order for the same drug formulation exists beyond new
 	 *           order's schedule
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
@@ -1950,7 +1868,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies find order type object given valid id
 	 * @see OrderService#getOrderType(Integer)
 	 */
 	@Test
@@ -1959,7 +1876,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return null if no order type object found with given id
 	 * @see OrderService#getOrderType(Integer)
 	 */
 	@Test
@@ -1969,7 +1885,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies find order type object given valid uuid
 	 * @see OrderService#getOrderTypeByUuid(String)
 	 */
 	@Test
@@ -1979,7 +1894,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return null if no order type object found with given uuid
 	 * @see OrderService#getOrderTypeByUuid(String)
 	 */
 	@Test
@@ -1988,7 +1902,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies get all order types if includeRetired is set to true
 	 * @see OrderService#getOrderTypes(boolean)
 	 */
 	@Test
@@ -1997,7 +1910,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies get all non retired order types if includeRetired is set to false
 	 * @see OrderService#getOrderTypes(boolean)
 	 */
 	@Test
@@ -2006,7 +1918,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return the order type that matches the specified name
 	 * @see OrderService#getOrderTypeByName(String)
 	 */
 	@Test
@@ -2016,7 +1927,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if patient is null
 	 * @see OrderService#getOrders(org.openmrs.Patient, org.openmrs.CareSetting,
 	 *      org.openmrs.OrderType, boolean)
 	 */
@@ -2028,7 +1938,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if careSetting is null
 	 * @see OrderService#getOrders(org.openmrs.Patient, org.openmrs.CareSetting,
 	 *      org.openmrs.OrderType, boolean)
 	 */
@@ -2040,7 +1949,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies get the orders that match all the arguments
 	 * @see OrderService#getOrders(org.openmrs.Patient, org.openmrs.CareSetting,
 	 *      org.openmrs.OrderType, boolean)
 	 */
@@ -2070,7 +1978,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies get all unvoided matches if includeVoided is set to false
 	 * @see OrderService#getOrders(org.openmrs.Patient, org.openmrs.CareSetting,
 	 *      org.openmrs.OrderType, boolean)
 	 */
@@ -2083,7 +1990,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies include voided matches if includeVoided is set to true
 	 * @see OrderService#getOrders(org.openmrs.Patient, org.openmrs.CareSetting,
 	 *      org.openmrs.OrderType, boolean)
 	 */
@@ -2096,7 +2002,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies include orders for sub types if order type is specified
 	 * @see OrderService#getOrders(org.openmrs.Patient, org.openmrs.CareSetting,
 	 *      org.openmrs.OrderType, boolean)
 	 */
@@ -2121,7 +2026,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if patient is null
 	 * @see OrderService#getAllOrdersByPatient(org.openmrs.Patient)
 	 */
 	@Test
@@ -2132,7 +2036,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies get all the orders for the specified patient
 	 * @see OrderService#getAllOrdersByPatient(org.openmrs.Patient)
 	 */
 	@Test
@@ -2142,7 +2045,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies set order type if null but mapped to the concept class
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2159,7 +2061,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if order type is null and not mapped to the concept class
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2180,7 +2081,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#saveOrderType(org.openmrs.OrderType)
 	 */
 	@Test
-	@Verifies(value = "should add a new order type to the database", method = "saveOrderType(org.openmrs.OrderType)")
 	public void saveOrderType_shouldAddANewOrderTypeToTheDatabase() {
 		int orderTypeCount = orderService.getOrderTypes(true).size();
 		OrderType orderType = new OrderType();
@@ -2196,7 +2096,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies edit an existing order type
 	 * @see OrderService#saveOrderType(org.openmrs.OrderType)
 	 */
 	@Test
@@ -2217,7 +2116,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#purgeOrderType(org.openmrs.OrderType)
 	 */
 	@Test
-	@Verifies(value = "should delete order type if not in use", method = "purgeOrderType(org.openmrs.OrderType)")
 	public void purgeOrderType_shouldDeleteOrderTypeIfNotInUse() {
 		final Integer id = 13;
 		OrderType orderType = orderService.getOrderType(id);
@@ -2230,7 +2128,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#purgeOrderType(org.openmrs.OrderType)
 	 */
 	@Test
-	@Verifies(value = "should not allow deleting an order type that is in use", method = "purgeOrderType(org.openmrs.OrderType)")
 	public void purgeOrderType_shouldNotAllowDeletingAnOrderTypeThatIsInUse() {
 		OrderType orderType = orderService.getOrderType(1);
 		assertNotNull(orderType);
@@ -2243,7 +2140,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#retireOrderType(org.openmrs.OrderType, String)
 	 */
 	@Test
-	@Verifies(value = "should retire order type", method = "retireOrderType(org.openmrs.OrderType, String)")
 	public void retireOrderType_shouldRetireOrderType() {
 		OrderType orderType = orderService.getOrderType(15);
 		assertFalse(orderType.getRetired());
@@ -2262,7 +2158,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#unretireOrderType(org.openmrs.OrderType)
 	 */
 	@Test
-	@Verifies(value = "should unretire order type", method = "unretireOrderType(org.openmrs.OrderType)")
 	public void unretireOrderType_shouldUnretireOrderType() {
 		OrderType orderType = orderService.getOrderType(16);
 		assertTrue(orderType.getRetired());
@@ -2281,7 +2176,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#getSubtypes(org.openmrs.OrderType, boolean)
 	 */
 	@Test
-	@Verifies(value = "should return all order subtypes of given order type", method = "getOrderSubtypes(org.openmrs.OrderType, boolean)")
 	public void getOrderSubTypes_shouldGetAllSubOrderTypesWithRetiredOrderTypes() {
 		List<OrderType> orderTypeList = orderService.getSubtypes(orderService.getOrderType(2), true);
 		assertEquals(7, orderTypeList.size());
@@ -2291,14 +2185,12 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#getSubtypes(org.openmrs.OrderType, boolean)
 	 */
 	@Test
-	@Verifies(value = "should return unretired order subtypes of given order type", method = "getOrderSubtypes(org.openmrs.OrderType, boolean)")
 	public void getOrderSubTypes_shouldGetAllSubOrderTypesWithoutRetiredOrderTypes() {
 		List<OrderType> orderTypeList = orderService.getSubtypes(orderService.getOrderType(2), false);
 		assertEquals(6, orderTypeList.size());
 	}
 	
 	/**
-	 * @verifies default to care setting and order type defined in the order context if null
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2323,7 +2215,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getDiscontinuationOrder(Order)
-	 * @verifies return discontinuation order if order has been discontinued
 	 */
 	@Test
 	public void getDiscontinuationOrder_shouldReturnDiscontinuationOrderIfOrderHasBeenDiscontinued() throws Exception {
@@ -2338,7 +2229,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getDiscontinuationOrder(Order)
-	 * @verifies return null if order has not been discontinued
 	 */
 	@Test
 	public void getDiscontinuationOrder_shouldReturnNullIfOrderHasNotBeenDiscontinued() throws Exception {
@@ -2350,7 +2240,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getOrderTypeByConceptClass(ConceptClass)
-	 * @verifies get order type mapped to the given concept class
 	 */
 	@Test
 	public void getOrderTypeByConceptClass_shouldGetOrderTypeMappedToTheGivenConceptClass() throws Exception {
@@ -2362,7 +2251,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getOrderTypeByConcept(Concept)
-	 * @verifies get order type mapped to the given concept
 	 */
 	@Test
 	public void getOrderTypeByConcept_shouldGetOrderTypeMappedToTheGivenConcept() throws Exception {
@@ -2373,7 +2261,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if concept in previous order does not match that of the revised order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2393,7 +2280,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if the existing drug order matches the concept and not drug of the revised
 	 *           order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
@@ -2420,7 +2306,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if the order type of the previous order does not match
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2441,7 +2326,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if the java type of the previous order does not match
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2465,7 +2349,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if the careSetting of the previous order does not match
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2485,7 +2368,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies set concept for drug orders if null
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2513,7 +2395,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see org.openmrs.api.OrderService#getDrugRoutes()
-	 * @verifies get drug routes associated with concept uuid provided in global properties
 	 */
 	@Test
 	public void getDrugRoutes_shouldGetDrugRoutesAssociatedConceptPrividedInGlobalProperties() throws Exception {
@@ -2523,7 +2404,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies void an order
 	 * @see OrderService#voidOrder(org.openmrs.Order, String)
 	 */
 	@Test
@@ -2542,7 +2422,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies unset dateStopped of the previous order if the specified order is a discontinuation
 	 * @see OrderService#voidOrder(org.openmrs.Order, String)
 	 */
 	@Test
@@ -2561,7 +2440,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies unset dateStopped of the previous order if the specified order is a revision
 	 * @see OrderService#voidOrder(org.openmrs.Order, String)
 	 */
 	@Test
@@ -2579,7 +2457,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies unvoid an order
 	 * @see OrderService#unvoidOrder(org.openmrs.Order)
 	 */
 	@Test
@@ -2598,7 +2475,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies stop the previous order if the specified order is a discontinuation
 	 * @see OrderService#unvoidOrder(org.openmrs.Order)
 	 */
 	@Test
@@ -2622,7 +2498,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies stop the previous order if the specified order is a revision
 	 * @see OrderService#unvoidOrder(org.openmrs.Order)
 	 */
 	@Test
@@ -2646,7 +2521,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail for a discontinuation order if the previousOrder is inactive
 	 * @see OrderService#unvoidOrder(org.openmrs.Order)
 	 */
 	@Test
@@ -2674,7 +2548,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail for a revise order if the previousOrder is inactive
 	 * @see OrderService#unvoidOrder(org.openmrs.Order)
 	 */
 	@Test
@@ -2703,7 +2576,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return revision order if order has been revised
 	 * @see OrderService#getRevisionOrder(org.openmrs.Order)
 	 */
 	@Test
@@ -2712,7 +2584,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return null if order has not been revised
 	 * @see OrderService#getRevisionOrder(org.openmrs.Order)
 	 */
 	@Test
@@ -2722,7 +2593,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getDiscontinuationOrder(Order)
-	 * @verifies return null if dc order is voided
 	 */
 	@Test
 	public void getDiscontinuationOrder_shouldReturnNullIfDcOrderIsVoided() throws Exception {
@@ -2736,7 +2606,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return the union of the dosing and dispensing units
 	 * @see OrderService#getDrugDispensingUnits()
 	 */
 	@Test
@@ -2748,7 +2617,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getDrugDispensingUnits()
-	 * @verifies return an empty list if nothing is configured
 	 */
 	@Test
 	public void getDrugDispensingUnits_shouldReturnAnEmptyListIfNothingIsConfigured() throws Exception {
@@ -2759,7 +2627,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getDrugDosingUnits()
-	 * @verifies return a list if GP is set
 	 */
 	@Test
 	public void getDrugDosingUnits_shouldReturnAListIfGPIsSet() throws Exception {
@@ -2770,7 +2637,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getDrugDosingUnits()
-	 * @verifies return an empty list if nothing is configured
 	 */
 	@Test
 	public void getDrugDosingUnits_shouldReturnAnEmptyListIfNothingIsConfigured() throws Exception {
@@ -2780,7 +2646,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getDurationUnits()
-	 * @verifies return a list if GP is set
 	 */
 	@Test
 	public void getDurationUnits_shouldReturnAListIfGPIsSet() throws Exception {
@@ -2791,7 +2656,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getDurationUnits()
-	 * @verifies return an empty list if nothing is configured
 	 */
 	@Test
 	public void getDurationUnits_shouldReturnAnEmptyListIfNothingIsConfigured() throws Exception {
@@ -2800,7 +2664,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies not return a voided revision order
 	 * @see OrderService#getRevisionOrder(org.openmrs.Order)
 	 */
 	@Test
@@ -2823,7 +2686,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies pass for a discontinuation order with no previous order
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2839,7 +2701,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return a list if GP is set
 	 * @see OrderService#getTestSpecimenSources()
 	 */
 	@Test
@@ -2850,7 +2711,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies return an empty list if nothing is configured
 	 * @see OrderService#getTestSpecimenSources()
 	 */
 	@Test
@@ -2863,7 +2723,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	 * @see OrderService#retireOrderType(org.openmrs.OrderType, String)
 	 */
 	@Test
-	@Verifies(value = "should not retire concept class", method = "retireOrderType(OrderType orderType, String reason)")
 	public void retireOrderType_shouldNotRetireIndependentField() throws Exception {
 		OrderType orderType = orderService.getOrderType(2);
 		ConceptClass conceptClass = conceptService.getConceptClass(1);
@@ -2874,7 +2733,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies set Order type to drug order if not set
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2909,7 +2767,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies set Order type of Test Order to test order if not set and concept not mapped
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext)
 	 */
 	@Test
@@ -2986,7 +2843,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderServiceImpl#discontinueExistingOrdersIfNecessary()
-	 * @verifies throw AmbiguousOrderException if disconnecting multiple active orders for the given
 	 *           concepts
 	 */
 	@Test(expected = AmbiguousOrderException.class)
@@ -3006,7 +2862,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderServiceImpl#discontinueExistingOrdersIfNecessary()
-	 * @verifies throw AmbiguousOrderException if disconnecting multiple active drug orders with the
 	 *           same drug
 	 */
 	@Test(expected = AmbiguousOrderException.class)
@@ -3025,7 +2880,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies pass if an known drug order for the same drug formulation specified
 	 * @see OrderService#saveOrder(org.openmrs.Order, OrderContext, org.openmrs.Order[])
 	 */
 	@Test
@@ -3056,7 +2910,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getNonCodedDrugConcept()
-	 * @verifies return an null if nothing is configured
 	 */
 	@Test
 	public void getNonCodedDrugConcept_shouldReturnNullIfNothingIsConfigured() throws Exception {
@@ -3066,7 +2919,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * @see OrderService#getNonCodedDrugConcept()
-	 * @verifies return a Concept if GP is set
 	 */
 	@Test
 	public void getNonCodedDrugConcept_shouldReturnAConceptIfGPIsSet() throws Exception {
@@ -3079,7 +2931,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies pass if an active drug order for the same coded concept, care setting and different
 	 *           drug non coded exists
 	 * @see OrderService#saveOrder(Order, OrderContext)
 	 */
@@ -3100,7 +2951,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies fail if an active drug order for the same coded concept, care setting and drug non
 	 *           coded exists
 	 * @see OrderService#saveOrder(Order, OrderContext)
 	 */
@@ -3123,7 +2973,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should discontinue previousNonCodedOrder if it is not already discontinued", method = "saveOrder(Order)")
 	public void saveOrder_shouldDiscontinuePreviousNonCodedOrderIfItIsNotAlreadyDiscontinued() throws Exception {
 		//We are trying to discontinue order id 584 in OrderServiceTest-nonCodedDrugs.xml
 		executeDataSet("org/openmrs/api/include/OrderServiceTest-nonCodedDrugs.xml");
@@ -3140,7 +2989,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should fail discontinue previousNonCodedDrugOrder if the orderable of the previous order and the new one order don't match ", method = "saveOrder(Order)")
 	public void saveOrder_shouldFailDiscontinueNonCodedDrugOrderIfOrderableOfPreviousAndNewOrderDontMatch() throws Exception {
 		executeDataSet("org/openmrs/api/include/OrderServiceTest-nonCodedDrugs.xml");
 		DrugOrder previousOrder = (DrugOrder) orderService.getOrder(584);
@@ -3157,7 +3005,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should fail revising previousNonCodedDrugOrder if the orderable of the previous order and the new one order don't match ", method = "saveOrder(Order)")
 	public void saveOrder_shouldFailIfDrugNonCodedInPreviousDrugOrderDoesNotMatchThatOfTheRevisedDrugOrder()
 	    throws Exception {
 		executeDataSet("org/openmrs/api/include/OrderServiceTest-nonCodedDrugs.xml");
@@ -3178,7 +3025,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should revise previousNonCodedOrder if it is already existing", method = "saveOrder(Order)")
 	public void saveOrder_shouldRevisePreviousNonCodedOrderIfItIsAlreadyExisting() throws Exception {
 		//We are trying to discontinue order id 584 in OrderServiceTest-nonCodedDrugs.xml
 		executeDataSet("org/openmrs/api/include/OrderServiceTest-nonCodedDrugs.xml");
@@ -3197,7 +3043,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should discontinue order in retrospective entry", method = "saveRetrospectiveOrder(Order)")
 	public void saveRetrospectiveOrder_shouldDiscontinueOrderInRetrospectiveEntry() throws Exception {
 		executeDataSet("org/openmrs/api/include/OrderServiceTest-ordersWithAutoExpireDate.xml");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S");
@@ -3222,7 +3067,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should get active orders for discontinue date and discontinue order in retrospective entry", method = "saveRetrospectiveOrder(Order)")
 	public void saveRetrospectiveOrder_shouldDiscontinueAndStopActiveOrderInRetrospectiveEntry() throws Exception {
 		executeDataSet("org/openmrs/api/include/OrderServiceTest-ordersWithAutoExpireDate.xml");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S");
@@ -3247,7 +3091,6 @@ public class OrderServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	@Test
-	@Verifies(value = "should not revise previousOrder if it is already stopped", method = "saveRetrospectiveOrder(Order)")
 	public void saveOrder_shouldNotRevisePreviousIfAlreadyStopped() throws Exception {
 		executeDataSet("org/openmrs/api/include/OrderServiceTest-ordersWithAutoExpireDate.xml");
 		Order previousOrder = orderService.getOrder(203);

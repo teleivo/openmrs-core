@@ -18,7 +18,6 @@ import org.junit.Test;
 public class EmptyResultTest {
 	
 	/**
-	 * @verifies {@link EmptyResult#isEmpty()}
 	 * test = should return true
 	 */
 	@Test
@@ -27,7 +26,6 @@ public class EmptyResultTest {
 	}
 	
 	/**
-	 * @verifies {@link EmptyResult#isNull()}
 	 * test = should return true
 	 */
 	@Test
