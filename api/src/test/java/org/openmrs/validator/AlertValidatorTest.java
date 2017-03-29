@@ -10,38 +10,30 @@
 package org.openmrs.validator;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.notification.Alert;
-import org.openmrs.test.BaseContextSensitiveTest;
-import org.springframework.validation.BindException;
-import org.springframework.validation.Errors;
+import org.openmrs.test.ValidatorTest;
 
 /**
  * Tests methods on the {@link AlertValidator} class.
  *
  */
-public class AlertValidatorTest extends BaseContextSensitiveTest {
+public class AlertValidatorTest extends ValidatorTest<AlertValidator, Alert> {
 	
-	private AlertValidator validator;
+	@Override
+	protected AlertValidator newValidator() {
+		return new AlertValidator();
+	}
 	
-	private Alert alert;
-	
-	private Errors errors;
-	
-	@Before
-	public void setUp() {
-		validator = new AlertValidator();
-		
-		alert = new Alert();
-		
-		errors = new BindException(alert, "alert");
+	@Override
+	protected Alert newValidationTarget() {
+		return new Alert();
 	}
 	
 	@Test
 	public void shouldFailValidationIfAlertTextIsNull() {
 		
-		validator.validate(alert, errors);
+		validate();
 		
 		assertThatFieldTextHasError();
 	}
@@ -49,9 +41,9 @@ public class AlertValidatorTest extends BaseContextSensitiveTest {
 	@Test
 	public void shouldFailValidationIfAlertTextIsEmpty() {
 		
-		alert.setText("");
+		target.setText("");
 		
-		validator.validate(alert, errors);
+		validate();
 		
 		assertThatFieldTextHasError();
 	}
@@ -59,9 +51,9 @@ public class AlertValidatorTest extends BaseContextSensitiveTest {
 	@Test
 	public void shouldFailValidationIfAlertTextIsOnlyWhitespaces() {
 		
-		alert.setText(" ");
+		target.setText(" ");
 		
-		validator.validate(alert, errors);
+		validate();
 		
 		assertThatFieldTextHasError();
 	}
@@ -69,9 +61,9 @@ public class AlertValidatorTest extends BaseContextSensitiveTest {
 	@Test
 	public void validate_shouldPassValidationIfAllRequiredValuesAreSet() {
 		
-		alert.setText("Alert Text");
+		target.setText("Alert Text");
 		
-		validator.validate(alert, errors);
+		validate();
 		
 		Assert.assertFalse(errors.hasErrors());
 	}
@@ -79,15 +71,15 @@ public class AlertValidatorTest extends BaseContextSensitiveTest {
 	@Test
 	public void validate_shouldFailValidationIfFieldLengthsAreNotCorrect() {
 		
-		alert
+		target
 		        .setText("too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text too long text");
 		
-		validator.validate(alert, errors);
+		validate();
 		
 		assertThatFieldTextHasError();
 	}
 	
 	private void assertThatFieldTextHasError() {
-		Assert.assertTrue(errors.hasFieldErrors("text"));
+		assertThatFieldHasErrors("text");
 	}
 }

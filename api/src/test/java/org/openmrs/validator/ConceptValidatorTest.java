@@ -14,7 +14,9 @@ import java.util.List;
 import java.util.Locale;
 
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.openmrs.Concept;
 import org.openmrs.ConceptAnswer;
 import org.openmrs.ConceptClass;
@@ -27,14 +29,27 @@ import org.openmrs.api.ConceptNameType;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.DuplicateConceptNameException;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.BaseContextSensitiveTest;
+import org.openmrs.test.ValidatorTest;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 
 /**
  * Tests methods on the {@link ConceptValidator} class.
  */
-public class ConceptValidatorTest extends BaseContextSensitiveTest {
+public class ConceptValidatorTest extends ValidatorTest<ConceptValidator, Concept> {
+	
+	@Rule
+	public ExpectedException expectedException = ExpectedException.none();
+	
+	@Override
+	protected ConceptValidator newValidator() {
+		return new ConceptValidator();
+	}
+	
+	@Override
+	protected Concept newValidationTarget() {
+		return new Concept();
+	}
 	
 	@Test(expected = DuplicateConceptNameException.class)
 	public void validate_shouldFailIfThereIsADuplicateUnretiredConceptNameInTheLocale() {
@@ -50,11 +65,12 @@ public class ConceptValidatorTest extends BaseContextSensitiveTest {
 		new ConceptValidator().validate(concept, errors);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void validate_shouldFailIfTheObjectParameterIsNull() {
-		Errors errors = new BindException(null, "concept");
-		new ConceptValidator().validate(null, errors);
-		Assert.assertTrue(errors.hasErrors());
+		
+		expectedException.expect(IllegalArgumentException.class);
+		expectedException.expectMessage("The parameter obj should not be null and must be of type" + Concept.class);
+		validate(null);
 	}
 	
 	@Test
@@ -63,9 +79,10 @@ public class ConceptValidatorTest extends BaseContextSensitiveTest {
 		Concept conceptToUpdate = Context.getConceptService().getConcept(5497);
 		conceptToUpdate.setCreator(Context.getAuthenticatedUser());
 		Errors errors = new BindException(conceptToUpdate, "concept");
-		new ConceptValidator().validate(conceptToUpdate, errors);
-		Assert.assertFalse(errors.hasErrors());
 		
+		validator.validate(conceptToUpdate, errors);
+		
+		Assert.assertFalse(errors.hasErrors());
 	}
 	
 	/**
@@ -73,12 +90,16 @@ public class ConceptValidatorTest extends BaseContextSensitiveTest {
 	 */
 	@Test
 	public void validate_shouldFailIfAnyNameIsAnEmptyString() {
-		Concept concept = new Concept();
-		concept.addName(new ConceptName("name", Context.getLocale()));
-		concept.addName(new ConceptName("", Context.getLocale()));
-		Errors errors = new BindException(concept, "concept");
-		new ConceptValidator().validate(concept, errors);
+		
+		target.addName(new ConceptName("name", Context.getLocale()));
+		target.addName(new ConceptName("", Context.getLocale()));
+		
+		validate();
+		
 		Assert.assertEquals(true, errors.hasErrors());
+		//		Assert.assertEquals("Concept.name.empty", errors.getGlobalErrors().get(0));
+		Assert.assertEquals("Concept.name.empty", errors.getAllErrors().get(0).getCode());
+		//		Assert.assertEquals("Concept.name.empty", errors.getGlobalErrors().get(0).getCode());
 	}
 	
 	/**

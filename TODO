@@ -1,0 +1,14 @@
+* what if I want to validate a different object than the default target?
+currently its doable with
+
+validator.validate(obj, errors)
+
+validate(obj) would be nice, but then Id have to reassign errors and possible
+target.
+
+ASSERTIONS
+
+* some validators use reject, some rejectValue
+ * we need assertions for both
+ * we need assertions which properly check if an error code is contained in all
+ fieldErrors or globalErrors
