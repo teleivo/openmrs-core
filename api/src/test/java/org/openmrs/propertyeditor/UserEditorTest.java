@@ -12,15 +12,17 @@ package org.openmrs.propertyeditor;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.openmrs.User;
 import org.openmrs.api.UserService;
-import org.openmrs.test.BaseContextSensitiveTest;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.openmrs.test.BaseContextMockTest;
 
-public class UserEditorTest extends BaseContextSensitiveTest {
+public class UserEditorTest extends BaseContextMockTest {
 	
 	private UserEditor editor;
 	
@@ -32,12 +34,12 @@ public class UserEditorTest extends BaseContextSensitiveTest {
 	
 	private static final String NON_EXISTING_UUID = "9999xxxx-e131-11de-babe-001e378eb67e";
 	
-	@Autowired
+	@Mock
 	private UserService userService;
 	
 	@Before
 	public void setUp() {
-		editor = new UserEditor();
+		editor = new UserEditor(userService);
 	}
 	
 	@Test
@@ -59,7 +61,9 @@ public class UserEditorTest extends BaseContextSensitiveTest {
 	@Test
 	public void shouldSetTheEditorValueToObjectAssociatedWithGivenId() {
 		
-		User u = userService.getUser(Integer.valueOf(EXISTING_ID));
+		User u = new User();
+		u.setId(Integer.valueOf(EXISTING_ID));
+		when(userService.getUser(Integer.valueOf(EXISTING_ID))).thenReturn(u);
 
 		editor.setAsText(EXISTING_ID);
 		
@@ -69,8 +73,7 @@ public class UserEditorTest extends BaseContextSensitiveTest {
 	@Test
 	public void shouldSetTheEditorValueToNullIfGivenIdDoesNotExist() {
 		
-		User u = userService.getUser(Integer.valueOf(NON_EXISTING_ID));
-		assertNull("user must not exist", u);
+		when(userService.getUser(any())).thenReturn(null);
 		
 		editor.setAsText(NON_EXISTING_ID);
 		
@@ -80,7 +83,9 @@ public class UserEditorTest extends BaseContextSensitiveTest {
 	@Test
 	public void shouldSetTheEditorValueToObjectAssociatedWithGivenUuid() {
 		
-		User u = userService.getUserByUuid(EXISTING_UUID);
+		User u = new User();
+		u.setUuid(EXISTING_UUID);
+		when(userService.getUserByUuid(EXISTING_UUID)).thenReturn(u);
 		
 		editor.setAsText(EXISTING_UUID);
 		
@@ -90,8 +95,8 @@ public class UserEditorTest extends BaseContextSensitiveTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldFailToSetTheEditorValueIfGivenUuidDoesNotExist() {
 		
-		User uUuid = userService.getUserByUuid(NON_EXISTING_UUID);
-		assertNull("user must not exist", uUuid);
+		when(userService.getUser(any())).thenReturn(null);
+		when(userService.getUserByUuid(any())).thenReturn(null);
 		
 		editor.setAsText(NON_EXISTING_UUID);
 	}
@@ -105,7 +110,9 @@ public class UserEditorTest extends BaseContextSensitiveTest {
 	@Test
 	public void shouldReturnTheObjectIdIfValueIsNotNull() {
 		
-		editor.setValue(userService.getUser(Integer.valueOf(EXISTING_ID)));
+		User u = new User();
+		u.setId(Integer.valueOf(EXISTING_ID));
+		editor.setValue(u);
 		
 		assertThat(editor.getAsText(), is(EXISTING_ID));
 	}

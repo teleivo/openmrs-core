@@ -13,9 +13,9 @@ import java.beans.PropertyEditorSupport;
 
 import org.openmrs.User;
 import org.openmrs.api.UserService;
-import org.openmrs.api.context.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 /**
@@ -30,7 +30,11 @@ public class UserEditor extends PropertyEditorSupport {
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	public UserEditor() {
+	private UserService userService;
+	
+	@Autowired
+	public UserEditor(UserService userService) {
+		this.userService = userService;
 	}
 	
 	/**
@@ -39,13 +43,12 @@ public class UserEditor extends PropertyEditorSupport {
 	 */
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		UserService ps = Context.getUserService();
 		if (StringUtils.hasText(text)) {
 			try {
-				setValue(ps.getUser(Integer.valueOf(text)));
+				setValue(userService.getUser(Integer.valueOf(text)));
 			}
 			catch (Exception ex) {
-				User u = ps.getUserByUuid(text);
+				User u = userService.getUserByUuid(text);
 				setValue(u);
 				if (u == null) {
 					log.error("Error setting text: " + text, ex);
