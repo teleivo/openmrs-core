@@ -13,13 +13,19 @@ import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyList;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,21 +51,18 @@ import org.openmrs.api.db.PatientDAO;
 import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.validator.PatientIdentifierValidator;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
 /**
  * This class tests org.openmrs.{@link PatientServiceImpl}
  * without using the application context and mocking the identifier validator and Context.
  *
  * If you need an integration test with application context and DB, have a look at @see org.openmrs.api.{@link PatientServiceTest}
  */
+@PowerMockIgnore("javax.management.*")
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ PatientIdentifierValidator.class, Context.class })
 public class PatientServiceImplTest {

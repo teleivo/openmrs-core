@@ -33,6 +33,7 @@ import org.openmrs.module.Module;
 import org.openmrs.module.ModuleException;
 import org.openmrs.module.ModuleFactory;
 import org.openmrs.web.DispatcherServlet;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.w3c.dom.Attr;
@@ -42,6 +43,7 @@ import org.w3c.dom.Element;
 /**
  *
  */
+@PowerMockIgnore("javax.management.*")
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(WebModuleUtil.class)
 public class WebModuleUtilTest {
@@ -108,8 +110,9 @@ public class WebModuleUtilTest {
 		
 		ServletContext servletContext = mock(ServletContext.class);
 		String realPath = servletContext.getRealPath("");
-		if (realPath == null)
+		if (realPath == null) {
 			realPath = System.getProperty("user.dir");
+		}
 		
 		// manually delete dwr-modules.xml 
 		File f = new File(realPath + "/WEB-INF/dwr-modules.xml");
@@ -138,8 +141,9 @@ public class WebModuleUtilTest {
 		
 		ServletContext servletContext = mock(ServletContext.class);
 		String realPath = servletContext.getRealPath("");
-		if (realPath == null)
+		if (realPath == null) {
 			realPath = System.getProperty("user.dir");
+		}
 		
 		WebModuleUtil.startModule(mod, servletContext, true);
 		
@@ -154,8 +158,9 @@ public class WebModuleUtilTest {
 				break;
 			}
 		}
-		if (scanner != null)
+		if (scanner != null) {
 			scanner.close();
+		}
 		
 		assertTrue(found);
 		
