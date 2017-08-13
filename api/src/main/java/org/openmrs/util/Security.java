@@ -10,17 +10,13 @@
 package org.openmrs.util;
 
 import java.io.UnsupportedEncodingException;
-import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
-import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.xerces.impl.dv.util.Base64;
 import org.openmrs.api.APIException;
@@ -209,95 +205,6 @@ public class Security {
 	public static String getRandomToken() throws APIException {
 		Random rng = new Random();
 		return encodeString(Long.toString(System.currentTimeMillis()) + Long.toString(rng.nextLong()));
-	}
-	
-	/**
-	 * encrypt text to a string with specific initVector and secretKey; rarely used except in
-	 * testing and where specifically necessary
-	 *
-	 * @see #encrypt(String)
-	 *
-	 * @param text string to be encrypted
-	 * @param initVector custom init vector byte array
-	 * @param secretKey custom secret key byte array
-	 * @return encrypted text
-	 * @since 1.9
-	 */
-	public static String encrypt(String text, byte[] initVector, byte[] secretKey) {
-		IvParameterSpec initVectorSpec = new IvParameterSpec(initVector);
-		SecretKeySpec secret = new SecretKeySpec(secretKey, OpenmrsConstants.ENCRYPTION_KEY_SPEC);
-		byte[] encrypted;
-		
-		try {
-			Cipher cipher = Cipher.getInstance(OpenmrsConstants.ENCRYPTION_CIPHER_CONFIGURATION);
-			cipher.init(Cipher.ENCRYPT_MODE, secret, initVectorSpec);
-			encrypted = cipher.doFinal(text.getBytes(encoding));
-		}
-		catch (GeneralSecurityException e) {
-			throw new APIException("could.not.encrypt.text", null, e);
-		}
-		catch (UnsupportedEncodingException e) {
-			throw new APIException("system.cannot.find.encoding", new Object[] { encoding }, e);
-		}
-		
-		return Base64.encode(encrypted);
-	}
-	
-	/**
-	 * encrypt text using stored initVector and securityKey
-	 *
-	 * @param text
-	 * @return encrypted text
-	 * @since 1.9
-	 * @should encrypt short and long text
-	 */
-	public static String encrypt(String text) {
-		return Security.encrypt(text, Security.getSavedInitVector(), Security.getSavedSecretKey());
-	}
-	
-	/**
-	 * decrypt text to a string with specific initVector and secretKey; rarely used except in
-	 * testing and where specifically necessary
-	 *
-	 * @see #decrypt(String)
-	 *
-	 * @param text text to be decrypted
-	 * @param initVector custom init vector byte array
-	 * @param secretKey custom secret key byte array
-	 * @return decrypted text
-	 * @since 1.9
-	 */
-	public static String decrypt(String text, byte[] initVector, byte[] secretKey) {
-		IvParameterSpec initVectorSpec = new IvParameterSpec(initVector);
-		SecretKeySpec secret = new SecretKeySpec(secretKey, OpenmrsConstants.ENCRYPTION_KEY_SPEC);
-		String decrypted = null;
-		
-		try {
-			Cipher cipher = Cipher.getInstance(OpenmrsConstants.ENCRYPTION_CIPHER_CONFIGURATION);
-			cipher.init(Cipher.DECRYPT_MODE, secret, initVectorSpec);
-			byte[] original = cipher.doFinal(Base64.decode(text));
-			decrypted = new String(original, encoding);
-		}
-		catch (GeneralSecurityException e) {
-			throw new APIException("could.not.decrypt.text", null, e);
-		}
-		catch (UnsupportedEncodingException e) {
-			throw new APIException("system.cannot.find.encoding", new Object[] { encoding }, e);
-		}
-		
-		return decrypted;
-	}
-	
-	/**
-	 * decrypt text using stored initVector and securityKey
-	 *
-	 * @param text text to be decrypted
-	 * @return decrypted text
-	 * @since 1.9
-	 * @should decrypt short and long text
-	 */
-	public static String decrypt(String text) {
-		return Security.decrypt(text, Security.getSavedInitVector(), Security.getSavedSecretKey());
 	}
 	
 	/**
