@@ -1,0 +1,15 @@
+---
+version: '3'
+services:
+  db:
+    image: "mysql:5.7.19"
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_USER=omrs
+      - MYSQL_DATABASE=omrs
+      - MYSQL_PASSWORD=omrs
+      - MYSQL_ROOT_PASSWORD=friend
+      - bind-address=0.0.0.0
+
+        # -p 3306:3306 -d --name=omrs -e MYSQL_USER=omrs -e MYSQL_DATABASE=omrs -e MYSQL_PASSWORD=omrs -e MYSQL_ROOT_PASSWORD=friend mysql:5.7.19 --bind-address=0.0.0.0
