@@ -125,6 +125,14 @@
                        <name>OPENMRS_INSTALLATION_SCRIPT</name>
                        <value>${OPENMRS_INSTALLATION_SCRIPT}</value>
                    </systemProperty>
+	               <systemProperty>
+		               <name>log4j.debug</name>
+		               <value>true</value>
+	               </systemProperty>
+	               <systemProperty>
+		               <name>log4j2.debug</name>
+		               <value>true</value>
+	               </systemProperty>
                </systemProperties>
             </configuration>
          </plugin>
