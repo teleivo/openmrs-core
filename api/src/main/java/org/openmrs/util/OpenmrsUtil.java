@@ -462,9 +462,9 @@ public class OpenmrsUtil {
 		OpenmrsConstants.DATABASE_BUSINESS_NAME = val;
 		
 		// set global log level
-		applyLogLevels();
+		//applyLogLevels();
 		
-		setupLogAppenders();
+		//setupLogAppenders();
 	}
 	
 	/**
