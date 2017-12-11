@@ -32,6 +32,8 @@ import javax.servlet.ServletException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.MandatoryModuleException;
 import org.openmrs.module.Module;
@@ -70,8 +72,9 @@ import org.xml.sax.SAXException;
  */
 public final class Listener extends ContextLoader implements ServletContextListener {
 	
-	protected final org.slf4j.Logger log = LoggerFactory.getLogger(Listener.class);
-	
+//	protected final org.slf4j.Logger log = LoggerFactory.getLogger(Listener.class);
+	protected final Logger log = LogManager.getLogger(Listener.class);
+
 	private static boolean runtimePropertiesFound = false;
 	
 	private static Throwable errorAtStartup = null;
@@ -133,10 +136,11 @@ public final class Listener extends ContextLoader implements ServletContextListe
 	 */
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		final org.slf4j.Logger contextLog = LoggerFactory.getLogger(Listener.class);
+//		final org.slf4j.Logger contextLog = LoggerFactory.getLogger(Listener.class);
 		
-		contextLog.debug("Starting the OpenMRS webapp");
-		
+//		contextLog.debug("Starting the OpenMRS webapp");
+		log.debug("Starting the OpenMRS webapp");
+
 		try {
 			// validate the current JVM version
 			OpenmrsUtil.validateJavaVersion();
@@ -200,7 +204,8 @@ public final class Listener extends ContextLoader implements ServletContextListe
 		}
 		catch (Exception e) {
 			setErrorAtStartup(e);
-			contextLog.error(MarkerFactory.getMarker("FATAL"), "Failed to obtain JDBC connection", e);
+//			contextLog.error(MarkerFactory.getMarker("FATAL"), "Failed to obtain JDBC connection", e);
+			log.fatal("Failed to obtain JDBC connection", e);
 		}
 		
 	}

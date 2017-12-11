@@ -45,18 +45,6 @@
         <param-name>application.data.directory</param-name>
         <param-value></param-value>
     </context-param>
-<!-- TODO is this still needed? -->
-    <context-param>
-    	<param-name>log4jExposeWebAppRoot</param-name>
-    	<param-value>false</param-value>
-    </context-param>
-	<!-- // End init parameters -->
-
-<!-- TODO is this still needed? -->
-    <context-param>
-        <param-name>log4jRefreshInterval</param-name>
-        <param-value>60000</param-value>
-    </context-param>
 
     <context-param>
         <param-name>defaultHtmlEscape</param-name>
