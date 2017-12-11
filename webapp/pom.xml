@@ -109,10 +109,10 @@
              <version>9.3.3.v20150827</version>
              <configuration>
                <webApp>
-               	  <descriptor>${project.build.directory}/jetty/WEB-INF/web.xml</descriptor>
+	               <descriptor>${project.basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
                   <contextPath>/${webapp.name}</contextPath>
                   <!--enable reloading static resources -->
-                  <overrideDescriptor>src/test/resources/override-web.xml</overrideDescriptor>
+                  <overrideDescriptor>${project.basedir}/src/test/resources/override-web.xml</overrideDescriptor>
                   <extraClasspath>target/classes;../api/target/classes;../web/target/classes</extraClasspath>
                </webApp>
                <scanIntervalSeconds>10</scanIntervalSeconds>
@@ -160,7 +160,7 @@
                    <version>9.3.3.v20150827</version>
                    <configuration>
                      <webApp>
-               	  		<descriptor>${project.build.directory}/jetty/WEB-INF/web.xml</descriptor>
+               	  		<descriptor>${project.basedir}/src/main/webapp/WEB-INF/web.xml</descriptor>
                   		<contextPath>/${webapp.name}</contextPath>
                   		<!--enable reloading static resources -->
                   		<overrideDescriptor>src/test/resources/override-web.xml</overrideDescriptor>
