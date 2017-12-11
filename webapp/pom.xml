@@ -105,13 +105,13 @@
                   <contextPath>/${webapp.name}</contextPath>
                   <!--enable reloading static resources -->
                   <overrideDescriptor>${project.basedir}/src/test/resources/override-web.xml</overrideDescriptor>
-                  <extraClasspath>target/classes;../api/target/classes;../web/target/classes</extraClasspath>
+                  <!--<extraClasspath>target/classes;../api/target/classes;../web/target/classes</extraClasspath>-->
                </webApp>
-               <scanIntervalSeconds>10</scanIntervalSeconds>
-               <scanTargets>
-                  <scanTarget>../api/target/classes</scanTarget>
-                  <scanTarget>../web/target/classes</scanTarget>
-               </scanTargets>
+               <!--<scanIntervalSeconds>10</scanIntervalSeconds>-->
+               <!--<scanTargets>-->
+                  <!--<scanTarget>../api/target/classes</scanTarget>-->
+                  <!--<scanTarget>../web/target/classes</scanTarget>-->
+               <!--</scanTargets>-->
                <systemProperties>
                    <systemProperty>
                        <name>OPENMRS_INSTALLATION_SCRIPT</name>
