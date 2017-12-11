@@ -290,12 +290,18 @@
 			</dependency>
 
 			<!-- Logging Dependencies START -->
-			<!-- Bridging Spring/Others depending on JCL to Logging Facade slf4j -->
+			<!--slf4j API - no implementation-->
 			<dependency>
 				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
+				<artifactId>slf4j-api</artifactId>
 				<version>${slf4jVersion}</version>
 			</dependency>
+			<!-- Bridging Spring/Others depending on JCL to Logging Facade slf4j -->
+			<!--<dependency>-->
+				<!--<groupId>org.slf4j</groupId>-->
+				<!--<artifactId>jcl-over-slf4j</artifactId>-->
+				<!--<version>${slf4jVersion}</version>-->
+			<!--</dependency>-->
 			<!-- Logging Implementation Log4J 2 -->
 			<!-- slf4j binding for Log4J -->
 			<dependency>
