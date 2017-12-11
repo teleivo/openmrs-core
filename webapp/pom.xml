@@ -58,14 +58,6 @@
                <exclude>liquibase-demo-data.zip</exclude>
             </excludes>
          </resource>
-         <resource>
-            <directory>src/main/webapp</directory>
-            <includes>
-               <include>WEB-INF/web.xml</include>
-            </includes>
-            <filtering>true</filtering>
-            <targetPath>../jetty</targetPath>
-         </resource>
       </resources>
       <plugins>
          <plugin>
