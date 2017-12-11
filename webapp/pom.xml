@@ -125,6 +125,10 @@
 		               <name>log4j2.debug</name>
 		               <value>true</value>
 	               </systemProperty>
+	               <systemProperty>
+		               <name>org.jboss.logging.provider</name>
+		               <value>slf4j</value>
+	               </systemProperty>
                </systemProperties>
             </configuration>
          </plugin>

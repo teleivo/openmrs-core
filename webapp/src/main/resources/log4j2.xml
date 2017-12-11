@@ -15,8 +15,14 @@
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%p - %C{1}.%M(%L) |%d{ISO8601}| %m%n"/>
 		</Console>
+		<Console name="SupremeConsole" target="SYSTEM_OUT">
+			<PatternLayout pattern="%p - %C %M(%L) |%d{ISO8601}| %m --- %n"/>
+		</Console>
 	</Appenders>
 	<Loggers>
+		<Logger name="org.hibernate" level="error" additivity="false">
+			<AppenderRef ref="SupremeConsole"/>
+		</Logger>
 		<Root level="error">
 			<AppenderRef ref="Console"/>
 		</Root>
