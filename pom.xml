@@ -304,11 +304,12 @@
 				<version>${slf4jVersion}</version>
 			</dependency>
 			<!-- Bridging Spring/Others depending on JCL to Logging Facade slf4j -->
-			<!--<dependency>-->
-				<!--<groupId>org.slf4j</groupId>-->
-				<!--<artifactId>jcl-over-slf4j</artifactId>-->
-				<!--<version>${slf4jVersion}</version>-->
-			<!--</dependency>-->
+			<!-- if commons-logging is not included as one of our dependencies but others need it at runtime this is needed -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4jVersion}</version>
+			</dependency>
 			<!-- Logging Implementation Log4J 2 -->
 			<!-- slf4j binding for Log4J -->
 			<dependency>
