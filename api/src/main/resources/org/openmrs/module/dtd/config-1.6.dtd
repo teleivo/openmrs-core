@@ -115,3 +115,5 @@
 	<!ELEMENT path (#PCDATA)>
 	<!ELEMENT openmrsVersion (#PCDATA)>
 	<!ELEMENT modules (module+)>
+	<!ELEMENT module (moduleId, version)>
+	<!ELEMENT moduleId (#PCDATA)>
