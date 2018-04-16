@@ -280,6 +280,7 @@ public class ModuleFileParser {
 
 	private DocumentBuilder newDocumentBuilder() throws ParserConfigurationException {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		dbf.setValidating(true);
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		db.setEntityResolver(new ModuleConfigEntityResolver());
 		return db;

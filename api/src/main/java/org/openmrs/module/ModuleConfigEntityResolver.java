@@ -1,6 +1,8 @@
 package org.openmrs.module;
 
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
 
 import org.xml.sax.EntityResolver;
@@ -13,6 +15,7 @@ public class ModuleConfigEntityResolver implements EntityResolver {
 	public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
 		System.out.println("public: " + publicId);
 		System.out.println("system: " + systemId);
-		return new InputSource(new StringReader(""));
+		Reader r = new FileReader(getClass().getResource("dtd/config-1.1.dtd").getFile());
+		return new InputSource(r);
 	}
 }
