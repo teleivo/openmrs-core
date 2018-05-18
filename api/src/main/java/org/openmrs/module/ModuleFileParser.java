@@ -677,11 +677,11 @@ public class ModuleFileParser {
 					}
 				} else if ("openmrsPlatformVersion".equals(resourceElement.getNodeName())) {
 					resource.setOpenmrsPlatformVersion(resourceElement.getTextContent());
-				} else if ("modules".equals(resourceElement.getNodeName())) {
+				} else if ("loadIfModulesPresent".equals(resourceElement.getNodeName())) {
 					NodeList modulesNode = resourceElement.getChildNodes();
 					for (int k = 0; k < modulesNode.getLength(); k++) {
 						Node moduleNode = modulesNode.item(k);
-						if ("module".equals(moduleNode.getNodeName())) {
+						if ("openmrsModule".equals(moduleNode.getNodeName())) {
 							NodeList moduleElements = moduleNode.getChildNodes();
 
 							ModuleConditionalResource.ModuleAndVersion module = new ModuleConditionalResource.ModuleAndVersion();

@@ -1371,9 +1371,9 @@ public class ModuleFileParserUnitTest extends BaseContextMockTest {
 			Element conditionalResource = createElementWithChildren("conditionalResource", children);
 			attachToGroupElement("conditionalResources", conditionalResource);
 			if (modules != null) {
-				Element modulesElement = configXml.createElement("modules");
+				Element modulesElement = configXml.createElement("loadIfModulesPresent");
 				for (Map.Entry<String, String> entries : modules.entrySet()) {
-					Element module = configXml.createElement("module");
+					Element module = configXml.createElement("openmrsModule");
 					module.appendChild(createElement("moduleId", entries.getKey()));
 					module.appendChild(createElement("version", entries.getValue()));
 					modulesElement.appendChild(module);
