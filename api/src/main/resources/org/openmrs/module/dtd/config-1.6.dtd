@@ -111,9 +111,11 @@
 	<!ELEMENT packagesWithMappedClasses (#PCDATA)>
 
 	<!ELEMENT conditionalResources (conditionalResource+)>
-	<!ELEMENT conditionalResource (path, (openmrsVersion | loadIfModulesPresent))>
+	<!-- loadIfModulesPresent but it can also be used to load resource if module is absent, rename? -->
+	<!ELEMENT conditionalResource (path, (openmrsVersion | openmrsPlatformVersion | loadIfModulesPresent))>
 	<!ELEMENT path (#PCDATA)>
 	<!ELEMENT openmrsVersion (#PCDATA)>
+	<!ELEMENT openmrsPlatformVersion (#PCDATA)>
 	<!ELEMENT loadIfModulesPresent (openmrsModule+)>
 	<!ELEMENT openmrsModule (moduleId, version)>
 	<!ELEMENT moduleId (#PCDATA)>

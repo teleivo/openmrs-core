@@ -10,7 +10,11 @@
 package org.openmrs.module;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Allows to specify a conditionally loaded resource in a module based on
@@ -25,15 +29,57 @@ public class ModuleConditionalResource {
 	private String openmrsPlatformVersion;
 	
 	private List<ModuleAndVersion> modules = new ArrayList<>();
-	
+
+	/**
+	 * Constructor creates an invalid ModuleConditionalResource thus deprecated.
+	 * 
+	 * @deprecated since 2.2.0 use {@link #ModuleConditionalResource(String, String)} or other
+	 */
+	public ModuleConditionalResource() {
+	}
+
+	/**
+	 * Creates resource which is loaded when module is running in specified OpenMRS version.
+	 * 
+	 * @param path the path to the conditional resource
+	 * @param openmrsPlatformVersion the openmrs version for when resource is loaded
+	 */
+	public ModuleConditionalResource(String path, String openmrsPlatformVersion) {
+		if (StringUtils.isBlank(path)) {
+			throw new IllegalArgumentException("path must not be null or blank.");
+		}
+		if (StringUtils.isBlank(openmrsPlatformVersion)) {
+			throw new IllegalArgumentException("openmrsPlatformVersion must not be null or blank.");
+		}
+		this.path = path;
+		this.openmrsPlatformVersion = openmrsPlatformVersion;
+		this.modules = Collections.emptyList();
+	}
+
+	public ModuleConditionalResource(String path, ModuleAndVersion ...modules) {
+		if (StringUtils.isBlank(path)) {
+			throw new IllegalArgumentException("path must not be null or blank.");
+		}
+		if (modules.length == 0) {
+			throw new IllegalArgumentException("ModuleConditionalResource based on presence/absence of modules requires at least one module, but none given.");
+		}
+		this.path = path;
+		this.modules = Arrays.asList(modules);
+	}
+
 	public String getPath() {
 		return path;
 	}
-	
+
+	/**
+	 * Use constructor creating valid ModuleConditionalResource and do not mutate the path afterwards.
+	 * 
+	 * @deprecated since 2.2.0 use {@link #ModuleConditionalResource(String, String)}
+	 */
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
+
 	/**
 	 * @since 1.11.3, 1.10.2, 1.9.9
 	 */
@@ -42,7 +88,10 @@ public class ModuleConditionalResource {
     }
 
     /**
+     * Use constructor creating valid ModuleConditionalResource and do not mutate the version afterwards.
+     * 
 	 * @since 1.11.3, 1.10.2, 1.9.9
+     * @deprecated since 2.2.0 use {@link #ModuleConditionalResource(String, String)}
 	 */
     public void setOpenmrsPlatformVersion(String openmrsPlatformVersion) {
     	this.openmrsPlatformVersion = openmrsPlatformVersion;
@@ -52,6 +101,10 @@ public class ModuleConditionalResource {
 		return modules;
 	}
 	
+	/**
+	 *
+	 * @deprecated since 2.2.0 use {@link #ModuleConditionalResource(String, String)}
+	 */
 	public void setModules(List<ModuleAndVersion> modules) {
 		this.modules = modules;
 	}
@@ -69,7 +122,8 @@ public class ModuleConditionalResource {
 		if (modules != null ? !modules.equals(that.modules) : that.modules != null) {
 			return false;
 		}
-		if (openmrsPlatformVersion != null ? !openmrsPlatformVersion.equals(that.openmrsPlatformVersion) : that.openmrsPlatformVersion != null) {
+		if (openmrsPlatformVersion != null ? !openmrsPlatformVersion
+			.equals(that.openmrsPlatformVersion) : that.openmrsPlatformVersion != null) {
 			return false;
 		}
 		return path != null ? path.equals(that.path) : that.path == null;
