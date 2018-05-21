@@ -148,11 +148,32 @@ public class ModuleConditionalResource {
 		private String moduleId;
 		
 		private String version;
-		
+
+		/**
+		 * @deprecated since 2.2.0 use {{@link #ModuleAndVersion(String, String)}}
+		 */
+		public ModuleAndVersion() {
+		}
+
+		/**
+		 * Create a module with id and version.
+		 * 
+		 * @param moduleId
+		 * @param version
+		 * @since 2.2.0
+		 */
+		public ModuleAndVersion(String moduleId, String version) {
+			this.moduleId = moduleId;
+			this.version = version;
+		}
+
 		public String getModuleId() {
 			return moduleId;
 		}
-		
+
+		/**
+		 * @deprecated since 2.2.0 use {{@link #ModuleAndVersion(String, String)}}.
+		 */
 		public void setModuleId(String moduleId) {
 			this.moduleId = moduleId;
 		}
@@ -160,7 +181,10 @@ public class ModuleConditionalResource {
 		public String getVersion() {
 			return version;
 		}
-		
+
+		/**
+		 * @deprecated since 2.2.0 use {{@link #ModuleAndVersion(String, String)}}.
+		 */
 		public void setVersion(String version) {
 			this.version = version;
 		}
