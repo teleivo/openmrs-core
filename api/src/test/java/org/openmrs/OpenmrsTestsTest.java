@@ -90,7 +90,7 @@ public class OpenmrsTestsTest {
 				if (methodName.startsWith("should") || methodName.contains("_should")) {
 					assertTrue(currentClass.getName() + "#" + methodName
 					        + " does not have the @Test annotation on it even though the method name starts with 'should'",
-					    method.getAnnotation(Test.class) != null);
+					    method.getAnnotation(Test.class) != null || method.getAnnotation(org.junit.jupiter.api.Test.class) != null);
 				}
 			}
 		}
