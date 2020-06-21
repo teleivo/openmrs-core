@@ -9,10 +9,11 @@
  */
 package org.openmrs.api.impl;
 
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -20,19 +21,21 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Matchers;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 import org.openmrs.Concept;
 import org.openmrs.Location;
 import org.openmrs.Patient;
@@ -50,6 +53,7 @@ import org.openmrs.api.ObsService;
 import org.openmrs.api.PatientServiceTest;
 import org.openmrs.api.context.UserContext;
 import org.openmrs.api.db.PatientDAO;
+import org.openmrs.test.BaseContextMockJunit5Test;
 import org.openmrs.test.BaseContextMockTest;
 
 /**
@@ -58,7 +62,9 @@ import org.openmrs.test.BaseContextMockTest;
  *
  * If you need an integration test with application context and DB, have a look at @see org.openmrs.api.{@link PatientServiceTest}
  */
-public class PatientServiceImplTest extends BaseContextMockTest {
+@ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
+public class PatientServiceImplTest extends BaseContextMockJunit5Test {
 
 	private PatientServiceImpl patientService;
 
@@ -77,7 +83,7 @@ public class PatientServiceImplTest extends BaseContextMockTest {
 	@Mock
 	private PatientDAO patientDaoMock;
 
-	@Before
+	@BeforeEach
 	public void before() {
 		patientService = new PatientServiceImpl();
 		patientService.setPatientDAO(patientDaoMock);
@@ -189,18 +195,15 @@ public class PatientServiceImplTest extends BaseContextMockTest {
 
 	}
 
-	@Test(expected = InsufficientIdentifiersException.class)
-	public void checkPatientIdentifiers_shouldThrowInsufficientIdentifiersErrorGivenPatientHasNoActiveIdentifiers()
-		throws Exception {
+	@Test
+	public void checkPatientIdentifiers_shouldThrowInsufficientIdentifiersErrorGivenPatientHasNoActiveIdentifiers() {
 		// given
 		Patient patient = new Patient();
 		patient.setVoided(false);
 		patient.addIdentifier(createVoidedPatientIdentifier());
 
-		// when
-		patientService.checkPatientIdentifiers(patient);
-
 		// this patient only has a voided identifier, so saving is not allowed > exception
+		assertThrows(InsufficientIdentifiersException.class, () -> patientService.checkPatientIdentifiers(patient));
 	}
 
 	@Test
@@ -216,14 +219,14 @@ public class PatientServiceImplTest extends BaseContextMockTest {
 		// no exception
 	}
 
-	@Test(expected = APIException.class)
+	@Test
 	public void getDuplicatePatientsByAttributes_shouldThrowErrorGivenEmptyAttributes() throws Exception {
-		patientService.getDuplicatePatientsByAttributes(Collections.emptyList());
+		assertThrows(APIException.class, () -> patientService.getDuplicatePatientsByAttributes(Collections.emptyList()));
 	}
 
-	@Test(expected = APIException.class)
+	@Test
 	public void getDuplicatePatientsByAttributes_shouldThrowErrorGivenNoAttributes() throws Exception {
-		patientService.getDuplicatePatientsByAttributes(null);
+		assertThrows(APIException.class, () -> patientService.getDuplicatePatientsByAttributes(null));
 	}
 
 	@Test
@@ -233,7 +236,7 @@ public class PatientServiceImplTest extends BaseContextMockTest {
 		final List<Patient> duplicatePatients = patientService
 			.getDuplicatePatientsByAttributes(Arrays.asList("some attribute", "another attribute"));
 		verify(patientDaoMock, times(1)).getDuplicatePatientsByAttributes(anyList());
-		Assert.assertEquals(duplicatePatients.size(), 1);
+		assertEquals(duplicatePatients.size(), 1);
 	}
 
 	@Test
@@ -271,19 +274,19 @@ public class PatientServiceImplTest extends BaseContextMockTest {
 		assertEquals(0, actualIdentifierTypes.size());
 	}
 
-	@Test(expected = APIException.class)
+	@Test
 	public void processDeath_shouldThrowAPIExceptionIfPatientIsNull() throws Exception {
-		patientService.processDeath(null, new Date(), new Concept(), "unknown");
+		assertThrows(APIException.class, () -> patientService.processDeath(null, new Date(), new Concept(), "unknown"));
 	}
 
-	@Test(expected = APIException.class)
+	@Test
 	public void processDeath_shouldThrowAPIExceptionIfDateDiedIsNull() throws Exception {
-		patientService.processDeath(new Patient(), null, new Concept(), "unknown");
+		assertThrows(APIException.class, () -> patientService.processDeath(new Patient(), null, new Concept(), "unknown"));
 	}
 
-	@Test(expected = APIException.class)
+	@Test
 	public void processDeath_shouldThrowAPIExceptionIfCauseOfDeathIsNull() throws Exception {
-		patientService.processDeath(new Patient(), new Date(), null, "unknown");
+		assertThrows(APIException.class, () -> patientService.processDeath(new Patient(), new Date(), null, "unknown"));
 	}
 
 	@Test
