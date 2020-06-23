@@ -62,7 +62,6 @@ import org.openmrs.test.BaseContextMockTest;
  *
  * If you need an integration test with application context and DB, have a look at @see org.openmrs.api.{@link PatientServiceTest}
  */
-@ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class PatientServiceImplTest extends BaseContextMockJunit5Test {
 
