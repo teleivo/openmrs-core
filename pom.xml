@@ -633,16 +633,9 @@
 					<version>1.5</version>
 				</plugin>
 				<plugin>
-					<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
-					<artifactId>maven-java-formatter-plugin</artifactId>
-					<version>0.3</version>
-					<configuration>
-						<compilerSource>${javaCompilerVersion}</compilerSource>
-						<compilerCompliance>${javaCompilerVersion}</compilerCompliance>
-						<compilerTargetPlatform>${javaCompilerVersion}</compilerTargetPlatform>
-						<configFile>eclipse/OpenMRSFormatter.xml</configFile>
-						<overrideConfigCompilerVersion>true</overrideConfigCompilerVersion>
-					</configuration>
+					<groupId>com.diffplug.spotless</groupId>
+					<artifactId>spotless-maven-plugin</artifactId>
+					<version>2.0.0</version>
 					<dependencies>
 						<dependency>
 							<groupId>org.openmrs.tools</groupId>
@@ -650,6 +643,14 @@
 							<version>${project.version}</version>
 						</dependency>
 					</dependencies>
+					<configuration>
+						<java>
+							<removeUnusedImports />
+							<eclipse>
+								<file>eclipse/OpenMRSFormatter.xml</file>
+							</eclipse>
+						</java>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -719,25 +720,6 @@
 					<configuration>
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											com.googlecode.maven-java-formatter-plugin
-										</groupId>
-										<artifactId>
-											maven-java-formatter-plugin
-										</artifactId>
-										<versionRange>
-											[0.3,)
-										</versionRange>
-										<goals>
-											<goal>format</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore/>
-									</action>
-								</pluginExecution>
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>
