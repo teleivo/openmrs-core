@@ -645,10 +645,13 @@
 					</dependencies>
 					<configuration>
 						<java>
-							<removeUnusedImports />
 							<eclipse>
 								<file>eclipse/OpenMRSFormatter.xml</file>
 							</eclipse>
+							<importOrder>
+								<order>javax,java,org,org.openmrs</order>
+							</importOrder>
+							<removeUnusedImports />
 						</java>
 					</configuration>
 				</plugin>
