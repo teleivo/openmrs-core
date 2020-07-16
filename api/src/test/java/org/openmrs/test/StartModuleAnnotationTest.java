@@ -9,13 +9,12 @@
  */
 package org.openmrs.test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.assertNotNull;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseModuleContextSensitiveTest;
 
-@StartModule( { "org/openmrs/module/include/dssmodule-1.44.omod", "org/openmrs/module/include/atdproducer-0.51.omod" })
+@StartModule({ "org/openmrs/module/include/dssmodule-1.44.omod", "org/openmrs/module/include/atd-0.51.omod" })
 public class StartModuleAnnotationTest extends BaseModuleContextSensitiveTest {
 	
 	@Test
