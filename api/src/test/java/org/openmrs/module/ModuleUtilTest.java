@@ -19,12 +19,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
@@ -40,7 +43,6 @@ import org.openmrs.GlobalProperty;
 import org.openmrs.api.context.Context;
 import org.openmrs.test.jupiter.BaseContextSensitiveTest;
 import org.openmrs.util.OpenmrsConstants;
-import org.powermock.reflect.Whitebox;
 
 /**
  * Tests methods on the {@link org.openmrs.module.ModuleUtil} class
@@ -89,47 +91,45 @@ public class ModuleUtilTest extends BaseContextSensitiveTest {
 		//then
 		assertThat(ModuleUtil.getMandatoryModules(), contains("firstmodule"));
 	}
-
-
-	/**
-	 * @see ModuleUtil#isOpenmrsVersionInVersions(String[])
-	 */
+	
 	@Test
 	public void isOpenmrsVersionInVersions_shouldReturnFalseWhenVersionsIsNull() {
 		assertFalse(ModuleUtil.isOpenmrsVersionInVersions((String[]) null));
 	}
 	
-	/**
-	 * @see ModuleUtil#isOpenmrsVersionInVersions(String[])
-	 */
 	@Test
 	public void isOpenmrsVersionInVersions_shouldReturnFalseWhenVersionsIsEmpty() {
-
+		
 		assertFalse(ModuleUtil.isOpenmrsVersionInVersions());
 	}
-
-	/**
-	 * @throws SecurityException
-	 * @throws NoSuchFieldException
-	 * @see ModuleUtil#isOpenmrsVersionInVersions(String[])
-	 */
+	
 	@Test
-	public void isOpenmrsVersionInVersions_shouldReturnTrueIfCurrentOpenmrsVersionMatchesOneElementInVersions()
-	        throws Exception {
-
+	public void isOpenmrsVersionInVersions_shouldReturnTrueIfCurrentOpenmrsVersionMatchesOneElementInVersions() {
+		
 		final String currentVersion = "1.9.8";
-		Whitebox.setInternalState(OpenmrsConstants.class, "OPENMRS_VERSION_SHORT", currentVersion);
-		assertTrue(ModuleUtil.isOpenmrsVersionInVersions( currentVersion, "1.10.*"));
+		setCurrentOpenmrsVersion(currentVersion);
+		
+		assertTrue(ModuleUtil.isOpenmrsVersionInVersions(currentVersion, "1.10.*"));
 	}
-
-	/**
-	 * @see ModuleUtil#isOpenmrsVersionInVersions(String[])
-	 */
+	
+	private void setCurrentOpenmrsVersion(String currentVersion) {
+		try {
+			Field field = OpenmrsConstants.class.getField("OPENMRS_VERSION_SHORT");
+			field.setAccessible(true);
+			Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			field.set(null, currentVersion);
+		} catch (Exception e) {
+			fail("Failed to set the current OpenMRS version in OpenmrsConstants.class.", e);
+		}
+	}
+	
 	@Test
-	public void isOpenmrsVersionInVersions_shouldReturnFalseIfCurrentOpenmrsVersionDoesNotMatchAnyElementInVersions()
-	        throws Exception {
-
-		Whitebox.setInternalState(OpenmrsConstants.class, "OPENMRS_VERSION_SHORT", "1.9.8");
+	public void isOpenmrsVersionInVersions_shouldReturnFalseIfCurrentOpenmrsVersionDoesNotMatchAnyElementInVersions() {
+		
+		setCurrentOpenmrsVersion("1.9.8");
+		
 		assertFalse(ModuleUtil.isOpenmrsVersionInVersions("1.11.*", "2.1.0"));
 	}
 
