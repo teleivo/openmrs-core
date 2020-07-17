@@ -30,6 +30,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
@@ -43,12 +45,13 @@ import org.openmrs.GlobalProperty;
 import org.openmrs.api.context.Context;
 import org.openmrs.test.jupiter.BaseContextSensitiveTest;
 import org.openmrs.util.OpenmrsConstants;
+import sun.misc.Unsafe;
 
 /**
  * Tests methods on the {@link org.openmrs.module.ModuleUtil} class
  */
 public class ModuleUtilTest extends BaseContextSensitiveTest {
-	
+		
 	Properties initialRuntimeProperties;
 	
 	/**
@@ -120,6 +123,20 @@ public class ModuleUtilTest extends BaseContextSensitiveTest {
 			modifiersField.setAccessible(true);
 			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
 			field.set(null, currentVersion);
+
+			AccessController.doPrivileged(new PrivilegedAction<Object>() {
+				@Override
+				public Object run() {
+					try {
+						Unsafe unsafe = getUnsafe();
+						long offset = unsafe.staticFieldOffset(field);
+						Object base = unsafe.staticFieldBase(field);
+						setFieldUsingUnsafe(base, field.getType(), offset, newValue, unsafe);
+						return null;
+					} catch (Throwable t) {
+						throw new RuntimeException(t);
+					}
+				}});
 		} catch (Exception e) {
 			fail("Failed to set the current OpenMRS version in OpenmrsConstants.class.", e);
 		}
