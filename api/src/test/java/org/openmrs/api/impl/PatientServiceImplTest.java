@@ -12,6 +12,7 @@ package org.openmrs.api.impl;
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -33,6 +35,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.openmrs.Concept;
@@ -52,6 +55,7 @@ import org.openmrs.api.ObsService;
 import org.openmrs.api.PatientServiceTest;
 import org.openmrs.api.context.UserContext;
 import org.openmrs.api.db.PatientDAO;
+import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.test.jupiter.BaseContextMockTest;
 
 /**
@@ -61,8 +65,6 @@ import org.openmrs.test.jupiter.BaseContextMockTest;
  * If you need an integration test with application context and DB, have a look at @see org.openmrs.api.{@link PatientServiceTest}
  */
 public class PatientServiceImplTest extends BaseContextMockTest {
-
-	private PatientServiceImpl patientService;
 
 	@Mock
 	AdministrationService administrationService;
@@ -79,9 +81,14 @@ public class PatientServiceImplTest extends BaseContextMockTest {
 	@Mock
 	private PatientDAO patientDaoMock;
 
+	@Mock
+	private MessageSourceService messageSourceService;
+
+	@InjectMocks
+	private PatientServiceImpl patientService;
+
 	@BeforeEach
 	public void before() {
-		patientService = new PatientServiceImpl();
 		patientService.setPatientDAO(patientDaoMock);
 		this.contextMockHelper.setPatientService(patientService);
 	}
@@ -263,6 +270,39 @@ public class PatientServiceImplTest extends BaseContextMockTest {
 		assertEquals(0, actualIdentifierTypes.size());
 	}
 
+	@Test
+	public void exitFromCare_shouldFailIfGivenPatientIsNull() {
+
+		when((messageSourceService).getMessage(eq("Patient.invalid.care"), any(), any()))
+			.thenReturn("localized error message");
+
+		Exception thrown = assertThrows(APIException.class,
+			() -> patientService.exitFromCare(null, new Date(), new Concept()));
+		assertThat(thrown.getMessage(), is("localized error message"));
+	}
+
+	@Test
+	public void exitFromCare_shouldFailIfGivenDateExitedIsNull() {
+
+		when((messageSourceService).getMessage(eq("Patient.no.valid.dateExited"), any(), any()))
+			.thenReturn("localized error message");
+
+		Exception thrown = assertThrows(APIException.class,
+			() -> patientService.exitFromCare(new Patient(), null, new Concept()));
+		assertThat(thrown.getMessage(), is("localized error message"));
+	}
+
+	@Test
+	public void exitFromCare_shouldFailIfGivenConceptIsNull() {
+
+		when((messageSourceService).getMessage(eq("Patient.no.valid.reasonForExit"), any(), any()))
+			.thenReturn("localized error message");
+
+		Exception thrown = assertThrows(APIException.class,
+			() -> patientService.exitFromCare(new Patient(), new Date(), null));
+		assertThat(thrown.getMessage(), is("localized error message"));
+	}
+	
 	@Test
 	public void processDeath_shouldThrowAPIExceptionIfPatientIsNull() throws Exception {
 		assertThrows(APIException.class, () -> patientService.processDeath(null, new Date(), new Concept(), "unknown"));
