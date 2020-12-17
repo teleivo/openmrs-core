@@ -7,7 +7,7 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-package org.openmrs.test.jupiter;
+package org.openmrs.test.jupiter.move;
 
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.springframework.test.context.TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS;
@@ -78,6 +78,7 @@ import org.openmrs.module.ModuleConstants;
 import org.openmrs.test.SkipBaseSetup;
 import org.openmrs.test.SkipBaseSetupAnnotationExecutionListener;
 import org.openmrs.test.TestUtil;
+import org.openmrs.test.jupiter.BaseModuleContextSensitiveTest;
 import org.openmrs.util.DatabaseUtil;
 import org.openmrs.util.OpenmrsClassLoader;
 import org.openmrs.util.OpenmrsConstants;
@@ -1003,7 +1004,8 @@ public abstract class BaseContextSensitiveTest {
 	private boolean skipBaseSetup = false;
 	
 	/**
-	 * Don't run the {@link #setupDatabaseWithStandardData()} method. This means that the associated
+	 * // TODO is it?	public void baseSetupWithStandardDataAndAuthentication() throws SQLException {
+	 * Don't run the {@link #baseSetupWithStandardDataAndAuthentication()} method. This means that the associated
 	 * "@Test" must call one of these:
 	 * 
 	 * <pre>

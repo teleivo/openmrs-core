@@ -18,7 +18,7 @@ import org.openmrs.Person;
 import org.openmrs.PersonAddress;
 import org.openmrs.PersonName;
 import org.openmrs.User;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Tests the {@link PersonSaveHandler} class

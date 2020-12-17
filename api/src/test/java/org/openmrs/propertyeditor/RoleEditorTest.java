@@ -12,7 +12,7 @@ package org.openmrs.propertyeditor;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 public class RoleEditorTest extends BaseContextSensitiveTest {
 	

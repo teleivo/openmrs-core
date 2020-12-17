@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.openmrs.VisitType;
 import org.openmrs.api.VisitService;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Contains the tests for {@link VisitDAO} methods that don't have equivalents at the

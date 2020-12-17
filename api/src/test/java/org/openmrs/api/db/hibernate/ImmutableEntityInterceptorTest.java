@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.openmrs.Order;
 import org.openmrs.api.UnchangeableObjectException;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Contains tests for ImmutableEntityInterceptor

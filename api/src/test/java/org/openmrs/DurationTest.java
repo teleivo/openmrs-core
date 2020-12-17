@@ -22,7 +22,7 @@ import java.util.Date;
 import org.junit.jupiter.api.Test;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 public class DurationTest extends BaseContextSensitiveTest {
 	

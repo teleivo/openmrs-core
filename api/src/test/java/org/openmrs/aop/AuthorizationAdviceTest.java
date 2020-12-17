@@ -28,7 +28,7 @@ import org.openmrs.PrivilegeListener;
 import org.openmrs.User;
 import org.openmrs.api.APIAuthenticationException;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 import org.openmrs.util.PrivilegeConstants;
 import org.springframework.stereotype.Component;
 

@@ -9,11 +9,12 @@
  */
 package org.openmrs.test.jupiter;
 
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 import org.springframework.test.context.ContextConfiguration;
 
 /**
  * Modules using the unit test framework should use this class instead of the general
- * {@link org.openmrs.test.jupiter.BaseContextSensitiveTest} one. Developers just need to make sure their modules are on the
+ * {@link BaseContextSensitiveTest} one. Developers just need to make sure their modules are on the
  * classpath. The TestingApplicationContext.xml file tells spring/hibernate to look for and load all
  * modules found on the classpath. The ContextConfiguration annotation adds in the module
  * application context files to the config locations and the test application context (so that the

@@ -21,7 +21,7 @@ import org.openmrs.Person;
 import org.openmrs.PersonName;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

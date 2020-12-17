@@ -21,7 +21,7 @@ import org.openmrs.Person;
 import org.openmrs.User;
 import org.openmrs.Voidable;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Tests for the {@link RequireVoidReasonVoidHandler} class.

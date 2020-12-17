@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.openmrs.ConceptName;
 import org.openmrs.ConceptNameTag;
 import org.openmrs.User;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Tests the {@link ConceptNameSaveHandler} class.

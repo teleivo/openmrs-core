@@ -19,7 +19,7 @@ import java.beans.PropertyEditor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openmrs.OpenmrsObject;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Serves as a base test that covers the common implementation of OpenMRS {@code PropertyEditor's}.

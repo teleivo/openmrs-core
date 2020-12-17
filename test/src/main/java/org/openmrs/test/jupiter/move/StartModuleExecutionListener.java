@@ -7,7 +7,7 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-package org.openmrs.test.jupiter;
+package org.openmrs.test.jupiter.move;
 
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
@@ -48,7 +48,7 @@ import org.springframework.test.context.support.AbstractTestExecutionListener;
  * 
  * @since 2.4.0
  */
-class StartModuleExecutionListener extends AbstractTestExecutionListener {
+public class StartModuleExecutionListener extends AbstractTestExecutionListener {
 	
 	private static final Logger log = LoggerFactory.getLogger(StartModuleExecutionListener.class);
 	

@@ -22,7 +22,7 @@ import org.openmrs.Person;
 import org.openmrs.Provider;
 import org.openmrs.api.db.PersonDAO;
 import org.openmrs.api.db.ProviderDAO;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ProviderDAOTest extends BaseContextSensitiveTest {

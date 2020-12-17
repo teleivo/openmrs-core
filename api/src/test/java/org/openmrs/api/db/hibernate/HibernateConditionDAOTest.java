@@ -27,7 +27,7 @@ import org.openmrs.ConditionClinicalStatus;
 import org.openmrs.ConditionVerificationStatus;
 import org.openmrs.Patient;
 import org.openmrs.api.db.ConditionDAO;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class HibernateConditionDAOTest extends BaseContextSensitiveTest {

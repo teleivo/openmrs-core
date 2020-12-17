@@ -20,7 +20,7 @@ import org.openmrs.module.ModuleClassLoader;
 import org.openmrs.module.ModuleConstants;
 import org.openmrs.module.ModuleInteroperabilityTest;
 import org.openmrs.module.ModuleUtil;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * This test class is meant just for testing the {@link Context#loadClass(String)} method. This

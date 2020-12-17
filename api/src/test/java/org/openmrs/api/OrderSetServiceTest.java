@@ -32,7 +32,7 @@ import org.openmrs.OrderSetMember;
 import org.openmrs.User;
 import org.openmrs.api.context.Context;
 import org.openmrs.customdatatype.datatype.FreeTextDatatype;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 public class OrderSetServiceTest extends BaseContextSensitiveTest {
 	

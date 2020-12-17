@@ -22,7 +22,7 @@ import org.openmrs.Person;
 import org.openmrs.PersonName;
 import org.openmrs.User;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 import org.openmrs.util.Security;
 
 public class UserDAOTest extends BaseContextSensitiveTest {

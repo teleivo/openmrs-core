@@ -10,7 +10,7 @@
 package org.openmrs.module;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Has functionality commonly used by unit tests for module activator

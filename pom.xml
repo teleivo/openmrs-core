@@ -70,7 +70,7 @@
 				<groupId>org.openmrs.test</groupId>
 				<artifactId>openmrs-test</artifactId>
 				<version>${project.version}</version>
-				<type>pom</type>
+				<type>jar</type>
 			</dependency>
 			<dependency>
 				<groupId>org.openmrs.api</groupId>

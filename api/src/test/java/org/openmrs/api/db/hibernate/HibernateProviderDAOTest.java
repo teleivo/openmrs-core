@@ -23,7 +23,7 @@ import org.openmrs.Person;
 import org.openmrs.Provider;
 import org.openmrs.api.ProviderService;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 public class HibernateProviderDAOTest extends BaseContextSensitiveTest {
 	

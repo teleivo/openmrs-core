@@ -34,7 +34,7 @@ import org.openmrs.Order.Urgency;
 import org.openmrs.api.APIException;
 import org.openmrs.api.context.Context;
 import org.openmrs.order.OrderUtilTest;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 import org.openmrs.util.Reflect;
 
 /**

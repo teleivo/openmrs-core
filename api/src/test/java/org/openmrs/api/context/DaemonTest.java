@@ -32,7 +32,7 @@ import org.openmrs.scheduler.Task;
 import org.openmrs.scheduler.tasks.AbstractTask;
 import org.openmrs.scheduler.tasks.HelloWorldTask;
 import org.openmrs.scheduler.timer.TimerSchedulerTask;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Tests the methods on the {@link Daemon} class

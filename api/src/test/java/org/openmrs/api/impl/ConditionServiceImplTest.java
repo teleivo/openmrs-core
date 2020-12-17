@@ -30,7 +30,7 @@ import org.openmrs.Patient;
 import org.openmrs.api.ConditionService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Unit tests for methods that are specific to the {@link ConditionServiceImpl}. General tests that

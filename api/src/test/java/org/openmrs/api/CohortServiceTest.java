@@ -33,7 +33,7 @@ import org.openmrs.CohortMembership;
 import org.openmrs.Patient;
 import org.openmrs.User;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Tests methods in the CohortService class TODO add all the rest of the tests

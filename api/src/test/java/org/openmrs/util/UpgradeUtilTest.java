@@ -17,7 +17,7 @@ import java.io.IOException;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Test;
 import org.openmrs.api.APIException;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 import org.openmrs.util.databasechange.Database1_9_7UpgradeIT;
 
 public class UpgradeUtilTest extends BaseContextSensitiveTest {

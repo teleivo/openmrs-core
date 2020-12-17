@@ -22,7 +22,7 @@ import org.openmrs.Concept;
 import org.openmrs.PatientProgram;
 import org.openmrs.Program;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 public class ProgramWorkflowDAOTest extends BaseContextSensitiveTest {
 	

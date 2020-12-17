@@ -19,7 +19,7 @@ import org.openmrs.customdatatype.CustomDatatype;
 import org.openmrs.customdatatype.CustomDatatypeUtil;
 import org.openmrs.customdatatype.datatype.DateDatatype;
 import org.openmrs.customdatatype.datatype.LocationDatatype;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 public class DatatypeServiceTest extends BaseContextSensitiveTest {
 	

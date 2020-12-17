@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.openmrs.Encounter;
 import org.openmrs.Visit;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Tests methods in the {@link ExistingVisitAssignmentHandler}

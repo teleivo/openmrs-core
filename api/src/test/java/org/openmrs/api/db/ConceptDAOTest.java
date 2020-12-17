@@ -33,7 +33,7 @@ import org.openmrs.ConceptSearchResult;
 import org.openmrs.api.ConceptNameType;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Tests the concept word weighing logic, tests in this class assume that other factors remain

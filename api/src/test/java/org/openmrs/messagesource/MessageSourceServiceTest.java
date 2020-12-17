@@ -17,7 +17,7 @@ import java.util.Locale;
 import org.junit.jupiter.api.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.messagesource.impl.MessageSourceServiceImpl;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.validation.MapBindingResult;
 

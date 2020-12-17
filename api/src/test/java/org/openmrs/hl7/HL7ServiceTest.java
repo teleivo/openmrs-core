@@ -48,7 +48,7 @@ import org.openmrs.hl7.handler.ORUR01Handler;
 import org.openmrs.hl7.impl.HL7ServiceImpl;
 import org.openmrs.module.ModuleConstants;
 import org.openmrs.module.ModuleUtil;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 import org.openmrs.util.OpenmrsConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

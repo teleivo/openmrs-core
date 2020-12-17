@@ -21,7 +21,7 @@ import org.hibernate.criterion.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openmrs.Obs;
-import org.openmrs.test.jupiter.BaseContextSensitiveTest;
+import org.openmrs.test.jupiter.move.BaseContextSensitiveTest;
 
 /**
  * Tests for {@link org.openmrs.api.db.hibernate.HibernateObsDAO}
